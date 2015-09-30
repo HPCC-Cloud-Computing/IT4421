@@ -13,7 +13,7 @@ class CreateStudentsTable extends Migration {
 	public function up()
 	{
 		//
-		Schema::create('students', function ($table) {
+		Schema::create('student_profiles', function ($table) {
 
             $table->increments('id');
             $table->string('code',50);
@@ -25,7 +25,7 @@ class CreateStudentsTable extends Migration {
             $table->integer('department_id');
             $table->integer('cluster_id');
             $table->string('profile_code',50);
-            $table->float('plussore');
+            $table->float('plusscore');
         });
 	}
 
