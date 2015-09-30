@@ -17,8 +17,9 @@ class CreateExamscoresTable extends Migration {
 
             
             $table->integer('subject_id');
-            $table->float('score');
             $table->integer('student_id');
+            $table->integer('examroom_id')
+            $table->float('score');
         });
 	}
 
