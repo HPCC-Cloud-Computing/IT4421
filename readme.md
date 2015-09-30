@@ -1,4 +1,5 @@
-## composer install
+## After download, just run commandline:
+composer install
 
 ## Laravel PHP Framework
 
