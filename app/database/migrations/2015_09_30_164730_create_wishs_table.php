@@ -13,6 +13,13 @@ class CreateWishsTable extends Migration {
 	public function up()
 	{
 		//
+		Schema::create('clusters', function ($table) {
+
+            $table->increments('id');
+            $table->integers('student_id');
+            $table->integers('university_id');
+            $table->integers('major_id')
+        });
 	}
 
 	/**

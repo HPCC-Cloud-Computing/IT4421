@@ -13,6 +13,13 @@ class CreateExamroomsTable extends Migration {
 	public function up()
 	{
 		//
+		Schema::create('examrooms', function ($table) {
+
+            $table->increments('id');
+            $table->string('code',50);
+            $table->string('address');
+            $table->integer('subject_id');
+        });
 	}
 
 	/**

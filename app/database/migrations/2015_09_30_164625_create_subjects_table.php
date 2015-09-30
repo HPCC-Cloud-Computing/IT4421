@@ -13,6 +13,13 @@ class CreateSubjectsTable extends Migration {
 	public function up()
 	{
 		//
+		Schema::create('subjects', function ($table) {
+
+            $table->increments('id');
+            $table->string('code')
+            $table->string('name');
+            $table->date('time');
+        });
 	}
 
 	/**

@@ -13,6 +13,15 @@ class CreatePhasesTable extends Migration {
 	public function up()
 	{
 		//
+		Schema::create('phases', function ($table) {
+
+            $table->increments('id');
+            $table->string('name');
+            $table->string('');
+            $table->date('starttime');
+            $table->date('endtime');
+            
+        });
 	}
 
 	/**

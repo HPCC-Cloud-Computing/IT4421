@@ -13,6 +13,20 @@ class CreateStudentsTable extends Migration {
 	public function up()
 	{
 		//
+		Schema::create('students', function ($table) {
+
+            $table->increments('id');
+            $table->string('code',50);
+            $table->string('lastname');
+            $table->string('firstname');
+            $table->integer('indentitycode');
+            $table->date('birthday');
+            $table->string('sex');
+            $table->integer('department_id');
+            $table->integer('cluster_id');
+            $table->string('profile_code',50);
+            $table->float('plussore');
+        });
 	}
 
 	/**

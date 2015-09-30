@@ -13,6 +13,13 @@ class CreateExamscoresTable extends Migration {
 	public function up()
 	{
 		//
+		Schema::create('exam_scores', function ($table) {
+
+            
+            $table->integer('subject_id');
+            $table->float('score');
+            $table->integer('student_id');
+        });
 	}
 
 	/**
