@@ -19,7 +19,7 @@ class CreateStudentsTable extends Migration {
             $table->string('code',50);
             $table->string('lastname');
             $table->string('firstname');
-            $table->integer('indentitycode');
+            $table->integer('indentity_code');
             $table->date('birthday');
             $table->string('sex');
             $table->integer('department_id');
