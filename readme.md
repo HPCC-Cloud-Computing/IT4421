@@ -1,5 +1,64 @@
-## After download, just run commandline:
+###Hướng dẫn sử dụng git
+##1. Download and install laravel
+git clone https://github.com/cloudcomputinghust/IT4421.git
+cd IT4421/
 composer install
+
+##2. Setting remote:
+git remote add origin https://github.com/cloudcomputinghust/IT4421.git
+
+
+##3. Pull code ve(update code tu git ve):
+
+git pull origun master
+
+##4. Push:
+git add 		(add file can push)
+git commit -m "your name: giai thich update cai gi"         ví dụ: git commit -m "Bình: update class UserController"
+git push -u origin master            (chắc chắn phải có -u, để check xem code của bạn đã là code mới nhất chưa, nếu chưa thì git pull nhé)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Laravel PHP Framework
 
