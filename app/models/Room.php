@@ -10,6 +10,6 @@ class ExamRoom extends Eloquent {
 
 	public function subject()
 	{
-		return $this->belongTo('Subject','subject_id');
+		return $this->belongsTo('Subject','subject_id');
 	}
 }

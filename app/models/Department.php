@@ -5,6 +5,10 @@ class Cluster extends Eloquent {
 
 	protected $table = 'clusters';
 
+	/**
+	 * [user description]
+	 * @return [type] [description]
+	 */
 	public function user()
 	{
 		return $this->morphMany('User', 'userable');

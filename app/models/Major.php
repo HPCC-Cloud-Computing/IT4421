@@ -6,17 +6,23 @@ class Major extends Eloquent {
 	protected $table = 'majors';
 
 
+	/**
+	 * [university description]
+	 * @return [type] [description]
+	 */
 	public function university()
 	{
 		$this->belongsTo('University', 'id', 'university_id');
 	}
 
+	
 	/**
-	 * return danh sach sinh vien danh ky
+	 * [students description]
+	 * @return [type] danh sach sinh vien danh ky
 	 */
 	public function students()
 	{
-		$thi->belongsToMany('Student', 'wishs')
+		$thi->belongsToMany('Student', 'wishs', 'major_id', 'student_id');
 	}
 
 	
