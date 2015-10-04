@@ -13,12 +13,12 @@ class CreateUniversitiesTable extends Migration {
 	public function up()
 	{
 		//
-		Schema::create('universities', function ($table) {
+		Schema::create('universities', function (Blueprint $table) {
 
             $table->increments('id');
-            $table->string('code')
-            $table->string('name');
-            $table->string('info');
+            $table->string('code',20)
+            $table->text('name');
+            $table->text('info');
         });
 	}
 
@@ -30,6 +30,7 @@ class CreateUniversitiesTable extends Migration {
 	public function down()
 	{
 		//
+		Schema::dropIfExists(('universities');
 	}
 
 }

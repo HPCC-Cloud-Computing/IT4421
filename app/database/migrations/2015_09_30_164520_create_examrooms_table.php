@@ -13,12 +13,12 @@ class CreateExamroomsTable extends Migration {
 	public function up()
 	{
 		//
-		Schema::create('examrooms', function ($table) {
+		Schema::create('rooms', function (Blueprint $table) {
 
             $table->increments('id');
-            $table->string('code',50);
-            $table->string('address');
-            $table->integer('cluster_id');
+            $table->string('code',20);
+            $table->text('address');
+            //$table->integer('cluster_id');
         });
 	}
 
@@ -30,6 +30,7 @@ class CreateExamroomsTable extends Migration {
 	public function down()
 	{
 		//
+		Schema::dropIfExists(('rooms');
 	}
 
 }

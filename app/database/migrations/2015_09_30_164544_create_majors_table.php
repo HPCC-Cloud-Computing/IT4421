@@ -13,13 +13,15 @@ class CreateMajorsTable extends Migration {
 	public function up()
 	{
 		//
-		Schema::create('majors', function ($table) {
+		Schema::create('majors', function (Blueprint $table) {
 
             $table->increments('id');
-            $table->string('code',50);
-            $table->integer('target',11);
-            $table->string('condition');
-            $table->string('info');
+            $table->string('code',20);
+            $table->integer('university_id')->unsigned();
+            $table->text('name')
+            $table->integer('target');
+            $table->text('condition');
+            $table->text('info');
             
 
             //$table->string('title',100)->default("Room Title");
@@ -27,7 +29,7 @@ class CreateMajorsTable extends Migration {
            
             
 
-            $table->nullableTimestamps();
+            //$table->nullableTimestamps();
         });
 	}
 
@@ -39,6 +41,7 @@ class CreateMajorsTable extends Migration {
 	public function down()
 	{
 		//
+		Schema::dropIfExists(('majors');
 	}
 
 }

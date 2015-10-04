@@ -13,13 +13,18 @@ class CreateExamscoresTable extends Migration {
 	public function up()
 	{
 		//
-		Schema::create('exam_scores', function ($table) {
+		Schema::create('exam_scores', function (Blueprint $table) {
 
-            
-            $table->integer('subject_id');
-            $table->integer('student_id');
-            $table->integer('examroom_id')
+            //$table->icrements('id');
+            $table->integer('student_id')->unsigned();
+            $table->foreign('student_id')->references('id')->on('students');
+            $table->integer('room_id')->unsigned();
+            $table->foreign('room_id')->references('id')->on('rooms');
+            $table->integer('subject_id')->unsigned();
+            $table->foreign('subject_id')->references('id')->on('subjects');
+            $table->primary(array('student_id','room_id', 'subject_id' ););
             $table->float('score');
+            $table->tinyInteger('state');
         });
 	}
 
@@ -31,6 +36,7 @@ class CreateExamscoresTable extends Migration {
 	public function down()
 	{
 		//
+		Schema::dropIfExists(('exam_scores');
 	}
 
 }

@@ -13,12 +13,13 @@ class CreateWishsTable extends Migration {
 	public function up()
 	{
 		//
-		Schema::create('clusters', function ($table) {
+		Schema::create('wishs', function (Blueprint $table) {
 
             $table->increments('id');
-            $table->integers('student_id');
-            $table->integers('university_id');
-            $table->integers('major_id')
+           
+            $table->string('registration_number',20);
+            $table->integer('major_id')->unsigned();
+            $table->foreign('major_id')->references('id')->on('majors');
         });
 	}
 
@@ -30,6 +31,7 @@ class CreateWishsTable extends Migration {
 	public function down()
 	{
 		//
+		Schema::dropIfExists(('wishs');
 	}
 
 }
