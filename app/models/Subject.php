@@ -5,14 +5,17 @@ class Subject extends Eloquent {
 
 	protected $table = 'subjects';
 
-	public function examroom()
-	{
-		return $this->belongsTo('ExamRoom');
-	}
+	/**
+	 * Model subject khong can xay dung moi quan he.
+	 */
+	//public function examscores()
+	//{
+		//return $this->haveMany('ExamScore');
+	//}
 
-	public function students()
-	{
-		return $this->belongsToMany('exam_scores')->withPivot('id','score');
-	}
+	//public function students()
+	//{
+		//return $this->belongsToMany('exam_scores')->withPivot('id','score');
+	//}
 
 }

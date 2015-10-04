@@ -10,4 +10,9 @@ class University extends Eloquent {
 		return $this->morphMany('User', 'userable');
 	}
 
+	public function students()
+	{
+		return $this->hasManyThrough('Student', 'Wish')
+	}
+
 }

@@ -17,7 +17,8 @@ class CreateWishsTable extends Migration {
 
             $table->increments('id');
            
-            $table->string('registration_number',20);
+            $table->integer('student_id',20)->unsigned();
+            $table->foreign('student_id')->references('id')->on('student');
             $table->integer('major_id')->unsigned();
             $table->foreign('major_id')->references('id')->on('majors');
         });
