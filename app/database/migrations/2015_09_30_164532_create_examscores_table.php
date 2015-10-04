@@ -22,7 +22,7 @@ class CreateExamscoresTable extends Migration {
             $table->foreign('room_id')->references('id')->on('rooms');
             $table->integer('subject_id')->unsigned();
             $table->foreign('subject_id')->references('id')->on('subjects');
-            $table->primary(array('student_id','room_id', 'subject_id' ););
+            $table->primary(array('student_id','room_id', 'subject_id' ));
             $table->float('score');
             $table->tinyInteger('state');
         });
