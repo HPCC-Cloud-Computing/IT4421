@@ -23,8 +23,8 @@ class CreateUsersTable extends Migration {
             //$table->integer('role_id');
             //$table->integer('profile_id');
 
-            //$table->rememberToken();
-			//$table->nullableTimestamps();
+            $table->rememberToken();
+			$table->nullableTimestamps();
         });
 	}
 

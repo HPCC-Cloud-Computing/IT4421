@@ -13,6 +13,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	protected $guarded = array('id', 'password');
 
+	protected $hidden = array('password', 'remember_token', 'userable_id', 'userable_type');
+
+
 	/**
 	 * The database table used by the model.
 	 *
@@ -25,44 +28,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 * @var array
 	 */
-	protected $hidden = array('password', 'remember_token', 'role_id', 'profile_id');
-
-
-
-
-	public function student_profile()
+	
+	public function userable()
 	{
-		return $this->hasOne('StudentProfile', 'profile_id');
-	}
-
-	public function university()
-	{
-		return $this->hasOne('University', 'profile_id');
-	}
-
-	public function cluster()
-	{
-		return $this->hasOne('Cluster', 'profile_id');
-	}
-
-	public function department()
-	{
-		return $this->hasOne('Department', 'profile_id');
-	}
-
-	public function profile()
-	{
-		if ($this->role_id == 1)
-			return $this->student_profile();
-		elseif ($this->role_id == 2) {
-			return $this->university();
-		}
-		elseif ($this->role_id == 3) {
-			return $this->cluster();
-		}
-		elseif ($this->role_id == 4) {
-			return $this->department();
-		}
+		return $this->morphTo();
 	}
 
 	/**
@@ -85,14 +54,20 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return $this->password;
 	}
 
-	public function getRoleId()
+	/**
+	 * Get userable_id
+	 */
+	public function getUserableId()
 	{
-		return $this->role_id;
+		return $this->userable_id;
 	}
 
-	public function getProfileId()
+	/**
+	 * Get userable_type
+	 */
+	public function getUserableType()
 	{
-		return $this->profile_id;
+		return $this->userable_type;
 	}
 
 }
