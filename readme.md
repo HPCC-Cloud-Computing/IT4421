@@ -1,7 +1,9 @@
 ###Hướng dẫn sử dụng git
 ##1. Download and install laravel
 git clone https://github.com/cloudcomputinghust/IT4421.git
+
 cd IT4421/
+
 composer install
 
 ##2. Setting remote:

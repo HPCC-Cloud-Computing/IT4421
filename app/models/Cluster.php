@@ -14,5 +14,18 @@ class Cluster extends Eloquent {
 		return $this->morphMany('User', 'userable');
 	}
 
+	public function students()
+	{
+		return $this->hasMany('Student', 'cluster-id', 'id');
+	}
+
+	public function examscores()
+	{
+		$students = $this->students();
+		foreach ($students as $student) {
+			
+		}
+	}
+
 	
 }
