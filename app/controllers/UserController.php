@@ -38,15 +38,15 @@ class UserController extends \BaseController {
         	'username' => Input::get('username'), 
         	'email' => Input::get('email'),
         	'password' => Hash::make(Input::get('password')),
-        	'userable_id'=> 
-        	'userable_type' =>
         	);
 
         //$user = new User($userData);
         //$user->save();
         $user = User::create($userData);
 
-        
+        //tao room moi
+        //$roomRestful = new RoomRestful; //?
+       	//$room = RoomRestful::store($user);
 
         return $user;
 	}
