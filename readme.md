@@ -16,6 +16,7 @@ git pull origun master
 
 ##4. Push:
 git add 		(add file can push)
+
 git commit -m "your name: giai thich update cai gi"         
 //ví dụ: git commit -m "Bình: update class UserController"
 

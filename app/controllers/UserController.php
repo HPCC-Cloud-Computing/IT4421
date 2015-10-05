@@ -10,6 +10,7 @@ class UserController extends \BaseController {
 	public function index()
 	{
 		//
+		return User::all()->take(10);
 	}
 
 
@@ -21,6 +22,7 @@ class UserController extends \BaseController {
 	public function create()
 	{
 		//
+		return View::make('register');
 	}
 
 
@@ -32,6 +34,21 @@ class UserController extends \BaseController {
 	public function store()
 	{
 		//
+		$userData = array(
+        	'username' => Input::get('username'), 
+        	'email' => Input::get('email'),
+        	'password' => Hash::make(Input::get('password')),
+        	'userable_id'=> 
+        	'userable_type' =>
+        	);
+
+        //$user = new User($userData);
+        //$user->save();
+        $user = User::create($userData);
+
+        
+
+        return $user;
 	}
 
 
@@ -44,6 +61,28 @@ class UserController extends \BaseController {
 	public function show($id)
 	{
 		//
+		$user = User::find($id);
+		$userable = $user->userable();
+		$userable_type = $user->getUserableType();
+		if ($userable_type == 'student') {
+			$studentController = new StudentController;
+			return $studentController->show($user, $userable);
+		}
+		elseif ($userable_type == 'university') {
+			$universityController = new UniversityController;
+			return $universityController->show($user, $userable);
+		}
+		elseif ($userable_type == 'department') {
+			$departmentController = new DepartmentController;
+			return $departmentController->show($user, $userable);
+		}
+		else{
+			$clusterController = new ClusterController;
+			return $clusterController->show($user, $userable);
+		}
+		//$profile = $user->userable();
+		//$data = array('user' => $user, 'profile' => $profile);
+		//return $data;
 	}
 
 

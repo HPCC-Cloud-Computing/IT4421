@@ -1,6 +1,6 @@
 <?php
 
-class StudentProfileController extends \BaseController {
+class StudentController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
