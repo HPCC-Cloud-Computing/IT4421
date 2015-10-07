@@ -1,6 +1,6 @@
 <?php
 
-class Cluster extends Eloquent {
+class Department extends Eloquent {
 	protected $fillable = array('code', 'name', );
 
 	protected $table = 'clusters';

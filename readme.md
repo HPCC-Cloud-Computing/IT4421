@@ -12,7 +12,7 @@ git remote add origin https://github.com/cloudcomputinghust/IT4421.git
 
 ##3. Pull code ve(update code tu git ve):
 
-git pull origun master
+git pull origin master
 
 ##4. Push:
 git add 		(add file can push)
