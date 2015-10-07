@@ -18,7 +18,8 @@ class CreateMajorsTable extends Migration {
             $table->increments('id');
             $table->string('code',20);
             $table->integer('university_id')->unsigned();
-            $table->text('name')
+            $table->foreign('university_id')->references('id')->on('universities');
+            $table->text('name');
             $table->integer('target');
             $table->text('condition');
             $table->text('info');
@@ -41,7 +42,7 @@ class CreateMajorsTable extends Migration {
 	public function down()
 	{
 		//
-		Schema::dropIfExists(('majors');
+		Schema::dropIfExists('majors');
 	}
 
 }

@@ -16,7 +16,7 @@ class CreateSubjectsTable extends Migration {
 		Schema::create('subjects', function (Blueprint $table) {
 
             $table->increments('id');
-            $table->string('code',20)
+            $table->string('code',20);
             $table->text('name');
             $table->dateTime('time');
         });
@@ -30,7 +30,7 @@ class CreateSubjectsTable extends Migration {
 	public function down()
 	{
 		//
-		Schema::dropIfExists(('subjects');
+		Schema::dropIfExists('subjects');
 	}
 
 }

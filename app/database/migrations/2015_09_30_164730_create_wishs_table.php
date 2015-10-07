@@ -17,8 +17,8 @@ class CreateWishsTable extends Migration {
 
             $table->increments('id');
            
-            $table->integer('student_id',20)->unsigned();
-            $table->foreign('student_id')->references('id')->on('student');
+            $table->integer('student_id')->unsigned();
+            $table->foreign('student_id')->references('id')->on('students');
             $table->integer('major_id')->unsigned();
             $table->foreign('major_id')->references('id')->on('majors');
         });
@@ -32,7 +32,7 @@ class CreateWishsTable extends Migration {
 	public function down()
 	{
 		//
-		Schema::dropIfExists(('wishs');
+		Schema::dropIfExists('wishs');
 	}
 
 }

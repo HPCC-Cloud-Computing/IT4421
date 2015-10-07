@@ -18,7 +18,7 @@ class CreateStudentsTable extends Migration {
             $table->increments('id');
 
             $table->string('profile_code',50);
-            $table->string('registration_number',20)
+            $table->string('registration_number',20);
             $table->string('lastname',50);
             $table->string('firstname',30);
             $table->string('indentity_code',20);
@@ -41,7 +41,7 @@ class CreateStudentsTable extends Migration {
 	public function down()
 	{
 		//
-		Schema::dropIfExists(('students');
+		Schema::dropIfExists('students');
 	}
 
 }

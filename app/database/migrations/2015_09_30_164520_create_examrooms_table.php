@@ -30,7 +30,7 @@ class CreateExamroomsTable extends Migration {
 	public function down()
 	{
 		//
-		Schema::dropIfExists(('rooms');
+		Schema::dropIfExists('rooms');
 	}
 
 }

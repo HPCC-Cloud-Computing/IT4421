@@ -16,7 +16,7 @@ class CreatePhasesTable extends Migration {
 		Schema::create('phases', function (Blueprint $table) {
 
             $table->increments('id');
-            $table->string('code',20)
+            $table->string('code',20);
             $table->text('name');
             $table->string('state');
             $table->date('starttime');
@@ -33,7 +33,7 @@ class CreatePhasesTable extends Migration {
 	public function down()
 	{
 		//
-		Schema::dropIfExists(('phases');
+		Schema::dropIfExists('phases');
 	}
 
 }
