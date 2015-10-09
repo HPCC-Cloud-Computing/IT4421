@@ -56,7 +56,7 @@ class Student extends Eloquent {
 	 */
 	public function rooms()
 	{
-		return $this->belongsToMany('Room', 'exam_scores', 'student_id', 'room_id')->withPivot('subjectc_id','score','state');
+		return $this->belongsToMany('Room', 'exam_scores', 'student_id', 'room_id')->withPivot('subject_id','score','state');
 	}
 	/**
 	 * return list of Wish model
