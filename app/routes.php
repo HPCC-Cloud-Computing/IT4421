@@ -15,3 +15,10 @@ Route::get('/', function()
 {
 	return View::make('hello');
 });
+
+
+// route to show the login form
+Route::get('login','UserController@showLogin');
+
+// route to process the form
+Route::post('login', 'UserController@doLogin');
