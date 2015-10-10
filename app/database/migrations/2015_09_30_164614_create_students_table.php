@@ -27,8 +27,8 @@ class CreateStudentsTable extends Migration {
             $table->float('plus_score');
             $table->integer('department_id')->unsigned();
             $table->foreign('department_id')->references('id')->on('departments');
-            $table->integer('cluster_id')->unsigned();
-            $table->foreign('cluster_id')->references('id')->on('clusters');
+            //$table->integer('cluster_id')->unsigned();
+            //$table->foreign('cluster_id')->references('id')->on('clusters');
             
         });
 	}

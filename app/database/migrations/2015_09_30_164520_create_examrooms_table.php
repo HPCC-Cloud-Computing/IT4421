@@ -18,7 +18,8 @@ class CreateExamroomsTable extends Migration {
             $table->increments('id');
             $table->string('code',20);
             $table->text('address');
-            //$table->integer('cluster_id');
+            $table->integer('cluster_id');
+            $table->foreign('cluster_id')->references('id')->on('clusters');
         });
 	}
 
