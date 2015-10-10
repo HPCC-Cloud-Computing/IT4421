@@ -1,7 +1,7 @@
 c<?php
 
 class Major extends Eloquent {
-	protected $fillable = array('id', 'code', 'university_id', 'name', 'target', 'condition', 'info' );
+	protected $fillable = array( 'code', 'university_id', 'name', 'target', 'condition', 'info' );
 
 	protected $table = 'majors';
 
@@ -22,7 +22,7 @@ class Major extends Eloquent {
 	 */
 	public function students()
 	{
-		$thi->belongsToMany('Student', 'wishs', 'major_id', 'student_id');
+		$this->belongsToMany('Student', 'wishs', 'major_id', 'student_id');
 	}
 
 	

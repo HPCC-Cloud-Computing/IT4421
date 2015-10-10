@@ -5,14 +5,32 @@ class University extends Eloquent {
 
 	protected $table = 'universities';
 
+	/**
+	 * [user description]
+	 * @return [type] [description]
+	 */
 	public function user()
 	{
 		return $this->morphMany('User', 'userable');
 	}
 
-	public function students()
+	/**
+	 * [majors description]
+	 * @return [type] [description]
+	 */
+	public function majors()
 	{
-		return $this->hasManyThrough('Student', 'Wish')
+		return $this->hasMany('Majors', 'university_id', 'id');
 	}
 
+	/**
+	 * [wishs description]
+	 * @return [type] [description]
+	 */
+	public function wishs()
+	{
+		return $this->hasManyThrough('Wish', 'Majors', 'university_id', 'major_id');
+	}
+
+	
 }

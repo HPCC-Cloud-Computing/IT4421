@@ -13,9 +13,9 @@ class Subject extends Eloquent {
 		//return $this->haveMany('ExamScore');
 	//}
 
-	//public function students()
-	//{
-		//return $this->belongsToMany('exam_scores')->withPivot('id','score');
-	//}
+	public function students()
+	{
+		return $this->belongsToMany('Student', 'exam_scores', 'subject_id', 'student_id')->withPivot('room_id', 'score', 'state');
+	}
 
 }

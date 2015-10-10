@@ -14,17 +14,17 @@ class Cluster extends Eloquent {
 		return $this->morphMany('User', 'userable');
 	}
 
-	public function students()
+	public function rooms()
 	{
-		return $this->hasMany('Student', 'cluster-id', 'id');
+		return $this->hasMany('Room', 'cluster_id', 'id');
 	}
 
 	public function examscores()
 	{
-		$students = $this->students();
-		foreach ($students as $student) {
-			
-		}
+		//class Country
+		//public function posts()
+		//return $this->hasManyThrough('Post', 'User', 'country_id', 'user_id');
+		return $this->hasManyThrough('ExamScore', 'Room', 'cluster_id', 'room_id');
 	}
 
 	

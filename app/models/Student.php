@@ -25,12 +25,14 @@ class Student extends Eloquent {
 	}
 
 	/**
-	 * return Cluster model
+	 * chua biet dung hay chua, test ho
+	 * @return [type] [description]
 	 */
-	public function cluster()
+	public function cluster_code()
 	{
 		//return $this->belongsTo('User', 'local_key', 'parent_key');
-		return $this->belongsTo('Cluster', 'id', 'cluster_id');
+		//return $this->belongsTo('Cluster', 'id', 'cluster_id');
+		return $this->rooms->first()->cluster->code;
 	}
 
 	public function examscores()
@@ -45,7 +47,7 @@ class Student extends Eloquent {
 	 */
 	public function subjects()
 	{	
-		//class Userc
+		//class User
 		//public function roles()
 		//return $this->belongsToMany('Role', 'user_roles', 'user_id', 'foo_id');
 		return $this->belongsToMany('Subject', 'exam_scores', 'student_id', 'subject_id')->withPivot('room_id','score','state');
@@ -73,7 +75,7 @@ class Student extends Eloquent {
 	 */
 	public function majors()
 	{
-		return $this->belongsToMany('Major', 'wishs', 'student_id', 'major_id');
+		return $this->belongsTo('Major', 'wishs', 'student_id', 'major_id');
 	}
 
 

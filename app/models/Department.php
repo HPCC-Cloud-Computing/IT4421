@@ -3,7 +3,7 @@
 class Department extends Eloquent {
 	protected $fillable = array('code', 'name', );
 
-	protected $table = 'clusters';
+	protected $table = 'departments';
 
 	/**
 	 * [user description]
