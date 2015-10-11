@@ -22,7 +22,7 @@ class Major extends Eloquent {
 	 */
 	public function students()
 	{
-		$this->belongsToMany('Student', 'wishs', 'major_id', 'student_id');
+		$this->belongsToMany('Student', 'wishs', 'major_id', 'student_id')->withPivot('sumscore');
 	}
 
 	

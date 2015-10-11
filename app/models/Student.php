@@ -75,7 +75,7 @@ class Student extends Eloquent {
 	 */
 	public function majors()
 	{
-		return $this->belongsTo('Major', 'wishs', 'student_id', 'major_id');
+		return $this->belongsTo('Major', 'wishs', 'student_id', 'major_id')->withPivot('sumscore');
 	}
 
 
