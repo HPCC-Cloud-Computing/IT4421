@@ -9,7 +9,8 @@ class NoticeController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		$notices = Notice::orderBy('name', 'desc')->get();
+		return View::make('notice_index',$notices);
 	}
 
 
@@ -20,7 +21,7 @@ class NoticeController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		
 	}
 
 

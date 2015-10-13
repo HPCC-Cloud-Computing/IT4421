@@ -2,6 +2,9 @@
 
 class UniversityController extends \BaseController {
 
+
+	
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -9,7 +12,8 @@ class UniversityController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		$universities = University::all();
+		return View::make('university_index', $universities);
 	}
 
 
@@ -20,7 +24,7 @@ class UniversityController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		
 	}
 
 
@@ -31,7 +35,7 @@ class UniversityController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		
 	}
 
 
@@ -43,7 +47,9 @@ class UniversityController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$university = University::with('mayjor')->find($id);
+		$majors = $university->majors;
+		return View::make('university_show', array('university' => $university, 'majors' => $majors));
 	}
 
 
@@ -67,7 +73,7 @@ class UniversityController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		
 	}
 
 

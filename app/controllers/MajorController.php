@@ -7,9 +7,9 @@ class MajorController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index($university_id)
 	{
-		//
+		
 	}
 
 
@@ -43,7 +43,8 @@ class MajorController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$majors = Major::find($id);
+		return View::make('major_show', $major);
 	}
 
 

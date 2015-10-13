@@ -27,5 +27,4 @@ class Cluster extends Eloquent {
 		return $this->hasManyThrough('ExamScore', 'Room', 'cluster_id', 'room_id');
 	}
 
-	
 }

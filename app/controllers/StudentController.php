@@ -2,6 +2,37 @@
 
 class StudentController extends \BaseController {
 
+
+
+	public function search()
+    {
+    	$registration_number = Input::get('registration_number');
+    	//$profile_code = Input::get('profile_code');
+    	//$lastname = Input::get('lastname');
+    	//$firstname = Input::get('firstname');
+    	$indentity_code = Input::get('indentity_code');
+        
+
+
+    	if (!is_null($registration_number)){
+    		$student= Student::where('registration_number', $registration_number)->get();
+    	}
+    	elseif (!is_null($indentity_code)) {
+    		$Student = Student::where('indentity_code', $indentity_code)->get();
+    	}
+    	else{
+    		return Redirect::back();
+    	}
+
+    	$examscores = $student->subjects;
+
+    	return View('check_diem', $examscores);
+        //$songs = Song::where('songname','LIKE','%'.$query.'%')->get();
+        
+
+        
+    }
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -43,7 +74,10 @@ class StudentController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		//if($response instanceof Illuminate\View\View) {
+		$student = Student::find($id);
+		$examscores = $student->subject;
+		return View::make('student_profile',array('student' => $student, 'examscores' => $examscores));
 	}
 
 
