@@ -28,6 +28,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 * @var array
 	 */
+
+	public function isAdmin()
+	{
+		return ($this->getUserableType()=='admin');
+	}
 	
 	public function userable()
 	{
