@@ -15,6 +15,8 @@ class CreateNoticesTable extends Migration {
 		Schema::create('notices', function(Blueprint $table)
 		{
 			$table->increments('id');
+			$table->text('title');
+			$table->text('content');
 			$table->nullabletimestamps();
 		});
 	}
@@ -26,7 +28,7 @@ class CreateNoticesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('notices');
+		Schema::dropIfExists('notices');
 	}
 
 }
