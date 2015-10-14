@@ -15,7 +15,7 @@ Class SubjectsTableSeeder extends Seeder{
             array(
                 'code'      => 'LY',
                 'name'      => 'Môn Vật Lý',
-                'info'      => '2015-10-14 13:00:12'
+                'time'      => '2015-10-14 13:00:12'
             ),
             array(
                 'code'      => 'HOA',
@@ -25,12 +25,12 @@ Class SubjectsTableSeeder extends Seeder{
             array(
                 'code'      => 'SINH',
                 'name'      => 'Môn Sinh Học',
-                'info'      => '2015-10-15 13:00:12'
+                'time'      => '2015-10-15 13:00:12'
             ),
             array(
                 'code'      => 'VAN',
                 'name'      => 'Môn Văn Học',
-                'info'      => '2015-10-14 7:00:12'
+                'time'      => '2015-10-14 7:00:12'
             )
 		);
 		DB::table('subjects')->insert( $subjects );
