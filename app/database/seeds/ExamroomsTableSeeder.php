@@ -27,7 +27,7 @@ Class ExamroomsTableSeeder extends Seeder{
                 'cluster_id' => 1
             )
 		);
-		DB::table('rooms')->insert( $array );
+		DB::table('rooms')->insert( $rooms );
 	}
 }
 
