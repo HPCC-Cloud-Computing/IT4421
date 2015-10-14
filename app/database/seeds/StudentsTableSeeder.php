@@ -50,7 +50,7 @@ Class StudentsTableSeeder extends Seeder{
         $m = sizeof($firstname_array);
         for ($i=0; $i < $n ; $i++) { 
             for ($j=0; $j < $m ; $j++) { 
-                $id = (string)($i) + (string)($j) // tạo một string ghép 2 số lại, định danh
+                $id = (string)($i).(string)($j) // tạo một string ghép 2 số lại, định danh
                 $student = array(
 
                 'profile_code'              => md5($id),
