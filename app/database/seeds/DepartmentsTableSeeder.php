@@ -72,7 +72,7 @@ Class DepartmentsTableSeeder extends Seeder{
 		);
 		$n = sizeof($departments);
 		$array = array();
-		for ($i=0; $i < $n; $i++) { 
+		for ($i=1; $i <= $n; $i++) { 
 			$array[] = array((string)$i, $departments[$i]);
 		}
 		DB::table('departments')->insert( $array );

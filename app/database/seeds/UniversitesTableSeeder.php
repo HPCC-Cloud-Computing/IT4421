@@ -6,7 +6,7 @@ Class UniversitiesTableSeeder extends Seeder{
 
 		DB::table('universities')->delete();
 
-		$rooms = array(
+		$universities = array(
 			array(
                 'code'      => 'BKA',
                 'name'      => 'ĐH Bách Khoa Hà Nội',
@@ -28,7 +28,7 @@ Class UniversitiesTableSeeder extends Seeder{
                 'info'      => 'Các sản phẩm do sinh viên và thầy cô trường làm ra đang lan rộng cả trong lĩnh vực quân sự hay đời sống nhân dân...'
             )
 		);
-		DB::table('universities')->insert( $array );
+		DB::table('universities')->insert( $universities );
 	}
 }
 

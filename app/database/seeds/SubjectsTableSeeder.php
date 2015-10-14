@@ -6,7 +6,7 @@ Class SubjectsTableSeeder extends Seeder{
 
 		DB::table('subjects')->delete();
 
-		$rooms = array(
+		$subjects = array(
 			array(
                 'code'      => 'TOAN',
                 'name'      => 'Môn Toán',
@@ -33,7 +33,7 @@ Class SubjectsTableSeeder extends Seeder{
                 'info'      => '2015-10-14 7:00:12'
             )
 		);
-		DB::table('subjects')->insert( $array );
+		DB::table('subjects')->insert( $subjects );
 	}
 }
 

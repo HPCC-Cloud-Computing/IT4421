@@ -6,7 +6,7 @@ Class MajorsTableSeeder extends Seeder{
 
 		DB::table('majors')->delete();
 
-		$rooms = array(
+		$majors = array(
 			array(
                 'code'               => 'KT01',
                 'university_id'      => 1,
@@ -41,7 +41,7 @@ Class MajorsTableSeeder extends Seeder{
             )
           
 		);
-		DB::table('majors')->insert( $array );
+		DB::table('majors')->insert( $majors );
 	}
 }
 
