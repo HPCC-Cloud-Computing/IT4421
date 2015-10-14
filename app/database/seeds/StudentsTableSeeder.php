@@ -40,17 +40,17 @@ Class StudentsTableSeeder extends Seeder{
                 'lastname'                  => 'Đại',
                 'firstname'                 => 'Đặng Văn',
                 'indentity_code'            => '184053674',
-                'birthday'                  => '1994-06-19';,
+                'birthday'                  => '1994-06-19',
                 'sex'                       => 'nam',
                 'plus_score'                => 1.5,
-                'department_id'             => 21
+                'department_id'             => 22
             )
 		);
         $n = sizeof($lastname_array);
         $m = sizeof($firstname_array);
         for ($i=0; $i < $n ; $i++) { 
             for ($j=0; $j < $m ; $j++) { 
-                $id = (string)($i).(string)($j) // tạo một string ghép 2 số lại, định danh
+                $id = (string)($i).(string)($j); // tạo một string ghép 2 số lại, định danh
                 $student = array(
 
                 'profile_code'              => md5($id),
@@ -58,7 +58,7 @@ Class StudentsTableSeeder extends Seeder{
                 'lastname'                  => $lastname_array[$i],
                 'firstname'                 => $firstname_array[$j],
                 'indentity_code'            => '184053674',
-                'birthday'                  => '1994-06-19';,
+                'birthday'                  => '1994-06-19',
                 'sex'                       => 'nam',
                 'plus_score'                => 0.5,
                 'department_id'             => rand(1,60)
