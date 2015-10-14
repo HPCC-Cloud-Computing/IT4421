@@ -11,7 +11,7 @@ Class MajorsTableSeeder extends Seeder{
                 'code'               => 'KT01',
                 'university_id'      => 1,
                 'target'             => 1000,
-                'combidation'        => '{"1":"A"}',
+                'combidation'        => 'A',
                 'condition'          => 'điểm trung bình 3 năm cấp 3 lớn hơn 7',
                 'info'               => 'Ai hỏi em em học trường nào đấy...Trường của chúng là trường Bách Khoa'
             ),
@@ -19,7 +19,7 @@ Class MajorsTableSeeder extends Seeder{
                 'code'               => 'KT02',
                 'university_id'      => 1,
                 'target'             => 1000,
-                'combidation'        => '{"1":"A"}',
+                'combidation'        => 'A',
                 'condition'          => 'điểm trung bình 3 năm cấp 3 lớn hơn 7',
                 'info'               => 'Ai hỏi em em học trường nào đấy...Trường của chúng là trường Bách Khoa'
             ),
@@ -27,7 +27,7 @@ Class MajorsTableSeeder extends Seeder{
                 'code'               => 'NEU01',
                 'university_id'      => 2,
                 'target'             => 450,
-                'combidation'        => '{"1":"A", "2":"A1"}',
+                'combidation'        => 'A|A1',
                 'condition'          => '',
                 'info'               => ''
             ),
