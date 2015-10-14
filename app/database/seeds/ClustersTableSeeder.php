@@ -162,7 +162,7 @@ class ClustersTableSeeder extends Seeder {
             )
         );
 
-        DB::table('cluters')->insert( $clusters );
+        DB::table('clusters')->insert( $clusters );
     }
 
 }
