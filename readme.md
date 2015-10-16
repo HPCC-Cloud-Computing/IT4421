@@ -33,6 +33,12 @@ php artisan migrate
 
 php artisan migrate:refresh
 
+###Huong dan chạy Seeder:
+
+##1. Điều kiện: đã có cơ sở dữ liệu phía trên, chưa có dữ liệu gì cả
+##2. Chạy lệnh để tạo cơ sở dữ liệu mẫu trong thư mục /path/to/IT4421/
+
+php artisan db:seed
 
 
 
