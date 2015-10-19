@@ -20,7 +20,7 @@ class University extends Eloquent {
 	 */
 	public function majors()
 	{
-		return $this->hasMany('Majors', 'university_id', 'id');
+		return $this->hasMany('Major', 'university_id', 'id');
 	}
 
 	/**
@@ -29,7 +29,7 @@ class University extends Eloquent {
 	 */
 	public function wishs()
 	{
-		return $this->hasManyThrough('Wish', 'Majors', 'university_id', 'major_id');
+		return $this->hasManyThrough('Wish', 'Major', 'university_id', 'major_id');
 	}
 
 	
