@@ -9,8 +9,75 @@ class MajorController extends \BaseController {
 	 */
 	public function index($university_id)
 	{
-		
+		$majors = University::find($university_id)->majors()->get();
+		return View::make('majors_index',$majors);
 	}
+
+	//Hien thi giao dien them nganh hoc
+	public function add_major_show()
+	{
+		# code...
+	}
+
+	//Thuc hien them nganh hoc
+	public function add_major()
+	{
+		$data = Input::all();
+		$major = new Major;
+		$major->code = $data['code'];
+		$major->university_id = $data['university_id'];
+		$major->name = $data['name'];
+		$major->target = $data['target'];
+		$major->condition = $data['condition'];
+		$major->info = $data['info'];
+		$check = $major->push();
+		if ($check) return 'true';
+		else return 'false';
+	}
+
+		//Hien thi giao dien them nganh hoc
+	public function edit_major_show()
+	{
+		$major = Major::find(Input::get('id'));
+		return View::make('edit_major',$major);
+		# code...
+	}
+
+	//Thuc hien sua nganh hoc
+	public function edit_major()
+	{
+		$data = Input::all();
+		$major = Major::find($data['id']);
+		$major->code = $data['code'];
+		$major->university_id = $data['university_id'];
+		$major->name = $data['name'];
+		$major->target = $data['target'];
+		$major->condition = $data['condition'];
+		$major->info = $data['info'];
+		$check = $major->push();
+		if ($check) return 'true';
+		else return 'false';
+	}
+
+	public function delete_major()
+	{
+		$major = Major::find(Input::get('id'));
+		$major->delete();
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	/**
