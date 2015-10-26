@@ -29,9 +29,97 @@ class StudentController extends \BaseController {
     	return View('check_diem', $examscores);
         //$songs = Song::where('songname','LIKE','%'.$query.'%')->get();
         
-
-        
     }
+
+	//Hien pop-up giao dien them hs
+	public function add_single_student_show()
+	{
+		//
+	}
+
+
+	//Thuc hien them thong tin 1 hoc sinh
+	public function add_single_student()
+	{
+		$data=Input::all();
+		$student = new Student;
+		$student->registration_number= $data['reg_number'];
+		$student->profile_code = $data['profile_code'];
+		$student->lastname = $data['lastname'];
+		$student->firstname = $data['firstname'];
+		$student->indentity_code = $data['indentity_code'];
+		$student->birthday = $data['birthday'];
+		$student->sex = $data['sex'];
+		$student->plusscore = $data['plusscore']
+		$check = $student->push();
+		if ($check) {
+			return 'true';
+		}
+		else return 'false';
+	}
+
+	//Hien thi pop-up giao dien them nhieu hoc sinh
+	public function add_many_student_show()
+	{
+
+	}
+
+	//Thuc hien them thong tin nhieu hoc sinh
+	public function add_many_student()
+	{
+
+	}
+
+	//Hien pop-up sua thong tin 1 hoc sinh
+	public function edit_single_student_show()
+	{
+		$student = Student::find(Input::get('id'));
+		return View::make('edit_single_student',$student);
+	}
+
+	//Thuc hien sua thong tin 1 hoc sinh
+	public function edit_single_student()
+	{
+
+		$data=Input::all();
+		$student = Student::find($data['id']);
+		$student->registration_number= $data['reg_number'];
+		$student->profile_code = $data['profile_code'];
+		$student->lastname = $data['lastname'];
+		$student->firstname = $data['firstname'];
+		$student->indentity_code = $data['indentity_code'];
+		$student->birthday = $data['birthday'];
+		$student->sex = $data['sex'];
+		$student->plusscore = $data['plusscore']
+		$check = $student->push();
+		if ($check) {
+			return 'true';
+		}
+		else return 'false';
+	}
+	
+	//Hien thi pop-up giao dien sua nhieu hoc sinh
+	public function edit_many_student_show()
+	{
+
+	}
+
+	//Thuc hien sua thong tin nhieu hoc sinh
+	public function edit_many_student()
+	{
+
+	}
+
+	public function delete_student()
+	{
+		$data_id = Input::get('id')
+		$student = Student::find($data_id);
+		$student->delete();
+
+	}
+
+
+
 
 	/**
 	 * Display a listing of the resource.
