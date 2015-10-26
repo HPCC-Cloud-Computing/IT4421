@@ -7,7 +7,9 @@
 					</a>
 				</h1>
 				<div class="col-md-4">
-					<ul class="hello-user navbar-right">
+				<!--cho nay la cho Xin chao va thanh search -->
+
+					<!-- <ul class="hello-user navbar-right">
 						<li class="divider">
 							Xin chào bạn <b>Nguyễn Văn A</b>
 						</li>
@@ -15,16 +17,16 @@
 							<a href="#">Thoát</a>
 						</li>
 					</ul>
-					<br />
+					<br /> -->
 
-					<form class="form-inline custom-form">
+				<!-- 	<form class="form-inline custom-form">
 						<div class="form-group" style="margin-top: 25px ; width:100%;">
      						<input type="text" class="form-control" style="width:80%;" placeholder="Nhập từ khóa...">
      						<button class="btn btn-primary form-control" type="button">
      							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
      						</button>
   						</div>
-					</form>
+					</form> -->
 				</div>
 			</div>
 		<!--end of banner-->
