@@ -23,37 +23,37 @@ html {
     overflow-y: auto;
 }
 
-.header .hello-user {
+/*.header .hello-user {
     list-style: none;
     margin: 0;
     padding: 0;
-    text-align: right;
+    text-align: right;*/
     /*float: right;*/
-}
-
+/*}*/
+/*
 .header .hello-user li {
     list-style: none;
     float: left;
     color: #0280bd;
     font-size: 14px;
-}
-
+}*/
+/*
 .header .hello-user li.divider {
     border-right: 1px solid #c3c3c3;
     padding: 0px 10px;
 }
-
+*/
 /*Form control
 *make form inline
 */
-
+/*
 .custom-form .form-control {
     margin-bottom: 5px
 }
 .custom-form .btn .fa {
     line-height: 0px
-}
-@media (min-width:350px) and (max-width:992px) { 
+}*/
+/*@media (min-width:350px) and (max-width:992px) { 
     .custom-form .form-control {
         display: inline-block;
         width: auto;
@@ -65,38 +65,30 @@ html {
         margin-bottom: 0;
         vertical-align: middle;
     }
-}
+}*/
 /*End form control */
 
 
 /*for navigator*/   
 
-/*button in left */
-.custom-navbar .fa {font-size:25px}
+/*make conclapse to this screen*/
 
-@media (max-width:767px) { 
-    .custom-navbar .navbar-right {
-        float: right;
-        padding-right: 15px;
+/*@media (min-width: 768px) and (max-width: 992px) {
+    .navbar-collapse.collapse {
+        display: none !important;
     }
-    .custom-navbar .nav.navbar-nav.navbar-right li {
-        float: right;
+    .navbar-collapse.collapse.in {
+        display: block !important;
     }
-    .custom-navbar .nav.navbar-nav.navbar-right li > a {
-        padding:8px 5px;
+    .navbar-header .collapse, .navbar-toggle {
+        display:block !important;
     }
-    .custom-navbar .navbar-toggle {
-        float: left
+    .navbar-header {
+        float:none;
     }
-    .custom-navbar .navbar-header {
-        float: left;
-        width: auto!important;
-    }
-    .custom-navbar .navbar-collapse {
-        clear: both;
-        float: none;
-    }
-}
+}*/
+
+
 
 /*change color of navigator */
 
@@ -146,8 +138,17 @@ html {
 .navbar-default .navbar-link:hover {
   color: #f5f8f9;
 }
+.navbar-default .navbar-nav > li > a:hover,.navbar-default .navbar-nav > li > a:focus{
+    background-color: #0c6691;
+}
+.navbar-default .navbar-nav > li > a{
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -ms-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;    
+}
 
-@media (max-width: 767px) {
+@media (max-width: 992px) {
   .navbar-default .navbar-nav .open .dropdown-menu > li > a {
     color: #f5f8f9;
   }
@@ -158,4 +159,4 @@ html {
     color: #f5f8f9;
     background-color: #0c6691;
   }
-}
+}   
