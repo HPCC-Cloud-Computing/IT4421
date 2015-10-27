@@ -16,9 +16,13 @@ Route::get('/', function()
 	return View::make('pages.home');
 });
 
+Route::get('/st-admin/login', function(){
+	return View::make('st-admin.login');
+});
 
-// route to show the login form
-Route::get('login','UserController@showLogin');
-
-// route to process the form
-Route::post('login', 'UserController@doLogin');
+Route::get('/st-admin/index.php', function(){
+	return View::make('st-admin.layout.depart');
+});
+Route::get('/st-admin/', function(){
+	return View::make('st-admin.pages.depart');
+});
