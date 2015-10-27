@@ -3,7 +3,6 @@
 class StudentController extends \BaseController {
 
 
-
 	public function search()
     {
     	$registration_number = Input::get('registration_number');
@@ -42,20 +41,7 @@ class StudentController extends \BaseController {
 	public function add_single_student()
 	{
 		$data=Input::all();
-		$student = new Student;
-		$student->registration_number= $data['reg_number'];
-		$student->profile_code = $data['profile_code'];
-		$student->lastname = $data['lastname'];
-		$student->firstname = $data['firstname'];
-		$student->indentity_code = $data['indentity_code'];
-		$student->birthday = $data['birthday'];
-		$student->sex = $data['sex'];
-		$student->plusscore = $data['plusscore']
-		$check = $student->push();
-		if ($check) {
-			return 'true';
-		}
-		else return 'false';
+		$student = Student::create($data);
 	}
 
 	//Hien thi pop-up giao dien them nhieu hoc sinh
@@ -67,7 +53,16 @@ class StudentController extends \BaseController {
 	//Thuc hien them thong tin nhieu hoc sinh
 	public function add_many_student()
 	{
-
+		$data = new Spreadsheet_Excel_Reader('*.xls',true,'UTF-8');
+		for ($row = 0; $row <= $data->sheets[0]['numRows']; $row++) {
+			$dataStored =array();
+			for ($col = 1; $col <= $data->sheets[0]['numCols']; $col++) {
+				array_push($dataStored,$data->val($row,$col,$sheet_index=0));				
+			}
+			if(count($data)>0){
+				create($dataStored);
+			}
+		}
 	}
 
 	//Hien pop-up sua thong tin 1 hoc sinh
@@ -80,22 +75,8 @@ class StudentController extends \BaseController {
 	//Thuc hien sua thong tin 1 hoc sinh
 	public function edit_single_student()
 	{
-
 		$data=Input::all();
-		$student = Student::find($data['id']);
-		$student->registration_number= $data['reg_number'];
-		$student->profile_code = $data['profile_code'];
-		$student->lastname = $data['lastname'];
-		$student->firstname = $data['firstname'];
-		$student->indentity_code = $data['indentity_code'];
-		$student->birthday = $data['birthday'];
-		$student->sex = $data['sex'];
-		$student->plusscore = $data['plusscore']
-		$check = $student->push();
-		if ($check) {
-			return 'true';
-		}
-		else return 'false';
+		$student = Student::store($data);
 	}
 	
 	//Hien thi pop-up giao dien sua nhieu hoc sinh
@@ -107,7 +88,16 @@ class StudentController extends \BaseController {
 	//Thuc hien sua thong tin nhieu hoc sinh
 	public function edit_many_student()
 	{
-
+		// $data = new Spreadsheet_Excel_Reader('*.xls',true,'UTF-8');
+		// for ($row = 0; $row <= $data->sheets[0]['numRows']; $row++) {
+		// 	$dataStored =array();
+		// 	for ($col = 1; $col <= $data->sheets[0]['numCols']; $col++) {
+		// 		array_push($dataStored,$data->val($row,$col,$sheet_index=0));				
+		// 	}
+		// 	if(count($data)>0){
+		// 		store($dataStored);
+		// 	}
+		// }
 	}
 
 	public function delete_student()
@@ -137,9 +127,22 @@ class StudentController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create($data)
 	{
-		//
+		$student = new Student;
+		$student->registration_number= $data['reg_number'];
+		$student->profile_code = $data['profile_code'];
+		$student->lastname = $data['lastname'];
+		$student->firstname = $data['firstname'];
+		$student->indentity_code = $data['indentity_code'];
+		$student->birthday = $data['birthday'];
+		$student->sex = $data['sex'];
+		$student->plusscore = $data['plusscore']
+		$check = $student->push();
+		if ($check) {
+			return 'true';
+		}
+		else return 'false';
 	}
 
 
@@ -148,9 +151,22 @@ class StudentController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store($data)
 	{
-		//
+		$student = Student::find($data['id']);
+		$student->registration_number= $data['reg_number'];
+		$student->profile_code = $data['profile_code'];
+		$student->lastname = $data['lastname'];
+		$student->firstname = $data['firstname'];
+		$student->indentity_code = $data['indentity_code'];
+		$student->birthday = $data['birthday'];
+		$student->sex = $data['sex'];
+		$student->plusscore = $data['plusscore']
+		$check = $student->push();
+		if ($check) {
+			return 'true';
+		}
+		else return 'false';
 	}
 
 

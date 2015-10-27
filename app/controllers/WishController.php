@@ -7,12 +7,42 @@ class WishController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index($student_id)
 	{
-		//
+		$student = Student::find($student_id);
+		$wish_list = $student->wishs()->get();
+		return View::make('wishs_index',$wish_list);
 	}
 
+	public function add_wish()
+	{
+		$data = Input::all();
+		$wish = new Wish;
+		$wish->student_id = $data['student_id'];
+		$wish->major_id = $data['major_id'];
+		$wish->sumscore = $data['sumscore'];
+		$check = $wish->save();
+		if($check) return 'true';
+		else return 'false';
+	}
 
+	public function edit_wish()
+	{
+		$data = Input::all();
+		$wish = Wish::find($data['id']);;
+		$wish->student_id = $data['student_id'];
+		$wish->major_id = $data['major_id'];
+		$wish->sumscore = $data['sumscore'];
+		$check = $wish->save();
+		if($check) return 'true';
+		else return 'false';
+	}
+
+	public function delete_wish()
+	{
+		$wish = Wish::find(Input::get('id'));
+		$wish->delete();
+	}
 	/**
 	 * Show the form for creating a new resource.
 	 *
