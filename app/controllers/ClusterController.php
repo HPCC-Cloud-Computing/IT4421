@@ -62,7 +62,7 @@ class ClusterController extends \BaseController {
 				array_push($dataStored,$data->sheets[0]['cells'][$i][$j]);				
 			}
 			if(count($data)>0){
-				store($dataStored);
+				$this->store($dataStored);
 			}
 		}
 	}

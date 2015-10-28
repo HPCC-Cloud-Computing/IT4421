@@ -1,7 +1,7 @@
 <?php
 
 class PhaseController extends \BaseController {
-
+	protected $column = array('code', 'name', 'state', 'starttime', 'endtime' );
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -18,7 +18,7 @@ class PhaseController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create($data)
 	{
 		//
 	}
@@ -29,9 +29,20 @@ class PhaseController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store($data)
 	{
-		//
+		if(!isset($data))
+			return false;
+		try{
+			$phaseData = array_combine($column,$data);
+			$phase = Phase::create($clusterData);		
+		}catch(QueryException $e){
+			return false;
+		}	
+		if(isset($phase))
+			return true;
+		else 
+			return false;
 	}
 
 
@@ -65,9 +76,11 @@ class PhaseController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($id,$data)
 	{
-		//
+		if(isset($data)){
+			Phase::find($id)->update($data);
+		}					
 	}
 
 
@@ -79,8 +92,46 @@ class PhaseController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$result=Phase::where($column[0],'=',$id)->delete();
+		if($result>0)
+			return true;
+		else
+			return false;
 	}
-
-
+	/**
+	 * Thiet lap cac moc thoi gian
+	 */
+	public function createTimeline(){
+		return false;
+	}
+	/**
+	 * Thay doi cac moc thoi gian
+	 */
+	public function updateTimeline(){
+		return false;
+	}
+	/**
+	 * Thiet lap trang thai
+	 */
+	public function createStates(){
+		return false;
+	}
+	/**
+	 * Thay doi trang thai
+	 */
+	public function updateStates(){
+		return false;
+	}
+	/**
+	 * Thiet lap diem san
+	 */
+	public function createFloorScore(){
+		return false;
+	}
+	/**
+	 * Thay doi trang thai
+	 */
+	public function updateStates(){
+		return false;
+	}
 }
