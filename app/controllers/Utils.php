@@ -1,13 +1,17 @@
 <?php 
-
+// Author: HuanPC
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
-
+// Khai bao duong dan luu file upload public/files
 define("DIR_FILE_UPLOAD","files");
-
+// Ham tien ich
 class Utils{
-
+	/**
+	 * Ham upload file len server
+	 * @param  String $nameOfFileInput : ten file upload len server (input name trong POST)
+	 * @return String : duong dan file tren server
+	 */
 	public static function uploadFile($nameOfFileInput){
 		$message = "";
 		$target_dir = DIR_FILE_UPLOAD;
@@ -37,7 +41,7 @@ class Utils{
 		// Allow certain file formats
 		if($fileType != "xls" ) {		    
 		    $uploadOk = 0;
-			$message  = $message. "Not Image file type!";
+			$message  = $message. "Not Exel file type!";
 		}
 		// Check if $uploadOk is set to 0 by an error
 		if ($uploadOk == 0) {
@@ -55,5 +59,27 @@ class Utils{
 		        return "";
 		    }
 		}
+	}
+	/**
+	 * Ham lay du lieu tu file exel upload len server
+	 * @param  String $nameOfFileInput : input name trong POST
+	 * @return Array : mang chua tung row
+	 */
+	public static function importExelFile($nameOfFileInput){
+		$resultData =array();
+		$filePath = $this->uploadFile($nameOfFileInput);
+		$data = new Spreadsheet_Excel_Reader();
+		$data->setOutputEncoding('utf-8');
+		$data->read($filePath);
+		for ($i = 1; $i <= $data->sheets[0]['numRows']; $i++) {
+			$row = array();
+			for ($j = 1; $j <= $data->sheets[0]['numCols']; $j++) {
+				array_push($row,$data->sheets[0]['cells'][$i][$j]);				
+			}			
+			array_push($resultData, $row);
+		}
+		if(count($resultData)>0)
+			return $resultData;
+		return "";
 	}
 }

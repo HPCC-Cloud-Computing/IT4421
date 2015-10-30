@@ -55,21 +55,13 @@ class UniversityController extends \BaseController {
 	 * Them nhieu ban ghi vao database tu file exel
 	 * @return [type] [description]
 	 */
-	public function storeMany()
-	{		
-		$filePath = Utils::uploadFile();
-		$data = new Spreadsheet_Excel_Reader();
-		$data->setOutputEncoding('CP1251');
-		$data->read($filePath);
-		for ($i = 1; $i <= $data->sheets[0]['numRows']; $i++) {
-			$dataStored =array();
-			for ($j = 1; $j <= $data->sheets[0]['numCols']; $j++) {
-				array_push($dataStored,$data->sheets[0]['cells'][$i][$j]);				
-			}
-			if(count($data)>0){
-				store($dataStored);
-			}
+	public function storeMany($fileInputName)
+	{			
+		$data = Utils::importExelFile($fileInputName);
+		foreach ($data as $key => $value) {
+			$this->store($value);
 		}
+		return true;
 	}
 	/**
 	 * Display the specified resource.
