@@ -26,15 +26,15 @@
 
 	</header>
 	
-	<div class="container">
+	<div class="container content">
 		<div id='main' class='row'>
 			<!mail content>
-			<div id='content' class='col-md-8'>
+			<div id='content' class='content-left col-md-9'>
 				@yield('content')		
 			</div>
 			
 			<!sidebar content>
-			<div id="sidebar" class='col-md-4'>
+			<div id="sidebar" class='sidebar-right col-md-3'>
 				@include('includes.sidebar')
 			</div>
 

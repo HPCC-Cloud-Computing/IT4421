@@ -16,6 +16,10 @@ Route::get('/', function()
 	return View::make('pages.home');
 });
 
+Route::get('/user/profile', function(){
+	return View::make('pages.profile');
+});
+
 Route::get('/st-admin/login', function(){
 	return View::make('st-admin.login');
 });
