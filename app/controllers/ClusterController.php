@@ -1,5 +1,6 @@
 <?php
 require_once 'Exel/reader.php'
+require_once 'Utils.php'
 class ClusterController extends \BaseController {
 	protected $column = array('code','name');
 	/**
@@ -52,10 +53,10 @@ class ClusterController extends \BaseController {
 	 */
 	public function storeMany()
 	{
-		
+		$filePath = Utils::uploadFile();
 		$data = new Spreadsheet_Excel_Reader();
 		$data->setOutputEncoding('CP1251');
-		$data->read('*.xls');
+		$data->read($filePath);
 		for ($i = 1; $i <= $data->sheets[0]['numRows']; $i++) {
 			$dataStored =array();
 			for ($j = 1; $j <= $data->sheets[0]['numCols']; $j++) {
