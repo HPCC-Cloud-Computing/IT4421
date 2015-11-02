@@ -1,6 +1,6 @@
 <!-- make pin navbar in here -->
 
-<nav class="navbar navbar-default navbar-fixed-top  ">
+<nav class="navbar navbar-default navbar-fixed-topa  ">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
