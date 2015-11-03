@@ -1,6 +1,6 @@
 @font-face {
     font-family: Roboto;
-    src: url("localhost/IT4421/public/components/css/font/roboto/Roboto-Regular.ttf");
+    src: url("font/roboto/Roboto-Regular.ttf");
 }
 
 body{
@@ -105,9 +105,11 @@ body{
   border-right-width: 2px;
   border-right-color: rgba(255, 255, 255, 0.2);
 }
-#content{
+.content{
   transition: all 0.5s ease 0s;
   margin-left: 250px;
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 .toggled #sidebar{
@@ -115,7 +117,7 @@ body{
   margin: -250px;
 }
 
-.toggled #content{
+.toggled .content{
   margin-left: 0px;
 }
 

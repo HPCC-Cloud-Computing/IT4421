@@ -18,5 +18,6 @@
 {{ HTML::script('/components/js/jquery-1.11.3.js'); }}
 {{ HTML::script('/components/bootstrap/dist/js/bootstrap.js'); }}
 {{ HTML::script('/components/bootstrap/js/bootstrap-hover-dropdown.min.js'); }}
+{{ HTML::script('/components/js/myjs.js'); }}
 
 <head>

@@ -2,7 +2,7 @@
 @extends('st-admin.layout.layout')
 
 @section('title')
-	Trang quan li cua So Giao Duc
+	Trang quan li cua Truong dai hoc
 @stop
 
 
@@ -20,9 +20,7 @@
 		</div>
 
 		<ul class="wrapper">
-			<li><a href="#">QUẢN LÍ SINH VIÊN</a></li>
-			<li><a href="#">QUẢN LÍ TÀI KHOẢN SINH VIÊN</a></li>
-			<li><a href="#">QUAN LI MON HOC</a></li>
+			<li><a href="#">QUẢN LÍ NGÀNH VÀ CHỈ TIÊU</a></li>
 		</ul>
 	</div>
 
@@ -43,16 +41,16 @@
 
 				<form class="form-inline">
 					  <div class="form-group">
-					    <input type="text" class="form-control" id="search_id" placeholder="Input id to search">
+					    <input type="text" class="form-control" id="id" placeholder="Input id to search">
 					  </div>
 					  <div class="form-group">
-					    <input type="text" class="form-control" id="search_name" placeholder="Input name to search">
+					    <input type="email" class="form-control" id="name" placeholder="Input name to search">
 					  </div>
 					  <button type="submit" class="btn btn-info">Search</button>
 					  <button type="submit" class="btn btn-default">Reset</button>
 				</form>
 				<br>
-				<button type = "submit" class="btn btn-success" data-toggle="modal" data-target="#addStudentModal">Add new data</button> 
+				<button type = "submit" class="btn btn-success" data-toggle="modal" data-target="#addSectionModal">Add new data</button> 
 				<button type="submit" class="btn btn-primary">Export As Excel</button>
 				<button type="submit" class="btn btn-danger">Import Data</button>
 				<br>
@@ -96,7 +94,7 @@
 	</div>
 	
 <!-- Modal -->
-<div class="modal fade" id="addStudentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="addSectionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
 	    <div class="modal-header">
