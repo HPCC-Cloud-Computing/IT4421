@@ -15,16 +15,18 @@ class Utils{
 	public static function uploadFile($nameOfFileInput){
 		$message = "";
 		$target_dir = DIR_FILE_UPLOAD;
+		$file = Input::file($nameOfFileInput);
 		//$fileId = Image::count()+1;
 		//$imageExt = substr($_FILES[$nameOfFileInput]["name"],-4);
 		//$target_file = $target_dir . basename($fileId.$imageExt);		
-		$target_file = $target_dir.basename($FILE[$nameOfFileInput]["name"]);
+		//$target_file = $target_dir.basename($file["name"]);
+		$target_file = public_path()."/files";
 		$uploadOk = 1;
-		$fileType = pathinfo($target_file,PATHINFO_EXTENSION);
+		$fileType = $file->getClientOriginalExtension();
 		// Check if image file is a actual image or fake image
 		if(isset($_POST["submit"])) {
 
-		    $check = filesize($_FILES[$nameOfFileInput]["tmp_name"]);
+		    $check = filesize($file->getRealPath());		    
 		    if($check !== false) {		        
 		        $uploadOk = 1;
 		    } else {		        
@@ -32,7 +34,7 @@ class Utils{
 		    }
 		}
 		// Check file size
-		if ($_FILES[$nameOfFileInput]["size"] > 500000) {
+		if ($file->getSize() > 500000) {
 		    $message  = "Sorry, your file is too large.";
 		    $uploadOk = 0;
 		    echo "loi";
@@ -50,14 +52,15 @@ class Utils{
 		// if everything is ok, try to upload file
 		} else {
 			// tra ve duong dan file
-		    if (move_uploaded_file($_FILES[$nameOfFileInput]["tmp_name"], $target_file)) {		    	
-		    	echo("");
-		        return $target_file;
-		    } else {		    	
-		    	$message = $message."Cannot upload!";
-		    	Session::put("message",$message);
-		        return "";
-		    }
+			$file_name = str_random(6).'_'.$file->getClientOriginalName();
+		    $file->move($target_file, $file_name); 
+		    echo("");
+		    return $target_file."/".$file_name;
+		    //} else {		    	
+		    //	$message = $message."Cannot upload!";
+		    //	Session::put("message",$message);
+		    //    return "";
+		    //}
 		}
 	}
 	/**
@@ -67,7 +70,7 @@ class Utils{
 	 */
 	public static function importExelFile($nameOfFileInput){
 		$resultData =array();
-		$filePath = $this->uploadFile($nameOfFileInput);
+		$filePath = self::uploadFile($nameOfFileInput);
 		$data = new Spreadsheet_Excel_Reader();
 		$data->setOutputEncoding('utf-8');
 		$data->read($filePath);

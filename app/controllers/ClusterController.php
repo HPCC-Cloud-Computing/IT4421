@@ -1,6 +1,6 @@
 <?php
-require_once 'Exel/reader.php'
-require_once 'Utils.php'
+require_once (dirname(__FILE__).'/Excel/reader.php');
+require_once (dirname(__FILE__).'/Utils.php');
 class ClusterController extends \BaseController {
 	protected $column = array('code','name');
 	/**
@@ -51,13 +51,20 @@ class ClusterController extends \BaseController {
 	 * @param  String $fileInputName : input name trong POST
 	 * @return boolean 
 	 */
-	public function storeMany($fileInputName)
-	{			
+	public function storeMany()
+	{					
+		$fileInputName = 'exel_file';
 		$data = Utils::importExelFile($fileInputName);
-		foreach ($data as $key => $value) {
-			$this->store($value);
-		}
-		return true;
+		if(isset($data)){
+			foreach ($data as $key => $value) {
+				// Kiem tra du lieu da ton tai trong csdl?
+				$cluster = Cluster::where('code', $value[0])->first();
+				if(!isset($cluster))
+					// Neu chua ton tai thi moi insert
+					$this->store($value);
+			}
+		}		
+		echo "Success";
 	}
 	/**
 	 * Display the specified resource.

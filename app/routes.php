@@ -35,6 +35,44 @@ Route::get('/st-admin/minis', function(){
 Route::get('/st-admin/clus', function(){
 	return View::make('st-admin.pages.clus');
 });
+Route::get('/hello',function(){
+	return View::make('hello');
+});
+
+//----------------- HuanPC--------------------------------------------------------------------
+// Department controller
+// Show danh sach truong + infor
+Route::get('/minis/mn_uni_acc','@index');
+// Sua
+Route::get('/minis/mn_uni_acc/edit?id={id}','@edit');
+// Them
+Route::post('/minis/mn_uni_acc/add_many','@storeMany');
+Route::post('/minis/mn_uni_acc/add_one','@store');
+// Xoa
+Route::get('/minis/mn_uni_acc/del?id={id}','@delete');
+
+// Cluster controller
+// Show danh sach truong + infor
+Route::get('/minis/mn_clus_acc','@index');
+// Sua
+Route::get('/minis/mn_clus_acc/edit?id={id}','@edit');
+// Them
+Route::post('/minis/mn_clus_acc/add/add_many','@storeMany');
+Route::post('/minis/mn_clus_acc/add/add_one','@store');
+// Xoa
+Route::get('/minis/mn_clus_acc/del?id={id}','@delete');
+
+// University controller
+// Show danh sach truong + infor
+Route::get('/minis/mn_uni_acc','UniversityController@index');
+// Sua
+Route::get('/minis/mn_uni_acc/edit?id={id}','UniversityController@edit');
+// Them
+Route::post('/minis/mn_uni_acc/add/add_many','UniversityController@storeMany');
+Route::post('/minis/mn_uni_acc/add/add_one','UniversityController@store');
+// Xoa
+Route::get('/minis/mn_uni_acc/del?id={id}','UniversityController@delete');
+//---------------------------------------------------------------------------------------------
 
 
 // Router check code
