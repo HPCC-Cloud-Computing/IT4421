@@ -5,6 +5,8 @@ class Major extends Eloquent {
 
 	protected $table = 'majors';
 
+	public $timestamps = false;
+
 
 	/**
 	 * [university description]
@@ -24,6 +26,5 @@ class Major extends Eloquent {
 	{
 		$this->belongsToMany('Student', 'wishs', 'major_id', 'student_id')->withPivot('sumscore');
 	}
-
 	
 }

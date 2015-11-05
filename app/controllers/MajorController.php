@@ -10,43 +10,15 @@ class MajorController extends \BaseController {
 	public function index($university_id)
 	{
 		$majors = University::find($university_id)->majors()->get();
-		return View::make('majors_index',$majors);
+		foreach ($majors as $major) {
+			echo ($major->code)."\n";
+		}
+		
+		// return View::make('majors_index',$majors);
 	}
 
-	//Hien thi giao dien them nganh hoc
-	public function add_major_show()
+	public function update($data)
 	{
-		# code...
-	}
-
-	//Thuc hien them nganh hoc
-	public function add_major()
-	{
-		$data = Input::all();
-		$major = new Major;
-		$major->code = $data['code'];
-		$major->university_id = $data['university_id'];
-		$major->name = $data['name'];
-		$major->target = $data['target'];
-		$major->condition = $data['condition'];
-		$major->info = $data['info'];
-		$check = $major->push();
-		if ($check) return 'true';
-		else return 'false';
-	}
-
-		//Hien thi giao dien them nganh hoc
-	public function edit_major_show()
-	{
-		$major = Major::find(Input::get('id'));
-		return View::make('edit_major',$major);
-		# code...
-	}
-
-	//Thuc hien sua nganh hoc
-	public function edit_major()
-	{
-		$data = Input::all();
 		$major = Major::find($data['id']);
 		$major->code = $data['code'];
 		$major->university_id = $data['university_id'];
@@ -59,96 +31,101 @@ class MajorController extends \BaseController {
 		else return 'false';
 	}
 
+	//Hien thi giao dien them nganh hoc
+	public function add_major_show()
+	{
+		# code...
+	}
+
+	//Thuc hien them nganh hoc
+	public function add_major($university_id)
+	{
+		//data nhan tu View
+		// $data = Input::all();
+		
+		//data  test
+		$data = array(
+				'code' => 'major_test_2',
+				'university_id' => $university_id,
+				'name' => 'cntt',
+				'target' => '400',
+				'condition' => 'tot nghiep thpt loai gioi',
+				'info' => 'info_test_2'
+			); 
+		//dieu kien data
+		$rule = array(
+		        'code' => 'required|unique:majors',
+		        'university_id' => 'required',
+			);
+		//thong bao khi khong thoa man dieu kien
+		$message = array(
+				'required' => 'chua dien thong tin',
+				'unique' => 'bi trung ma nganh'
+			);
+		$validator = Validator::make($data,$rule,$message);
+		print_r($data);
+		if ($validator->passes())
+		{
+		    $major = Major::create($data);
+		    return 'true';
+		}
+		else {
+			print_r($messages = $validator->messages());
+			return 'false';
+		}
+	}
+
+		//Hien thi giao dien them nganh hoc
+	public function edit_major_show()
+	{
+		$major = Major::find(Input::get('id'));
+		return View::make('edit_major',$major);
+		# code...
+	}
+
+	//Thuc hien sua nganh hoc
+	public function edit_major($university_id)
+	{
+		// $data = Input::all();
+
+		$data = array(
+					'id' => 14,
+					'code' => 'major_test_3',
+					'university_id' => $university_id,
+					'name' => 'cntt',
+					'target' => '400',
+					'condition' => 'tot nghiep thpt loai gioi',
+					'info' => 'info_test_2'
+				); 
+			//dieu kien data
+		$rule = array(
+		        'code' => 'required|unique:majors,code,'.$data['id'],
+		        'university_id' => 'required',
+			);
+		//thong bao khi khong thoa man dieu kien
+		$message = array(
+				'required' => 'chua dien thong tin',
+				'unique' => 'bi trung ma nganh'
+			);
+		$validator = Validator::make($data,$rule,$message);
+		print_r($data);
+		if ($validator->passes())
+		{
+		    MajorController::update($data);
+		    return 'true';
+		}
+		else {
+			print_r($messages = $validator->messages());
+			return 'false';
+		}
+	}
+
+
 	public function delete_major()
 	{
 		$major = Major::find(Input::get('id'));
 		$major->delete();
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
-
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
-
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		$majors = Major::find($id);
-		return View::make('major_show', $major);
-	}
-
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
-
-
+	
 }

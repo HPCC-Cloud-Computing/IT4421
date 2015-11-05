@@ -26,3 +26,14 @@ Route::get('/st-admin/index.php', function(){
 Route::get('/st-admin/', function(){
 	return View::make('st-admin.pages.depart');
 });
+
+// Router check code
+Route::get('/major', function(){
+	return 'ABC';
+});
+
+// Major controller
+Route::get('/major/index/{university_id}','MajorController@index'); //liet ke cac nganh cua truong co id
+Route::get('/major/{university_id}/add_major','MajorController@add_major'); //them nganh cua truong co id
+Route::get('/major/{university_id}/edit_major','MajorController@edit_major'); //sua nganh cua truong co id
+// 
