@@ -2,7 +2,7 @@
 @extends('st-admin.layout.layout')
 
 @section('title')
-	Trang quan li cua So Giao Duc
+	Trang quan li cua Cum Thi
 @stop
 
 
@@ -20,8 +20,9 @@
 		</div>
 
 		<ul class="wrapper">
-			<li><a href="#">CHUC NANG</a></li>
-			<li><a href="#">QUẢN LÍ TK THI SINH</a></li>
+			<li><a href="#">QUAN LI TK THI SINH</a></li>
+			<li><a href="#">CAP NHAT DIEM THI</a></li>
+			<li><a href="#">TONG HOP KET QUA THI</a></li>
 
 		</ul>
 	</div>

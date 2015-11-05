@@ -20,6 +20,7 @@
 		</div>
 
 		<ul class="wrapper">
+			<li><a href="#">CHUC NANG</a></li>
 			<li><a href="#">QUẢN LÍ NGÀNH VÀ CHỈ TIÊU</a></li>
 		</ul>
 	</div>

@@ -16,16 +16,26 @@ Route::get('/', function()
 	return View::make('pages.home');
 });
 
-Route::get('/st-admin/login', function(){
-	return View::make('st-admin.login');
-});
+
+//st-admin
 
 Route::get('/st-admin/index.php', function(){
-	return View::make('st-admin.layout.depart');
+	// return View::make('st-admin.layout.depart');
+	//Redirect by session
 });
-Route::get('/st-admin/', function(){
+Route::get('/st-admin/depart', function(){
 	return View::make('st-admin.pages.depart');
 });
+Route::get('/st-admin/uni', function(){
+	return View::make('st-admin.pages.uni');
+});
+Route::get('/st-admin/minis', function(){
+	return View::make('st-admin.pages.minis');
+});
+Route::get('/st-admin/clus', function(){
+	return View::make('st-admin.pages.clus');
+});
+
 
 // Router check code
 Route::get('/major', function(){

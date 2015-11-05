@@ -2,7 +2,7 @@
 @extends('st-admin.layout.layout')
 
 @section('title')
-	Trang quan li cua So Giao Duc
+	Trang quan li cua BGDDT
 @stop
 
 
@@ -21,8 +21,11 @@
 
 		<ul class="wrapper">
 			<li><a href="#">CHUC NANG</a></li>
-			<li><a href="#">QUẢN LÍ TK THI SINH</a></li>
-
+			<li><a href="#">LAP LICH CHO HE THONG</a></li>
+			<li><a href="#">THIET LAP DIEM SAN</a></li>
+			<li><a href="#">QUAN LY TAI KHOAN CAC SO</a></li>
+			<li><a href="#">QUAN LY TAI KHOAN CAC CUM</a></li>
+			<li><a href="#">QUAN LY TAI KHOAN CAC TRUONG</a></li>
 		</ul>
 	</div>
 
@@ -95,6 +98,28 @@
 		</div>
 	</div>
 	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- Modal -->
 <div class="modal fade" id="addStudentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
