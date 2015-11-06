@@ -19,7 +19,9 @@
 {{-- {{ HTML::style('/components/css/test-style.css');	 }} --}}
 
 {{ HTML::script('/components/js/jquery-1.11.3.js'); }}
+{{ HTML::script('/components/js/jquery-1.11.3.min.js'); }}
+{{ HTML::script('/components/js/back-to-top.js'); }}
 {{ HTML::script('/components/bootstrap/dist/js/bootstrap.js'); }}
 {{ HTML::script('/components/bootstrap/js/bootstrap-hover-dropdown.min.js'); }}
 
-<head>
+</head>

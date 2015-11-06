@@ -14,37 +14,40 @@
 <html>
 <head>
 	@include('includes.head')
+	@yield('javascript')
 </head>
 <body>
-	<!header outside class container because header in full screens>
+	<!--header outside class container because header in full screens-->
 	<header class='header'>
 			@include('includes.header')
 		
 		<!-- navigator bar -->
-			@yield('navigator')
+			@include('includes.nav_user')
+			{{-- @include('includes.nav_guest') --}}
 		<!-- navigator different with different actor, and we in clude navigator in pages -->
 
 	</header>
 	
+	{{-- Content --}}
 	<div class="container content">
 		<div id='main' class='row'>
-			<!mail content>
-			<div id='content' class='content-left col-md-9'>
+			<!--main content-->
+			<div id='content' class='content-left col-xs-12 col-sm-9 col-md-9'>
 				@yield('content')		
 			</div>
 			
-			<!sidebar content>
-			<div id="sidebar" class='sidebar-right col-md-3'>
+			<!--sidebar content-->
+			<div id="sidebar" class='sidebar-right col-xs-12 col-sm-3 col-md-3'>
 				@include('includes.sidebar')
 			</div>
 
 		</div>
-
-
-		<footer>
-			@include('includes.footer')
-		</footer>
-
 	</div>
+
+	{{-- Footer --}}
+	<footer class="footer">
+		@include('includes.footer')
+	</footer>
+
 </body>
 </html>

@@ -16,8 +16,32 @@ Route::get('/', function()
 	return View::make('pages.home');
 });
 
-Route::get('/user/profile', function(){
-	return View::make('pages.profile');
+Route::get('/regulation', function()
+{
+	return View::make('pages.regulation');
+});
+
+Route::get('/majors', function()
+{
+	return View::make('pages.majors');
+});
+
+Route::get('/result_info', function()
+{
+	return View::make('pages.result_info');
+});
+
+Route::get('/contact', function()
+{
+	return View::make('pages.contact');
+});
+
+Route::get('/stu/profile', function(){
+	return View::make('pages.stu.profile');
+});
+
+Route::get('/stu/aspiration_reg', function(){
+	return View::make('pages.stu.aspiration_reg');
 });
 
 Route::get('/st-admin/login', function(){

@@ -63,8 +63,10 @@
 			</ul>
 			<nav class="pagination">
 				<ul class="cd-pagination">
-					<li class="button">
-						<a href="#0"></a>
+					<li class="btn-prev">
+						<a href="#0">
+							<i class="fa fa-chevron-left"></i>
+						</a>
 					</li>
 					<li>
 						<a class="current" href="#0">1</a>
@@ -75,8 +77,10 @@
 					<li>
 						<a href="#0">3</a>
 					</li>
-					<li class="button">
-						<a href="#0"></a>
+					<li class="btn-next">
+						<a href="#0">
+							<i class="fa fa-chevron-right"></i>
+						</a>
 					</li>
 				</ul>
 			</nav>
