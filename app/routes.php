@@ -17,27 +17,65 @@ Route::get('/', function()
 });
 
 
-//st-admin
-
-Route::get('/st-admin/index.php', function(){
-	// return View::make('st-admin.layout.depart');
-	//Redirect by session
-});
-Route::get('/st-admin/depart', function(){
-	return View::make('st-admin.pages.depart');
-});
-Route::get('/st-admin/uni', function(){
-	return View::make('st-admin.pages.uni');
-});
+//st-admin -- LuanBN -----------------------------------------------------------------------------
+//minister
 Route::get('/st-admin/minis', function(){
-	return View::make('st-admin.pages.minis');
+	return View::make('st-admin.pages.minis.minis');
 });
-Route::get('/st-admin/clus', function(){
-	return View::make('st-admin.pages.clus');
+Route::get('/st-admin/minis/mn_uni_acc',function(){
+	return View::make('st-admin.pages.minis.mn_uni_acc');
 });
-Route::get('/hello',function(){
-	return View::make('hello');
+Route::get('/st-admin/minis/mn_clus_acc',function(){
+	return View::make('st-admin.pages.minis.mn_clus_acc');
 });
+Route::get('/st-admin/minis/mn_depart_acc',function(){
+	return View::make('st-admin.pages.minis.mn_depart_acc');
+});
+Route::get('/st-admin/minis/mn_schedule',function(){
+	return View::make('st-admin.pages.minis.mn_schedule');
+});
+Route::get('/st-admin/minis/score_floor_setup',function(){
+	return View::make('st-admin.pages.minis.score_floor_setup');
+});
+Route::get('/st-admin/minis/syn_result',function(){
+	return View::make('st-admin.pages.minis.syn_result');
+});
+
+// cluster
+Route::get('/st-admin/clus',function(){
+	return View::make('st-admin.pages.clus.clus');
+});
+Route::get('/st-admin/clus/mn_stu_acc',function(){
+	return View::make('st-admin.pages.depart.mn_stu_acc');
+});
+Route::get('/st-admin/clus/syn_result',function(){
+	return View::make('st-admin.pages.clus.syn_result');
+});
+
+//department
+Route::get('/st-admin/depart',function(){
+	return View::make('st-admin.pages.depart.depart');
+});
+Route::get('/st-admin/depart/mn_stu_acc',function(){
+	return View::make('st-admin.pages.depart.mn_stu_acc');
+});
+Route::get('/st-admin/depart/syn_result',function(){
+	return View::make('st-admin.pages.depart.syn_result');
+});
+
+//university
+Route::get('/st-admin/uni',function(){
+	return View::make('st-admin.pages.uni.uni');
+});
+Route::get('/st-admin/uni/mn_major',function(){
+	return View::make('st-admin.pages.uni.mn_major');
+});
+Route::get('/st-admin/uni/syn_result',function(){
+	return View::make('st-admin.pages.uni.syn_result');
+});
+
+
+
 
 //----------------- HuanPC--------------------------------------------------------------------
 // Department controller
