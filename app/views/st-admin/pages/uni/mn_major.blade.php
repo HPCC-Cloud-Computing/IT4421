@@ -1,0 +1,1 @@
+mn_major.blade.php

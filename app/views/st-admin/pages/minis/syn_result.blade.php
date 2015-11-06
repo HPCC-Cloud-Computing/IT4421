@@ -1,0 +1,1 @@
+syn_result.blade.php
