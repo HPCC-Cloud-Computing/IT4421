@@ -1,0 +1,1 @@
+mn_schedule.blade.php

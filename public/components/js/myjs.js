@@ -1,0 +1,10 @@
+$(function(){
+	$('.showSidebar').click(function(e){
+		e.preventDefault();
+		$("#main").removeClass("toggled");
+	});
+	$('.hideSidebar').click(function(e){
+		e.preventDefault();
+		$("#main").addClass("toggled");
+	})
+})

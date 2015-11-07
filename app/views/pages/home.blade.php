@@ -1,6 +1,6 @@
 @extends('layout.layout')
 @section('title')
-  He thong thi THPT Quoc Gia.
+	He thong thi THPT Quoc Gia.
 @stop
 
 @section('content')
@@ -169,4 +169,3 @@
     $('#trangchu').attr('class', 'nav-item active');
   });
 </script>
-@stop

@@ -1,13 +1,13 @@
 @font-face {
     font-family: Roboto;
     /*src: url("font-1/roboto/Roboto-Italic.ttf") format('truetype');*/
-    src: url("/font/roboto/Roboto-Regular.ttf") format('truetype');
+    src: url("font/roboto/Roboto-Regular.ttf") format('truetype');
 }
 
 @font-face {
     font-family: Roboto-Light;
     /*src: url("font-1/roboto/Roboto-Italic.ttf") format('truetype');*/
-    src: url("/font/roboto/Roboto-Light.ttf") format('truetype');
+    src: url("font/roboto/Roboto-Light.ttf") format('truetype');
 }
 
 body {
@@ -38,12 +38,13 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
     padding: 0;
 }
 
-.header h1.header-logo{
-  /*padding: 0;*/
-  margin: 20px 0;
+.header h1.header-left{
+    width: 70%;
+    margin: 20px 0;
 }
 
-.header .header-info{
+.header .header-right{
+    width: 30%;
     margin-top: 10px;
 }
 
@@ -59,7 +60,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
     list-style: none;
     float: left;
     color: #0280bd;
-    font-size: 1.2em;
+    font-size: 14px;
 }
 
 .header .hello-user li.divider {
@@ -71,10 +72,6 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
     display: inline-block;
     color: #777777;
     padding: 0px 10px;
-}
-
-img.logo-img{
-    max-width: 100%;
 }
 
 /*Form control*/
@@ -120,24 +117,18 @@ input[type=text], input[type=password]{
 /*/Button*/
 
 /*Nav*/
-.navbar{
-  border-radius: 0;
-  min-height: auto;
-}
-
-.navbar-default {
+.main-nav {
     background: #0280bd;
-    border-width: 0;
 }
 
-.navbar-default .navbar-collapse {
-    /*padding: 0;*/
+.main-nav .navbar-collapse {
+    padding: 0;
 }
 
-.navbar-default .nav .nav-item.active {
+.main-nav .nav .nav-item.active {
     position: relative;
 }
-.navbar-default .nav .nav-item {
+.main-nav .nav .nav-item {
     font-weight: 400;
     text-transform: uppercase;
     z-index: 100;
@@ -146,7 +137,7 @@ input[type=text], input[type=password]{
     padding: 10px 15px;
 }
 
-.navbar-default .nav .nav-item a {
+.main-nav .nav .nav-item a {
     color: #fff;
     -webkit-transition: all 0.4s ease-in-out;
     -moz-transition: all 0.4s ease-in-out;
@@ -158,16 +149,16 @@ input[type=text], input[type=password]{
     font-size: 14px;
 }
 
-.navbar-default .nav .nav-item.active {
+.main-nav .nav .nav-item.active {
   position: relative;
 }
 
-.navbar-default .nav .nav-item.active > a {
+.main-nav .nav .nav-item.active > a {
     background: #0c6691;
     color: #fff;
 }
 
-.navbar-default .nav .nav-item.active > a:before {
+.main-nav .nav .nav-item.active > a:before {
     content: "\f0d8";
     position: absolute;
     bottom: -8px;
@@ -179,19 +170,19 @@ input[type=text], input[type=password]{
     width: 100%;
     color: #f0f0f0;
 }
-.navbar-default .nav .nav-item a:hover {
+.main-nav .nav .nav-item a:hover {
     background: #0c6691;
     color: #fff;
 }
 
-.navbar-default .nav .nav-item.active > a.dropdown-toggle:before {
+.main-nav .nav .nav-item.active > a.dropdown-toggle:before {
   display: none;
 }
-.navbar-default .nav .nav-item.open a {
+.main-nav .nav .nav-item.open a {
   background: #0c6691;
   color: #fff;
 }
-.navbar-default .nav .nav-item .dropdown-menu {
+.main-nav .nav .nav-item .dropdown-menu {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   -ms-border-radius: 0;
@@ -204,46 +195,22 @@ input[type=text], input[type=password]{
   border: none;
   padding: 0;
   text-transform: none;
-  min-width: 186px;
+  min-width: 200px;
 }
-.navbar-default .nav .nav-item .dropdown-menu a {
+.main-nav .nav .nav-item .dropdown-menu a {
   border-bottom: 1px solid #0c597e;
   padding: 8px 20px;
 }
-.navbar-default .nav .nav-item .dropdown-menu a:hover {
+.main-nav .nav .nav-item .dropdown-menu a:hover {
   background: #0c597e;
   color: #fff;
   padding-left: 24px;
 }
 /*/Nav*/
 
-/*Nav-mobile*/
-.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
-    background-color: #0c6691;
-}
-.navbar-toggle{
-  float: left;
-  margin-left: 15px;
-  margin-right: 15px;
-  border-radius: 0
-}
-.navbar-default .navbar-toggle .icon-bar {
-    background-color: #fff;
-}
-.nav-search{
-  padding: 11px;
-  float: right;
-}
-.nav-search .icon-search{
-    position: absolute;
-    top: 16px;
-    right: 17px;
-    font-size: 14px;
-}
-/*End Nav-mobile*/
-
 .content{
   padding: 0 30px;
+  margin: 20px auto;
 }
 
 .content-left{
@@ -276,18 +243,7 @@ input[type=text], input[type=password]{
 .panel-body{
   padding: 15px 0 0;
 }
-
-.panel-body .see-more{
-  text-align: right;
-  padding-top: 10px;
-  font-size: 1.2em;
-}
-
-a.link-style{
-  text-decoration: none;
-  color: #0090ff;
-}
-/*End Panel*/
+/*/Panel*/
 
 .div-row{
   width: 100%;

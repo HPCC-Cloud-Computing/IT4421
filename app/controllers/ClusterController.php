@@ -1,5 +1,6 @@
 <?php
-require_once 'Exel/reader.php'
+require_once (dirname(__FILE__).'/Excel/reader.php');
+require_once (dirname(__FILE__).'/Utils.php');
 class ClusterController extends \BaseController {
 	protected $column = array('code','name');
 	/**
@@ -47,24 +48,23 @@ class ClusterController extends \BaseController {
 	}
 	/**
 	 * HuanPC
-	 * Them nhieu ban ghi vao database tu file exel
-	 * @return [type] [description]
+	 * @param  String $fileInputName : input name trong POST
+	 * @return boolean 
 	 */
 	public function storeMany()
-	{
-		
-		$data = new Spreadsheet_Excel_Reader();
-		$data->setOutputEncoding('CP1251');
-		$data->read('*.xls');
-		for ($i = 1; $i <= $data->sheets[0]['numRows']; $i++) {
-			$dataStored =array();
-			for ($j = 1; $j <= $data->sheets[0]['numCols']; $j++) {
-				array_push($dataStored,$data->sheets[0]['cells'][$i][$j]);				
+	{					
+		$fileInputName = 'exel_file';
+		$data = Utils::importExelFile($fileInputName);
+		if(isset($data)){
+			foreach ($data as $key => $value) {
+				// Kiem tra du lieu da ton tai trong csdl?
+				$cluster = Cluster::where('code', $value[0])->first();
+				if(!isset($cluster))
+					// Neu chua ton tai thi moi insert
+					$this->store($value);
 			}
-			if(count($data)>0){
-				$this->store($dataStored);
-			}
-		}
+		}		
+		echo "Success";
 	}
 	/**
 	 * Display the specified resource.

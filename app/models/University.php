@@ -2,7 +2,7 @@
 
 class University extends Eloquent {
 	protected $fillable = array('code', 'name', 'info' );
-
+	protected $timestamps = false;
 	protected $table = 'universities';
 
 	/**

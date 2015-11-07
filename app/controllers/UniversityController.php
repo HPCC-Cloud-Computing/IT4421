@@ -1,10 +1,8 @@
 <?php
-require_once 'Exel/reader.php'
-class UniversityController extends \BaseController {
-
-	protected $column = array('code','name','info');
-	
-
+require_once (dirname(__FILE__).'/Excel/reader.php');
+require_once (dirname(__FILE__).'/Utils.php');
+class UniversityController extends \BaseController {	
+	protected $column = array('code','name','info');		
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -39,7 +37,7 @@ class UniversityController extends \BaseController {
 		if(!isset($data))
 			return false;
 		try{
-			$universityData = array_combine($column,$data);
+			$universityData = array_combine($this->column,$data);
 			$university = University::create($universityData);		
 		}catch(QueryException $e){
 			return false;
@@ -55,20 +53,19 @@ class UniversityController extends \BaseController {
 	 * @return [type] [description]
 	 */
 	public function storeMany()
-	{
-		
-		$data = new Spreadsheet_Excel_Reader();
-		$data->setOutputEncoding('CP1251');
-		$data->read('*.xls');
-		for ($i = 1; $i <= $data->sheets[0]['numRows']; $i++) {
-			$dataStored =array();
-			for ($j = 1; $j <= $data->sheets[0]['numCols']; $j++) {
-				array_push($dataStored,$data->sheets[0]['cells'][$i][$j]);				
+	{					
+		$fileInputName = 'exel_file';
+		$data = Utils::importExelFile($fileInputName);
+		if(isset($data)){
+			foreach ($data as $key => $value) {
+				// Kiem tra du lieu da ton tai trong csdl?
+				$university = University::where('code', $value[0])->first();
+				if(!isset($university))
+					// Neu chua ton tai thi moi insert
+					$this->store($value);
 			}
-			if(count($data)>0){
-				store($dataStored);
-			}
-		}
+		}		
+		echo "Success";
 	}
 	/**
 	 * Display the specified resource.

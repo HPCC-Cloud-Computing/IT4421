@@ -1,0 +1,1 @@
+minis_mn_depart.blade.php

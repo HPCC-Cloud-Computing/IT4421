@@ -1,8 +1,8 @@
 <?php
 
 class Cluster extends Eloquent {
-	protected $fillable = array('code', 'name', );
-
+	protected $fillable = array('code', 'name');
+	protected $timestamps = false;
 	protected $table = 'clusters';
 
 	/**

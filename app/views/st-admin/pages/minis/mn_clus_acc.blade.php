@@ -1,0 +1,1 @@
+mn_clus_acc.blade.php
