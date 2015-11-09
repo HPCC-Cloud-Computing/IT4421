@@ -49,6 +49,7 @@ Route::get('/stu/profile', function(){
 //Trang đăng ký xét tuyển
 Route::get('/stu/aspiration_reg', function(){
 	return View::make('pages.stu.aspiration_reg');
+});
 
 //st-admin -- LuanBN -----------------------------------------------------------------------------
 //minister
