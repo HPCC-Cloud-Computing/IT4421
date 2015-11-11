@@ -38,12 +38,12 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
     padding: 0;
 }
 
-.header h1.header-left{
+.header h1.header-logo{
     width: 70%;
     margin: 20px 0;
 }
 
-.header .header-right{
+.header .header-info{
     width: 30%;
     margin-top: 10px;
 }
@@ -117,18 +117,24 @@ input[type=text], input[type=password]{
 /*/Button*/
 
 /*Nav*/
-.main-nav {
+.navbar{
+  border-radius: 0;
+  min-height: auto;
+}
+
+.navbar-default {
     background: #0280bd;
+    border-width: 0;
 }
 
-.main-nav .navbar-collapse {
-    padding: 0;
+.navbar-default .navbar-collapse {
+    /*padding: 0;*/
 }
 
-.main-nav .nav .nav-item.active {
+.navbar-default .nav .nav-item.active {
     position: relative;
 }
-.main-nav .nav .nav-item {
+.navbar-default .nav .nav-item {
     font-weight: 400;
     text-transform: uppercase;
     z-index: 100;
@@ -137,7 +143,7 @@ input[type=text], input[type=password]{
     padding: 10px 15px;
 }
 
-.main-nav .nav .nav-item a {
+.navbar-default .nav .nav-item a {
     color: #fff;
     -webkit-transition: all 0.4s ease-in-out;
     -moz-transition: all 0.4s ease-in-out;
@@ -149,16 +155,16 @@ input[type=text], input[type=password]{
     font-size: 14px;
 }
 
-.main-nav .nav .nav-item.active {
+.navbar-default .nav .nav-item.active {
   position: relative;
 }
 
-.main-nav .nav .nav-item.active > a {
+.navbar-default .nav .nav-item.active > a {
     background: #0c6691;
     color: #fff;
 }
 
-.main-nav .nav .nav-item.active > a:before {
+.navbar-default .nav .nav-item.active > a:before {
     content: "\f0d8";
     position: absolute;
     bottom: -8px;
@@ -170,19 +176,19 @@ input[type=text], input[type=password]{
     width: 100%;
     color: #f0f0f0;
 }
-.main-nav .nav .nav-item a:hover {
+.navbar-default .nav .nav-item a:hover {
     background: #0c6691;
     color: #fff;
 }
 
-.main-nav .nav .nav-item.active > a.dropdown-toggle:before {
+.navbar-default .nav .nav-item.active > a.dropdown-toggle:before {
   display: none;
 }
-.main-nav .nav .nav-item.open a {
+.navbar-default .nav .nav-item.open a {
   background: #0c6691;
   color: #fff;
 }
-.main-nav .nav .nav-item .dropdown-menu {
+.navbar-default .nav .nav-item .dropdown-menu {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   -ms-border-radius: 0;
@@ -195,18 +201,43 @@ input[type=text], input[type=password]{
   border: none;
   padding: 0;
   text-transform: none;
-  min-width: 200px;
+  min-width: 186px;
 }
-.main-nav .nav .nav-item .dropdown-menu a {
+.navbar-default .nav .nav-item .dropdown-menu a {
   border-bottom: 1px solid #0c597e;
   padding: 8px 20px;
 }
-.main-nav .nav .nav-item .dropdown-menu a:hover {
+.navbar-default .nav .nav-item .dropdown-menu a:hover {
   background: #0c597e;
   color: #fff;
   padding-left: 24px;
 }
 /*/Nav*/
+
+/*Nav-mobile*/
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+    background-color: #0c6691;
+}
+.navbar-toggle{
+  float: left;
+  margin-left: 15px;
+  margin-right: 15px;
+  border-radius: 0
+}
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #fff;
+}
+.nav-search{
+  padding: 11px;
+  float: right;
+}
+.nav-search .icon-search{
+    position: absolute;
+    top: 16px;
+    right: 17px;
+    font-size: 14px;
+}
+/*End Nav-mobile*/
 
 .content{
   padding: 0 30px;
@@ -242,6 +273,17 @@ input[type=text], input[type=password]{
 
 .panel-body{
   padding: 15px 0 0;
+}
+
+.panel-body .see-more{
+  text-align: right;
+  padding-top: 10px;
+  font-size: 1.2em;
+}
+
+a.link-style{
+  text-decoration: none;
+  color: #0090ff;
 }
 /*/Panel*/
 
