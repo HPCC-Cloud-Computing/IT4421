@@ -9,7 +9,7 @@
                         <h3>Hệ thống tuyển sinh đại học trực tuyến</h3>
                         <div class="div-row">
                         	<p>Cơ quan chủ quản: Bộ giáo dục và đào tạo</p>
-                        	<p><i class="fa fa-map-marker"></i> Số 49, Đại Cồ Việt, Hai Bà Trưng, Hà Nội</p>     
+                        	<p><i class="fa fa-map-marker"></i> Số 35, Đại Cồ Việt, Hai Bà Trưng, Hà Nội</p>     
                             <p><i class="fa fa-phone"></i> (+84) 8695712 - 
                             <i class="fa fa-envelope"></i> <a href="mailto:bogddt@moet.edu.vn">bogddt@moet.edu.vn</a></p>
                         </div> 

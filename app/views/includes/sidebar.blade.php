@@ -1,6 +1,7 @@
 <?php
 //side bar o ben phai cua man hinh
 ?>
+@if(!Session::has('user'))
 <div class="panel" id="form-login">
 	<div class="panel-title"> <i class="fa fa-sign-in"></i>
 		Đăng nhập
@@ -20,7 +21,8 @@
 		</div>
 		<input type="button" class="btn" style="margin-top: 10px; float: right" name="" value="Đăng nhập"></div>
 </div>
-<div class="panel" id="form-login">
+@endif
+<div class="panel">
 	<div class="panel-title"> <i class="fa fa-calendar"></i>
 		Sự kiện
 	</div>

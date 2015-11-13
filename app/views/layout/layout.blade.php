@@ -22,8 +22,11 @@
 			@include('includes.header')
 		
 		<!-- navigator bar -->
+		@if(Session::has('student'))
 			@include('includes.nav_user')
-			{{-- @include('includes.nav_guest') --}}
+		@else
+			@include('includes.nav_guest')
+		@endif
 		<!-- navigator different with different actor, and we in clude navigator in pages -->
 
 	</header>

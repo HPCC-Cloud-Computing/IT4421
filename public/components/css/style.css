@@ -39,12 +39,12 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
 }
 
 .header h1.header-logo{
-    width: 70%;
+    width: 60%;
     margin: 20px 0;
 }
 
 .header .header-info{
-    width: 30%;
+    width: 40%;
     margin-top: 10px;
 }
 
@@ -60,25 +60,24 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
     list-style: none;
     float: left;
     color: #0280bd;
-    font-size: 14px;
+    font-size: 12px;
+    padding: 0px 7px;
 }
 
 .header .hello-user li.divider {
     border-right: 1px solid #c3c3c3;
-    padding: 0px 10px;
 }
 
 .header .hello-user li a {
     display: inline-block;
     color: #777777;
-    padding: 0px 10px;
 }
 
 /*Form control*/
 input[type=text], input[type=password], textarea{
   width: 100%;
     padding: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid #dedede;
     border-radius: 0;
 }
 input[type=text]:focus, input[type=password]:focus, textarea:focus{
@@ -149,6 +148,10 @@ input[type=text], input[type=password]{
     -moz-transition: all 0.4s ease-in-out;
     -ms-transition: all 0.4s ease-in-out;
     -o-transition: all 0.4s ease-in-out;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    color: #fff;
 }
 
 .nav > li > a {
