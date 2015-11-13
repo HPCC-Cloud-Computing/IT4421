@@ -8,7 +8,7 @@
 		
 	</header>	
 	<div id="main">
-		@include('st-admin.includes.sidebar')
+		@yield('sidebar')
 		@yield('content')
 	</div>
 	<footer>

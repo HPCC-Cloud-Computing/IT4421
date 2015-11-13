@@ -5,6 +5,17 @@
 	Trang quan li cua BGDDT
 @stop
 
+@section('sidebar')
+
+	@include('st-admin.includes.minis_sidebar')
+
+	<script type="text/javascript">
+		var element = document.getElementById("minis-menu").getElementsByTagName("li");
+		element[0].classList.add("active");
+		console.log(element[0]);
+	</script>
+
+@stop
 
 @section('content')
 <!-- <div id="main"> -->
@@ -56,47 +67,14 @@
 						<td><button type="button" class="btn btn-primary">Edit</button></td>
 						<td><button type="button" class="btn btn-danger">Delete</button></td>
 					</tbody>
-					<tbody>
-						<td>2</td>
-						<td>Bui Ngoc Luan</td>
-						<td>9</td>
-						<td><button type="button" class="btn btn-primary">Edit</button></td>
-						<td><button type="button" class="btn btn-danger">Delete</button></td>
-					</tbody>
-					<tbody>
-						<td>3</td>
-						<td>Bui Ngoc Luan</td>
-						<td>9</td>
-						<td><button type="button" class="btn btn-primary">Edit</button></td>
-						<td><button type="button" class="btn btn-danger">Delete</button></td>
-					</tbody>
+					
+						
 
 				</table>
 			</div>
 		</div>
 	</div>
 	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <!-- Modal -->
 <div class="modal fade" id="addStudentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -158,4 +136,10 @@
 ?>
 
 <!-- </div>	 -->
+
+<script>
+//simple table
+
+
+</script>
 @stop
