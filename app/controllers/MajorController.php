@@ -7,43 +7,22 @@ class MajorController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function index($university_id)
+	public function index()
 	{
-		$majors = University::find($university_id)->majors()->get();
-		foreach ($majors as $major) {
-			echo ($major->code)."\n";
-		}
-		
-		// return View::make('majors_index',$majors);
+		// $university_id = Input::get('university_id');
+		if(isset(Session::get('university_id'))) 
+			$university_id = Session::get('university_id');
+			$majors = University::find($university_id)->majors()->get();
+			foreach ($majors as $major) {
+				echo ($major->code)."\n";
+			}
+			// return View::make('majors_index',$majors);
+		else return Redirect::to('/');
 	}
 
-	public function update($data)
+	public function create($data)
 	{
-		$major = Major::find($data['id']);
-		$major->code = $data['code'];
-		$major->university_id = $data['university_id'];
-		$major->name = $data['name'];
-		$major->target = $data['target'];
-		$major->condition = $data['condition'];
-		$major->info = $data['info'];
-		$check = $major->push();
-		if ($check) return 'true';
-		else return 'false';
-	}
-
-	//Hien thi giao dien them nganh hoc
-	public function add_major_show()
-	{
-		# code...
-	}
-
-	//Thuc hien them nganh hoc
-	public function add_major($university_id)
-	{
-		//data nhan tu View
-		// $data = Input::all();
-		
-		//data  test
+		//data test
 		$data = array(
 				'code' => 'major_test_2',
 				'university_id' => $university_id,
@@ -75,16 +54,44 @@ class MajorController extends \BaseController {
 		}
 	}
 
+	public function update($data)
+	{
+		$major = Major::find($data['id']);
+		$major->code = $data['code'];
+		$major->university_id = $data['university_id'];
+		$major->name = $data['name'];
+		$major->target = $data['target'];
+		$major->condition = $data['condition'];
+		$major->info = $data['info'];
+		$check = $major->push();
+		if ($check) return 'true';
+		else return 'false';
+	}
+
+	//Hien thi giao dien them nganh hoc
+	public function add_major_show()
+	{
+		# code...
+	}
+
+	//Thuc hien them nganh hoc
+	public function add_major()
+	{
+		//data nhan tu View
+		$data = Input::all();
+		$check = MajorController::create($data);
+	}
+
 		//Hien thi giao dien them nganh hoc
 	public function edit_major_show()
 	{
 		$major = Major::find(Input::get('id'));
-		return View::make('edit_major',$major);
+		return $major;
 		# code...
 	}
 
 	//Thuc hien sua nganh hoc
-	public function edit_major($university_id)
+	public function edit_major()
 	{
 		// $data = Input::all();
 
@@ -121,11 +128,9 @@ class MajorController extends \BaseController {
 	}
 
 
-	public function delete_major()
+	public function delete_major($university_id)
 	{
 		$major = Major::find(Input::get('id'));
 		$major->delete();
 	}
-
-	
 }
