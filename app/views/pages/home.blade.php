@@ -1,3 +1,7 @@
+<?php
+  Session::put("student", "anhhp");
+  Session::put("user", "anhhp");
+?>
 @extends('layout.layout')
 @section('title')
 	He thong thi THPT Quoc Gia.
@@ -59,7 +63,7 @@
           </div>
         </li>
       </ul>
-      <nav class="pagination">
+      <div class="pagination">
         <ul class="cd-pagination">
           <li class="btn-prev">
             <a href="#0"><i class="fa fa-chevron-left"></i></a>
@@ -77,7 +81,7 @@
             <a href="#0"><i class="fa fa-chevron-right"></i></a>
           </li>
         </ul>
-      </nav>
+      </div>
       <!-- cd-pagination-wrapper -->
     </div>
   </div>

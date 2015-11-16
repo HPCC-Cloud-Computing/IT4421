@@ -38,7 +38,7 @@
             <li>
               <a href="/IT4421/public/majors">
                 <i class="fa fa-tag"></i>
-                Các ngành tuyển sinh
+                Ngành học - chỉ tiêu
               </a>
             </li>
           </ul>

@@ -14,6 +14,7 @@
 <html>
 <head>
 	@include('includes.head')
+	@yield('style')
 	@yield('javascript')
 </head>
 <body>
@@ -30,6 +31,10 @@
 		<!-- navigator different with different actor, and we in clude navigator in pages -->
 
 	</header>
+
+	<div class="container content">
+		@yield('breadcrumbs')
+	</div>
 	
 	{{-- Content --}}
 	<div class="container content">

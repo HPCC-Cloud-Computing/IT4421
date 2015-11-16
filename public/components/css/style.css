@@ -80,13 +80,36 @@ input[type=text], input[type=password], textarea{
     border: 1px solid #dedede;
     border-radius: 0;
 }
-input[type=text]:focus, input[type=password]:focus, textarea:focus{
+input[type=text]:hover, input[type=password]:hover, textarea:hover,
+select:hover {
+    outline: none;
+    border-color: #aaa
+}
+input[type=text]:focus, input[type=password]:focus, textarea:focus,
+select:focus {
     outline: none;
     border-color: #66afe9
 }
 input[type=text], input[type=password]{
     line-height: normal;
     height: 23px;
+}
+
+select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background-attachment: scroll !important;
+    background-clip: border-box !important;
+    background-color: #fff !important;
+    background-image: url("../img/arrow-down.png") !important;
+    background-origin: padding-box !important;
+    background-position: calc(100% - 7px) center !important;
+    background-repeat: no-repeat !important;
+    background-size: auto auto !important;
+    border: 1px solid #dedede;
+    min-height: 24px;
+    padding: 1px 20px 1px 0px !important;
+    width: auto;
 }
 /*End form control*/
 
@@ -119,6 +142,7 @@ input[type=text], input[type=password]{
 .navbar{
   border-radius: 0;
   min-height: auto;
+  margin-bottom: 10px;
 }
 
 .navbar-default {
@@ -244,16 +268,31 @@ input[type=text], input[type=password]{
 
 .content{
   padding: 0 30px;
-  margin: 20px auto;
+  margin: 10px auto;
 }
 
 .content-left{
-  padding-right: 10px
+  padding-right: 5px
 }
 
 .sidebar-right{
-  padding-left: 10px
+  padding-left: 5px
 }
+
+/*BreadCrumbs style*/
+.breadcrumbs {
+    background: none!important;
+    position: relative;
+    z-index: 10;
+    color: #565656
+}
+.breadcrumbs a{
+  color: #565656
+}
+.breadcrumbs .divider {
+    padding: 0 5px;
+}
+/*End breadcrumbs*/
 
 /*Panel*/
 .panel{
@@ -262,6 +301,8 @@ input[type=text], input[type=password]{
   background-color: #fff;
   padding: 5px 15px 15px 15px;
   border: 1px solid #eee;
+  margin-bottom: 10px;
+  height: 100%;
 }
 
 .panel-title{
@@ -288,6 +329,12 @@ a.link-style{
   text-decoration: none;
   color: #0090ff;
 }
+
+.title-page{
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 10px
+}
 /*/Panel*/
 
 .div-row{
@@ -301,12 +348,14 @@ a.link-style{
   float: left;
     line-height: 24px;
     padding: 2px 0 0;
+    margin-right: 10px
 }
 
 .div-row-control{
   float: left;
-    line-height: 24px;
+    line-height: normal;
     padding: 2px 0 0;
+    margin-right: 20px
 }
 
 /*News style*/
@@ -342,12 +391,16 @@ a.link-style{
 }
 
 .pagination .cd-pagination{
-  list-style: none
+  list-style: none;
+  margin-left: -30px
+}
+
+.pagination .cd-pagination > :first-child > a{
+  border-left-width: 1px;
 }
 
 .pagination .cd-pagination li{
   float: left;
-  margin: 0 2px;
 }
 
 .pagination .cd-pagination li.btn-prev i.fa{
@@ -360,10 +413,12 @@ a.link-style{
 
 .pagination .cd-pagination li a{
   text-decoration: none;
+  display: block;
   background-color: #fff;
-  padding: 5px 7px;
+  padding: 7px 12px;
   color: #2E4057;
   border: 1px solid #e6e6e6;
+  border-left-width: 0
 }
 
 .pagination .cd-pagination li a:hover{
@@ -381,9 +436,10 @@ a.link-style{
 /*footer*/
 .footer{
   height: 192px;
-  background-color: #444444;
+  background-color: #222;
   color: #fff;
   font-size: 14px;
+  margin-top: 30px;
 }
 .footer .footer-content {
     padding: 0;
@@ -394,8 +450,8 @@ a.link-style{
   margin-left: -15px;
   margin-right: -15px;
 }
-.footer .footer-content .footer-col{
-  text-align: center;
+.footer .footer-content .row{
+  padding: 15px
 }
 .footer .footer-content .footer-col .footer-col-inner {
     padding: 0 15px;
@@ -413,7 +469,17 @@ a.link-style{
     list-style: none;
 }
 .footer .footer-content .footer-col a {
-    color: #dcdcdc;
+    color: #bfbfbf;
+    text-decoration: none;
+}
+
+.footer .footer-content .footer-col a:hover {
+    color: #fff;
+}
+
+.footer .footer-content .footer-col .fa {
+    margin-right: 10px;
+    display: inline-block;
 }
 
 .footer .footer-content .footer-col .footer-col-inner {
@@ -476,3 +542,101 @@ a.link-style{
     font-size: 25px;
 }
 /*end footer*/
+
+
+/*Table style*/
+.datatable
+{
+    border: solid 1px #E0E0E0;
+    color: #000000;
+    border-collapse: collapse;
+    margin-top: 5px;
+    width: 100%
+}
+.datatable thead th
+{
+    border: solid 1px #aed3ba;
+    border-style: solid;
+    border-width: 1px;
+    color: #000;
+    padding: 7px 5px;
+    text-align: center;
+    vertical-align: center;
+    font-size: 12px;
+    background-color: #c3e2e2;
+}
+table{
+    font-size: 12px;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    /*font-family: Roboto;*/
+}
+.datatable th a
+{
+    color: blue;
+    padding-right: 18px;
+    text-decoration: none;
+}
+.datatable tr
+{
+    font-size: 12px;
+    padding: 3px 0px;
+}
+.datatable td/*.datatable .row td, .datatable .altrow td, .datatable .selectedrow td, .disablerow td*/ 
+{
+    border: solid 1px #e0e0e0;
+    border-style: solid solid solid none;
+    border-width: 1px 1px 1px medium;
+    color: #5a5a5a;
+    padding: 7px 5px;
+    font-size: 12px;
+    /*text-align: center;*/
+}
+.datatable .disablerow td 
+{
+    color:white;
+    background-color: #D5D5D5;
+}
+.datatable .selectedrow td 
+{
+    color: black;
+    background-color:moccasin;
+}
+.datatable .row td
+{
+    background-color: #FFFFFF;
+}
+.datatable .altrow td
+{
+    background-color: rgba(196, 248, 247, 0.12);
+}
+.datatable tr.row:hover td, .datatable tr.altrow:hover td
+{
+    background-color: #DCF2E4;
+}
+.datatable tbody tr:hover th, .datatable tbody tr:hover td
+{
+    background-color: #DCF2E4;
+}
+.datatable .row td.first
+{
+    padding-left: 10px;
+}
+.datatable th.first
+{
+    padding-left: 10px;
+}
+
+.datatable .selectedrow td
+{
+    background-color: rgba(255, 255, 0, 0.3);
+}
+
+.datatable td.td-center {
+    text-align: center;
+}
+.datatable td.td-right {
+    text-align: right;
+}
+/*End table*/
