@@ -3,10 +3,12 @@
 ?>
 	<div class="footer-content">
 		<div class="container">
-                <div class="row">
+                <div class="div-row" style="margin-top: 24px">
                 <div class="footer-col col-md-6 col-sm-6">
                     <div class="footer-col-inner">
-                        <h4>Hệ thống tuyển sinh đại học trực tuyến</h4>
+                    <div class="div-row">
+                    {{  HTML::image('/components/img/logo_footer.png','logo_title',array( 'style' => 'max-width: 450px; max-height: 30px'))   }}
+                    </div>
                         <div class="div-row">
                         	<p>Cơ quan chủ quản: Bộ giáo dục và đào tạo</p>
                         	<p><i class="fa fa-map-marker"></i> Số 35, Đại Cồ Việt, Hai Bà Trưng, Hà Nội</p>     

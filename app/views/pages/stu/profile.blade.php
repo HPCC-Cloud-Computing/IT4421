@@ -7,19 +7,20 @@
 <nav class="breadcrumbs">
   <a href="/IT4421/public">Trang chủ</a>
   <span class="divider">›</span>
-  Thông tin tài khoản
+  Thông tin người dùng
 </nav>
 @stop
 
 @section('content')
 <div class="panel">
   <div class="panel-title"> <i class="fa fa-user"></i>
-    Thông tin tài khoản
+    Thông tin người dùng
   </div>
   <div class="panel-body">
     
   </div>
 </div>
+
 @stop
 
 @section('javascript')

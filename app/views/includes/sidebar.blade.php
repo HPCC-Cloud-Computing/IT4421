@@ -8,18 +8,24 @@
 	</div>
 	<div class="panel-body">
 		<div class="div-row">
+			{{--
 			<div class="div-row-label" style="width: 36%">Tên đăng nhập</div>
 			<div class="div-row-control" style="width: 64%">
 				<input type="text" name="" value="" />
 			</div>
-		</div>
-		<div class="div-row">
-			<div class="div-row-label" style="width: 36%">Mật khẩu</div>
-			<div class="div-row-control" style="width: 64%">
-				<input type="text" name="" value="" />
+			--}}
+			<div class="input-group">
+				<span class="input-group-addon" id="username-addon"><i class="fa fa-user"></i></span>
+				<input type="text" placeholder="Tên đăng nhập" aria-describedby="username-addon" />
 			</div>
 		</div>
-		<input type="button" class="btn" style="margin-top: 10px; float: right" name="" value="Đăng nhập"></div>
+		<div class="div-row">
+			<div class="input-group">
+				<span class="input-group-addon" id="password-addon" style="font-size: 16px"><i class="fa fa-lock"></i></span>
+				<input type="text" placeholder="Mật khẩu" aria-describedby="password-addon" />
+			</div>
+		</div>
+		<input type="button" class="btn" style="width: 100%; text-transform: uppercase;" name="" value="Đăng nhập"></div>
 </div>
 @endif
 <div class="panel">

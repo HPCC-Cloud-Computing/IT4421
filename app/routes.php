@@ -17,13 +17,25 @@ Route::get('/', function()
 	return View::make('pages.home');
 });
 
+//Trang thông báo
+Route::get('/notice', function()
+{
+	return View::make('pages.notice');
+});
+
+//Trang chi tiết thông báo
+Route::get('/notice/{id}', function($id)
+{
+	return View::make('pages.notice');
+});
+
 //Trang quy chế tuyển sinh
 Route::get('/regulation', function()
 {
 	return View::make('pages.regulation');
 });
 
-//Trang ngành tuyển sinh
+//Trang ngành - chỉ tiêu
 Route::get('/majors', function()
 {
 	return View::make('pages.majors');

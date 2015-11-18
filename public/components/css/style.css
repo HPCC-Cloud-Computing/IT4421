@@ -88,11 +88,17 @@ select:hover {
 input[type=text]:focus, input[type=password]:focus, textarea:focus,
 select:focus {
     outline: none;
-    border-color: #66afe9
+    border-color: #2fa1f9
 }
 input[type=text], input[type=password]{
     line-height: normal;
-    height: 23px;
+    height: 28px;
+}
+
+.input-group-addon{
+  padding: 5px 12px;
+  border-radius: 0;
+  border-color: #dedede;
 }
 
 select {
@@ -107,7 +113,7 @@ select {
     background-repeat: no-repeat !important;
     background-size: auto auto !important;
     border: 1px solid #dedede;
-    min-height: 24px;
+    min-height: 28px;
     padding: 1px 20px 1px 0px !important;
     width: auto;
 }
@@ -115,18 +121,38 @@ select {
 
 /*Button*/
 .btn{
+    display: inline-block;
     padding: 6px 12px;
     font-size: 12px;
     line-height: normal;
     border: 1px solid transparent;
-    border-radius: 0px;
+    border-radius: 2px;
     color: #fff !important;
-    background: #0280bd
+    background-color: #2fa1f9;
+    white-space: nowrap;
+    text-align: center;
+    font-weight: normal;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    text-decoration: none;
+    user-select: none;
+    font-family: 'Roboto', sans-serif;
+    cursor: pointer;
 }
 
 .btn:hover{
     color: #fff;
     background: #2991e2;
+}
+
+.btn:active{
+    color: #fff;
 }
 
 .btn-search:hover{
@@ -341,7 +367,7 @@ a.link-style{
   width: 100%;
     float: left;
     clear: both;
-    margin-top: 5px;
+    margin-bottom: 10px;
 }
 
 .div-row-label{
@@ -426,9 +452,9 @@ a.link-style{
 }
 
 .pagination .cd-pagination li > a.current{
-  background-color: #0280bd;
+  background-color: #2fa1f9;
   color: #fff;
-  border-color: #0280bd;
+  border-color: #2fa1f9;
 }
 
 /*End Pagination style*/
@@ -513,7 +539,7 @@ a.link-style{
 }
 
 #topcontrol {
-    background: #0280bd;
+    background-color: #2fa1f9;
     color: #fff;
     text-align: center;
     display: inline-block;
@@ -640,3 +666,14 @@ table{
     text-align: right;
 }
 /*End table*/
+
+/*Notice style*/
+ul.notice-info{
+  list-style: none;
+  margin-left: -40px
+}
+ul.notice-info li{
+  float: left;
+  margin-right: 10px
+}
+/*end notice style*/

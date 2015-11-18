@@ -20,7 +20,7 @@
     	float: left;
     	clear: both;
  	}
- 	.div-row-label{
+ 	.row-aspiration .div-row-label{
  		font-weight: bold
  	}
 </style>
