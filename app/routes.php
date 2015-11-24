@@ -121,7 +121,7 @@ Route::post('/st-admin/minis/mn_clus_acc/delete','ClusterController@delete');
 Route::post('/st-admin/minis/mn_schedule/get_scheduler_data','PhaseController@setting_show');
 Route::post('/st-admin/minis/mn_schedule/update_scheduler_data','PhaseController@setting');
 
-// cluster
+// cluster--------------------------------------------------------------
 Route::get('/st-admin/clus',function(){
 	return View::make('st-admin.pages.clus.clus');
 });

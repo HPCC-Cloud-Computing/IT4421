@@ -11,7 +11,7 @@
 
 	<script type="text/javascript">
 		var element = document.getElementById("minis-menu").getElementsByTagName("li");
-		element[3].classList.add("active");
+		element[4].classList.add("active");
 	</script>
 
 @stop
@@ -36,23 +36,43 @@
 
 
 				<br>
-				<button type = "submit" class="btn btn-success" data-toggle="modal" data-target="#addClusterModal">Add new data</button> 
-				<button type="submit" class="btn btn-primary">Export As Excel</button>
-				<button type="submit" class="btn btn-danger">Import Data</button>
+				<button type = "submit" class="btn btn-success" data-toggle="modal" data-target="#addClusModal">Add new data</button> 
+				<button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exportExcelFile">Export As Excel</button>
+				<button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#importExcelFile">Import Data</button>
 				<br>
 
 				
 				<br>
 				<table class="table table-hover table-bordered table-striped table-responsive">
 					
-
+				<thead>
+					<td>ID</td>
+					<td>Mã Cụm</td>
+					<td>Tên Cụm</td>
+					<td>Action</td>
+					<td>Action</td>
+				</thead>
+				<tbody>
+					<td>1</td>
+					<td>DHBKHN</td>
+					<td>Cụm thi Đại Học Bách Khoa Hà Nội</td>
+					<td><button class="btn btn-success">Edit</button></td>
+					<td><button class="btn btn-danger">Delete</button></td>
+				</tbody>
 
 				</table>
+					<ul class="pagination">
+					  <li><a href="#">1</a></li>
+					  <li><a href="#">2</a></li>
+					  <li><a href="#">3</a></li>
+					  <li><a href="#">4</a></li>
+					  <li><a href="#">5</a></li>
+					</ul>
 			</div>
 		</div>
-	</div>
-		
-				{{	InsertForm::ClusterForm("addClusterModal");	}}		
+	</div>		{{	InsertForm::FileExport("exportExcelFile");	}}
+				{{	InsertForm::FileExcel("importExcelFile"); }}
+				{{	InsertForm::DepartForm("addClusModal");	}}			
 
 
 @stop

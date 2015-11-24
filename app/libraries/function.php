@@ -15,12 +15,12 @@ class InsertForm{
 				</form>
 			';
 	}
-
+// Modal Form Group: label type id name placeholder
 //id truyen vao la id cua Modal. trong button Data-target = id.
 	public static function ClusterForm($id){
 		InsertForm:: insertFormHeader($id);
 		InsertForm:: modalFormGroup("Usename","text","","username","Username");
-    	InsertForm:: modalFormGroup("Password","text","","Password","Password");
+    	InsertForm:: modalFormGroup("Password","text","","password","Password");
     	InsertForm:: modalFormGroup("Email","text","","email","Email");
     	InsertForm:: modalFixedFormGroup("Userable id","number","","userable_type_id",2);
     	InsertForm:: modalFixedFormGroup("Userable type","text","","userable_type","cluster");
@@ -35,7 +35,7 @@ class InsertForm{
 	public static function DepartForm($id){
 		InsertForm:: insertFormHeader($id);
 		InsertForm:: modalFormGroup("Usename","text","","username","Username");
-    	InsertForm:: modalFormGroup("Password","text","","Password","Password");
+    	InsertForm:: modalFormGroup("Password","text","","password","Password");
     	InsertForm:: modalFormGroup("Email","text","","email","Email");
     	InsertForm:: modalFixedFormGroup("Userable id","number","","userable_type_id",2);
     	InsertForm:: modalFixedFormGroup("Userable type","text","","userable_type","cluster");
@@ -49,7 +49,7 @@ class InsertForm{
 	public static function UniForm($id){
 		InsertForm:: insertFormHeader($id);
 		InsertForm:: modalFormGroup("Usename","text","","username","Username");
-		InsertForm:: modalFormGroup("Password","text","","Password","Password");
+		InsertForm:: modalFormGroup("Password","text","","password","Password");
 		InsertForm:: modalFormGroup("Email","text","","email","Email");
 		InsertForm:: modalFixedFormGroup("Userable id","number","","userable_type_id",2);
 		InsertForm:: modalFixedFormGroup("Userable type","text","","userable_type","cluster");
@@ -64,7 +64,7 @@ class InsertForm{
 	public static function Student($id){
 		InsertForm:: insertFormHeader($id);
 		InsertForm:: modalFormGroup("Usename","text","","username","Username");
-		InsertForm:: modalFormGroup("Password","text","","Password","Password");
+		InsertForm:: modalFormGroup("Password","text","","password","Password");
 		InsertForm:: modalFormGroup("Email","text","","email","Email");
 		InsertForm:: modalFixedFormGroup("Userable id","number","","userable_type_id",2);
 		InsertForm:: modalFixedFormGroup("Userable type","text","","userable_type","cluster");
@@ -98,19 +98,19 @@ class InsertForm{
 	public static function Score($id){
 		InsertForm:: insertFormHeader($id);
 		//score table
-		InsertForm:: modalFormGroup("Student ID","int","","","");
-		InsertForm:: modalFormGroup("Room_id","int","","","");
-		InsertForm:: modalFormGroup("Subject_id","int","","","");
-		InsertForm:: modalFormGroup("Score","","float","","");
-
+		InsertForm:: modalFormGroup("Student ID","int","","student_id","student_id");
+		InsertForm:: modalFormGroup("Room_id","int","","room_id","room_id");
+		InsertForm:: modalFormGroup("Subject_id","int","","subject_id","subject_id");
+		InsertForm:: modalFormGroup("Score","","float","score","score");
+		InsertForm:: modalFormGroup("State","","float","state","state");
 		InsertForm:: insertFormFooter();
 	}
 
 	public static function Notice($id){
 		InsertForm:: insertFormHeader($id);
 		//Notice table
-		InsertForm:: modalFormGroup("Title","text","","","");
-		InsertForm:: modalFormGroup("Content","text","","","");
+		InsertForm:: modalFormGroup("Title","text","","title","title");
+		InsertForm:: modalFormGroup("Content","text","","content","Content");
 
 		InsertForm:: insertFormFooter();
 	}
@@ -119,8 +119,8 @@ class InsertForm{
 		InsertForm:: insertFormHeader($id);
 
 		//Phrase table
-		InsertForm:: modalFormGroup("Code","text","","","");
-		InsertForm:: modalFormGroup("Name","text","","","");
+		InsertForm:: modalFormGroup("Code","text","","code","Code");
+		InsertForm:: modalFormGroup("Name","text","","name","Name");
 
 		InsertForm:: insertFormFooter();
 	}
@@ -128,18 +128,33 @@ class InsertForm{
 	public static function Room($id){
 		InsertForm:: insertFormHeader($id);
 		//Notice table
-		InsertForm:: modalFormGroup("Code","text","","","");
-		InsertForm:: modalFormGroup("Address","text","","","");
-		InsertForm:: modalFormGroup("cluster_id","int","","","");
+		InsertForm:: modalFormGroup("Code","text","","code","Code");
+		InsertForm:: modalFormGroup("Address","text","","address","Address");
+		InsertForm:: modalFormGroup("cluster_id","int","","cluster_id","Cluster_id");
 		InsertForm:: insertFormFooter();
 	}
 	public static function Subject($id){
 		InsertForm:: insertFormHeader($id);
 		//subject
-		InsertForm:: modalFormGroup("Code","text","","","");
-		InsertForm:: modalFormGroup("Name","text","","","");
+		InsertForm:: modalFormGroup("Code","text","","code","Code");
+		InsertForm:: modalFormGroup("Name","text","","name","Name");
 		InsertForm:: insertFormFooter();
 	}
+
+	public static function FileExcel($id){
+		InsertForm:: insertFormHeader($id);
+		//subject
+		InsertForm:: modalFileFormGroup("Input Excel File","","excelfile");
+		InsertForm:: insertFileFormFooter();
+	}
+	public static function FileExport($id){
+		InsertForm:: insertFormHeader($id);
+		//subject
+		echo "<h4>Bạn có muốn xuât dữ liệu ra file không<h4>";
+
+		InsertForm::exportFileFormFooter();
+	}
+
 	private static function insertFormHeader($id){
 		echo '<div class="modal fade" id="'.$id.'" tabindex="-1" role="dialog" 
 			aria-labelledby="myModalLabel">
@@ -154,7 +169,8 @@ class InsertForm{
 	}
 
 	private static function insertFormFooter(){
-		echo '<div class="modal-footer">
+		echo '</div>
+			<div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 	        <button type="button" class="btn btn-success">Add</button>
 				     </div>
@@ -162,6 +178,36 @@ class InsertForm{
 			  </div>
 			</div>
 		';
+	}
+
+	private static function insertFileFormFooter(){
+		echo '</div>
+			<div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-success">Upload File</button>
+				     </div>
+			    </div>
+			  </div>
+			</div>
+		';	
+	}
+	private static function exportFileFormFooter(){
+		echo '</div>
+			<div class="modal-footer">
+	        <button type="button" class="btn btn-success">Xuất File</button>
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+				     </div>
+			    </div>
+			  </div>
+			</div>
+		';			
+	}
+	// label type id name placeholder
+	private static function modalFileFormGroup($label,$id,$name){
+		echo "<div class='form-group'>
+				<label>".$label."</label>
+				<input type='file' class='form-control' id='".$id."' name='".$name."''>
+			</div>";
 	}
 	private static function  modalFormGroup($label,$type,$id,$name,$placeholder){
 		echo "<div class='form-group'>
@@ -177,6 +223,14 @@ class InsertForm{
 			</div>";	
 	}
 
+	private static function modalFormGroupValue($label,$type,$id,$name,$value){
+		echo "<div class='form-group'>
+				<label>".$label."</label>
+				<input type=".$type." class='form-control' id='".$id."' name='".$name."' value='".$value."'>
+			</div>";
+	}
  }
+
+
 	
 ?>
