@@ -100,7 +100,7 @@ class UserController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function add()
 	{
 		//
 		//$userData = array(
@@ -115,7 +115,7 @@ class UserController extends \BaseController {
 
         //tao room moi
         //$roomRestful = new RoomRestful; //?
-       	//$room = RoomRestful::store($user);
+       	//$room = RoomRestful::add($user);
 
         //return $user;
 	}

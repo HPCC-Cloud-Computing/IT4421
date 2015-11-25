@@ -29,7 +29,7 @@ class PhaseController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function store($data)
+	public function add($data)
 	{
 		if(!isset($data))
 			return false;

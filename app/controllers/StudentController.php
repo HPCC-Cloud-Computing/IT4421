@@ -146,7 +146,7 @@ class StudentController extends \BaseController {
 	public function edit_one()
 	{
 		$data=Input::all();
-		$student = Student::store($data);
+		$student = Student::add($data);
 		return json_encode($student);
 	}
 	

@@ -8,11 +8,14 @@ class DepartmentController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function get_list()
 	{
-		//
+		$depts = Department::all();
+		echo($depts);
 	}
-
+	public function index(){
+		return View::make('st-admin.pages.depart.depart');
+	}
 
 	/**
 	 * Show the form for creating a new resource.
@@ -30,40 +33,53 @@ class DepartmentController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function add()
 	{
+		$data = Input::get('data');
 		if(!isset($data))
-			return false;
+			echo "error";
 		try{
-			$deptData = array_combine($column,$data);
-			$dept = Department::create($universityData);		
+			$department = Department::where('code', $data[0])->first();
+			if(isset($department)){
+				echo "error";
+				exit();	
+			}
+			$deptData = array_combine($this->column,$data);			
+			$dept = Department::create($deptData);		
 		}catch(QueryException $e){
-			return false;
+			echo "error";
 		}	
 		if(isset($dept))
-			return true;
+			echo "success";
 		else 
-			return false;
+			echo "error";
 	}
 	/**
 	 * HuanPC
 	 * Them nhieu ban ghi vao database tu file exel
 	 * @return [type] [description]
 	 */
-	public function storeMany()
+	public function add_many()
 	{					
 		$fileInputName = 'exel_file';
 		$data = Utils::importExelFile($fileInputName);
+		$count = 0;
 		if(isset($data)){
 			foreach ($data as $key => $value) {
 				// Kiem tra du lieu da ton tai trong csdl?
-				$department = Department::where('code', $value[0])->first();
-				if(!isset($department))
+				$check = Department::where('code', $value[0])->first();
+				if(!isset($check)){
 					// Neu chua ton tai thi moi insert
-					$this->store($value);
+					$data_insert = array_combine($this->column,$value);			
+					$result = Department::create($data_insert);		
+					if(isset($result)){
+						$count +=1;						
+					}
+				}
+
 			}
 		}		
-		echo "Success";
+		echo json_encode(array('num_of_insert'=>$count));
 	}
 
 	/**
@@ -74,11 +90,23 @@ class DepartmentController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$dept = Department::with('students')->find($id);		
-		$students = $dept->students();		
-		return View::make('',array('dept' =>$dept ,'students'=>$students ));
+		$dept = Department::find($id);		
+		return View::make('',array('dept' =>$dept ));
 	}
 
+	public function get_students($id)
+	{
+		$dept = Department::with('students')->find($id);		
+		$students = $dept->students();		
+		return $students ;
+	}
+	public function manage_student_page(){		
+		$id = Session::get('dept_id');
+		return View::make('st-admin.pages.depart.mn_stu_acc',array('students' => $this->get_students($id)));
+	}
+	public function syn_result(){
+		return View::make('st-admin.pages.depart.syn_result');
+	}
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -100,7 +128,7 @@ class DepartmentController extends \BaseController {
 	 */
 	public function update($id, array $data)
 	{
-		Department::find($id)->update($data);
+		Department::find(intval($id))->update($data);
 	}
 
 
@@ -112,11 +140,11 @@ class DepartmentController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		$result=Department::where($column[0],'=',$id)->delete();
+		$result=Department::find(intval($id))->delete();
 		if($result>0)
-			return true;
+			echo "success";
 		else
-			return false;
+			echo "failed";
 	}
 
 

@@ -59,7 +59,7 @@ class WishController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function add()
 	{
 		//
 	}

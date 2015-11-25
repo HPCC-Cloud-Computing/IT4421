@@ -2,9 +2,12 @@
 
 class University extends Eloquent {
 	protected $fillable = array('code', 'name', 'info' );
-	protected $timestamps = false;
+	// protected $timestamps = false;
 	protected $table = 'universities';
 
+	public function getAll(){
+		return $this->all();	
+	}
 	/**
 	 * [user description]
 	 * @return [type] [description]

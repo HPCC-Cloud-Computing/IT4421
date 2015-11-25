@@ -4,22 +4,31 @@ class MinisterController extends \BaseController {
 	public function index(){
 		return View::make('st-admin.pages.minis.minis');
 	}	
-	public function uniManagePage(){
-		return View::make('st-admin.pages.minis.mn_uni_acc');
+	public function uni_manage_page(){
+		$university = University::all();		
+		return View::make('st-admin.pages.minis.mn_uni_acc',$university);
 	}
-	public function deptManagePage(){
-		return View::make('st-admin.pages.minis.mn_depart_acc');
+	public function dept_manage_page(){
+		$depts = Department::all();
+		return View::make('st-admin.pages.minis.mn_depart_acc',$depts);
 	}
-	public function clusterManagePage(){
-		return View::make('st-admin.pages.minis.mn_clus_acc');
+	public function cluster_manage_page(){		
+		$clusters = Cluster::all();
+		return View::make('st-admin.pages.minis.mn_clus_acc',$clusters);
 	}
-	public function phaseManagePage(){
-		return View::make('st-admin.pages.minis.mn_schedule');
+	public function phase_manage_page(){
+		$phases = Phase::all();		
+		return View::make('st-admin.pages.minis.mn_schedule',$phases);
 	}
-	public function scoreFloorSetupPage(){
+	public function score_floor_setup_page(){
 		return View::make('st-admin.pages.minis.score_floor_setup');
 	}
-	public function synResultPage(){
+	public function syn_result_page(){
 		return View::make('st-admin.pages.minis.syn_result');
+	}
+	public function test($data){
+		foreach ($data as $key => $value) {
+			echo( $value);
+		}
 	}
 }

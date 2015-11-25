@@ -3,15 +3,31 @@ require_once (dirname(__FILE__).'/Excel/reader.php');
 require_once (dirname(__FILE__).'/Utils.php');
 class UniversityController extends \BaseController {	
 	protected $column = array('code','name','info');		
+	
+	public function index(){
+		return View::make('st-admin.pages.uni.uni');	
+	}
+	public function manage_major_page(){	
+		$id = Session::get('id');	
+		return View::make('st-admin.pages.uni.mn_major', 
+			array('university' => $university, 'majors' => $this->get_majors($id)));
+	}
+	public function get_majors($id){
+		$university = University::->find($id);
+		return $university->majors;		
+	}
+	public function syn_resutl(){
+		return View::make('st-admin.pages.uni.syn_result');	
+	}
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function get_list()
 	{
 		$universities = University::all();
-		return View::make('university_index', $universities);
+		echo ($universities);
 	}
 
 
@@ -32,40 +48,53 @@ class UniversityController extends \BaseController {
 	 * Store one by one
 	 * @return Response
 	 */
-	public function store($data)
-	{		
+	public function add()
+	{
+		$data = Input::get('data');
 		if(!isset($data))
-			return false;
+			echo "error";
 		try{
-			$universityData = array_combine($this->column,$data);
-			$university = University::create($universityData);		
+			$check = University::where('code', $data[0])->first();
+			if(isset($check)){
+				echo "error";
+				exit();	
+			}
+			$data_insert = array_combine($this->column,$data);			
+			$result = University::create($data_insert);		
 		}catch(QueryException $e){
-			return false;
+			echo "error";
 		}	
-		if(isset($university))
-			return true;
+		if(isset($result))
+			echo "success";
 		else 
-			return false;
+			echo "error";
 	}
 	/**
 	 * HuanPC
 	 * Them nhieu ban ghi vao database tu file exel
 	 * @return [type] [description]
 	 */
-	public function storeMany()
+	public function add_many()
 	{					
 		$fileInputName = 'exel_file';
 		$data = Utils::importExelFile($fileInputName);
+		$count = 0;
 		if(isset($data)){
 			foreach ($data as $key => $value) {
 				// Kiem tra du lieu da ton tai trong csdl?
-				$university = University::where('code', $value[0])->first();
-				if(!isset($university))
+				$check = University::where('code', $value[0])->first();
+				if(!isset($check)){
 					// Neu chua ton tai thi moi insert
-					$this->store($value);
+					$data_insert = array_combine($this->column,$value);			
+					$result = University::create($data_insert);		
+					if(isset($result)){
+						$count +=1;						
+					}
+				}
+
 			}
 		}		
-		echo "Success";
+		echo json_encode(array('num_of_insert'=>$count));
 	}
 	/**
 	 * Display the specified resource.
@@ -75,9 +104,8 @@ class UniversityController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$university = University::with('mayjor')->find($id);
-		$majors = $university->majors;
-		return View::make('university_show', array('university' => $university, 'majors' => $majors));
+		$university = University::find($id);
+		return View::make('university_show', $university);
 	}
 
 
@@ -102,7 +130,7 @@ class UniversityController extends \BaseController {
 	 */
 	public function update($id, array $data)
 	{
-		University::find($id)->update($data);
+		University::find(intval($id))->update($data);
 	}
 
 
@@ -115,11 +143,11 @@ class UniversityController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		$result=University::where($column[0],'=',$id)->delete();
+		$result=University::find(intval($id))->delete();
 		if($result>0)
-			return true;
+			echo "success";
 		else
-			return false;
+			echo "failed";
 	}
 
 

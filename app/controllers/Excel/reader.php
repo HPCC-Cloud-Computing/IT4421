@@ -129,14 +129,14 @@ class Spreadsheet_Excel_Reader
     /**
      * Array of worksheets
      *
-     * The data is stored in 'cells' and the meta-data is stored in an array
+     * The data is addd in 'cells' and the meta-data is addd in an array
      * called 'cellsInfo'
      *
      * Example:
      *
      * $sheets  -->  'cells'  -->  row --> column --> Interpreted value
      *          -->  'cellsInfo' --> row --> column --> 'type' - Can be 'date', 'number', or 'unknown'
-     *                                            --> 'raw' - The raw data that Excel stores for that data cell
+     *                                            --> 'raw' - The raw data that Excel adds for that data cell
      *
      * @var array
      * @access public
@@ -956,7 +956,7 @@ class Spreadsheet_Excel_Reader
     /**
      * Convert the raw Excel date into a human readable format
      *
-     * Dates in Excel are stored as number of seconds from an epoch.  On 
+     * Dates in Excel are addd as number of seconds from an epoch.  On 
      * Windows, the epoch is 30/12/1899 and on Mac it's 01/01/1904
      *
      * @access private

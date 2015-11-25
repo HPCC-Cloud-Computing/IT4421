@@ -2,7 +2,7 @@
 
 class Department extends Eloquent {
 	protected $fillable = array('code', 'name', );
-	protected $timestamps = false;
+	public $timestamps = false;
 	protected $table = 'departments';
 
 	/**
