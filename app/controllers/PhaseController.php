@@ -128,10 +128,4 @@ class PhaseController extends \BaseController {
 	public function createFloorScore(){
 		return false;
 	}
-	/**
-	 * Thay doi trang thai
-	 */
-	public function updateStates(){
-		return false;
-	}
 }

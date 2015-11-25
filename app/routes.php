@@ -63,65 +63,96 @@ Route::get('/stu/aspiration_reg', function(){
 	return View::make('pages.stu.aspiration_reg');
 });
 
-//st-admin -- LuanBN -----------------------------------------------------------------------------
-//minister----------------------------------------------------------
-Route::get('/st-admin/minis', function(){
-	return View::make('st-admin.pages.minis.minis');
-});
-Route::get('/st-admin/minis/mn_uni_acc',function(){
-	return View::make('st-admin.pages.minis.mn_uni_acc');
-});
-Route::get('/st-admin/minis/mn_clus_acc',function(){
-	return View::make('st-admin.pages.minis.mn_clus_acc');
-});
-Route::get('/st-admin/minis/mn_depart_acc',function(){
-	return View::make('st-admin.pages.minis.mn_depart_acc');
-});
-Route::get('/st-admin/minis/mn_schedule',function(){
-	return View::make('st-admin.pages.minis.mn_schedule');
-});
-Route::get('/st-admin/minis/score_floor_setup',function(){
-	return View::make('st-admin.pages.minis.score_floor_setup');
-});
-Route::get('/st-admin/minis/syn_result',function(){
-	return View::make('st-admin.pages.minis.syn_result');
-});
+//st-admin -- LuanBN + HuanPC-----------------------------------------------------------------------------
+//---------------------------------------minister page--------------------------------------------------
+Route::get('/st-admin/minis', 'MinisterController@index');
+//---------------------------------------minister sub page -------------------------------------------------
+Route::get('/st-admin/minis/mn_uni_acc','MinisterController@uniManagePage');
+Route::get('/st-admin/minis/mn_clus_acc','MinisterController@clusterManagePage');
+Route::get('/st-admin/minis/mn_depart_acc','MinisterController@deptManagePage');
+Route::get('/st-admin/minis/mn_schedule','MinisterController@phaseManagePage');
+Route::get('/st-admin/minis/score_floor_setup','MinisterController@scoreFloorSetupPage');
+Route::get('/st-admin/minis/syn_result','MinisterController@synResultPage');
+//-----------------------------------------------------------------------------------------------------
 	//use for ajax post
-Route::post('/st-admin/minis/mn_uni_acc', 'UniversityController@list');
-Route::post('/st-admin/minis/mn_depart_acc','DepartmentController@list');
-Route::post('/st-admin/minis/mn_clus_acc','ClusterController@list');
-Route::post('/st-admin/minis/mn_schedule','PhaseController@list');
+// Route::post('/st-admin/minis/mn_uni_acc', 'UniversityController@list');
+// Route::post('/st-admin/minis/mn_depart_acc','DepartmentController@list');
+// Route::post('/st-admin/minis/mn_clus_acc','ClusterController@list');
+// Route::post('/st-admin/minis/mn_schedule','PhaseController@list');
 
 	//add one
-Route::post('/st-admin/minis/mn_uni_acc/add', 'UniversityController@add_one');
-Route::post('/st-admin/minis/mn_depart_acc/add','DepartmentController@add_one');
-Route::post('/st-admin/minis/mn_clus_acc/add','ClusterController@add_one');
+//
+// Route::post('/st-admin/minis/mn_depart_acc/add','DepartmentController@add_one');
+// Route::post('/st-admin/minis/mn_clus_acc/add','ClusterController@add_one');
 
 	//send id and get data from server (edit form)
-Route::post('/st-admin/minis/mn_uni_acc/get_edit_data', 'UniversityController@edit_show');
-Route::post('/st-admin/minis/mn_depart_acc/get_edit_data','DepartmentController@edit_show');
-Route::post('/st-admin/minis/mn_clus_acc/get_edit_data','ClusterController@edit_show');
+// Route::post('/st-admin/minis/mn_uni_acc/get_edit_data', 'UniversityController@edit_show');
+// Route::post('/st-admin/minis/mn_depart_acc/get_edit_data','DepartmentController@edit_show');
+// Route::post('/st-admin/minis/mn_clus_acc/get_edit_data','ClusterController@edit_show');
 
 	//send updated data
-Route::post('/st-admin/minis/mn_uni_acc/update', 'UniversityController@edit_one');
-Route::post('/st-admin/minis/mn_depart_acc/update','DepartmentController@edit_one');
-Route::post('/st-admin/minis/mn_clus_acc/update','ClusterController@edit_one');
+// Route::post('/st-admin/minis/mn_uni_acc/update', 'UniversityController@edit_one');
+// Route::post('/st-admin/minis/mn_depart_acc/update','DepartmentController@edit_one');
+// Route::post('/st-admin/minis/mn_clus_acc/update','ClusterController@edit_one');
 
-	//import excel data and update
-Route::post('/st-admin/minis/mn_uni_acc/import_data', 'UniversityController@update_many');
-Route::post('/st-admin/minis/mn_depart_acc/import_data','DepartmentController@update_many');
-Route::post('/st-admin/minis/mn_clus_acc/import_data','ClusterController@update_many');
+// 	//import excel data and update
+// Route::post('/st-admin/minis/mn_uni_acc/import_data', 'UniversityController@update_many');
+// Route::post('/st-admin/minis/mn_depart_acc/import_data','DepartmentController@update_many');
+// Route::post('/st-admin/minis/mn_clus_acc/import_data','ClusterController@update_many');
 
-	//delete
-Route::post('/st-admin/minis/mn_uni_acc/delete', 'UniversityController@delete');
-Route::post('/st-admin/minis/mn_depart_acc/delete','DepartmentController@delete');
-Route::post('/st-admin/minis/mn_clus_acc/delete','ClusterController@delete');
+// 	//delete
+// Route::post('/st-admin/minis/mn_uni_acc/delete', 'UniversityController@delete');
+// Route::post('/st-admin/minis/mn_depart_acc/delete','DepartmentController@delete');
+// Route::post('/st-admin/minis/mn_clus_acc/delete','ClusterController@delete');
 
-	//get data of scheduler.
-Route::post('/st-admin/minis/mn_schedule/get_scheduler_data','PhaseController@setting_show');
-Route::post('/st-admin/minis/mn_schedule/update_scheduler_data','PhaseController@setting');
+// Schedule
+Route::get('/st-admin/minis/mn_schedule/get_scheduler_data','PhaseController@setting_show');
+Route::get('/st-admin/minis/mn_schedule/update_scheduler_data','PhaseController@setting');
+// --------------------------------- Department -------------------------------------------
+// Show danh sach truong + infor
+Route::get('/st-admin/minis/mn_uni_acc','DepartmentController@index');
+// Sua
+Route::get('/st-admin/minis/mn_uni_acc/edit?id={id}','DepartmentController@edit');
+// Sua: Post thong tin sua len server
+Route::post('/st-admin/minis/mn_uni_acc/update','DepartmentController@update');
+// Them
+Route::post('/st-admin/minis/mn_uni_acc/add_many','DepartmentController@storeMany');
+Route::post('/st-admin/minis/mn_uni_acc/add_one','DepartmentController@store');
+// Xoa
+Route::get('/st-admin/minis/mn_uni_acc/del?id={id}','DepartmentController@delete');
+//---------------------------------------------------------------------------------------------
 
-// cluster--------------------------------------------------------------
+// ---------------------------------Cluster ---------------------------------
+// Show danh sach truong + infor
+Route::get('/st-admin/minis/mn_clus_acc','ClusterController@index');
+// Sua: Lay form sua thong tin
+Route::get('/st-admin/minis/mn_clus_acc/edit?id={id}','ClusterController@edit');
+// Sua: Post thong tin sua len server
+Route::post('/st-admin/minis/mn_clus_acc/update','ClusterController@update');
+// Them
+Route::post('/st-admin/minis/mn_clus_acc/add/add_many','ClusterController@storeMany');
+Route::post('/st-admin/minis/mn_clus_acc/add/add_one','ClusterController@store');
+// Xoa
+Route::get('/st-admin/minis/mn_clus_acc/del?id={id}','ClusterController@delete');
+//---------------------------------------------------------------------------------------------
+
+// ---------------------------------University ---------------------------------
+// Show danh sach truong + infor
+Route::get('/st-admin/minis/mn_uni_acc','UniversityController@index');
+// Sua: Lay form sua thong tin
+Route::get('/st-admin/minis/mn_uni_acc/edit?id={id}','UniversityController@edit');
+// Sua: Post thong tin sua len server
+Route::post('/st-admin/minis/mn_uni_acc/update','UniversityController@update');
+// Them
+Route::post('/st-admin/minis/mn_uni_acc/add/add_many','UniversityController@storeMany');
+Route::post('/st-admin/minis/mn_uni_acc/add/add_one','UniversityController@store');
+// Xoa
+Route::get('/st-admin/minis/mn_uni_acc/del?id={id}','UniversityController@delete');
+//---------------------------------------------------------------------------------------------
+//---------------------------------end minister page-------------------------------------------
+
+
+// ---------------------------------cluster management page------------------------------------
 Route::get('/st-admin/clus',function(){
 	return View::make('st-admin.pages.clus.clus');
 });
@@ -137,8 +168,9 @@ Route::post('/st-admin/clus/mn_stu_acc/add', 'StudentController@add_one');
 Route::post('/st-admin/clus/mn_stu_acc/get_edit_data', 'StudentController@edit_show');
 Route::post('/st-admin/clus/mn_stu_acc/update', 'StudentController@edit_one');
 Route::post('/st-admin/clus/mn_stu_acc/delete', 'StudentController@delete');
+//-------------------------------------------------------------------------------------------
 
-//department--------------------------------------------------------------
+//----------------------------------department management page---------------------------------
 Route::get('/st-admin/depart',function(){
 	return View::make('st-admin.pages.depart.depart');
 });
@@ -148,8 +180,9 @@ Route::get('/st-admin/depart/mn_stu_acc',function(){
 Route::get('/st-admin/depart/syn_result',function(){
 	return View::make('st-admin.pages.depart.syn_result');
 });
+//-------------------------------------------------------------------------------------------
 
-//university-------------------------------------------------------------
+//----------------------------------university management page---------------------------------
 Route::get('/st-admin/uni',function(){
 	return View::make('st-admin.pages.uni.uni');
 });
@@ -159,45 +192,7 @@ Route::get('/st-admin/uni/mn_major',function(){
 Route::get('/st-admin/uni/syn_result',function(){
 	return View::make('st-admin.pages.uni.syn_result');
 });
-
-
-
-
-//----------------- HuanPC--------------------------------------------------------------------
-// Department controller
-// Show danh sach truong + infor
-Route::get('/minis/mn_uni_acc','@index');
-// Sua
-Route::get('/minis/mn_uni_acc/edit?id={id}','@edit');
-// Them
-Route::post('/minis/mn_uni_acc/add_many','@storeMany');
-Route::post('/minis/mn_uni_acc/add_one','@store');
-// Xoa
-Route::get('/minis/mn_uni_acc/del?id={id}','@delete');
-
-// Cluster controller
-// Show danh sach truong + infor
-Route::get('/minis/mn_clus_acc','@index');
-// Sua
-Route::get('/minis/mn_clus_acc/edit?id={id}','@edit');
-// Them
-Route::post('/minis/mn_clus_acc/add/add_many','@storeMany');
-Route::post('/minis/mn_clus_acc/add/add_one','@store');
-// Xoa
-Route::get('/minis/mn_clus_acc/del?id={id}','@delete');
-
-// University controller
-// Show danh sach truong + infor
-Route::get('/minis/mn_uni_acc','UniversityController@index');
-// Sua
-Route::get('/minis/mn_uni_acc/edit?id={id}','UniversityController@edit');
-// Them
-Route::post('/minis/mn_uni_acc/add/add_many','UniversityController@storeMany');
-Route::post('/minis/mn_uni_acc/add/add_one','UniversityController@store');
-// Xoa
-Route::get('/minis/mn_uni_acc/del?id={id}','UniversityController@delete');
-//---------------------------------------------------------------------------------------------
-
+//-------------------------------------------------------------------------------------------
 
 // Router check code
 Route::get('/major', function(){
