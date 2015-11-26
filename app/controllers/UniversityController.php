@@ -13,7 +13,7 @@ class UniversityController extends \BaseController {
 			array('university' => $university, 'majors' => $this->get_majors($id)));
 	}
 	public function get_majors($id){
-		$university = University::->find($id);
+		$university = University::find($id);
 		return $university->majors;		
 	}
 	public function syn_resutl(){
