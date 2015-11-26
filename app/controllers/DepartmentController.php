@@ -91,7 +91,7 @@ class DepartmentController extends \BaseController {
 	public function show($id)
 	{
 		$dept = Department::find($id);		
-		return View::make('',array('dept' =>$dept ));
+		echo($depts);
 	}
 
 	public function get_students($id)
@@ -116,7 +116,8 @@ class DepartmentController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$dept = Department::find($id);		
+		return View::make('',array('dept' =>$dept ));
 	}
 
 

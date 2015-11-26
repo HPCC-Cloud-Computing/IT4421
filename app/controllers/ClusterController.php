@@ -118,7 +118,9 @@ class ClusterController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$cluster = Cluster::with('Room')->find(intval($id));
+		$rooms =  $cluster->rooms();
+		return View::make('',array('cluster' =>$cluster ,'rooms'=>$rooms ));		
 	}
 
 
