@@ -1,4 +1,8 @@
 		<!-- sidebar -->
+<?php
+$host = "http://localhost/IT4421/public";
+?>
+		
 	<div id="minis-sidebar" class="sidebar">
 		<div class="user-menu">
 			<span class="user-avatar"> {{	HTML::image('/components/img/user-avatar.png','logo_title',array( 'width' => '100%', 'height' => '100%' ))	}}</span>
@@ -9,12 +13,15 @@
 		</div>
 
 		<ul id="minis-menu" class="wrapper">
-			<li><a href="./minis">CHỨC NĂNG</a></li>
-			<li><a href="./minis/mn_schedule">LAP LICH CHO HE THONG</a></li>
-			<li><a href="./minis/score_floor_setup">THIET LAP DIEM SAN</a></li>
-			<li><a href="./minis/mn_depart_acc">QUAN LY TAI KHOAN CAC SO</a></li>
-			<li><a href="./minis/mn_clus_acc">QUAN LY TAI KHOAN CAC CUM</a></li>
-			<li><a href="./minis/mn_uni_acc">QUAN LY TAI KHOAN CAC TRUONG</a></li>
+		<?php
+		echo '
+			<li><a href="'.$host.'/st-admin/minis">CHỨC NĂNG</a></li>
+			<li><a href="'.$host.'/st-admin/minis/mn_schedule">LẬP LỊCH CHO HỆ THỐNG</a></li>
+			<li><a href="'.$host.'/st-admin/minis/score_floor_setup">THIẾT LẬP ĐIỂM SÀN</a></li>
+			<li><a href="'.$host.'/st-admin/minis/mn_depart_acc">QUẢN LÝ TÀI KHOẢN CÁC SỞ</a></li>
+			<li><a href="'.$host.'/st-admin/minis/mn_clus_acc">QUẢN LÝ TÀI KHOẢN CÁC CỤM</a></li>
+			<li><a href="'.$host.'/st-admin/minis/mn_uni_acc">QUẢN LÝ TÀI KHOẢN CÁC TRƯỜNG</a></li>';
+		?>
 		</ul>
 	</div>
 

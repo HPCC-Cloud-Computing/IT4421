@@ -1,4 +1,6 @@
-	
+<?php
+$host = "http://localhost/IT4421/public";
+?>	
 	<!-- sidebar -->
 	<div class="sidebar">
 		<div class="user-menu">
@@ -10,8 +12,10 @@
 		</div>
 
 		<ul class="wrapper">
-			<li><a href="#">CHỨC NĂNG</a></li>
-			<li><a href="#">QUẢN LÍ NGÀNH VÀ CHỈ TIÊU</a></li>
+		<?php echo '
+			<li><a href="'.$host.'/st-admin/uni">CHỨC NĂNG</a></li>
+			<li><a href="'.$host.'/st-admin/uni/mn_major">QUẢN LÍ NGÀNH VÀ CHỈ TIÊU</a></li>';
+		?>
 		</ul>
 	</div>
 

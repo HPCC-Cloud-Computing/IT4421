@@ -1,5 +1,8 @@
 
 <!-- sidebar -->
+<?php
+$host = "http://localhost/IT4421/public";
+?>
 <div class="sidebar">
 	<div class="user-menu">
 		<span class="user-avatar"> {{	HTML::image('/components/img/user-avatar.png','logo_title',array( 'width' => '100%', 'height' => '100%' ))	}}</span>
@@ -10,9 +13,10 @@
 	</div>
 
 	<ul class="wrapper">
-		<li><a href="#">CHUC NANG</a></li>
-		<li><a href="#">QUẢN LÍ TK THI SINH</a></li>
-
+	<?php echo '
+		<li><a href="'.$host.'/st-admin/depart">CHỨC NĂNG</a></li>
+		<li><a href="'.$host.'/st-admin/depart/mn_stu_acc">QUẢN LÍ TÀI KHOẢN THÍ SINH</a></li>';
+	?>
 	</ul>
 </div>
 

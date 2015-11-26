@@ -81,7 +81,7 @@ Route::get('/st-admin/minis/mn_schedule/update_scheduler_data','PhaseController@
 // Show danh sach truong + infor
 Route::get('/st-admin/minis/mn_depart_acc/list','DepartmentController@get_list');
 // Sua
-Route::get('/st-admin/minis/mn_depart_acc/edit?id={id}','DepartmentController@edit');
+Route::get('/st-admin/minis/mn_depart_acc/edit?{id}','DepartmentController@edit');
 // Sua: Post thong tin sua len server
 Route::post('/st-admin/minis/mn_depart_acc/update','DepartmentController@update');
 // Them
@@ -95,28 +95,28 @@ Route::get('/st-admin/minis/mn_depart_acc/del/{id}',array('uses'=>'DepartmentCon
 // Show danh sach truong + infor
 Route::get('/st-admin/minis/mn_clus_acc/list','ClusterController@get_list');
 // Sua: Lay form sua thong tin
-Route::get('/st-admin/minis/mn_clus_acc/edit?id={id}','ClusterController@edit');
+Route::get('/st-admin/minis/mn_clus_acc/edit?{id}','ClusterController@edit');
 // Sua: Post thong tin sua len server
 Route::post('/st-admin/minis/mn_clus_acc/update','ClusterController@update');
 // Them
 Route::post('/st-admin/minis/mn_clus_acc/add/add_many','ClusterController@add_many');
 Route::post('/st-admin/minis/mn_clus_acc/add/add_one','ClusterController@add');
 // Xoa
-Route::get('/st-admin/minis/mn_clus_acc/del?id={id}','ClusterController@destroy');
+Route::get('/st-admin/minis/mn_clus_acc/del?{id}','ClusterController@destroy');
 //------------------------------------------end-------------------------------------------------
 
 // ---------------------------------University ---------------------------------
 // Show danh sach truong + infor
 Route::get('/st-admin/minis/mn_uni_acc/list','UniversityController@get_list');
 // Sua: Lay form sua thong tin
-Route::get('/st-admin/minis/mn_uni_acc/edit?id={id}','UniversityController@edit');
+Route::get('/st-admin/minis/mn_uni_acc/edit?{id}','UniversityController@edit');
 // Sua: Post thong tin sua len server
 Route::post('/st-admin/minis/mn_uni_acc/update','UniversityController@update');
 // Them
 Route::post('/st-admin/minis/mn_uni_acc/add/add_many','UniversityController@add_many');
 Route::post('/st-admin/minis/mn_uni_acc/add/add_one','UniversityController@add');
 // Xoa
-Route::get('/st-admin/minis/mn_uni_acc/del?id={id}','UniversityController@destroy');
+Route::get('/st-admin/minis/mn_uni_acc/del?{id}','UniversityController@destroy');
 //------------------------------------------end------------------------------------------------
 //---------------------------------end minister page-------------------------------------------
 
