@@ -117,7 +117,8 @@ class UniversityController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$university = University::find($id);
+		return View::make('university_edit_form_show', $university);
 	}
 
 
@@ -128,9 +129,15 @@ class UniversityController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id, array $data)
-	{
-		University::find(intval($id))->update($data);
+	public function update()
+	{		
+		$data = Input::get('data');		
+		$result = University::find(intval($data['id']))->update($data);
+		if($result){
+			echo 'success';
+		}else{
+			echo 'failed';
+		}
 	}
 
 

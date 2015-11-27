@@ -88,7 +88,7 @@ Route::post('/st-admin/minis/mn_depart_acc/update','DepartmentController@update'
 Route::post('/st-admin/minis/mn_depart_acc/add_many','DepartmentController@add_many');
 Route::get('/st-admin/minis/mn_depart_acc/add_one','DepartmentController@add');
 // Xoa
-Route::get('/st-admin/minis/mn_depart_acc/del/{id}',array('uses'=>'DepartmentController@destroy'));
+Route::get('/st-admin/minis/mn_depart_acc/del/{id}','DepartmentController@destroy');
 //------------------------------------------end-------------------------------------------------
 
 // ---------------------------------Cluster --------------------------------------------------
@@ -128,13 +128,13 @@ Route::get('/st-admin/clus/mn_stu_acc','ClusterController@manage_student_page');
 Route::get('/st-admin/clus/syn_result','ClusterController@syn_result');
 	//post // not done!!
 Route::get('/st-admin/clus/mn_stu_acc/add', 'StudentController@add_one');
-Route::post('/st-admin/clus/mn_stu_acc/get_edit_data', 'StudentController@edit_show');
+Route::get('/st-admin/clus/mn_stu_acc/edit/{id}', 'StudentController@edit_show');
 Route::post('/st-admin/clus/mn_stu_acc/update', 'StudentController@edit_one');
 Route::get('/st-admin/clus/mn_stu_acc/delete/{id}', 'StudentController@destroy');
 //Quan ly phong thi --- not done
 Route::get('/st-admin/clus/mn_exam_room', 'ExamRoomController@index');
 Route::post('/st-admin/clus/mn_exam_room/add', 'ExamRoomController@add');
-Route::post('/st-admin/clus/mn_exam_room/edit', 'ExamRoomController@edit');
+Route::get('/st-admin/clus/mn_exam_room/edit', 'ExamRoomController@edit');
 Route::get('/st-admin/clus/mn_exam_room/delete/{id}', 'ExamRoomController@destroy');
 
 //------------------------------------------end-------------------------------------------------

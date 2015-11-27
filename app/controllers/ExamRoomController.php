@@ -9,7 +9,7 @@ class ExamRoomController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		return View::make('');	
 	}
 
 
@@ -31,7 +31,24 @@ class ExamRoomController extends \BaseController {
 	 */
 	public function add()
 	{
-		//
+		$data = Input::get('data');
+		if(!isset($data))
+			echo "error";
+		try{
+			$check = University::where('code', $data[0])->first();
+			if(isset($check)){
+				echo "error";
+				exit();	
+			}
+			$data_insert = array_combine($this->column,$data);			
+			$result = Room::create($data_insert);		
+		}catch(QueryException $e){
+			echo "error";
+		}	
+		if(isset($result))
+			echo "success";
+		else 
+			echo "error";
 	}
 
 
