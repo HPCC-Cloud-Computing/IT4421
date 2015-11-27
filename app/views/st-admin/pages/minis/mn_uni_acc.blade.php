@@ -43,7 +43,6 @@
 				
 				<br>
 				<table class="table table-hover table-bordered table-striped table-responsive">
-					
 				<thead>
 					<td>ID</td>
 					<td>Mã trường</td>
@@ -52,26 +51,25 @@
 					<td>Action</td>
 				</thead>
 				<tbody>
-					<td>1</td>
-					<td>BKA</td>
-					<td>Đại học Bách Khoa Hà Nội</td>
-					<td><button class="btn btn-success">Edit</button></td>
-					<td><button class="btn btn-danger">Delete</button></td>
+					@foreach ($universitys as $university)
+					<tr>
+						<td>{{$university->id}}</td>
+						<td>{{$university->code}}</td>
+						<td>{{$university->name}}</td>
+						<td><button class="btn btn-success">Edit</button></td>
+						<td><button class="btn btn-danger">Delete</button></td>
+					</tr>
+					@endforeach
 				</tbody>
-
 				</table>
-					<ul class="pagination">
-					  <li><a href="#">1</a></li>
-					  <li><a href="#">2</a></li>
-					  <li><a href="#">3</a></li>
-					  <li><a href="#">4</a></li>
-					  <li><a href="#">5</a></li>
-					</ul>
+				<?php echo $universitys->links(); ?>
 			</div>
 		</div>
-	</div>		{{	InsertForm::FileExport("exportExcelFile");	}}
-				{{	InsertForm::FileExcel("importExcelFile"); }}
-				{{	InsertForm::DepartForm("addUniModal");	}}		
+	</div>		
+	
+	{{	InsertForm::FileExport("exportExcelFile");	}}
+	{{	InsertForm::FileExcel("importExcelFile"); }}
+	{{	InsertForm::DepartForm("addUniModal");	}}		
 
 
 @stop

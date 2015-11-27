@@ -53,21 +53,19 @@
 					<td>Action</td>
 				</thead>
 				<tbody>
-					<td>1</td>
-					<td>DHBKHN</td>
-					<td>Cụm thi Đại Học Bách Khoa Hà Nội</td>
-					<td><button class="btn btn-success">Edit</button></td>
-					<td><button class="btn btn-danger">Delete</button></td>
+					@foreach ($clusters as $cluster)
+					<tr>
+						<td>{{$cluster->id}}</td>
+						<td>{{$cluster->code}}</td>
+						<td>{{$cluster->name}}</td>
+						<td><button class="btn btn-success">Edit</button></td>
+						<td><button class="btn btn-danger">Delete</button></td>
+					</tr>
+					@endforeach
 				</tbody>
 
 				</table>
-					<ul class="pagination">
-					  <li><a href="#">1</a></li>
-					  <li><a href="#">2</a></li>
-					  <li><a href="#">3</a></li>
-					  <li><a href="#">4</a></li>
-					  <li><a href="#">5</a></li>
-					</ul>
+				<?php echo $clusters->links(); ?>
 			</div>
 		</div>
 	</div>		{{	InsertForm::FileExport("exportExcelFile");	}}

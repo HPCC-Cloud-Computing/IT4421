@@ -76,7 +76,7 @@
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge">Quản lý</div>
-                                    <div>Tài Khoản các Cụm</div>
+                                    <div>Tài Khoản các Sở</div>
                                 </div>
                             </div>
                         </div>
@@ -98,7 +98,7 @@
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge">Quản lý</div>
-                                    <div>Tài Khoản các Sở</div>
+                                    <div>Tài Khoản các Cụm</div>
                                 </div>
                             </div>
                         </div>

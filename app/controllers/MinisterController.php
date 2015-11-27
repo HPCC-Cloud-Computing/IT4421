@@ -5,20 +5,20 @@ class MinisterController extends \BaseController {
 		return View::make('st-admin.pages.minis.minis');
 	}	
 	public function uni_manage_page(){
-		$university = University::all();		
-		return View::make('st-admin.pages.minis.mn_uni_acc',$university);
+		$universitys = University::paginate(10);		
+		return View::make('st-admin.pages.minis.mn_uni_acc')->with('universitys',$universitys);
 	}
 	public function dept_manage_page(){
-		$depts = Department::all();
-		return View::make('st-admin.pages.minis.mn_depart_acc',$depts);
+		$depts = Department::paginate(10);
+		return View::make('st-admin.pages.minis.mn_depart_acc')->with('depts',$depts);
 	}
 	public function cluster_manage_page(){		
-		$clusters = Cluster::all();
-		return View::make('st-admin.pages.minis.mn_clus_acc',$clusters);
+		$clusters = Cluster::paginate(10);
+		return View::make('st-admin.pages.minis.mn_clus_acc')->with('clusters',$clusters);
 	}
 	public function phase_manage_page(){
-		$phases = Phase::all();		
-		return View::make('st-admin.pages.minis.mn_schedule',$phases);
+		$phases = Phase::paginate(10);		
+		return View::make('st-admin.pages.minis.mn_schedule')->with('phases',$phases);
 	}
 	public function score_floor_setup_page(){
 		return View::make('st-admin.pages.minis.score_floor_setup');

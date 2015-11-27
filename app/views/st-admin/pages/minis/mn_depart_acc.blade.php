@@ -52,26 +52,48 @@
 					<td>Action</td>
 				</thead>
 				<tbody>
-					<td>1</td>
-					<td>HaNoi</td>
-					<td>Sở GD HÀ NỘI</td>
-					<td><button class="btn btn-success">Edit</button></td>
-					<td><button class="btn btn-danger">Delete</button></td>
+					@foreach ($depts as $dept)
+					<tr>
+						<td>{{$dept->id}}</td>
+						<td>{{$dept->code}}</td>
+						<td>{{$dept->name}}</td>
+						<td><button class="btn btn-success" data-toggle="modal" data-target="#editDepartModal" onclick="editDepartForm({{$dept->id}})">Edit</button></td>
+						<td><button class="btn btn-danger">Delete</button></td>
+					</tr>
+					@endforeach
+
 				</tbody>
 
 				</table>
-					<ul class="pagination">
-					  <li><a href="#">1</a></li>
-					  <li><a href="#">2</a></li>
-					  <li><a href="#">3</a></li>
-					  <li><a href="#">4</a></li>
-					  <li><a href="#">5</a></li>
-					</ul>
+				<?php echo $depts->links(); ?>
 			</div>
 		</div>
 	</div>		{{	InsertForm::FileExport("exportExcelFile");	}}
 				{{	InsertForm::FileExcel("importExcelFile"); }}
 				{{	InsertForm::DepartForm("addDepartModal");	}}		
+				{{	InsertForm::DepartForm("editDepartModal");	}}
+				<script type="text/javascript">
+					function editDepartForm(id){
+						console.log(id);
+						$.ajax({
+		                    url : "{{Asset('/st-admin/minis/mn_depart_acc/edit')}}/"+id,
+		                    type : "GET",
+		                    data : {
+		                         // number : $('#number').val()
+		                    },
+		                    success : function (result){
+		                        // $('#result').html(result);
+		                        
+		                        console.log(result);	
+		                        $modal = $('#editDepartModal').find('input');
+		                        // console.log($modal[0]);
+		                        $($modal[0]).val("zyz");
+		                        // var form = document.getElementById("editDepartModal").find("input");
+		                        // console.log(form);
+		                    }
+		                });
+					}
 
+				</script>
 
 @stop
