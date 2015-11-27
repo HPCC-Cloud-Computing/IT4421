@@ -10,8 +10,7 @@ class MinisterController extends \BaseController {
 	}
 	public function dept_manage_page(){
 		$depts = Department::all();
-		// $depts = array('id' => '2','code'=>'dsafds','name'=>'afefee' );
-		return View::make('st-admin.pages.minis.mn_depart_acc')->with('depts',$depts);
+		return View::make('st-admin.pages.minis.mn_depart_acc',$depts);
 	}
 	public function cluster_manage_page(){		
 		$clusters = Cluster::all();

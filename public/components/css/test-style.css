@@ -1,0 +1,162 @@
+@font-face {
+    font-family: Roboto;
+    /*src: url("font-1/roboto/Roboto-Italic.ttf") format('truetype');*/
+    src: url("font/roboto/Roboto-Regular.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: Roboto-Light;
+    /*src: url("font-1/roboto/Roboto-Italic.ttf") format('truetype');*/
+    src: url("font/roboto/Roboto-Light.ttf") format('truetype');
+}
+
+
+html {
+    background-color: #fff;
+    font-size: 12px;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/*.header .hello-user {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: right;*/
+    /*float: right;*/
+/*}*/
+/*
+.header .hello-user li {
+    list-style: none;
+    float: left;
+    color: #0280bd;
+    font-size: 14px;
+}*/
+/*
+.header .hello-user li.divider {
+    border-right: 1px solid #c3c3c3;
+    padding: 0px 10px;
+}
+*/
+/*Form control
+*make form inline
+*/
+/*
+.custom-form .form-control {
+    margin-bottom: 5px
+}
+.custom-form .btn .fa {
+    line-height: 0px
+}*/
+/*@media (min-width:350px) and (max-width:992px) { 
+    .custom-form .form-control {
+        display: inline-block;
+        width: auto;
+        margin: 0;
+    }
+    .custom-form .form-group {
+        display: inline-block;
+        width: auto;
+        margin-bottom: 0;
+        vertical-align: middle;
+    }
+}*/
+/*End form control */
+
+
+/*for navigator*/   
+
+/*make conclapse to this screen*/
+
+/*@media (min-width: 768px) and (max-width: 992px) {
+    .navbar-collapse.collapse {
+        display: none !important;
+    }
+    .navbar-collapse.collapse.in {
+        display: block !important;
+    }
+    .navbar-header .collapse, .navbar-toggle {
+        display:block !important;
+    }
+    .navbar-header {
+        float:none;
+    }
+}*/
+
+
+
+/*change color of navigator */
+
+.navbar-default {
+  background-color: #0280bd;
+  border-color: #0c6691;
+}
+.navbar-default .navbar-brand {
+  color: #f5f8f9;
+}
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+  color: #f5f8f9;
+}
+.navbar-default .navbar-text {
+  color: #f5f8f9;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #f5f8f9;
+}
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+  color: #f5f8f9;
+}
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+  color: #f5f8f9;
+  background-color: #0c6691;
+}
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+  color: #f5f8f9;
+  background-color: #0c6691;
+}
+.navbar-default .navbar-toggle {
+  border-color: #0c6691;
+}
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+  background-color: #0c6691;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #f5f8f9;
+}
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+  border-color: #f5f8f9;
+}
+.navbar-default .navbar-link {
+  color: #f5f8f9;
+}
+.navbar-default .navbar-link:hover {
+  color: #f5f8f9;
+}
+.navbar-default .navbar-nav > li > a:hover,.navbar-default .navbar-nav > li > a:focus{
+    background-color: #0c6691;
+}
+.navbar-default .navbar-nav > li > a{
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -ms-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;    
+}
+
+@media (max-width: 992px) {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #f5f8f9;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #f5f8f9;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #f5f8f9;
+    background-color: #0c6691;
+  }
+}   

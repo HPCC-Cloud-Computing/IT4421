@@ -1,7 +1,7 @@
 <?php
-  // Session::put("student", "anhhp");
-  // Session::put("user", "anhhp");
-  Session::flush();
+  Session::put("student", "anhhp");
+  Session::put("user", "anhhp");
+  // Session::flush();
 ?>
 @extends('layout.layout')
 @section('title')
@@ -21,7 +21,7 @@
         <li class="divider">
           <div class="news-item">
             <div class="news-title">
-              <a href="/IT4421/public/notice/1">Thông báo 1</a>
+              <a href="{{Asset('/notice/1')}}">Thông báo 1</a>
             </div>
             <div class="news-detail">
               <p>
