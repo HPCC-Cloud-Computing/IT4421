@@ -11,7 +11,7 @@ class Department extends Eloquent {
 	 */
 	public function user($id)
 	{
-		$user = User::find($id);
+		$user = User::where('userable_id','=',intval($id));
 		return $user;
 	}
 	
