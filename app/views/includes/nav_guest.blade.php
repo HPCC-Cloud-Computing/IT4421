@@ -18,7 +18,7 @@
     <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li id="trangchu" class="nav-item">
-          <a href="/IT4421/public/"> <i class="fa fa-home fa-fw fa-lg"></i>
+          <a href="{{Asset('')}}"> <i class="fa fa-home fa-fw fa-lg"></i>
             Trang chủ
           </a>
         </li>
@@ -27,13 +27,13 @@
           <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false" href="#">Thông tin tuyển sinh</a>
           <ul class="dropdown-menu">
             <li>
-              <a href="/IT4421/public/regulation">
+              <a href="{{Asset('/regulation')}}">
                 <i class="fa fa-tag"></i>
                 Quy chế tuyển sinh
               </a>
             </li>
             <li>
-              <a href="/IT4421/public/majors">
+              <a href="{{Asset('/majors')}}">
                 <i class="fa fa-tag"></i>
                 Ngành học - chỉ tiêu
               </a>
@@ -41,11 +41,11 @@
           </ul>
         </li>
         <li id="tracuudiemthi" class="nav-item">
-          <a href="/IT4421/public/result_info">Tra cứu điểm thi</a>
+          <a href="{{Asset('/result_info')}}">Tra cứu điểm thi</a>
         </li>
         
         <li id="lienhe" class="nav-item">
-          <a href="/IT4421/public/contact">Liên hệ</a>
+          <a href="{{Asset('/contact')}}">Liên hệ</a>
         </li>
       </ul>
     </div>
