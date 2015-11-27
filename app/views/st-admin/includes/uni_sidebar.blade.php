@@ -1,6 +1,4 @@
-<?php
-$host = "http://localhost/IT4421/public";
-?>	
+
 	<!-- sidebar -->
 	<div class="sidebar">
 		<div class="user-menu">
@@ -12,10 +10,8 @@ $host = "http://localhost/IT4421/public";
 		</div>
 
 		<ul class="wrapper">
-		<?php echo '
-			<li><a href="'.$host.'/st-admin/uni">CHỨC NĂNG</a></li>
-			<li><a href="'.$host.'/st-admin/uni/mn_major">QUẢN LÍ NGÀNH VÀ CHỈ TIÊU</a></li>';
-		?>
+			<li><a href="{{Asset('/st-admin/uni')}}">CHỨC NĂNG</a></li>
+			<li><a href="{{Asset('/st-admin/uni/mn_major')}}">QUẢN LÍ NGÀNH VÀ CHỈ TIÊU</a></li>'
 		</ul>
 	</div>
 
