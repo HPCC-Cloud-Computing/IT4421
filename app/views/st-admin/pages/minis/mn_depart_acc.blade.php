@@ -43,7 +43,7 @@
 				
 				<br>
 				<table class="table table-hover table-bordered table-striped table-responsive">
-					
+				
 				<thead>
 					<td>ID</td>
 					<td>Mã sở</td>
@@ -52,11 +52,27 @@
 					<td>Action</td>
 				</thead>
 				<tbody>
-					<td>1</td>
-					<td>HaNoi</td>
-					<td>Sở GD HÀ NỘI</td>
-					<td><button class="btn btn-success">Edit</button></td>
-					<td><button class="btn btn-danger">Delete</button></td>
+					<tr>
+						<td>1</td>
+						<td>HaNoi</td>
+						<td>Sở GD HÀ NỘI</td>
+						<td><button class="btn btn-success">Edit</button></td>
+						<td><button class="btn btn-danger">Delete</button></td>
+					</tr>
+
+					<?php 
+					// var_dump($depts);
+						foreach ($depts as $dept): 
+							echo '<tr>
+										<td>'.$dept->id.'</td>
+										<td>'.$dept->code.'</td>
+										<td>'.$dept->name.'</td>
+										<td><button class="btn btn-success">Edit</button></td>
+										<td><button class="btn btn-danger">Delete</button></td>
+									</tr>';							
+					    endforeach;
+					?>
+
 				</tbody>
 
 				</table>
