@@ -1,6 +1,6 @@
 <?php
-require_once (dirname(__FILE__).'/Excel/reader.php');
-require_once (dirname(__FILE__).'/Utils.php');
+// require_once (dirname(__FILE__).'/Excel/reader.php');
+// require_once (dirname(__FILE__).'/Utils.php');
 class ExamScoreController extends \BaseController {
 	protected $column = array('student_id', 'room_id', 'subject_id', 'score', 'state' );
 	/**

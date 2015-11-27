@@ -8,7 +8,7 @@
 			</ul>
 		</div>
 
-		<ul class="wrapper">
+		<ul id="clus-menu" class="wrapper">
 			<li><a href="{{ Asset('/st-admin/clus')}}">CHỨC NĂNG</a></li>
 			<li><a href="{{	Asset('/st-admin/clus/mn_stu_acc')}}">QUẢN LÍ TÀI KHOẢN THÍ SINH</a></li>
 			<li><a href="">CẬP NHẬT ĐIỂM THI</a></li>

@@ -7,7 +7,7 @@
 			<li><a href="">Đăng xuất</a></li>
 		</ul>
 	</div>
-	<ul class="wrapper">
+	<ul id="depart-menu" class="wrapper">
 		<li><a href="{{Asset('/st-admin/depart')}}">CHỨC NĂNG</a></li>
 		<li><a href="{{Asset('/st-admin/depart/mn_stu_acc')}}">QUẢN LÍ TÀI KHOẢN THÍ SINH</a></li>
 	</ul>

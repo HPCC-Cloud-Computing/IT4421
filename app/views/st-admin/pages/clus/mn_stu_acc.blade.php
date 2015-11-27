@@ -7,10 +7,10 @@
 
 @section('sidebar')
 
-	@include('st-admin.includes.depart_sidebar')
+	@include('st-admin.includes.clus_sidebar')
 
 	<script type="text/javascript">
-		var element = document.getElementById("depart-menu").getElementsByTagName("li");
+		var element = document.getElementById("clus-menu").getElementsByTagName("li");
 		element[1].classList.add("active");
 	</script>
 

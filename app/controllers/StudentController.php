@@ -1,6 +1,6 @@
 <?php
-require_once (dirname(__FILE__).'/Excel/reader.php');
-require_once (dirname(__FILE__).'/Utils.php');
+// require_once (dirname(__FILE__).'/Excel/reader.php');
+// require_once (dirname(__FILE__).'/Utils.php');
 class StudentController extends \BaseController {
 	protected $column = array('registration_number','profile_code', 'lastname', 'firstname', 'indentity_code', 'birthday', 'sex', 'plusscore' );
 	

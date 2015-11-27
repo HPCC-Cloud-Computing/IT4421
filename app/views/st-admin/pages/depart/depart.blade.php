@@ -2,138 +2,79 @@
 @extends('st-admin.layout.layout')
 
 @section('title')
-	Trang quan li cua So Giao Duc
+	Trang quan li cua Cum Thi
 @stop
 
+@section('sidebar')
+
+	@include('st-admin.includes.depart_sidebar')
+
+	<script type="text/javascript">
+		var element = document.getElementById("depart-menu").getElementsByTagName("li");
+		element[0].classList.add("active");
+		// console.log(element[0]);
+	</script>
+
+@stop
 
 @section('content')
 <!-- <div id="main"> -->
+	
 
 	<div class="content">
 		<div class="row">
-			<div class="col-lg-12">
-				<button class="hideSidebar">
-					<span class="glyphicon glyphicon-arrow-left"></span>
-				</button>
-				<button class="showSidebar">
-					<span class="glyphicon glyphicon-arrow-right"></span>     
-			    </button>
-				
-				<br>
-				<br>
+			<div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-user fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">Quản lý</div>
+                                    <div>Tài khoản thí sinh</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{{Asset('/st-admin/depart/mn_stu_acc')}}">
+                            <div class="panel-footer">
+                                <span class="pull-left">Xem trang</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="panel panel-red">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-bullseye fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">TH</div>
+                                    <div>Kết quả thi</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{{Asset('/st-admin/clus/syn_result')}}">
+                            <div class="panel-footer">
+                                <span class="pull-left">Xem trang</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>                
 
-				<form class="form-inline">
-					  <div class="form-group">
-					    <input type="text" class="form-control" id="search_id" placeholder="Input id to search">
-					  </div>
-					  <div class="form-group">
-					    <input type="text" class="form-control" id="search_name" placeholder="Input name to search">
-					  </div>
-					  <button type="submit" class="btn btn-info">Search</button>
-					  <button type="submit" class="btn btn-default">Reset</button>
-				</form>
-				<br>
-				<button type = "submit" class="btn btn-success" data-toggle="modal" data-target="#addStudentModal">Add new data</button> 
-				<button type="submit" class="btn btn-primary">Export As Excel</button>
-				<button type="submit" class="btn btn-danger">Import Data</button>
-				<br>
-
-				
-				<br>
-				<table class="table table-hover table-bordered table-striped table-responsive">
-					<thead>
-						<td>ID</td>
-						<td>Usename</td>
-						<td>CNTND</td>
-						<td>Edit</td>
-						<td>Delete</td>
-					</thead>
-
-					<tbody>
-						<td>1</td>
-						<td>Bui Ngoc Luan</td>
-						<td>9</td>
-						<td><button type="button" class="btn btn-primary">Edit</button></td>
-						<td><button type="button" class="btn btn-danger">Delete</button></td>
-					</tbody>
-					<tbody>
-						<td>2</td>
-						<td>Bui Ngoc Luan</td>
-						<td>9</td>
-						<td><button type="button" class="btn btn-primary">Edit</button></td>
-						<td><button type="button" class="btn btn-danger">Delete</button></td>
-					</tbody>
-					<tbody>
-						<td>3</td>
-						<td>Bui Ngoc Luan</td>
-						<td>9</td>
-						<td><button type="button" class="btn btn-primary">Edit</button></td>
-						<td><button type="button" class="btn btn-danger">Delete</button></td>
-					</tbody>
-
-				</table>
-			</div>
+                </div>
+            </div>
 		</div>
 	</div>
 	
-<!-- Modal -->
-<div class="modal fade" id="addStudentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-	    <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title" id="myModalLabel">Insert Form</h4>
-	    </div>
 
-	     <div class="modal-body">
-	        <?php
-	        	//label type id name placeholder
-	        	// user table
-	        	modalFormGroup("Usename","text","","username","Username");
-	        	modalFormGroup("Password","text","","Password","Password");
-	        	modalFormGroup("Email","text","","email","Email");
-	        	modalFixedFormGroup("Userable id","number","","userable_id",2);
-	        	modalFixedFormGroup("Userable type","text","","userable_type","student");
-
-	        	//students table
-
-	        	modalFormGroup("Profile Code ","text","","profile_code","profile_code");
-	        	modalFormGroup("Registration_number","text","","registration_number","registration_number");
-	        	modalFormGroup("Lastname","text","","lastname","lastname");
-	        	modalFormGroup("Firstname","text","","firstname","firstname");
-	        	modalFormGroup("Email","text","","email","Email");
-	        	modalFormGroup("Indentity_code","text","","indentity_code","indentity_code");
-	        	modalFormGroup("Birthday","date","","birthday","birthday");
-	        	modalFormGroup("Sex","text","","sex","sex");
-	        	modalFormGroup("Plus_score","text","","plus_score","plus_score");
-	        	modalFormGroup("Department_id","text","","department_id","department_id");
-
-
-	  			
-	        ?>
-	      	<div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-success">Add</button>
-	     </div>
-    </div>
-  </div>
-</div>
-
-<?php 
-	function  modalFormGroup($label,$type,$id,$name,$placeholder){
-		echo "<div class='form-group'>
-				<label>".$label."</label>
-				<input type=".$type." class='form-control' id='".$id."' name='".$name."' placeholder='".$placeholder."'>
-			</div>";
-	};
-
-	function modalFixedFormGroup($label,$type,$id,$name,$value){
-		echo "<div class='form-group'>
-				<label>".$label."</label>
-				<input type='".$type."' class='form-control' id='".$id."' name='".$name."' value='".$value."' readonly>
-			</div>";	
-	}
-?>
 
 <!-- </div>	 -->
 @stop

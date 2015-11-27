@@ -9,7 +9,7 @@
 			</ul>
 		</div>
 
-		<ul class="wrapper">
+		<ul id="uni-menu" class="wrapper">
 			<li><a href="{{Asset('/st-admin/uni')}}">CHỨC NĂNG</a></li>
 			<li><a href="{{Asset('/st-admin/uni/mn_major')}}">QUẢN LÍ NGÀNH VÀ CHỈ TIÊU</a></li>'
 		</ul>

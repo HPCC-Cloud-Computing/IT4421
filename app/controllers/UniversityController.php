@@ -1,6 +1,6 @@
 <?php
-require_once (dirname(__FILE__).'/Excel/reader.php');
-require_once (dirname(__FILE__).'/Utils.php');
+// require_once (dirname(__FILE__).'/Excel/reader.php');
+// require_once (dirname(__FILE__).'/Utils.php');
 class UniversityController extends \BaseController {	
 	protected $column = array('code','name','info');		
 	
