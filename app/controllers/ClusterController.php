@@ -131,9 +131,15 @@ class ClusterController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id, array $data)
+	public function update()
 	{
-		Cluster::find(intval($id))->update($data);
+		$data = Input::get('data');		
+		$result = Cluster::find(intval($data['id']))->update($data);
+		if($result){
+			echo 'success';
+		}else{
+			echo 'failed';
+		}
 	}
 
 
