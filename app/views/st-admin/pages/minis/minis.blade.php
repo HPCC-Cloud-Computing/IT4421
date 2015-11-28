@@ -76,7 +76,7 @@
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge">Quản lý</div>
-                                    <div>Tài Khoản các Cụm</div>
+                                    <div>Tài Khoản các Sở</div>
                                 </div>
                             </div>
                         </div>
@@ -90,7 +90,7 @@
                     </div>
                 </div>                
                 <div class="col-lg-4 col-md-6">
-                    <div class="panel panel-yellow">
+                    <div class="panel panel-green">
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
@@ -98,7 +98,7 @@
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge">Quản lý</div>
-                                    <div>Tài Khoản các Sở</div>
+                                    <div>Tài Khoản các Cụm</div>
                                 </div>
                             </div>
                         </div>
@@ -112,7 +112,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
-                    <div class="panel panel-red">
+                    <div class="panel panel-yellow">
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
@@ -133,7 +133,29 @@
                         </a>
                     </div>
                 </div>
-            </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="panel panel-red">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-bullseye fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">TH</div>
+                                    <div>Két quả thi</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{{Asset('/st-admin/minis/syn_result')}}">
+                            <div class="panel-footer">
+                                <span class="pull-left">Xem trang</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div> 
+            </div>           
 		</div>
 	</div>
 	

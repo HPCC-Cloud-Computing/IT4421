@@ -136,7 +136,7 @@ Route::get('/st-admin/depart/syn_result','DepartmentController@syn_result');
 
 //----------------------------------university management page---------------------------------
 Route::get('/st-admin/uni','UniversityController@index');
-Route::get('/st-admin/uni/mn_major','UniversityController@mange_major_page');
+Route::get('/st-admin/uni/mn_major','UniversityController@manage_major_page');
 Route::get('/st-admin/uni/syn_result','UniversityController@syn_result');
 //------------------------------------------end-------------------------------------------------
 

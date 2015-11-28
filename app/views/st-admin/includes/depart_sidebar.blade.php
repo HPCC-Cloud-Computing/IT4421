@@ -10,6 +10,7 @@
 	<ul id="depart-menu" class="wrapper">
 		<li><a href="{{Asset('/st-admin/depart')}}">CHỨC NĂNG</a></li>
 		<li><a href="{{Asset('/st-admin/depart/mn_stu_acc')}}">QUẢN LÍ TÀI KHOẢN THÍ SINH</a></li>
+		<li><a href="{{Asset('/st-admin/depart/syn_result')}}">TỔNG HỢP KẾT QUẢ THI</a></li>
 	</ul>
 </div>
 

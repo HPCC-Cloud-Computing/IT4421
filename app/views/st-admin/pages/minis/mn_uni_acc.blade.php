@@ -43,7 +43,6 @@
 				
 				<br>
 				<table class="table table-hover table-bordered table-striped table-responsive">
-					
 				<thead>
 					<td>ID</td>
 					<td>Mã trường</td>
@@ -52,26 +51,90 @@
 					<td>Action</td>
 				</thead>
 				<tbody>
-					<td>1</td>
-					<td>BKA</td>
-					<td>Đại học Bách Khoa Hà Nội</td>
-					<td><button class="btn btn-success">Edit</button></td>
-					<td><button class="btn btn-danger">Delete</button></td>
+					@foreach ($universitys as $university)
+					<tr>
+						<td>{{$university->id}}</td>
+						<td>{{$university->code}}</td>
+						<td>{{$university->name}}</td>
+						<td><button class="btn btn-success" data-toggle="modal" data-target="#editUniModal" onclick="editUniForm({{$university->id}})">Edit</button></td>
+						<td><button class="btn btn-danger" onclick="deleteUniForm({{$university->id}})">Delete</button></td>
+					</tr>
+					@endforeach
 				</tbody>
-
 				</table>
-					<ul class="pagination">
-					  <li><a href="#">1</a></li>
-					  <li><a href="#">2</a></li>
-					  <li><a href="#">3</a></li>
-					  <li><a href="#">4</a></li>
-					  <li><a href="#">5</a></li>
-					</ul>
+				<?php echo $universitys->links(); ?>
 			</div>
 		</div>
-	</div>		{{	InsertForm::FileExport("exportExcelFile");	}}
-				{{	InsertForm::FileExcel("importExcelFile"); }}
-				{{	InsertForm::DepartForm("addUniModal");	}}		
+	</div>		
+	
+	{{	InsertForm::FileExport("exportExcelFile");	}}
+	{{	InsertForm::FileExcel("importExcelFile"); }}
+	{{	InsertForm::DepartForm("addUniModal");	}}		
+{{	InsertForm::UniForm("editUniModal");	}}
+				
+	<script type="text/javascript">
+		function editUniForm(id){
+			console.log(id);
+			$.ajax({
+                url : "{{Asset('/st-admin/minis/mn_uni_acc/edit')}}/"+id,
+                type : "GET",
+                data : {
+                     // number : $('#number').val()
+                },
+                success : function (result){
+                    
+                    console.log(result);	
+                    $modal = $('#editUniModal').find('input');
+
+                    $($modal[0]).val("zyz"); // cần add thêm
+                }
+            });
+		}
+
+		function deleteUniForm(id){
+
+			$.ajax({
+                url : "{{Asset('/st-admin/minis/mn_uni_acc/del')}}/"+id,
+                type : "GET",
+                data : {
+                     // number : $('#number').val()
+                },
+                success : function (result){
+                    
+                    console.log(result);	
+                    alert("delete success");
+                }
+            });
+		}
+
+		$('#editUniModal').submit(function(e)
+		{
+			console.log('ok');
+		    var postData = $(this).serializeArray();
+		    var formURL = $(this).attr("action");
+		    $.ajax(
+		    {
+		        url : "{{Asset('/st-admin/minis/mn_uni_acc/update')}}",
+		        type: "POST",
+		        data : postData,
+		        success:function(data, textStatus, jqXHR) 
+		        {
+		            //data: return data from server
+		        },
+		        error: function(jqXHR, textStatus, errorThrown) 
+		        {
+		            //if fails      
+		        }
+		    });
+		    e.preventDefault(); //STOP default action
+		    // e.unbind(); //unbind. to stop multiple form submit.
+		    $('#editUniModalclosebtn').click();
+		});
+		 
+			// $('#editUniForm').submit(); //Submit  the FORM
+			
+
+	</script>
 
 
 @stop

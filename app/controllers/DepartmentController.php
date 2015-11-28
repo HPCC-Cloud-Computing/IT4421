@@ -116,8 +116,10 @@ class DepartmentController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		$dept = Department::find($id);		
-		return View::make('',array('dept' =>$dept ));
+		$dept = Department::find($id);	
+		$user = $dept->user($id);
+		// return View::make('',array('dept' =>$dept ));
+		echo json_encode(array('dept'=>$dept,'user'=>$user));
 	}
 
 
