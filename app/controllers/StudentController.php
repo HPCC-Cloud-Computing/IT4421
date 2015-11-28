@@ -94,7 +94,7 @@ class StudentController extends \BaseController {
 	{
 		$data=Input::all();
 		$check = StudentController::create($data);
-		return json_encode($check)
+		return json_encode($check);
 	}
 
 	//Hien thi pop-up giao dien them nhieu hoc sinh
@@ -120,7 +120,7 @@ class StudentController extends \BaseController {
 				}
 				else{
 					// Neu da ton tai thi update Student
-					$this->update($exist_student)
+					$this->update($exist_student);
 					$count_update++;
 				}
 			}
@@ -152,7 +152,7 @@ class StudentController extends \BaseController {
 	
 	public function update($data)
 	{
-		$student = Student::find($data['id']));
+		$student = Student::find($data['id']);
 		$student->registration_number= $data['reg_number'];
 		$student->profile_code = $data['profile_code'];
 		$student->lastname = $data['lastname'];
@@ -160,7 +160,7 @@ class StudentController extends \BaseController {
 		$student->indentity_code = $data['indentity_code'];
 		$student->birthday = $data['birthday'];
 		$student->sex = $data['sex'];
-		$student->plusscore = $data['plusscore']
+		$student->plusscore = $data['plusscore'];
 		$check = $student->push();
 		return $check;
 	}
@@ -186,8 +186,8 @@ class StudentController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function create($data)
-	{
+	// public function create($data)
+	// {
 		// $student = new Student;
 		// $student->registration_number= $data['reg_number'];
 		// $student->profile_code = $data['profile_code'];
@@ -202,7 +202,7 @@ class StudentController extends \BaseController {
 		// 	return 'true';
 		// }
 		// else return 'false';
-	}
+	// }
 
 
 	/**
@@ -246,10 +246,10 @@ class StudentController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
-	{
-		//
-	}
+	// public function update($id)
+	// {
+	// 	//
+	// }
 
 
 	/**
@@ -258,10 +258,10 @@ class StudentController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
-	{
-		//
-	}
+	// public function destroy($id)
+	// {
+	// 	//
+	// }
 
 
 }

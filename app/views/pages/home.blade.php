@@ -1,6 +1,6 @@
 <?php
-  // Session::put("student", "anhhp");
-  // Session::put("user", "anhhp");
+  Session::put("student", "anhhp");
+  Session::put("user", "anhhp");
   // Session::flush();
 ?>
 @extends('layout.layout')

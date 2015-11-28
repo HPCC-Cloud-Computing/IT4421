@@ -50,21 +50,27 @@ class ClusterController extends \BaseController {
 	 */
 	public function add()
 	{
+
 		$data = Input::get('data');
+		// $data = '{"depart":{"code":"adsf","name":"sdfasdfsd"},"user":{"username":"dfsdf","password":"dsafdsf","email":"43243324"}}';
+		$data = json_decode($data,true);
 		if(!isset($data))
 			echo "error";
 		try{
-			$check = Cluster::where('code', $data[0])->first();
-			if(isset($check)){
+			$cluster = Cluster::where('code', $data['cluster']['code'])->first();
+			if(isset($cluster)){				
 				echo "error";
 				exit();	
-			}
-			$data_insert = array_combine($this->column,$data);			
-			$result = Cluster::create($data_insert);		
+			}			
+			$clusterData = array_combine($this->column,$data['cluster']);			
+			$cluster = Cluster::create($cluster);					
+			// $user = $dept->user;	
+			$user = new User($data['user']);					
+			$cluster->user()->save($user);
 		}catch(QueryException $e){
 			echo "error";
 		}	
-		if(isset($result))
+		if(isset($cluster))
 			echo "success";
 		else 
 			echo "error";
@@ -118,9 +124,19 @@ class ClusterController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		$cluster = Cluster::with('Room')->find(intval($id));
-		$rooms =  $cluster->rooms();
-		return View::make('',array('cluster' =>$cluster ,'rooms'=>$rooms ));		
+		$cluster = Cluster::find(intval($id));
+		// print_r($cluster->id);
+		// print_r($cluster->code);
+		// print_r($cluster->name);
+		$result1 = array('id' => $cluster->id,'code'=> $cluster->code, 'name'=>$cluster->name);		
+		$rooms =  $cluster->rooms;
+		$result2 = array();
+		foreach ($rooms as $key => $value) {		
+			array_push($result2, array('id'=>$value->id,'code'=>$value->code,'address'=>$value->address));
+		}				
+		$result = array('cluster'=>$result1,'rooms'=>$result2);
+		echo(json_encode($result,JSON_UNESCAPED_UNICODE));
+		exit();
 	}
 
 
@@ -133,13 +149,19 @@ class ClusterController extends \BaseController {
 	 */
 	public function update()
 	{
-		$data = Input::get('data');		
-		$result = Cluster::find(intval($data['id']))->update($data);
-		if($result){
-			echo 'success';
-		}else{
-			echo 'failed';
+		$data = Input::get('data');				
+		$data = json_decode($data,true);
+		$cluster = Cluster::find(intval($data['cluster']['id']));
+		$result = $cluster->update($data['cluster']);						
+		if($result){			
+			$user = new User($data['user']);
+			$result = $cluster->user()->update($data['user']);
+			if($result){
+				echo 'success';			
+				exit();
+			}				
 		}
+		echo 'failed';		
 	}
 
 

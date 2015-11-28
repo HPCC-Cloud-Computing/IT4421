@@ -50,21 +50,26 @@ class UniversityController extends \BaseController {
 	 */
 	public function add()
 	{
+
 		$data = Input::get('data');
+		// $data = '{"depart":{"code":"adsf","name":"sdfasdfsd"},"user":{"username":"dfsdf","password":"dsafdsf","email":"43243324"}}';
+		$data = json_decode($data,true);
 		if(!isset($data))
 			echo "error";
 		try{
-			$check = University::where('code', $data[0])->first();
-			if(isset($check)){
+			$university = University::where('code', $data['university']['code'])->first();
+			if(isset($university)){				
 				echo "error";
 				exit();	
-			}
-			$data_insert = array_combine($this->column,$data);			
-			$result = University::create($data_insert);		
+			}			
+			$universityData = array_combine($this->column,$data['university']);			
+			$university = University::create($universityData);								
+			$user = new User($data['user']);					
+			$university->user()->save($user);
 		}catch(QueryException $e){
 			echo "error";
 		}	
-		if(isset($result))
+		if(isset($university))
 			echo "success";
 		else 
 			echo "error";
@@ -117,8 +122,8 @@ class UniversityController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		$university = University::find($id);
-		return View::make('university_edit_form_show', $university);
+		$university = University::find($id);			
+		echo json_encode(array('university'=>$university,JSON_UNESCAPED_UNICODE));
 	}
 
 
@@ -130,14 +135,21 @@ class UniversityController extends \BaseController {
 	 * @return Response
 	 */
 	public function update()
-	{		
+	{
 		$data = Input::get('data');		
-		$result = University::find(intval($data['id']))->update($data);
-		if($result){
-			echo 'success';
-		}else{
-			echo 'failed';
+		// $data = '{"dept":{"id":81,"code":"adsf_new","name":"sdfasdfsd"},"user":{"id":8,"username":"dfsdf_new","password":"dsafdsf","email":"43243324"}}';
+		$data = json_decode($data,true);
+		$university = University::find(intval($data['university']['id']));
+		$result = $university->update($data['university']);						
+		if($result){			
+			$user = new User($data['user']);
+			$result = $university->user()->update($data['user']);
+			if($result){
+				echo 'success';			
+				exit();
+			}				
 		}
+		echo 'failed';		
 	}
 
 

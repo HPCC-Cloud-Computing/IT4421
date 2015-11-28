@@ -69,11 +69,14 @@ Route::get('/st-admin/minis/mn_schedule/update_scheduler_data','PhaseController@
 // Show danh sach truong + infor
 Route::get('/st-admin/minis/mn_depart_acc/list','DepartmentController@get_list');
 // Sua
+//$data = '{"code","name"}'
 Route::get('/st-admin/minis/mn_depart_acc/edit/{id}','DepartmentController@edit');
 // Sua: Post thong tin sua len server
+// $data = '{"dept":{"id":81,"code":"adsf_new","name":"sdfasdfsd"},"user":{"id":8,"username":"dfsdf_new","password":"dsafdsf","email":"43243324"}}';
 Route::post('/st-admin/minis/mn_depart_acc/update','DepartmentController@update');
 // Them
 Route::post('/st-admin/minis/mn_depart_acc/add_many','DepartmentController@add_many');
+// $data = '{"depart":{"code":"adsf","name":"sdfasdfsd"},"user":{"username":"dfsdf","password":"dsafdsf","email":"43243324"}}';
 Route::get('/st-admin/minis/mn_depart_acc/add_one','DepartmentController@add');
 // Xoa
 Route::get('/st-admin/minis/mn_depart_acc/del/{id}','DepartmentController@destroy');

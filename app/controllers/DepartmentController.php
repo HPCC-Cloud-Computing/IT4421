@@ -123,7 +123,7 @@ class DepartmentController extends \BaseController {
 	public function edit($id)
 	{
 		$dept = Department::find($id);			
-		echo json_encode(array('dept'=>$dept));
+		echo json_encode(array('dept'=>$dept,JSON_UNESCAPED_UNICODE));
 	}
 
 
@@ -143,8 +143,10 @@ class DepartmentController extends \BaseController {
 		if($result){			
 			$user = new User($data['user']);
 			$result = $dept->user()->update($data['user']);
-			if($result)
+			if($result){
 				echo 'success';			
+				exit();
+			}				
 		}
 		echo 'failed';		
 	}

@@ -2,12 +2,12 @@
 <!--banner -->
 <div class="container">
 	<h1 class="header-logo col-md-8 col-sm-8 logo hidden-xs">
-		<a href="{{Asset('')}}">
+		<a href="/IT4421/public/">
 			{{	HTML::image('/components/img/logo_title.png','logo_title',array( 'style' => 'max-width: 100%; max-height: 100%'))	}}
 		</a>
 	</h1>
 	<h1 class="col-md-12 col-sm-12 logo visible-xs">
-		<a href="{{Asset('')}}">
+		<a href="/IT4421/public/">
 			{{	HTML::image('/components/img/logo_title.png','logo_title',array( 'style' => 'max-width: 100%; max-height: 100%'))	}}
 		</a>
 	</h1>
@@ -27,7 +27,7 @@
 		@if(Session::has('admin'))
 		<ul class="hello-user navbar-right">
 			<li class="divider">
-				Xin chào <b>AnhHP</b>
+				Xin chào <b>AnhHPHPHP</b>
 			</li>
 			<li class="divider">
 				<a href="#">Trang quản trị</a>

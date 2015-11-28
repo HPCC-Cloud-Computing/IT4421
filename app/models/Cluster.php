@@ -16,7 +16,7 @@ class Cluster extends Eloquent {
 
 	public function rooms()
 	{
-		return $this->hasMany('Room', 'cluster_id', 'id');
+		return $this->hasMany('Room');
 	}
 
 	public function examscores()

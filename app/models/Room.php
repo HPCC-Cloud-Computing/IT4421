@@ -13,7 +13,7 @@ class Room extends Eloquent {
 	 */
 	public function cluster()
 	{
-		return $this->belongsTo('Cluster', 'id', 'cluster_id');
+		return $this->belongsTo('Cluster');
 	}
 
 	/**

@@ -137,9 +137,17 @@ class MajorController extends \BaseController {
 	}
 
 	public function get_list(){
-		$university = University::with('majors')->all();
-		$majors = $university->majors;
-		return View::make('pages.majors',['university'=>$university,'majors'=>$majors]);
+		$university = University::all();
+		// foreach ($university as $key => $value) {
+			var_dump($university[0]);
+			echo('<br>');
+			echo('<br>');
+			// var_dump($university[0]->majors());			
+			// var_dump($university);
+		// }
+		
+		// $majors = $university->majors();
+		// return View::make('pages.majors',['university'=>$university,'majors'=>$majors]);
 	}
 	public function show($id){		
 	}
