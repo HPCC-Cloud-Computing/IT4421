@@ -56,7 +56,7 @@ Route::get('/stu/aspiration_reg', function(){
 // Login
 Route::post('/login','UserController@login');
 // Logout
-Route::post('/logout','UserController@logout');
+Route::get('/logout','UserController@logout');
 
 
 //st-admin -- LuanBN + HuanPC--------------------------------------------------------------------
