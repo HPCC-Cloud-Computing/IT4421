@@ -3,6 +3,10 @@
 // require_once (dirname(__FILE__).'/Utils.php');
 class ExamScoreController extends \BaseController {
 	protected $column = array('student_id', 'room_id', 'subject_id', 'score', 'state' );
+	
+	public function show_page(){
+		return View::make('pages.result_info');
+	}
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -47,14 +51,16 @@ class ExamScoreController extends \BaseController {
 			foreach ($data as $key => $value) {
 				// Kiem tra du lieu da ton tai trong csdl?
 				$exist_score = ExamScore::where('student_id', $value[0])->where('subject_id',$value[2])->first();
-				if(!isset($exist_score))
+				if(!isset($exist_score)){
 					// Neu chua ton tai thi tao record examscore moi
 					$examscore = ExamScore::create($value);
 					$count_create++;
-				else
+				}					
+				else{
 					// Neu da ton tai thi update Student
 					$check_update = $this->update($exist_score);
 					if($check_update) $count_update++;
+				}					
 			}
 		}
 		return json_encode(array(
@@ -116,18 +122,7 @@ class ExamScoreController extends \BaseController {
 	{
 		//
 	}
-
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
+	
 
 
 	/**

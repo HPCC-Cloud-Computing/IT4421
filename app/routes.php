@@ -12,40 +12,28 @@
 */
 
 //Trang chủ
-Route::get('/', function()
-{
-	return View::make('pages.home');
-});
+Route::get('/', 'HomeController@index');
 
 //Trang thông báo
-Route::get('/notice', function()
-{
-	return View::make('pages.notice');
-});
+Route::get('/notice', 'NoticeController@index');
 
 //Trang chi tiết thông báo
-Route::get('/notice/{id}', function($id)
-{
-	return View::make('pages.notice');
-});
+Route::get('/notice/{id}', 'NoticeController@show');
 
-//Trang quy chế tuyển sinh
+//Trang quy chế tuyển sinh --- chua lam
 Route::get('/regulation', function()
 {
 	return View::make('pages.regulation');
 });
 
-//Trang ngành - chỉ tiêu
-Route::get('/majors', function()
-{
-	return View::make('pages.majors');
-});
+//Trang ngành - chỉ tiêu 
+// Show list danh sach nganh cua tat ca cac truong
+Route::get('/majors/', 'MajorController@get_list');
+// Show cua 1 truong
+Route::get('/majors/uni/{id}', 'MajorController@show');
 
 //Trang tra cứu điểm thi
-Route::get('/result_info', function()
-{
-	return View::make('pages.result_info');
-});
+Route::get('/result_info', 'ExamScoreController@show_page');
 
 //Trang liên hệ
 Route::get('/contact', function()

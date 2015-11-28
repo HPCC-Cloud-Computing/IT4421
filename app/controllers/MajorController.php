@@ -10,14 +10,16 @@ class MajorController extends \BaseController {
 	public function index()
 	{
 		// $university_id = Input::get('university_id');
-		if(isset(Session::get('university_id'))) 
+		if(Session::get('university_id')!==null) {
 			$university_id = Session::get('university_id');
 			$majors = University::find($university_id)->majors()->get();
 			foreach ($majors as $major) {
 				echo ($major->code)."\n";
 			}
+		}			
 			// return View::make('majors_index',$majors);
-		else return Redirect::to('/');
+		else 
+			return Redirect::to('/');
 	}
 
 	public function create($data)
@@ -132,5 +134,13 @@ class MajorController extends \BaseController {
 	{
 		$major = Major::find(Input::get('id'));
 		$major->delete();
+	}
+
+	public function get_list(){
+		$university = University::with('majors')->all();
+		$majors = $university->majors;
+		return View::make('pages.majors',['university'=>$university,'majors'=>$majors]);
+	}
+	public function show($id){		
 	}
 }
