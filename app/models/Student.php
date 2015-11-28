@@ -21,7 +21,7 @@ class Student extends Eloquent {
 	public function department()
 	{
 		//return $this->belongsTo('User', 'local_key', 'parent_key');
-		return $this->belongsTo('Department', 'id', 'department_id');
+		return $this->belongsTo('Department');
 	}
 
 	/**

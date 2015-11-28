@@ -108,7 +108,10 @@ class DepartmentController extends \BaseController {
 	}
 	public function manage_student_page(){		
 		$id = Session::get('dept_id');
-		return View::make('st-admin.pages.depart.mn_stu_acc',array('students' => $this->get_students($id)));
+		$dept = Department::find(22);
+		$students = $dept->students;				
+		$students = $students->toArray();		
+		return View::make('st-admin.pages.depart.mn_stu_acc',array('students' => $students));
 	}
 	public function syn_result(){
 		return View::make('st-admin.pages.depart.syn_result');

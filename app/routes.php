@@ -51,14 +51,6 @@ Route::get('/stu/aspiration_reg', function(){
 	return View::make('pages.stu.aspiration_reg');
 });
 
-
-////////////UserController
-// Login
-Route::post('/login','UserController@login');
-// Logout
-Route::get('/logout','UserController@logout');
-
-
 //st-admin -- LuanBN + HuanPC--------------------------------------------------------------------
 //---------------------------------------minister page-------------------------------------------
 Route::get('/st-admin/minis', 'MinisterController@index');
@@ -131,6 +123,7 @@ Route::get('/st-admin/clus/mn_stu_acc/edit/{id}', 'StudentController@edit_show')
 Route::post('/st-admin/clus/mn_stu_acc/update', 'StudentController@edit_one');
 Route::get('/st-admin/clus/mn_stu_acc/delete/{id}', 'StudentController@destroy');
 //Quan ly phong thi --- not done
+// K can doan nay vi tich hop vao doan edit cluster
 Route::get('/st-admin/clus/mn_exam_room', 'ExamRoomController@index');
 Route::post('/st-admin/clus/mn_exam_room/add', 'ExamRoomController@add');
 Route::get('/st-admin/clus/mn_exam_room/edit', 'ExamRoomController@edit');

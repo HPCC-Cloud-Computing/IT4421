@@ -1,7 +1,7 @@
 <?php
 
 class ExamRoomController extends \BaseController {
-
+	protected $column = array('code', 'address' );
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -32,10 +32,11 @@ class ExamRoomController extends \BaseController {
 	public function add()
 	{
 		$data = Input::get('data');
+		$data = json_decode($data);
 		if(!isset($data))
 			echo "error";
 		try{
-			$check = University::where('code', $data[0])->first();
+			$check = Room::where('code', $data['code'])->first();
 			if(isset($check)){
 				echo "error";
 				exit();	
