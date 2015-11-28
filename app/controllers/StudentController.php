@@ -4,6 +4,7 @@
 class StudentController extends \BaseController {
 	protected $column = array('registration_number','profile_code', 'lastname', 'firstname', 'indentity_code', 'birthday', 'sex', 'plusscore' );
 	
+
 	public function search()
     {
     	$registration_number = Input::get('registration_number');
@@ -74,11 +75,6 @@ class StudentController extends \BaseController {
 		}
     }
 
-    public function update($value)
-    {
-    	# code...
-    }
-
 	public function import_excel_file()
 	{					
 		$fileInputName = 'exel_file';
@@ -136,7 +132,7 @@ class StudentController extends \BaseController {
 	}
 
 	//Hien pop-up sua thong tin 1 hoc sinh
-	public function edit_one_show()
+	public function edit_show($id)
 	{
 		$student = Student::find(Input::get('id'));
 		return View::make('edit_single_student',$student);
@@ -145,16 +141,33 @@ class StudentController extends \BaseController {
 	//Thuc hien sua thong tin 1 hoc sinh
 	public function edit_one()
 	{
-		$data=Input::all();
-		$student = Student::add($data);
-		return json_encode($student);
+		$data = Input::get('data');		
+		$result = Student::find(intval($data['id']))->update($data);
+		if($result){
+			echo 'success';
+		}else{
+			echo 'failed';
+		}
 	}
 	
-
-	public function delete_student()
+	public function update($data)
 	{
-		$data_id = Input::get('id')
-		$student = Student::find($data_id);
+		$student = Student::find($data['id']));
+		$student->registration_number= $data['reg_number'];
+		$student->profile_code = $data['profile_code'];
+		$student->lastname = $data['lastname'];
+		$student->firstname = $data['firstname'];
+		$student->indentity_code = $data['indentity_code'];
+		$student->birthday = $data['birthday'];
+		$student->sex = $data['sex'];
+		$student->plusscore = $data['plusscore']
+		$check = $student->push();
+		return $check;
+	}
+
+	public function destroy($id)
+	{
+		$student = Student::find($id);
 		$student->delete();
 
 	}
@@ -167,11 +180,6 @@ class StudentController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function index()
-	{
-		//
-	}
-
 
 	/**
 	 * Show the form for creating a new resource.
@@ -202,23 +210,7 @@ class StudentController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function update($data)
-	{
-		$student = Student::find($data['id']);
-		$student->registration_number= $data['reg_number'];
-		$student->profile_code = $data['profile_code'];
-		$student->lastname = $data['lastname'];
-		$student->firstname = $data['firstname'];
-		$student->indentity_code = $data['indentity_code'];
-		$student->birthday = $data['birthday'];
-		$student->sex = $data['sex'];
-		$student->plusscore = $data['plusscore']
-		$check = $student->push();
-		if ($check) {
-			return 'true';
-		}
-		else return 'false';
-	}
+	
 
 
 	/**
