@@ -82,15 +82,15 @@ Route::filter('student',function(){
 
 ////////// filter theo timeline scheduler //////////////////////
 
-Route::filter('truoc_tuyen_sinh',function{
+Route::filter('truoc_tuyen_sinh',function(){
 
 });
 
-Route::filter('trong_tuyen_sinh',function{
+Route::filter('trong_tuyen_sinh',function(){
 
 });
 
-Route::filter('sau_tuyen_sinh',function{
+Route::filter('sau_tuyen_sinh',function(){
 
 });
 
