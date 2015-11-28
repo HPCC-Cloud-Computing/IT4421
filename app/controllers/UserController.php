@@ -11,34 +11,27 @@ class UserController extends \BaseController {
 		return Redirect::back();
 	}
 
-	public function showLogin()
-	{	
-		//Session::put("login_previous",URL::previous());
-		// show the form
-		return View::make('login');
-	}
-
-	public function doLogin()
+	public function login()
 	{
 
 		// run the validation rules on the inputs from the form
-		$validator = Validator::make(Input::all(), User::$rules_login);
+		// dd(Input::all());
+		// $validator = Validator::make(Input::all(), User::$rules_login);
 
 		// if the validator fails, redirect back to the form
-		if ($validator->fails()) {
-			Session::flash('error_login','Log In failed!!!');
-			return Redirect::back();
-			//return Redirect::to('login')
-				//->withErrors($validator) // send back all errors to the login form
-				//->withInput(Input::except('password')); // send back the input (not the password) so that we can repopulate the form
-		} else {
+		// if ($validator->fails()) {
+		// 	Session::flash('error_login','Log In failed!!!');
+		// 	return Redirect::back();
+		// 	//return Redirect::to('login')
+		// 		//->withErrors($validator) // send back all errors to the login form
+		// 		//->withInput(Input::except('password')); // send back the input (not the password) so that we can repopulate the form
+		// } else {
 
 			// create our user data for the authentication
 			$userdata = array(
 				'username' 	=> Input::get('username'),
 				'password' 	=> Input::get('password')
 			);
-
 			// attempt to do the login
 			if (Auth::attempt($userdata)) {
 
@@ -49,20 +42,23 @@ class UserController extends \BaseController {
 				//$url_previous = Session::get("login_previous");
 				//Session::forget("login_previous");
 				//return Redirect::to($url_previous);
-				return Redirect::back();
+				echo "true";
+				// return Redirect::back();
 				//return Redirect::to(URL::previous()); //test
 
 			} else {
 
 				// validation not successful, send back to form
 				//return Redirect::to('login');
-				Session::flash('error_login','Log In failed!!!');
-				return Redirect::back();
+				// $password = Hash::make(Input::get('password'));
+				// echo json_encode($password);
+				echo "false";
+				// Session::flash('error_login','Log In failed!!!');
+				// return Redirect::back();
 			}
-		}
 	}
 
-	public function doLogout()
+	public function logout()
     {
         Auth::logout();
         //return Redirect::back();
@@ -127,44 +123,44 @@ class UserController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
-	{
+	// public function show($id)
+	// {
 		
 		
-		$user = User::find($id);
-		if ($user->isAdmin()) {
-			return View::make('admin_profile')->with($user);
-		}
+	// 	$user = User::find($id);
+	// 	if ($user->isAdmin()) {
+	// 		return View::make('admin_profile')->with($user);
+	// 	}
 
-		$userable = $user->userable();
-		$userable_type = $user->getUserableType();
-		$data = array('user'=> $user, 'userable'=> $userable)
+	// 	$userable = $user->userable();
+	// 	$userable_type = $user->getUserableType();
+	// 	$data = array('user'=> $user, 'userable'=> $userable)
 
-		if ($userable_type == 'student') {
-			//$studentController = new StudentController;
-			//return $studentController->show($user, $userable);
-			return View::make('student_profile')->with('data',$data);
-		}
-		elseif ($userable_type == 'university') {
-			//$universityController = new UniversityController;
-			//return $universityController->show($user, $userable);
-			return View::make('university_profile')->with('data',$data);
-		}
-		elseif ($userable_type == 'department') {
-			//$departmentController = new DepartmentController;
-			//return $departmentController->show($user, $userable);
-			return View::make('department_profile')->with('data',$data);
-		}
-		elseif ($userable_type == 'cluster')
-		{
-			//$clusterController = new ClusterController;
-			//return $clusterController->show($user, $userable);
-			return View::make('cluster_profile')->with('data',$data);
-		}
-		//$profile = $user->userable();
-		//$data = array('user' => $user, 'profile' => $profile);
-		//return $data;
-	}
+	// 	if ($userable_type == 'student') {
+	// 		//$studentController = new StudentController;
+	// 		//return $studentController->show($user, $userable);
+	// 		return View::make('student_profile')->with('data',$data);
+	// 	}
+	// 	elseif ($userable_type == 'university') {
+	// 		//$universityController = new UniversityController;
+	// 		//return $universityController->show($user, $userable);
+	// 		return View::make('university_profile')->with('data',$data);
+	// 	}
+	// 	elseif ($userable_type == 'department') {
+	// 		//$departmentController = new DepartmentController;
+	// 		//return $departmentController->show($user, $userable);
+	// 		return View::make('department_profile')->with('data',$data);
+	// 	}
+	// 	elseif ($userable_type == 'cluster')
+	// 	{
+	// 		//$clusterController = new ClusterController;
+	// 		//return $clusterController->show($user, $userable);
+	// 		return View::make('cluster_profile')->with('data',$data);
+	// 	}
+	// 	//$profile = $user->userable();
+	// 	//$data = array('user' => $user, 'profile' => $profile);
+	// 	//return $data;
+	// }
 
 
 	/**
@@ -188,7 +184,7 @@ class UserController extends \BaseController {
 	public function update($id, array $userData)
 	{
 		User::find($id)->update($userData);
-	};
+	}
         
 
 

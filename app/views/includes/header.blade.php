@@ -13,32 +13,34 @@
 	</h1>
 	<div class="header-info col-md-4 col-sm-4 hidden-xs">
 		<!--cho nay la cho Xin chao va thanh search -->
-		@if(Session::has('student'))
-		<ul class="hello-user navbar-right">
-			<li class="divider">
-				Xin chào bạn <b>Nguyễn Văn A</b>
-			</li>
-			<li>
-				<a href="#">Thoát</a>
-			</li>
-		</ul>
-		@endif
+		@if(Auth::check())
+			@if(Auth::user()->userable_type=='student')
+			<ul class="hello-user navbar-right">
+				<li class="divider">
+					Xin chào bạn <b>{{Student::find(Auth::user()->userable_id)->firstname.' '.Student::find(Auth::user()->userable_id)->lastname}}</b>
+				</li>
+				<li>
+					<a href="{{Asset('/logout')}}">Thoát</a>
+				</li>
+			</ul>
+			@endif
 
-		@if(Session::has('admin'))
-		<ul class="hello-user navbar-right">
-			<li class="divider">
-				Xin chào <b>AnhHPHPHP</b>
-			</li>
-			<li class="divider">
-				<a href="#">Trang quản trị</a>
-			</li>
-			<li class="divider">
-				<a href="#">Đổi mật khẩu</a>
-			</li>
-			<li>
-				<a href="#">Thoát</a>
-			</li>
-		</ul>
+			@if(Auth::user()->userable_type=='minister')
+			<ul class="hello-user navbar-right">
+				<li class="divider">
+					Xin chào <b>AnhHP</b>
+				</li>
+				<li class="divider">
+					<a href="#">Trang quản trị</a>
+				</li>
+				<li class="divider">
+					<a href="#">Đổi mật khẩu</a>
+				</li>
+				<li>
+					<a href="#">Thoát</a>
+				</li>
+			</ul>
+			@endif
 		@endif
 		<br />
 

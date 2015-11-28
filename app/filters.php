@@ -48,6 +48,53 @@ Route::filter('auth', function()
 	}
 });
 
+////////// filter theo user_type //////////////////////
+
+Route::filter('minister',function(){
+	if (Auth::user()->userable_type != 'minister')
+		Session::flash('error_authorized','Authorized failed!!!');
+	return Redirect::back();	
+});
+
+Route::filter('cluster',function(){
+	if (Auth::user()->userable_type != 'cluster')
+		Session::flash('error_authorized','Authorized failed!!!');
+	return Redirect::back();
+});
+
+Route::filter('department',function(){
+	if (Auth::user()->userable_type != 'department')
+		Session::flash('error_authorized','Authorized failed!!!');
+	return Redirect::back();
+});
+
+Route::filter('university',function(){
+	if (Auth::user()->userable_type != 'university')
+		Session::flash('error_authorized','Authorized failed!!!');
+	return Redirect::back();
+});
+
+Route::filter('student',function(){
+	if (Auth::user()->userable_type != 'student')
+		Session::flash('error_authorized','Authorized failed!!!');
+	return Redirect::back();
+});
+
+////////// filter theo timeline scheduler //////////////////////
+
+Route::filter('truoc_tuyen_sinh',function(){
+
+});
+
+Route::filter('trong_tuyen_sinh',function(){
+
+});
+
+Route::filter('sau_tuyen_sinh',function(){
+
+});
+
+
 
 Route::filter('auth.basic', function()
 {

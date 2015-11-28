@@ -51,6 +51,14 @@ Route::get('/stu/aspiration_reg', function(){
 	return View::make('pages.stu.aspiration_reg');
 });
 
+
+////////////UserController
+// Login
+Route::post('/login','UserController@login');
+// Logout
+Route::get('/logout','UserController@logout');
+
+
 //st-admin -- LuanBN + HuanPC--------------------------------------------------------------------
 //---------------------------------------minister page-------------------------------------------
 Route::get('/st-admin/minis', 'MinisterController@index');
