@@ -35,17 +35,23 @@ class DepartmentController extends \BaseController {
 	 */
 	public function add()
 	{
+
 		$data = Input::get('data');
+		// $data = '{"depart":{"code":"adsf","name":"sdfasdfsd"},"user":{"username":"dfsdf","password":"dsafdsf","email":"43243324"}}';
+		$data = json_decode($data,true);
 		if(!isset($data))
 			echo "error";
 		try{
-			$department = Department::where('code', $data[0])->first();
-			if(isset($department)){
+			$department = Department::where('code', $data['depart']['code'])->first();
+			if(isset($department)){				
 				echo "error";
 				exit();	
-			}
-			$deptData = array_combine($this->column,$data);			
-			$dept = Department::create($deptData);		
+			}			
+			$deptData = array_combine($this->column,$data['depart']);			
+			$dept = Department::create($deptData);					
+			// $user = $dept->user;	
+			$user = new User($data['user']);					
+			$dept->user()->save($user);
 		}catch(QueryException $e){
 			echo "error";
 		}	
@@ -116,10 +122,8 @@ class DepartmentController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		$dept = Department::find($id);	
-		$user = $dept->user($id);
-		// return View::make('',array('dept' =>$dept ));
-		echo json_encode(array('dept'=>$dept,'user'=>$user));
+		$dept = Department::find($id);			
+		echo json_encode(array('dept'=>$dept));
 	}
 
 
@@ -132,12 +136,17 @@ class DepartmentController extends \BaseController {
 	public function update()
 	{
 		$data = Input::get('data');		
-		$result = Department::find(intval($data['id']))->update($data);
-		if($result){
-			echo 'success';
-		}else{
-			echo 'failed';
+		// $data = '{"dept":{"id":81,"code":"adsf_new","name":"sdfasdfsd"},"user":{"id":8,"username":"dfsdf_new","password":"dsafdsf","email":"43243324"}}';
+		$data = json_decode($data,true);
+		$dept = Department::find(intval($data['dept']['id']));
+		$result = $dept->update($data['dept']);						
+		if($result){			
+			$user = new User($data['user']);
+			$result = $dept->user()->update($data['user']);
+			if($result)
+				echo 'success';			
 		}
+		echo 'failed';		
 	}
 
 

@@ -9,10 +9,9 @@ class Department extends Eloquent {
 	 * [user description]
 	 * @return [type] [description]
 	 */
-	public function user($id)
+	public function user()
 	{
-		$user = User::where('userable_id','=',intval($id));
-		return $user;
+		return $this->morphMany('User', 'userable');
 	}
 	
 }
