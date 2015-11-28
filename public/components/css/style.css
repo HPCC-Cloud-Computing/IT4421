@@ -372,7 +372,7 @@ a.link-style{
 
 .div-row-label{
   float: left;
-    line-height: 24px;
+    line-height: 28px;
     padding: 2px 0 0;
     margin-right: 10px
 }
@@ -637,14 +637,14 @@ table{
 {
     background-color: rgba(196, 248, 247, 0.12);
 }
-.datatable tr.row:hover td, .datatable tr.altrow:hover td
+/*.datatable tr.row:hover td, .datatable tr.altrow:hover td
 {
     background-color: #DCF2E4;
 }
 .datatable tbody tr:hover th, .datatable tbody tr:hover td
 {
     background-color: #DCF2E4;
-}
+}*/
 .datatable .row td.first
 {
     padding-left: 10px;
