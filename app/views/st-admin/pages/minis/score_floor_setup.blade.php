@@ -11,11 +11,25 @@
 
 	<script type="text/javascript">
 		var element = document.getElementById("minis-menu").getElementsByTagName("li");
-		element[5].classList.add("active");
+		element[2].classList.add("active");
 	</script>
 
 @stop
 
 @section('content')
+<div class="content">
+	<form>
+	<div class="form-group">
+		<label>Thiết lập điểm sàn</label>
+		<input type="text" class="form-control" place-holder="Điểm sàn" />
+		<button type="submit" class="btn btn-success">Thiết lập</button>
+	</div>
 
+	</form>
+
+	<div class="score">
+		
+	</div>
+
+</div> 	
 @stop

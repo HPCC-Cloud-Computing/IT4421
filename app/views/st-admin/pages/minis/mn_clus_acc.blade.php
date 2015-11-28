@@ -58,8 +58,9 @@
 						<td>{{$cluster->id}}</td>
 						<td>{{$cluster->code}}</td>
 						<td>{{$cluster->name}}</td>
-						<td><button class="btn btn-success">Edit</button></td>
-						<td><button class="btn btn-danger">Delete</button></td>
+						<td><button class="btn btn-success" data-toggle="modal" data-target="#editClusModal" onclick="editClusForm({{$cluster->id}})">Edit</button></td>
+						<td><button class="btn btn-danger" onclick="deleteClusForm({{$cluster->id}})">Delete</button></td>
+
 					</tr>
 					@endforeach
 				</tbody>
@@ -70,7 +71,72 @@
 		</div>
 	</div>		{{	InsertForm::FileExport("exportExcelFile");	}}
 				{{	InsertForm::FileExcel("importExcelFile"); }}
-				{{	InsertForm::DepartForm("addClusModal");	}}			
+				{{	InsertForm::ClusForm("addClusModal");	}}			
+				{{	InsertForm::ClusForm("editClusModal");	}}
+				
+	<script type="text/javascript">
+		function editClusForm(id){
+			console.log(id);
+			$.ajax({
+                url : "{{Asset('/st-admin/minis/mn_clus_acc/edit')}}/"+id,
+                type : "GET",
+                data : {
+                     // number : $('#number').val()
+                },
+                success : function (result){
+                    
+                    console.log(result);	
+                    $modal = $('#editClusModal').find('input');
+
+                    $($modal[0]).val("zyz"); // cần add thêm
+                }
+            });
+		}
+
+		function deleteClusForm(id){
+
+			$.ajax({
+                url : "{{Asset('/st-admin/minis/mn_clus_acc/del')}}/"+id,
+                type : "GET",
+                data : {
+                     // number : $('#number').val()
+                },
+                success : function (result){
+                    
+                    console.log(result);	
+                    alert("delete success");
+                }
+            });
+		}
+
+		$('#editClusModal').submit(function(e)
+		{
+			console.log('ok');
+		    var postData = $(this).serializeArray();
+		    var formURL = $(this).attr("action");
+		    $.ajax(
+		    {
+		        url : "{{Asset('/st-admin/minis/mn_clus_acc/update')}}",
+		        type: "POST",
+		        data : postData,
+		        success:function(data, textStatus, jqXHR) 
+		        {
+		            //data: return data from server
+		        },
+		        error: function(jqXHR, textStatus, errorThrown) 
+		        {
+		            //if fails      
+		        }
+		    });
+		    e.preventDefault(); //STOP default action
+		    // e.unbind(); //unbind. to stop multiple form submit.
+		    $('#editClusModalclosebtn').click();
+		});
+		 
+			// $('#editClusForm').submit(); //Submit  the FORM
+			
+
+	</script>
 
 
 @stop

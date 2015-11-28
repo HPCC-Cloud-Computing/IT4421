@@ -56,8 +56,8 @@
 						<td>{{$university->id}}</td>
 						<td>{{$university->code}}</td>
 						<td>{{$university->name}}</td>
-						<td><button class="btn btn-success">Edit</button></td>
-						<td><button class="btn btn-danger">Delete</button></td>
+						<td><button class="btn btn-success" data-toggle="modal" data-target="#editUniModal" onclick="editUniForm({{$university->id}})">Edit</button></td>
+						<td><button class="btn btn-danger" onclick="deleteUniForm({{$university->id}})">Delete</button></td>
 					</tr>
 					@endforeach
 				</tbody>
@@ -70,6 +70,71 @@
 	{{	InsertForm::FileExport("exportExcelFile");	}}
 	{{	InsertForm::FileExcel("importExcelFile"); }}
 	{{	InsertForm::DepartForm("addUniModal");	}}		
+{{	InsertForm::UniForm("editUniModal");	}}
+				
+	<script type="text/javascript">
+		function editUniForm(id){
+			console.log(id);
+			$.ajax({
+                url : "{{Asset('/st-admin/minis/mn_uni_acc/edit')}}/"+id,
+                type : "GET",
+                data : {
+                     // number : $('#number').val()
+                },
+                success : function (result){
+                    
+                    console.log(result);	
+                    $modal = $('#editUniModal').find('input');
+
+                    $($modal[0]).val("zyz"); // cần add thêm
+                }
+            });
+		}
+
+		function deleteUniForm(id){
+
+			$.ajax({
+                url : "{{Asset('/st-admin/minis/mn_uni_acc/del')}}/"+id,
+                type : "GET",
+                data : {
+                     // number : $('#number').val()
+                },
+                success : function (result){
+                    
+                    console.log(result);	
+                    alert("delete success");
+                }
+            });
+		}
+
+		$('#editUniModal').submit(function(e)
+		{
+			console.log('ok');
+		    var postData = $(this).serializeArray();
+		    var formURL = $(this).attr("action");
+		    $.ajax(
+		    {
+		        url : "{{Asset('/st-admin/minis/mn_uni_acc/update')}}",
+		        type: "POST",
+		        data : postData,
+		        success:function(data, textStatus, jqXHR) 
+		        {
+		            //data: return data from server
+		        },
+		        error: function(jqXHR, textStatus, errorThrown) 
+		        {
+		            //if fails      
+		        }
+		    });
+		    e.preventDefault(); //STOP default action
+		    // e.unbind(); //unbind. to stop multiple form submit.
+		    $('#editUniModalclosebtn').click();
+		});
+		 
+			// $('#editUniForm').submit(); //Submit  the FORM
+			
+
+	</script>
 
 
 @stop

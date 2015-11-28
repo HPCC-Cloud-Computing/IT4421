@@ -156,13 +156,13 @@ class InsertForm{
 	}
 
 	private static function insertFormHeader($id){
-		echo '<div class="modal fade" id="'.$id.'" tabindex="-1" role="dialog" 
+		echo '<form class="modal fade" id="'.$id.'" tabindex="-1" role="dialog" 
 			aria-labelledby="myModalLabel">
   			<div class="modal-dialog" role="document">
     		<div class="modal-content">
 	    	<div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title" id="myModalLabel">Insert Form</h4>
+		        <button id="'.$id.'closebtn" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Insert Form</h4>
 	    	</div>
 
 	     	<div class="modal-body">';
@@ -170,36 +170,36 @@ class InsertForm{
 
 	private static function insertFormFooter(){
 		echo '</div>
-			<div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-success">Add</button>
+					<div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				        <button type="submit" class="btn btn-success">Add</button>
 				     </div>
 			    </div>
 			  </div>
-			</div>
+			</form>
 		';
 	}
 
 	private static function insertFileFormFooter(){
 		echo '</div>
-			<div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-success">Upload File</button>
-				     </div>
+					<div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				        <button type="submit" class="btn btn-success">Upload File</button>
+				    </div>
 			    </div>
 			  </div>
-			</div>
+			</form>
 		';	
 	}
 	private static function exportFileFormFooter(){
 		echo '</div>
-			<div class="modal-footer">
-	        <button type="button" class="btn btn-success">Xuất File</button>
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+					<div class="modal-footer">
+				        <button type="submit" class="btn btn-success">Xuất File</button>
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
 				     </div>
 			    </div>
 			  </div>
-			</div>
+			</form>
 		';			
 	}
 	// label type id name placeholder

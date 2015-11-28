@@ -10,7 +10,7 @@
 	@include('st-admin.includes.depart_sidebar')
 
 	<script type="text/javascript">
-		var element = document.getElementById("minis-menu").getElementsByTagName("li");
+		var element = document.getElementById("uni-menu").getElementsByTagName("li");
 		element[1].classList.add("active");
 	</script>
 
@@ -32,7 +32,7 @@
 				<br>
 				<br>
 
-				{{	InsertForm::SearchForm("clusid","clusname");	}}			
+				{{	InsertForm::SearchForm("majorid","majorname");	}}			
 
 
 				<br>
@@ -49,30 +49,98 @@
 					<td>ID</td>
 					<td>Mã ngành</td>
 					<td>Tên ngành</td>
+					<td>Chỉ tiêu</td>
 					<td>Action</td>
 					<td>Action</td>
 				</thead>
 				<tbody>
-					<td>1</td>
-					<td>HTTT</td>
-					<td>Hệ thống thông tin</td>
-					<td><button class="btn btn-success">Edit</button></td>
-					<td><button class="btn btn-danger">Delete</button></td>
+
+					@foreach ($majors as $major)
+					<tr>
+						<td>{{$major->id}}</td>
+						<td>{{$major->code}}</td>
+						<td>{{$major->name}}</td>
+						<td>{{$major->target}}</td>
+						<td><button class="btn btn-success" data-toggle="modal" data-target="#editMajorModal" onclick="editMajorForm({{$major->id}})">Edit</button></td>
+						<td><button class="btn btn-danger" onclick="deleteMajorForm({{$major->id}})">Delete</button></td>
+
+					</tr>
+					@endforeach
+
 				</tbody>
 
 				</table>
-					<ul class="pagination">
-					  <li class="active"><a href="#">1</a></li>
-					  <li><a href="#">2</a></li>
-					  <li><a href="#">3</a></li>
-					  <li><a href="#">4</a></li>
-					  <li><a href="#">5</a></li>
-					</ul>
+
 			</div>
 		</div>
 	</div>		{{	InsertForm::FileExport("exportExcelFile");	}}
 				{{	InsertForm::FileExcel("importExcelFile"); }}
 				{{	InsertForm::Major("addMajorModal");	}}			
+				{{	InsertForm::Major("editMajorModal");	}}
+				
+	<script type="text/javascript">
+		function editMajorForm(id){
+			console.log(id);
+			$.ajax({
+                url : "{{Asset('/st-admin/uni/mn_major_acc/edit')}}/"+id,
+                type : "GET",
+                data : {
+                     // number : $('#number').val()
+                },
+                success : function (result){
+                    
+                    console.log(result);	
+                    $modal = $('#editMajorModal').find('input');
+
+                    $($modal[0]).val("zyz"); // cần add thêm
+                }
+            });
+		}
+
+		function deleteMajorForm(id){
+
+			$.ajax({
+                url : "{{Asset('/st-admin/uni/mn_major_acc/del')}}/"+id,
+                type : "GET",
+                data : {
+                     // number : $('#number').val()
+                },
+                success : function (result){
+                    
+                    console.log(result);	
+                    alert("delete success");
+                }
+            });
+		}
+
+		$('#editMajorModal').submit(function(e)
+		{
+			console.log('ok');
+		    var postData = $(this).serializeArray();
+		    var formURL = $(this).attr("action");
+		    $.ajax(
+		    {
+		        url : "{{Asset('/st-admin/uni/mn_major_acc/update')}}",
+		        type: "POST",
+		        data : postData,
+		        success:function(data, textStatus, jqXHR) 
+		        {
+		            //data: return data from server
+		        },
+		        error: function(jqXHR, textStatus, errorThrown) 
+		        {
+		            //if fails      
+		        }
+		    });
+		    e.preventDefault(); //STOP default action
+		    // e.unbind(); //unbind. to stop multiple form submit.
+		    $('#editMajorModalclosebtn').click();
+		});
+		 
+			// $('#editMajorForm').submit(); //Submit  the FORM
+			
+
+	</script>				
 
 
 @stop

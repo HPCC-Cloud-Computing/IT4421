@@ -58,7 +58,7 @@
 						<td>{{$dept->code}}</td>
 						<td>{{$dept->name}}</td>
 						<td><button class="btn btn-success" data-toggle="modal" data-target="#editDepartModal" onclick="editDepartForm({{$dept->id}})">Edit</button></td>
-						<td><button class="btn btn-danger">Delete</button></td>
+						<td><button class="btn btn-danger" onclick="deleteDepartForm({{$dept->id}})">Delete</button></td>
 					</tr>
 					@endforeach
 
@@ -72,28 +72,69 @@
 				{{	InsertForm::FileExcel("importExcelFile"); }}
 				{{	InsertForm::DepartForm("addDepartModal");	}}		
 				{{	InsertForm::DepartForm("editDepartModal");	}}
-				<script type="text/javascript">
-					function editDepartForm(id){
-						console.log(id);
-						$.ajax({
-		                    url : "{{Asset('/st-admin/minis/mn_depart_acc/edit')}}/"+id,
-		                    type : "GET",
-		                    data : {
-		                         // number : $('#number').val()
-		                    },
-		                    success : function (result){
-		                        // $('#result').html(result);
-		                        
-		                        console.log(result);	
-		                        $modal = $('#editDepartModal').find('input');
-		                        // console.log($modal[0]);
-		                        $($modal[0]).val("zyz");
-		                        // var form = document.getElementById("editDepartModal").find("input");
-		                        // console.log(form);
-		                    }
-		                });
-					}
 
-				</script>
+	<script type="text/javascript">
+		function editDepartForm(id){
+			console.log(id);
+			$.ajax({
+                url : "{{Asset('/st-admin/minis/mn_depart_acc/edit')}}/"+id,
+                type : "GET",
+                data : {
+                     // number : $('#number').val()
+                },
+                success : function (result){
+                    
+                    console.log(result);	
+                    $modal = $('#editDepartModal').find('input');
+
+                    $($modal[0]).val("zyz"); // cần add thêm
+                }
+            });
+		}
+
+		function deleteDepartForm(id){
+
+			$.ajax({
+                url : "{{Asset('/st-admin/minis/mn_depart_acc/del')}}/"+id,
+                type : "GET",
+                data : {
+                     // number : $('#number').val()
+                },
+                success : function (result){
+                    
+                    console.log(result);	
+                    alert("delete success");
+                }
+            });
+		}
+
+		$('#editDepartModal').submit(function(e)
+		{
+			console.log('ok');
+		    var postData = $(this).serializeArray();
+		    var formURL = $(this).attr("action");
+		    $.ajax(
+		    {
+		        url : "{{Asset('/st-admin/minis/mn_depart_acc/update')}}",
+		        type: "POST",
+		        data : postData,
+		        success:function(data, textStatus, jqXHR) 
+		        {
+		            //data: return data from server
+		        },
+		        error: function(jqXHR, textStatus, errorThrown) 
+		        {
+		            //if fails      
+		        }
+		    });
+		    e.preventDefault(); //STOP default action
+		    // e.unbind(); //unbind. to stop multiple form submit.
+		    $('#editDepartModalclosebtn').click();
+		});
+		 
+			// $('#editDepartForm').submit(); //Submit  the FORM
+			
+
+	</script>
 
 @stop

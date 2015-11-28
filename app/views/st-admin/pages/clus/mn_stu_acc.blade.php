@@ -32,7 +32,7 @@
 				<br>
 				<br>
 
-				{{	InsertForm::SearchForm("clusid","clusname");	}}			
+				{{	InsertForm::SearchForm("stuid","stuname");	}}			
 
 
 				<br>
@@ -53,26 +53,92 @@
 					<td>Action</td>
 				</thead>
 				<tbody>
-					<td>1</td>
-					<td>BKA14008</td>
-					<td>Nguyễn Tuấn Kiên</td>
-					<td><button class="btn btn-success">Edit</button></td>
-					<td><button class="btn btn-danger">Delete</button></td>
+
+					@foreach ($students as $student)
+					<tr>
+						<td>{{$student->id}}</td>
+						<td>{{$student->code}}</td>
+						<td>{{$student->name}}</td>
+						<td><button class="btn btn-success" data-toggle="modal" data-target="#editStuModal" onclick="editStuForm({{$student->id}})">Edit</button></td>
+						<td><button class="btn btn-danger" onclick="deleteStuForm({{$student->id}})">Delete</button></td>
+
+					</tr>
+					@endforeach
 				</tbody>
 
 				</table>
-					<ul class="pagination">
-					  <li><a href="#">1</a></li>
-					  <li><a href="#">2</a></li>
-					  <li><a href="#">3</a></li>
-					  <li><a href="#">4</a></li>
-					  <li><a href="#">5</a></li>
-					</ul>
+				<?php echo $students->links(); ?>
 			</div>
 		</div>
 	</div>		{{	InsertForm::FileExport("exportExcelFile");	}}
 				{{	InsertForm::FileExcel("importExcelFile"); }}
 				{{	InsertForm::Student("addStuModal");	}}			
+
+				{{	InsertForm::StuForm("editStuModal");	}}
+				
+	<script type="text/javascript">
+		function editStuForm(id){
+			console.log(id);
+			$.ajax({
+                url : "{{Asset('/st-admin/minis/mn_stu_acc/edit')}}/"+id,
+                type : "GET",
+                data : {
+                     // number : $('#number').val()
+                },
+                success : function (result){
+                    
+                    console.log(result);	
+                    $modal = $('#editStuModal').find('input');
+
+                    $($modal[0]).val("zyz"); // cần add thêm
+                }
+            });
+		}
+
+		function deleteStuForm(id){
+
+			$.ajax({
+                url : "{{Asset('/st-admin/minis/mn_stu_acc/del')}}/"+id,
+                type : "GET",
+                data : {
+                     // number : $('#number').val()
+                },
+                success : function (result){
+                    
+                    console.log(result);	
+                    alert("delete success");
+                }
+            });
+		}
+
+		$('#editStuModal').submit(function(e)
+		{
+			console.log('ok');
+		    var postData = $(this).serializeArray();
+		    var formURL = $(this).attr("action");
+		    $.ajax(
+		    {
+		        url : "{{Asset('/st-admin/minis/mn_stu_acc/update')}}",
+		        type: "POST",
+		        data : postData,
+		        success:function(data, textStatus, jqXHR) 
+		        {
+		            //data: return data from server
+		        },
+		        error: function(jqXHR, textStatus, errorThrown) 
+		        {
+		            //if fails      
+		        }
+		    });
+		    e.preventDefault(); //STOP default action
+		    // e.unbind(); //unbind. to stop multiple form submit.
+		    $('#editStuModalclosebtn').click();
+		});
+		 
+			// $('#editStuForm').submit(); //Submit  the FORM
+			
+
+	</script>
 
 
 @stop
