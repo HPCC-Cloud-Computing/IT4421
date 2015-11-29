@@ -7,6 +7,15 @@ class MajorController extends \BaseController {
 	 *
 	 * @return Response
 	 */
+
+	public function search($code,$name)
+	{
+		// dd($code.' '.$name);
+		$major = Major::where('code','like','%'.$code.'%')->orWhere('name','like','%'.$name.'%')->paginate(10);
+		return View::make('st-admin.pages.uni.mn_major', 
+			array('majors' => $major));
+	}
+
 	public function index()
 	{
 		// $university_id = Input::get('university_id');
@@ -56,19 +65,26 @@ class MajorController extends \BaseController {
 		}
 	}
 
-	public function update($data)
+	public function edit($id)
 	{
-		$major = Major::find($data['id']);
-		$major->code = $data['code'];
-		$major->university_id = $data['university_id'];
-		$major->name = $data['name'];
-		$major->target = $data['target'];
-		$major->condition = $data['condition'];
-		$major->info = $data['info'];
-		$check = $major->push();
-		if ($check) return 'true';
-		else return 'false';
+
+		$major = Major::find($id);			
+		echo json_encode(array('major'=>$major,JSON_UNESCAPED_UNICODE));
 	}
+
+	public function update()
+	{
+		$data = Input::all();	
+		$major = Major::find(intval($data['id']));
+		$result = $major->update($data);						
+		if($result){			
+				echo 'success';			
+				exit();				
+		}
+		echo 'failed';		
+	}
+
+
 
 	//Hien thi giao dien them nganh hoc
 	public function add_major_show()
@@ -85,55 +101,49 @@ class MajorController extends \BaseController {
 	}
 
 		//Hien thi giao dien them nganh hoc
-	public function edit_major_show()
+	// public function edit_major_show()
+	// {
+	// 	$major = Major::find(Input::get('id'));
+	// 	return $major;
+	// 	# code...
+	// }
+
+	// //Thuc hien sua nganh hoc
+	// public function edit_major()
+	// {
+	// 	// $data = Input::all();
+
+
+	// 	$rule = array(
+	// 	        'code' => 'required|unique:majors,code,'.$data['id'],
+	// 	        'university_id' => 'required',
+	// 		);
+	// 	//thong bao khi khong thoa man dieu kien
+	// 	$message = array(
+	// 			'required' => 'chua dien thong tin',
+	// 			'unique' => 'bi trung ma nganh'
+	// 		);
+	// 	$validator = Validator::make($data,$rule,$message);
+	// 	print_r($data);
+	// 	if ($validator->passes())
+	// 	{
+	// 	    MajorController::update($data);
+	// 	    return 'true';
+	// 	}
+	// 	else {
+	// 		print_r($messages = $validator->messages());
+	// 		return 'false';
+	// 	}
+	// }
+
+
+	public function destroy($id)
 	{
-		$major = Major::find(Input::get('id'));
-		return $major;
-		# code...
-	}
-
-	//Thuc hien sua nganh hoc
-	public function edit_major()
-	{
-		// $data = Input::all();
-
-		$data = array(
-					'id' => 14,
-					'code' => 'major_test_3',
-					'university_id' => $university_id,
-					'name' => 'cntt',
-					'target' => '400',
-					'condition' => 'tot nghiep thpt loai gioi',
-					'info' => 'info_test_2'
-				); 
-			//dieu kien data
-		$rule = array(
-		        'code' => 'required|unique:majors,code,'.$data['id'],
-		        'university_id' => 'required',
-			);
-		//thong bao khi khong thoa man dieu kien
-		$message = array(
-				'required' => 'chua dien thong tin',
-				'unique' => 'bi trung ma nganh'
-			);
-		$validator = Validator::make($data,$rule,$message);
-		print_r($data);
-		if ($validator->passes())
-		{
-		    MajorController::update($data);
-		    return 'true';
-		}
-		else {
-			print_r($messages = $validator->messages());
-			return 'false';
-		}
-	}
-
-
-	public function delete_major($university_id)
-	{
-		$major = Major::find(Input::get('id'));
-		$major->delete();
+		$result=Major::find(intval($id))->delete();
+		if($result>0)
+			echo "success";
+		else
+			echo "failed";
 	}
 
 	public function get_list(){

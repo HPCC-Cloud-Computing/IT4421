@@ -74,7 +74,7 @@
 				{{	InsertForm::FileExcel("importExcelFile"); }}
 				{{	InsertForm::Student("addStuModal");	}}			
 
-				{{	InsertForm::StuForm("editStuModal");	}}
+				{{	EditForm::StuForm("editStuModal");	}}
 				
 	<script type="text/javascript">
 		function editStuForm(id){

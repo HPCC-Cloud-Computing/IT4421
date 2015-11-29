@@ -2,22 +2,24 @@
 @extends('st-admin.layout.layout')
 
 @section('title')
-	Trang quan li cua BGDDT
+	Trang quan li cua Cum Thi
 @stop
 
 @section('sidebar')
 
-	@include('st-admin.includes.depart_sidebar')
+	@include('st-admin.includes.uni_sidebar')
 
 	<script type="text/javascript">
 		var element = document.getElementById("uni-menu").getElementsByTagName("li");
 		element[1].classList.add("active");
+		// console.log(element[0]);
 	</script>
 
 @stop
 
 @section('content')
 <!-- <div id="main"> -->
+	 <div id="main"> -->
 
 	<div class="content">
 		<div class="row">

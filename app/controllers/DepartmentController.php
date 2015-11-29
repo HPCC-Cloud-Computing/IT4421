@@ -8,6 +8,14 @@ class DepartmentController extends \BaseController {
 	 *
 	 * @return Response
 	 */
+
+	public function search($code,$name)
+	{
+		// dd($code.' '.$name);
+		$depts = Department::where('code','like','%'.$code.'%')->orWhere('name','like','%'.$name.'%')->paginate(10);
+		return View::make('st-admin.pages.minis.mn_depart_acc')->with('depts',$depts);
+	}
+	
 	public function get_list()
 	{
 		$depts = Department::all();
@@ -102,13 +110,16 @@ class DepartmentController extends \BaseController {
 
 	public function get_students($id)
 	{
-		$dept = Department::with('students')->find($id);		
-		$students = $dept->students();		
-		return $students ;
+		$dept = Department::find($id);		
+		$students = $dept->students;		
+		dd($students);
+		// return $students ;
 	}
-	public function manage_student_page(){		
-		$id = Session::get('dept_id');
-		return View::make('st-admin.pages.depart.mn_stu_acc',array('students' => $this->get_students($id)));
+	public function manage_student_page($id){		
+		// $id = Session::get('dept_id');
+		$dept = Department::find($id);
+		dd($dept->students);
+		// return View::make('st-admin.pages.depart.mn_stu_acc',array('students' => $dept->students));
 	}
 	public function syn_result(){
 		return View::make('st-admin.pages.depart.syn_result');
@@ -122,6 +133,7 @@ class DepartmentController extends \BaseController {
 	 */
 	public function edit($id)
 	{
+
 		$dept = Department::find($id);			
 		echo json_encode(array('dept'=>$dept,JSON_UNESCAPED_UNICODE));
 	}
@@ -135,18 +147,24 @@ class DepartmentController extends \BaseController {
 	 */
 	public function update()
 	{
-		$data = Input::get('data');		
+		$data = Input::all();	
+		// $data = Input::get('departcode');	
+		// echo $data;
+		
 		// $data = '{"dept":{"id":81,"code":"adsf_new","name":"sdfasdfsd"},"user":{"id":8,"username":"dfsdf_new","password":"dsafdsf","email":"43243324"}}';
-		$data = json_decode($data,true);
-		$dept = Department::find(intval($data['dept']['id']));
-		$result = $dept->update($data['dept']);						
+		// $data = json_decode($data,true);
+		$dept = Department::find(intval($data['id']));
+		// print_r($dept);
+		// exit();
+		$result = $dept->update($data);						
 		if($result){			
-			$user = new User($data['user']);
-			$result = $dept->user()->update($data['user']);
-			if($result){
+			// $user = new User($data['user']);
+			// $result = $dept->user()->update($data['user']);
+			// if($result){
+			// print_r($result);
 				echo 'success';			
 				exit();
-			}				
+			// }				
 		}
 		echo 'failed';		
 	}

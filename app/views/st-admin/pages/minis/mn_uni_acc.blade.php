@@ -32,7 +32,7 @@
 				<br>
 				<br>
 
-				{{	InsertForm::SearchForm("departid","departname");	}}			
+				{{	InsertForm::SearchForm("uniid","uniname");	}}			
 
 				<br>
 				<button type = "submit" class="btn btn-success" data-toggle="modal" data-target="#addUniModal">Add new data</button> 
@@ -70,7 +70,7 @@
 	{{	InsertForm::FileExport("exportExcelFile");	}}
 	{{	InsertForm::FileExcel("importExcelFile"); }}
 	{{	InsertForm::DepartForm("addUniModal");	}}		
-{{	InsertForm::UniForm("editUniModal");	}}
+{{	EditForm::UniForm("editUniModal");	}}
 				
 	<script type="text/javascript">
 		function editUniForm(id){
@@ -82,11 +82,14 @@
                      // number : $('#number').val()
                 },
                 success : function (result){
-                    
+                    var obj = jQuery.parseJSON(result);
                     console.log(result);	
                     $modal = $('#editUniModal').find('input');
 
-                    $($modal[0]).val("zyz"); // cần add thêm
+                    $($modal[0]).val(obj.university.id);
+                    $($modal[1]).val(obj.university.code); // cần add thêm
+                    $($modal[2]).val(obj.university.name);
+                    $($modal[3]).val(obj.university.info);
                 }
             });
 		}
@@ -120,6 +123,7 @@
 		        success:function(data, textStatus, jqXHR) 
 		        {
 		            //data: return data from server
+		            location.reload();
 		        },
 		        error: function(jqXHR, textStatus, errorThrown) 
 		        {
@@ -134,6 +138,31 @@
 			// $('#editUniForm').submit(); //Submit  the FORM
 			
 
+		$('#addClusModal').submit(function(e)
+		{
+			// console.log('ok');
+		    var data = $(this).serializeArray();
+
+		    var formURL = $(this).attr("action");
+		    $.ajax(
+		    {
+		        url : "{{Asset('/st-admin/minis/mn_clus_acc/add')}}",
+		        type: "POST",
+		        data : data,
+		        success:function(data, textStatus, jqXHR) 
+		        {
+		            //data: return data from server
+		            location.reload();
+		        },
+		        error: function(jqXHR, textStatus, errorThrown) 
+		        {
+		            //if fails      
+		        }
+		    });
+		    e.preventDefault(); //STOP default action
+		    // e.unbind(); //unbind. to stop multiple form submit.
+		    $('#editClusModalclosebtn').click();
+		});
 	</script>
 
 

@@ -17,16 +17,16 @@ class InsertForm{
 	}
 // Modal Form Group: label type id name placeholder
 //id truyen vao la id cua Modal. trong button Data-target = id.
-	public static function ClusterForm($id){
+	public static function ClusForm($id){
 		InsertForm:: insertFormHeader($id);
 		InsertForm:: modalFormGroup("Usename","text","","username","Username");
     	InsertForm:: modalFormGroup("Password","text","","password","Password");
     	InsertForm:: modalFormGroup("Email","text","","email","Email");
-    	InsertForm:: modalFixedFormGroup("Userable id","number","","userable_type_id",2);
-    	InsertForm:: modalFixedFormGroup("Userable type","text","","userable_type","cluster");
+    	// InsertForm:: modalFixedFormGroup("Userable id","number","","userable_type_id",1);
+    	// InsertForm:: modalFixedFormGroup("Userable type","text","","userable_type","cluster");
 		//cluster table
-		InsertForm:: modalFormGroup("Code","text","","cluscode","Code");
-		InsertForm:: modalFormGroup("Name","text","","clusname","Name");
+		InsertForm:: modalFormGroup("Code","text","","code","Code");
+		InsertForm:: modalFormGroup("Name","text","","name","Name");
 		InsertForm:: insertFormFooter();
 
 	}
@@ -37,11 +37,11 @@ class InsertForm{
 		InsertForm:: modalFormGroup("Usename","text","","username","Username");
     	InsertForm:: modalFormGroup("Password","text","","password","Password");
     	InsertForm:: modalFormGroup("Email","text","","email","Email");
-    	InsertForm:: modalFixedFormGroup("Userable id","number","","userable_type_id",2);
-    	InsertForm:: modalFixedFormGroup("Userable type","text","","userable_type","cluster");
+    	// InsertForm:: modalFixedFormGroup("Userable id","number","","userable_type_id",2);
+    	// InsertForm:: modalFixedFormGroup("Userable type","text","","userable_type","deparment");
 		//cluster table
-		InsertForm:: modalFormGroup("Code","text","","cluscode","Code");
-		InsertForm:: modalFormGroup("Name","text","","clusname","Name");
+		InsertForm:: modalFormGroup("Code","text","","code","Code");
+		InsertForm:: modalFormGroup("Name","text","","name","Name");
 		InsertForm:: insertFormFooter();
 	}
 
@@ -51,8 +51,8 @@ class InsertForm{
 		InsertForm:: modalFormGroup("Usename","text","","username","Username");
 		InsertForm:: modalFormGroup("Password","text","","password","Password");
 		InsertForm:: modalFormGroup("Email","text","","email","Email");
-		InsertForm:: modalFixedFormGroup("Userable id","number","","userable_type_id",2);
-		InsertForm:: modalFixedFormGroup("Userable type","text","","userable_type","cluster");
+		// InsertForm:: modalFixedFormGroup("Userable id","number","","userable_type_id",3);
+		// InsertForm:: modalFixedFormGroup("Userable type","text","","userable_type","university");
 		//university table
 		InsertForm::modalFormGroup("Code","text","","","");
 		InsertForm:: modalFormGroup("Name","text","","","");
@@ -66,8 +66,8 @@ class InsertForm{
 		InsertForm:: modalFormGroup("Usename","text","","username","Username");
 		InsertForm:: modalFormGroup("Password","text","","password","Password");
 		InsertForm:: modalFormGroup("Email","text","","email","Email");
-		InsertForm:: modalFixedFormGroup("Userable id","number","","userable_type_id",2);
-		InsertForm:: modalFixedFormGroup("Userable type","text","","userable_type","cluster");
+		InsertForm:: modalFixedFormGroup("Userable id","number","","userable_type_id",4);
+		InsertForm:: modalFixedFormGroup("Userable type","text","","userable_type","student");
 		//students table
 		InsertForm:: modalFormGroup("Profile Code ","text","","profile_code","profile_code");
 		InsertForm:: modalFormGroup("Registration_number","text","","registration_number","registration_number");

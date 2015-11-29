@@ -72,7 +72,7 @@
 	</div>		{{	InsertForm::FileExport("exportExcelFile");	}}
 				{{	InsertForm::FileExcel("importExcelFile"); }}
 				{{	InsertForm::ClusForm("addClusModal");	}}			
-				{{	InsertForm::ClusForm("editClusModal");	}}
+				{{	EditForm::ClusForm("editClusModal");	}}
 				
 	<script type="text/javascript">
 		function editClusForm(id){
@@ -85,10 +85,14 @@
                 },
                 success : function (result){
                     
-                    console.log(result);	
+                    // console.log(result);	
+                    var obj = jQuery.parseJSON(result);
+                    // console.log(obj.cluster.name);
                     $modal = $('#editClusModal').find('input');
-
-                    $($modal[0]).val("zyz"); // cần add thêm
+					
+					$($modal[0]).val(obj.cluster.id);
+                    $($modal[1]).val(obj.cluster.code); // cần add thêm
+                    $($modal[2]).val(obj.cluster.name);
                 }
             });
 		}
@@ -112,16 +116,18 @@
 		$('#editClusModal').submit(function(e)
 		{
 			console.log('ok');
-		    var postData = $(this).serializeArray();
+		    var data = $(this).serializeArray();
+
 		    var formURL = $(this).attr("action");
 		    $.ajax(
 		    {
 		        url : "{{Asset('/st-admin/minis/mn_clus_acc/update')}}",
 		        type: "POST",
-		        data : postData,
+		        data : data,
 		        success:function(data, textStatus, jqXHR) 
 		        {
 		            //data: return data from server
+		            location.reload();
 		        },
 		        error: function(jqXHR, textStatus, errorThrown) 
 		        {
@@ -133,7 +139,32 @@
 		    $('#editClusModalclosebtn').click();
 		});
 		 
-			// $('#editClusForm').submit(); //Submit  the FORM
+
+		$('#addClusModal').submit(function(e)
+		{
+			// console.log('ok');
+		    var data = $(this).serializeArray();
+
+		    var formURL = $(this).attr("action");
+		    $.ajax(
+		    {
+		        url : "{{Asset('/st-admin/minis/mn_clus_acc/add')}}",
+		        type: "POST",
+		        data : data,
+		        success:function(data, textStatus, jqXHR) 
+		        {
+		            //data: return data from server
+		            location.reload();
+		        },
+		        error: function(jqXHR, textStatus, errorThrown) 
+		        {
+		            //if fails      
+		        }
+		    });
+		    e.preventDefault(); //STOP default action
+		    // e.unbind(); //unbind. to stop multiple form submit.
+		    $('#editClusModalclosebtn').click();
+		});
 			
 
 	</script>

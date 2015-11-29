@@ -2,15 +2,23 @@
 // require_once (dirname(__FILE__).'/Excel/reader.php');
 // require_once (dirname(__FILE__).'/Utils.php');
 class UniversityController extends \BaseController {	
-	protected $column = array('code','name','info');		
+	protected $column = array('code','name','info');
+	
+	public function search($code,$name)
+	{
+		// dd($code.' '.$name);
+		$universitys = University::where('code','like','%'.$code.'%')->orWhere('name','like','%'.$name.'%')->paginate(10);
+		return View::make('st-admin.pages.minis.mn_uni_acc')->with('universitys',$universitys);
+	}		
 	
 	public function index(){
 		return View::make('st-admin.pages.uni.uni');	
 	}
 	public function manage_major_page(){	
-		$id = Session::get('id');	
+		// $id = Auth::user()->userable_id;
+		$id = 2;	
 		return View::make('st-admin.pages.uni.mn_major', 
-			array('university' => $university, 'majors' => $this->get_majors($id)));
+			array('majors' => $this->get_majors($id)));
 	}
 	public function get_majors($id){
 		$university = University::find($id);
@@ -134,20 +142,26 @@ class UniversityController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update()
+public function update()
 	{
-		$data = Input::get('data');		
+		$data = Input::all();	
+		// $data = Input::get('departcode');	
+		// echo $data;
+		
 		// $data = '{"dept":{"id":81,"code":"adsf_new","name":"sdfasdfsd"},"user":{"id":8,"username":"dfsdf_new","password":"dsafdsf","email":"43243324"}}';
-		$data = json_decode($data,true);
-		$university = University::find(intval($data['university']['id']));
-		$result = $university->update($data['university']);						
+		// $data = json_decode($data,true);
+		$university = University::find(intval($data['id']));
+		// print_r($dept);
+		// exit();
+		$result = $university->update($data);						
 		if($result){			
-			$user = new User($data['user']);
-			$result = $university->user()->update($data['user']);
-			if($result){
+			// $user = new User($data['user']);
+			// $result = $dept->user()->update($data['user']);
+			// if($result){
+			// print_r($result);
 				echo 'success';			
 				exit();
-			}				
+			// }				
 		}
 		echo 'failed';		
 	}

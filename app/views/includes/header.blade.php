@@ -1,4 +1,4 @@
-<!-- header in clude banner -->
+ header in clude banner -->
 <!--banner -->
 <div class="container">
 	<h1 class="header-logo col-md-8 col-sm-8 logo hidden-xs">
@@ -17,7 +17,8 @@
 			@if(Auth::user()->userable_type=='student')
 			<ul class="hello-user navbar-right">
 				<li class="divider">
-					Xin chào bạn <b>{{Student::find(Auth::user()->userable_id)->firstname.' '.Student::find(Auth::user()->userable_id)->lastname}}</b>
+					<!-- Xin chào bạn <b>{{Student::find(Auth::user()->userable_id)->firstname.' '.Student::find(Auth::user()->userable_id)->lastname}}</b> -->
+					Xin chào bạn <b>{{Auth::user()->userable->firstname.' '.Auth::user()->userable->lastname}}</b>
 				</li>
 				<li>
 					<a href="{{Asset('/logout')}}">Thoát</a>
@@ -53,4 +54,4 @@
 		</div>
 	</div>
 </div>
-<!--end of banner-->
+<!--end of banner

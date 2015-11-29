@@ -71,7 +71,7 @@
 	</div>		{{	InsertForm::FileExport("exportExcelFile");	}}
 				{{	InsertForm::FileExcel("importExcelFile"); }}
 				{{	InsertForm::DepartForm("addDepartModal");	}}		
-				{{	InsertForm::DepartForm("editDepartModal");	}}
+				{{	EditForm::DepartForm("editDepartModal");	}}
 
 	<script type="text/javascript">
 		function editDepartForm(id){
@@ -84,10 +84,13 @@
                 },
                 success : function (result){
                     
-                    console.log(result);	
+                    var obj = jQuery.parseJSON(result);
+                    // console.log(obj.cluster.name);
                     $modal = $('#editDepartModal').find('input');
-
-                    $($modal[0]).val("zyz"); // cần add thêm
+                    // console.log(obj);
+                    $($modal[0]).val(obj.dept.id);
+                    $($modal[1]).val(obj.dept.code); // cần add thêm
+                    $($modal[2]).val(obj.dept.name);
                 }
             });
 		}
@@ -111,16 +114,17 @@
 		$('#editDepartModal').submit(function(e)
 		{
 			console.log('ok');
-		    var postData = $(this).serializeArray();
-		    var formURL = $(this).attr("action");
+		    var data = $(this).serializeArray();
+		    // var formURL = $(this).attr("action");
 		    $.ajax(
 		    {
 		        url : "{{Asset('/st-admin/minis/mn_depart_acc/update')}}",
 		        type: "POST",
-		        data : postData,
+		        data : data,
 		        success:function(data, textStatus, jqXHR) 
 		        {
 		            //data: return data from server
+		            console.log(data);
 		        },
 		        error: function(jqXHR, textStatus, errorThrown) 
 		        {
@@ -135,6 +139,31 @@
 			// $('#editDepartForm').submit(); //Submit  the FORM
 			
 
+		$('#addClusModal').submit(function(e)
+		{
+			// console.log('ok');
+		    var data = $(this).serializeArray();
+
+		    var formURL = $(this).attr("action");
+		    $.ajax(
+		    {
+		        url : "{{Asset('/st-admin/minis/mn_depart_acc/add')}}",
+		        type: "POST",
+		        data : data,
+		        success:function(data, textStatus, jqXHR) 
+		        {
+		            //data: return data from server
+		            location.reload();
+		        },
+		        error: function(jqXHR, textStatus, errorThrown) 
+		        {
+		            //if fails      
+		        }
+		    });
+		    e.preventDefault(); //STOP default action
+		    // e.unbind(); //unbind. to stop multiple form submit.
+		    $('#editClusModalclosebtn').click();
+		});
 	</script>
 
 @stop

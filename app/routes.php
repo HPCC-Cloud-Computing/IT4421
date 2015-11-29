@@ -82,6 +82,8 @@ Route::get('/st-admin/minis/mn_depart_acc/edit/{id}','DepartmentController@edit'
 // Sua: Post thong tin sua len server
 // $data = '{"dept":{"id":81,"code":"adsf_new","name":"sdfasdfsd"},"user":{"id":8,"username":"dfsdf_new","password":"dsafdsf","email":"43243324"}}';
 Route::post('/st-admin/minis/mn_depart_acc/update','DepartmentController@update');
+// search
+Route::get('/st-admin/minis/mn_depart_acc/search/{code}/{name}','DepartmentController@search');
 // Them
 Route::post('/st-admin/minis/mn_depart_acc/add_many','DepartmentController@add_many');
 // $data = '{"depart":{"code":"adsf","name":"sdfasdfsd"},"user":{"username":"dfsdf","password":"dsafdsf","email":"43243324"}}';
@@ -97,6 +99,8 @@ Route::get('/st-admin/minis/mn_clus_acc/list','ClusterController@get_list');
 Route::get('/st-admin/minis/mn_clus_acc/edit/{id}','ClusterController@edit');
 // Sua: Post thong tin sua len server
 Route::post('/st-admin/minis/mn_clus_acc/update','ClusterController@update');
+// search
+Route::get('/st-admin/minis/mn_clus_acc/search/{code}/{name}','ClusterController@search');
 // Them
 Route::post('/st-admin/minis/mn_clus_acc/add/add_many','ClusterController@add_many');
 Route::post('/st-admin/minis/mn_clus_acc/add/add_one','ClusterController@add');
@@ -112,6 +116,8 @@ Route::get('/st-admin/minis/mn_uni_acc/list','UniversityController@get_list');
 Route::get('/st-admin/minis/mn_uni_acc/edit/{id}','UniversityController@edit');
 // Sua: Post thong tin sua len server
 Route::post('/st-admin/minis/mn_uni_acc/update','UniversityController@update');
+// search
+Route::get('/st-admin/minis/mn_uni_acc/search/{code}/{name}','UniversityController@search');
 // Them
 Route::post('/st-admin/minis/mn_uni_acc/add/add_many','UniversityController@add_many');
 Route::post('/st-admin/minis/mn_uni_acc/add/add_one','UniversityController@add');
@@ -141,7 +147,7 @@ Route::get('/st-admin/clus/mn_exam_room/delete/{id}', 'ExamRoomController@destro
 //----------------------------------department management page---------------------------------
 Route::get('/st-admin/depart','DepartmentController@index');
 // Doan nay k can truyen id cua dept vi lay tu session
-Route::get('/st-admin/depart/mn_stu_acc','DepartmentController@manage_student_page');
+Route::get('/st-admin/depart/mn_stu_acc/{id}','DepartmentController@manage_student_page');
 Route::get('/st-admin/depart/syn_result','DepartmentController@syn_result');
 //------------------------------------------end-------------------------------------------------
 
@@ -152,6 +158,7 @@ Route::get('/st-admin/uni/syn_result','UniversityController@syn_result');
 //------------------------------------------end-------------------------------------------------
 
 //----------------------------------Major management page------------------------------------------------
+Route::get('/st-admin/uni/mn_major/search/{code}/{name}','MajorController@search');
 Route::get('/major/index/{university_id}','MajorController@index'); //liet ke cac nganh cua truong co id
 Route::get('/major/{university_id}/add_major','MajorController@add_major'); //them nganh cua truong co id
 Route::get('/major/{university_id}/edit_major','MajorController@edit_major'); //sua nganh cua truong co id

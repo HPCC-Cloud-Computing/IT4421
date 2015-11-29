@@ -8,6 +8,14 @@ class ClusterController extends \BaseController {
 	 *
 	 * @return Response
 	 */
+
+	public function search($code,$name)
+	{
+		// dd($code.' '.$name);
+		$clusters = Cluster::where('code','like','%'.$code.'%')->orWhere('name','like','%'.$name.'%')->paginate(10);
+		return View::make('st-admin.pages.minis.mn_clus_acc')->with('clusters',$clusters);
+	}
+
 	public function get_list()
 	{
 		$clusters = Cluster::all();
@@ -147,19 +155,26 @@ class ClusterController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update()
+public function update()
 	{
-		$data = Input::get('data');				
-		$data = json_decode($data,true);
-		$cluster = Cluster::find(intval($data['cluster']['id']));
-		$result = $cluster->update($data['cluster']);						
+		$data = Input::all();	
+		// $data = Input::get('departcode');	
+		// echo $data;
+		
+		// $data = '{"dept":{"id":81,"code":"adsf_new","name":"sdfasdfsd"},"user":{"id":8,"username":"dfsdf_new","password":"dsafdsf","email":"43243324"}}';
+		// $data = json_decode($data,true);
+		$cluster = Cluster::find(intval($data['id']));
+		// print_r($dept);
+		// exit();
+		$result = $cluster->update($data);						
 		if($result){			
-			$user = new User($data['user']);
-			$result = $cluster->user()->update($data['user']);
-			if($result){
+			// $user = new User($data['user']);
+			// $result = $dept->user()->update($data['user']);
+			// if($result){
+			// print_r($result);
 				echo 'success';			
 				exit();
-			}				
+			// }				
 		}
 		echo 'failed';		
 	}
