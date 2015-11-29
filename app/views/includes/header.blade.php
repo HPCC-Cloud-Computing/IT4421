@@ -1,4 +1,4 @@
- header in clude banner -->
+<!-- header in clude banner -->
 <!--banner -->
 <div class="container">
 	<h1 class="header-logo col-md-8 col-sm-8 logo hidden-xs">

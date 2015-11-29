@@ -41,15 +41,26 @@ Route::get('/contact', function()
 	return View::make('pages.contact');
 });
 
-//Trang thông tin người dùng
-Route::get('/stu/profile', function(){
-	return View::make('pages.stu.profile');
+//Can dang nhap
+
+Route::group(array('before' => 'auth'), function(){
+	//Trang thông tin người dùng
+	Route::get('/stu/profile', function(){
+		return View::make('pages.stu.profile');
+	});	
+
+	//Trang đăng ký xét tuyển
+	Route::get('/stu/aspiration_reg', array('before'=>'trong_tuyen_sinh',function(){
+		return View::make('pages.stu.aspiration_reg');
+	}));	
+
+
 });
 
-//Trang đăng ký xét tuyển
-Route::get('/stu/aspiration_reg', function(){
-	return View::make('pages.stu.aspiration_reg');
-});
+
+
+
+
 
 //st-admin -- LuanBN + HuanPC--------------------------------------------------------------------
 //---------------------------------------minister page-------------------------------------------
