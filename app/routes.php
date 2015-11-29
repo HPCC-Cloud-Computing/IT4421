@@ -18,19 +18,7 @@ Route::get('/404', function(){
 });
 
 //Trang chủ
-Route::get('/', function(){
-	if(isset(Auth::user()->userable_type)){
-		if (Auth::user()->userable_type == 'minister')
-			return Redirect::to('/st-admin/minis');
-		if (Auth::user()->userable_type == 'department')
-			return Redirect::to('/st-admin/depart');
-		if (Auth::user()->userable_type == 'cluster')
-			return Redirect::to('/st-admin/clus');
-		if (Auth::user()->userable_type == 'university')
-			return Redirect::to('/st-admin/uni');
-	}
-	return View::make('pages.home');
-});
+Route::get('/', 'HomeController@index');
 
 //Trang thông báo
 Route::get('/notice', 'NoticeController@index');
@@ -72,9 +60,7 @@ Route::group(array('before' => array('auth','student')), function(){
 	//Filter trong tuyen sinh
 	Route::group(array('before'=>'trong_tuyen_sinh'),function(){
 		//Trang đăng ký xét tuyển
-		Route::get('/stu/aspiration_reg', array('before'=>'trong_tuyen_sinh'),function(){
-			return View::make('pages.stu.aspiration_reg');
-		});
+		Route::get('/stu/aspiration_reg','WishController@aspiration_reg');
 	});
 
 	//Filter sau tuyen sinh

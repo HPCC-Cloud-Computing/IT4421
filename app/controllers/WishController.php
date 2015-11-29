@@ -7,6 +7,13 @@ class WishController extends \BaseController {
 	 *
 	 * @return Response
 	 */
+
+	public function aspiration_reg(){
+		
+		return View::make('pages.stu.aspiration_reg');
+	} 
+
+
 	public function index($student_id)
 	{
 		$student = Student::find($student_id);

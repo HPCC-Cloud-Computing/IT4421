@@ -45,7 +45,8 @@ class NoticeController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		return View::make('pages.notice')->with('id',$id);
+		$notice = Notice::find($id);
+		return View::make('pages.notice')->with('notice',$notice);
 	}
 
 

@@ -13,51 +13,22 @@
   <div class="panel-body" style="padding: 0">
     <div class="main-news">
       <ul class="news">
+      @foreach ($notices as $notice)
         <li class="divider">
           <div class="news-item">
             <div class="news-title">
-              <a href="{{Asset('/notice/1')}}">Thông báo 1</a>
+              <a href="{{Asset('/notice/').$notice->id}}">{{$notice->title}}</a>
             </div>
             <div class="news-detail">
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua...
+                {{substr($notice->title, 0, 100)}}
               </p>
                 <i class="fa fa-calendar"></i>
-                30/10/2015 08:00
+                {{$notice->created_at}}
             </div>
           </div>
         </li>
-        <li class="divider">
-          <div class="news-item">
-            <div class="news-title">
-              <a href="#">Thông báo 2</a>
-            </div>
-            <div class="news-detail">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua...
-              </p>
-                <i class="fa fa-calendar"></i>
-                30/10/2015 08:00
-            </div>
-          </div>
-        </li>
-        <li class="divider">
-          <div class="news-item">
-            <div class="news-title">
-              <a href="#">Thông báo 3</a>
-            </div>
-            <div class="news-detail">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua...
-              </p>
-                <i class="fa fa-calendar"></i>
-                30/10/2015 08:00
-            </div>
-          </div>
-        </li>
+      @endforeach
       </ul>
       <div class="pagination">
         <ul class="cd-pagination">

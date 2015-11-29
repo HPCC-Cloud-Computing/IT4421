@@ -80,40 +80,20 @@
 	<div class="panel-body" style="padding: 0">
 		<div class="main-news">
 			<ul class="news">
+			@foreach (Phase::all() as $phase)
 				<li class="divider">
 					<div class="news-item">
 						<div class="news-title-sm">
-							<a href="#">Event 1</a>
+							<a href="#">{{$phase->name}}</a>
 						</div>
 						<div class="news-detail">
 							<i class="fa fa-clock-o"></i>
-							30/10/2015 - 15/11/2015
-						</div>
-					</div>
-				</li>
-				<li class="divider">
-					<div class="news-item">
-						<div class="news-title-sm">
-							<a href="#">Event 2</a>
-						</div>
-						<div class="news-detail">
-							<i class="fa fa-clock-o"></i>
-							30/10/2015 - 15/11/2015
-						</div>
-					</div>
-				</li>
-				<li class="divider">
-					<div class="news-item">
-						<div class="news-title-sm">
-							<a href="#">Event 3</a>
-						</div>
-						<div class="news-detail">
-							<i class="fa fa-clock-o"></i>
-							30/10/2015 - 15/11/2015
+							{{$phase->starttime}} - {{$phase->endtime}}
 						</div>
 					</div>
 				</li>
 			</ul>
+			@endforeach
 			<nav class="pagination">
 				<ul class="cd-pagination">
 					<li class="btn-prev">
