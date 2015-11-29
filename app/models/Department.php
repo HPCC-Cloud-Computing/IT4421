@@ -13,8 +13,10 @@ class Department extends Eloquent {
 	{
 		return $this->morphMany('User', 'userable');
 	}
-	public function students(){
+
+	public function students()
+	{
 		return $this->hasMany('Student');
 	}
-	
+
 }

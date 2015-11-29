@@ -115,11 +115,13 @@ class DepartmentController extends \BaseController {
 		dd($students);
 		// return $students ;
 	}
+
 	public function manage_student_page($id){		
 		// $id = Session::get('dept_id');
 		$dept = Department::find($id);
 		dd($dept->students);
 		// return View::make('st-admin.pages.depart.mn_stu_acc',array('students' => $dept->students));
+
 	}
 	public function syn_result(){
 		return View::make('st-admin.pages.depart.syn_result');
