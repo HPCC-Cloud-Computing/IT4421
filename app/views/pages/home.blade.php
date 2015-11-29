@@ -1,8 +1,3 @@
-<?php
-  Session::put("student", "anhhp");
-  Session::put("user", "anhhp");
-  // Session::flush();
-?>
 @extends('layout.layout')
 @section('title')
 	He thong thi THPT Quoc Gia.

@@ -31,7 +31,9 @@
 		<!-- navigator different with different actor, and we in clude navigator in pages -->
 
 	</header>
-
+	@if(Session::has('message'))
+	<p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+	@endif
 	<div class="container content">
 		@yield('breadcrumbs')
 	</div>

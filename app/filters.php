@@ -43,6 +43,8 @@ Route::filter('auth', function()
 		}
 		else
 		{
+			Session::flash('message', 'Ban can dang nhap de truy cap chuc nang nay!'); 
+			Session::flash('alert-class', 'alert-danger');
 			return Redirect::to('/');
 		}
 	}
@@ -52,46 +54,101 @@ Route::filter('auth', function()
 
 Route::filter('minister',function(){
 	if (Auth::user()->userable_type != 'minister')
-		Session::flash('error_authorized','Authorized failed!!!');
-	return Redirect::back();	
+		Session::flash('alert-class', 'alert-danger');
+		Session::flash('message','Authorized failed!!!');
+	return Redirect::to('/');	
 });
 
 Route::filter('cluster',function(){
 	if (Auth::user()->userable_type != 'cluster')
-		Session::flash('error_authorized','Authorized failed!!!');
-	return Redirect::back();
+		Session::flash('alert-class', 'alert-danger');
+		Session::flash('message','Authorized failed!!!');
+	return Redirect::to('/');
 });
 
 Route::filter('department',function(){
 	if (Auth::user()->userable_type != 'department')
-		Session::flash('error_authorized','Authorized failed!!!');
-	return Redirect::back();
+		Session::flash('alert-class', 'alert-danger');
+		Session::flash('message','Authorized failed!!!');
+	return Redirect::to('/');
 });
 
 Route::filter('university',function(){
 	if (Auth::user()->userable_type != 'university')
-		Session::flash('error_authorized','Authorized failed!!!');
-	return Redirect::back();
+		Session::flash('alert-class', 'alert-danger');
+		Session::flash('message','Authorized failed!!!');
+	return Redirect::to('/');
 });
 
 Route::filter('student',function(){
-	if (Auth::user()->userable_type != 'student')
-		Session::flash('error_authorized','Authorized failed!!!');
-	return Redirect::back();
+	if (Auth::user()->userable_type != 'student'){
+		Session::flash('alert-class', 'alert-danger');
+		Session::flash('message','Authorized failed!!!');
+		return Redirect::to('/');
+	}
 });
 
 ////////// filter theo timeline scheduler //////////////////////
 
 Route::filter('truoc_tuyen_sinh',function(){
-
+	$check = 1;
+	$scheduler = Phase::where('code','1')->first();
+	$date = date("Y-m-d");
+	// dd($date);
+	if ($scheduler->state == 'off'){
+		$check = 0;
+	}
+	else if ($scheduler->state == 'auto'){
+		if (($date < $scheduler->starttime) || ($date > $scheduler->endtime)){
+			$check = 0;
+		}
+	}
+	if (!$check) {
+		Session::flash('alert-class', 'alert-danger');
+		Session::flash('message','Chuc nang bi vo hieu hoa trong khoang thoi gian nay!!!');
+		return Redirect::back();
+	}
 });
 
 Route::filter('trong_tuyen_sinh',function(){
-
+	$check = 1;
+	$scheduler = Phase::where('code','2')->first();
+	$date = date("Y-m-d");
+	// dd(($date < $scheduler->starttime) || ($date > $scheduler->endtime));
+	if ($scheduler->state == 'off'){
+		$check = 0;
+	}
+	else if ($scheduler->state == 'auto'){
+		if (($date < $scheduler->starttime) || ($date > $scheduler->endtime)){
+			$check = 0;
+		}
+	}
+	// dd($check);
+	if (!$check) {
+		Session::flash('alert-class', 'alert-danger');
+		Session::flash('message','Chuc nang bi vo hieu hoa trong khoang thoi gian nay!!!');
+		return Redirect::back();
+	}
 });
 
 Route::filter('sau_tuyen_sinh',function(){
-
+	$check = 1;
+	$scheduler = Phase::where('code','3')->first();
+	$date = date("Y-m-d");
+	// dd($date);
+	if ($scheduler->state == 'off'){
+		$check = 0;
+	}
+	else if ($scheduler->state == 'auto'){
+		if (($date < $scheduler->starttime) || ($date > $scheduler->endtime)){
+			$check = 0;
+		}
+	}
+	if (!$check) {
+		Session::flash('alert-class', 'alert-danger');
+		Session::flash('message','Chuc nang bi vo hieu hoa trong khoang thoi gian nay!!!');
+		return Redirect::back();
+	}
 });
 
 
