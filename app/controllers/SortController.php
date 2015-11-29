@@ -67,12 +67,12 @@ class SortController extends BaseController
                                     try {
                                         if ($majors[$info->list_majors[$k]][$l]->idf_number == $majors[$info->list_majors[$i]][$j]->idf_number) {
                                             unset($majors[$info->list_majors[$k]][$l]);
-                                            echo '<script type="text/javascript">alert("Truoc ' . $majors[$info->list_majors[$k]][$l] . '");</script>';
+                                            //echo '<script type="text/javascript">alert("Truoc ' . $majors[$info->list_majors[$k]][$l] . '");</script>';
                                             $majors[$info->list_majors[$k]] = array_values($majors[$info->list_majors[$k]]);
                                         }
                                     }
                                     catch(Exception $e) {
-                                        echo '<script type="text/javascript">alert("Truoc ' . $k." ".$l . '");</script>';
+                                        //echo '<script type="text/javascript">alert("Truoc ' . $k." ".$l . '");</script>';
                                     }
                                 }
                             }
@@ -100,12 +100,12 @@ class Info
 {
     public $list_majors = array();
     public $list_tickets = array();
-    public $target = array(10, 20);//array(600, 180, 80, 50, 60, 100, 180, 150, 100, 15);
+    public $target = array(600, 180, 80, 50, 60, 100, 180, 150, 100, 15);
     public function get_data($file_name = '') {
         
         // read file XML
         $doc = new DOMDocument();
-        $doc->load(URL::asset('Untitled 1.xml'));
+        $doc->load(URL::asset('y-duoc-h.xml'));
         $rows = $doc->getElementsByTagName('Row');
         foreach ($rows as $row) {
             $cells = $row->getElementsByTagName('Cell');
