@@ -2,12 +2,12 @@
 
 Class SubjectsTableSeeder extends Seeder{
 
-	public function run(){
+    public function run(){
 
-		DB::table('subjects')->delete();
+        DB::table('subjects')->delete();
 
-		$subjects = array(
-			array(
+        $subjects = array(
+            array(
                 'code'      => 'TOAN',
                 'name'      => 'Môn Toán',
                 'time'      => '2015-10-14 07:00:12'
@@ -36,10 +36,20 @@ Class SubjectsTableSeeder extends Seeder{
                 'code'      => 'ANH',
                 'name'      => 'Môn Tiếng Anh',
                 'time'      => '2015-10-16 13:00:12'
+            ),
+            array(
+                'code'      => 'SU',
+                'name'      => 'Môn Lịch Sử',
+                'time'      => '2015-10-17 7:00:12'
+            ),
+            array(
+                'code'      => 'DIA',
+                'name'      => 'Môn Địa Lý',
+                'time'      => '2015-10-17 13:00:12'
             )
-		);
-		DB::table('subjects')->insert( $subjects );
-	}
+        );
+        DB::table('subjects')->insert( $subjects );
+    }
 }
 
 ?>
