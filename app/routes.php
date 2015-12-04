@@ -225,6 +225,11 @@ Route::group(array('before'=>array('auth','department')), function(){
 	// Doan nay k can truyen id cua dept vi lay tu session
 	Route::get('/st-admin/depart/mn_stu_acc','DepartmentController@manage_student_page');
 	Route::get('/st-admin/depart/syn_result','DepartmentController@syn_result');
+
+	Route::get('/st-admin/depart/mn_stu_acc/add', 'StudentController@add_one');
+	Route::get('/st-admin/depart/mn_stu_acc/edit/{id}', 'StudentController@edit_show');
+	Route::post('/st-admin/depart/mn_stu_acc/update', 'StudentController@edit_one');
+	Route::get('/st-admin/depart/mn_stu_acc/delete/{id}', 'StudentController@destroy');
 	//------------------------------------------end-------------------------------------------------
 });
 
