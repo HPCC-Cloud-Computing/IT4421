@@ -34,7 +34,9 @@ Route::get('/regulation', function()
 
 //Trang ngành - chỉ tiêu 
 // Show list danh sach nganh cua tat ca cac truong
-Route::get('/majors/', 'MajorController@get_list');
+Route::get('/majors/{id}', 'MajorController@get_list');
+// Show list truong
+Route::get('/majors/', 'MajorController@get_list_uni');
 // Show cua 1 truong
 Route::get('/majors/uni/{id}', 'MajorController@show');
 

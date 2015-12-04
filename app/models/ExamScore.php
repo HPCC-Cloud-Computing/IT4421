@@ -5,4 +5,9 @@ class ExamScore extends Eloquent {
 
 	protected $table = 'exam_scores';
 
+	public function students()
+	{	
+		return $this->belongsToMany('Student');
+	}
+
 }

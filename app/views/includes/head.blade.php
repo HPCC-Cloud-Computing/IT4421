@@ -23,5 +23,4 @@
 {{ HTML::script('/components/js/back-to-top.js'); }}
 {{ HTML::script('/components/bootstrap/dist/js/bootstrap.js'); }}
 {{ HTML::script('/components/bootstrap/js/bootstrap-hover-dropdown.min.js'); }}
-{{ HTML::script('/components/js/guestpage.js'); }}
 </head>
