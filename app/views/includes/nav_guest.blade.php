@@ -41,7 +41,7 @@
           </ul>
         </li>
         <li id="tracuudiemthi" class="nav-item">
-          <a href="{{Asset('/result_info')}}">Tra cứu điểm thi</a>
+          <a href="{{Asset('/result')}}">Tra cứu điểm thi</a>
         </li>
         
         <li id="lienhe" class="nav-item">
