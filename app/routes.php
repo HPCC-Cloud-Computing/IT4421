@@ -34,12 +34,18 @@ Route::get('/regulation', function()
 
 //Trang ngành - chỉ tiêu 
 // Show list danh sach nganh cua tat ca cac truong
-Route::get('/majors/', 'MajorController@get_list');
+Route::get('/majors/{id}', 'MajorController@get_list');
+// Show list truong
+Route::get('/majors/', 'MajorController@get_list_uni');
 // Show cua 1 truong
 Route::get('/majors/uni/{id}', 'MajorController@show');
 
 //Trang tra cứu điểm thi
-Route::get('/result_info', 'ExamScoreController@show_page');
+Route::get('/result', 'ExamScoreController@show_page');
+//Tra cuu diem thi
+Route::post('/result/search','ExamScoreController@search');
+// Captra check
+Route::post('/check_captra','HomeController@checkCaptra');
 
 //Trang liên hệ
 Route::get('/contact', function()

@@ -31,7 +31,6 @@ class ClusterController extends \BaseController {
 			$students_data = array();
 			$rooms = Cluster::find($cluster_id)->rooms()->get();
 			foreach ($rooms as $room) {
-				// dd($room->students->parsekit_func_arginfo(function)ate(15));
 				$students_data = array_merge($students_data,$room->students->toArray());
 			}
 			$students = Paginator::make($students_data, count($students_data), 10);
@@ -40,7 +39,30 @@ class ClusterController extends \BaseController {
 		}	
 	}
 	public function syn_result(){
-		return View::make('st-admin.pages.clus.syn_result');
+		if(Auth::check()){
+			$id = Auth::user()->userable_id;
+			$rooms = Cluster::find($id)->rooms()->get();
+			$students = array();
+			foreach ($rooms as $room) {
+				array_push($students,$room->students);
+			}
+			// dd($students);			
+			// die();
+			$major = array(1=>0,2=>0,3=>0,4=>0,5=>0,6=>0,7=>0,8=>0
+				,9=>0,10=>0,11=>0,12=>0,13=>0,14=>0
+				,15=>0,16=>0,17=>0,18=>0,19=>0,20=>0,21=>0,22=>0
+				,23=>0,24=>0,25=>0,26=>0	,27=>0,28=>0
+				,29=>0,30=>0);			
+			$result = array('1'=>$a=$major,'2'=>$a=$major,'3'=>$a=$major,'4'=>$a=$major);
+
+			foreach ($students as $key => $value) {								
+				foreach ($value->examscores as $k => $v) {										
+						$result[$v->subject_id][intval($v->score)] =$result[$v->subject_id][intval($v->score)]+1;
+				}
+			}				
+			// tra ve danh sach thong ke diem theo tung nhom nganh			
+			return View::make('st-admin.pages.clus.syn_result')->with('result',$result);
+		}		
 	}
 
 

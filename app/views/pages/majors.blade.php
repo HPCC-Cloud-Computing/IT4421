@@ -15,18 +15,22 @@
 <div class="panel">
 	<div class="panel-title">Ngành học - chỉ tiêu</div>
 	<div class="panel-body">
-		{{-- <div class="div-row">
+		<div class="div-row">
 			<div class="div-row-label">Trường</div>
 			<div class="div-row-control">
-				<select name="">
-					<option value="">-- Tất cả --</option>
+				<select id="ddlUniversity" name="ddlUniversity" onchange="University_change(this);" style="width: 400px">
+					<option value="">-- Chọn trường --</option>
+					@foreach ($universities as $uni)
+						<option value="{{$uni->id}}">{{$uni->name}}</option>
+					@endforeach
+					
 				</select>
 			</div>
-		</div> --}}
-		<div class="title-page">
-			Trường đại học Bách khoa Hà Nội
 		</div>
-		<table class="datatable">
+		{{-- <div class="title-page">
+			Trường đại học Bách khoa Hà Nội
+		</div> --}}
+		<table id="majors_table" class="datatable">
 			<thead>
 				<tr>
 					<th>Nhóm ngành</th>
@@ -38,13 +42,8 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td>KT11</td>
-					<td>Kỹ thuật cơ điện tử</td>
-					<td>D520114</td>
-					<td>250</td>
-					<td>Toán, Lý, Hóa<br />
-					Toán, Lý, Anh<br>
-					(Toán là môn thi chính)
+					<td colspan="5">
+						Chọn trường
 					</td>
 				</tr>
 			</tbody>
@@ -54,5 +53,21 @@
 @stop
 
 @section('javascript')
-<script type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+	function University_change(ddl){
+		var id = $(ddl).val();
+		$.ajax({
+                url : "{{Asset('/majors')}}/"+id,
+                type : "GET",
+                success : function (result){
+                    // console.log(result);
+                    var data = result.substr(1, result.length);
+                    if(data === "")
+                    	$("#majors_table > tbody").html("<tr><td colspan='5'>Không có bản ghi nào.</td></tr>");
+                   	else
+                    	$("#majors_table > tbody").html(data);
+                }
+            });
+	}
+</script>
 @stop

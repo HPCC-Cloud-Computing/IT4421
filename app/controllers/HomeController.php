@@ -35,4 +35,19 @@ class HomeController extends BaseController {
 			);
 		return View::make('pages.home',$data);
 	}
+
+	public function checkCaptra()
+	{
+		if(isset(Input::get('g-recaptcha-response'))) {
+			$captra = Input::get('g-recaptcha-response');
+			$response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=YOUR SECRET KEY&response=".$captcha."&remoteip=".$_SERVER['REMOTE_ADDR']);
+	        if($response.success==false)
+	        {
+	          echo '<h2>You are spammer ! Get the @$%K out</h2>';
+	        }else
+	        {
+	          echo '<h2>Thanks for posting comment.</h2>';
+	        }
+		}
+	}
 }

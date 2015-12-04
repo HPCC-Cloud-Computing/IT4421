@@ -13,7 +13,7 @@
 				<div class="input-group">
 					<span class="input-group-addon" id="username-addon"> <i class="fa fa-user"></i>
 					</span>
-					<input type="text" name="username" id="username" placeholder="Tên đăng nhập" aria-describedby="username-addon" />
+					<input type="text" name="username" id="username" placeholder="Tên đăng nhập" aria-describedby="username-addon" onkeypress="login_keypress(event);" />
 				</div>
 				<p id="username-error-mess" style="display:none"></p>
 			</div>
@@ -22,20 +22,24 @@
 					<span class="input-group-addon" id="password-addon" style="font-size: 16px">
 						<i class="fa fa-lock"></i>
 					</span>
-					<input type="password" name="password" id="password" placeholder="Mật khẩu" aria-describedby="password-addon" />
+					<input type="password" name="password" id="password" placeholder="Mật khẩu" aria-describedby="password-addon" onkeypress="login_keypress(event);" />
 				</div>
 				<p id="password-error-mess" style="display:none"></p>
 			</div>
 			<div class="div-row">
 				<p id="login-error-mess" style="display:none"></p>
 			</div>
-			<input id="btn-login" class="btn" style="width: 100%; text-transform: uppercase;" value="Đăng nhập" />
+			<input type="submit" id="btn-login" class="btn" style="width: 100%; text-transform: uppercase;" value="Đăng nhập" />
 		</form>
 	</div>
 </div>
 
 <script type="text/javascript">
-	$("#btn-login").on('click',function(){
+	function login_keypress(e){
+		if(e.keyCode == 13)
+			login_click();
+	}
+	function login_click(){
 		var username = $('input[name="username"]').val(),
 			password = $('input[name="password"]').val(),
 			check = 1;
@@ -69,7 +73,7 @@
 			});
 		}
 		return false;
-	});
+	}
 </script>
 @endif
 

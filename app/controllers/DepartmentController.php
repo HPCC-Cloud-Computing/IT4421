@@ -120,15 +120,32 @@ class DepartmentController extends \BaseController {
 		// $id = Session::get('dept_id');
 		if(Auth::check()){
 			$id = Auth::user()->userable_id;
-			$dept = Department::find($id)->students->toArray();
-			$students = Paginator::make($dept, count($dept),10);
-			// dd($page);
+			$dept = Department::find($id)->students->toArray();			
+			$students = Paginator::make($dept, count($dept),10);			
 			return View::make('st-admin.pages.depart.mn_stu_acc')->with('students',$students);
 		}
 
 	}
 	public function syn_result(){
-		return View::make('st-admin.pages.depart.syn_result');
+		if(Auth::check()){
+			$id = Auth::user()->userable_id;
+			$students = Department::find($id)->students;			
+			$major = array(1=>0,2=>0,3=>0,4=>0,5=>0,6=>0,7=>0,8=>0
+				,9=>0,10=>0,11=>0,12=>0,13=>0,14=>0
+				,15=>0,16=>0,17=>0,18=>0,19=>0,20=>0,21=>0,22=>0
+				,23=>0,24=>0,25=>0,26=>0	,27=>0,28=>0
+				,29=>0,30=>0);			
+			$result = array('1'=>$a=$major,'2'=>$a=$major,'3'=>$a=$major,'4'=>$a=$major);
+
+			foreach ($students as $key => $value) {								
+				foreach ($value->examscores as $k => $v) {										
+						$result[$v->subject_id][intval($v->score)] =$result[$v->subject_id][intval($v->score)]+1;
+				}
+			}				
+			// tra ve danh sach thong ke diem theo tung nhom nganh			
+			return View::make('st-admin.pages.depart.syn_result')->with('result',$result);
+		}		
+		
 	}
 
 	/**
