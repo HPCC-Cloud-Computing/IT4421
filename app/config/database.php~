@@ -60,9 +60,10 @@ return array(
 			'username'  => 'huanpc',
 			'password'  => '12345678',
 =======
-			'username'  => 'anhhp',
-			'password'  => 'anhhp',
->>>>>>> 60eaf4c1aad70281d72026e32f6f12295831cb5e
+			'username'  => 'root',
+			'password'  => 'ntk260994',
+
+>>>>>>> 9ad8a9de2bcfc6d788dc6cae3a48b26d4d3721f0
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

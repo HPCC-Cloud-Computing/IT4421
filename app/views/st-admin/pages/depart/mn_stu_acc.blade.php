@@ -82,17 +82,25 @@
 		function editStuForm(id){
 			console.log(id);
 			$.ajax({
-                url : "{{Asset('/st-admin/minis/mn_stu_acc/edit')}}/"+id,
+                url : "{{Asset('/st-admin/depart/mn_stu_acc/edit')}}/"+id,
                 type : "GET",
                 data : {
                      // number : $('#number').val()
                 },
                 success : function (result){
-                    
-                    console.log(result);	
+                	console.log(result);
+                    var obj = jQuery.parseJSON(result);
                     $modal = $('#editStuModal').find('input');
-
-                    $($modal[0]).val("zyz"); // cần add thêm
+					$($modal[0]).val(obj.id);
+					$($modal[1]).val(obj.profile_code);
+					$($modal[2]).val(obj.registration_number);
+					$($modal[3]).val(obj.firstname);
+					$($modal[4]).val(obj.lastname);
+					$($modal[5]).val(obj.indentity_code);
+					$($modal[6]).val(obj.birthday);
+					$($modal[7]).val(obj.sex);
+					$($modal[8]).val(obj.plus_score);
+					$($modal[9]).val(obj.department_id);
                 }
             });
 		}
@@ -100,7 +108,7 @@
 		function deleteStuForm(id){
 
 			$.ajax({
-                url : "{{Asset('/st-admin/minis/mn_stu_acc/del')}}/"+id,
+                url : "{{Asset('/st-admin/depart/mn_stu_acc/del')}}/"+id,
                 type : "GET",
                 data : {
                      // number : $('#number').val()
@@ -120,12 +128,13 @@
 		    var formURL = $(this).attr("action");
 		    $.ajax(
 		    {
-		        url : "{{Asset('/st-admin/minis/mn_stu_acc/update')}}",
+		        url : "{{Asset('/st-admin/depart/mn_stu_acc/update')}}",
 		        type: "POST",
 		        data : postData,
 		        success:function(data, textStatus, jqXHR) 
 		        {
 		            //data: return data from server
+		            alert(data);
 		        },
 		        error: function(jqXHR, textStatus, errorThrown) 
 		        {

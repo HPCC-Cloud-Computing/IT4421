@@ -1,54 +1,49 @@
 <?php
 // require_once (dirname(__FILE__).'/Excel/reader.php');
 // require_once (dirname(__FILE__).'/Utils.php');
-class UniversityController extends \BaseController {	
-	protected $column = array('code','name','info');
-	
-	public function search($code,$name)
-	{
+class UniversityController extends \BaseController {
+	protected $column = array('code', 'name', 'info');
+
+	public function search($code, $name) {
 		// dd($code.' '.$name);
-		$universitys = University::where('code','like','%'.$code.'%')->orWhere('name','like','%'.$name.'%')->paginate(10);
-		return View::make('st-admin.pages.minis.mn_uni_acc')->with('universitys',$universitys);
-	}		
-	
-	public function index(){
-		return View::make('st-admin.pages.uni.uni');	
+		$universitys = University::where('code', 'like', '%' . $code . '%')->orWhere('name', 'like', '%' . $name . '%')->paginate(10);
+		return View::make('st-admin.pages.minis.mn_uni_acc')->with('universitys', $universitys);
 	}
-	public function manage_major_page(){	
+
+	public function index() {
+		return View::make('st-admin.pages.uni.uni');
+	}
+	public function manage_major_page() {
 		// $id = Auth::user()->userable_id;
-		$id = 2;	
-		return View::make('st-admin.pages.uni.mn_major', 
+		$id = 2;
+		return View::make('st-admin.pages.uni.mn_major',
 			array('majors' => $this->get_majors($id)));
 	}
-	public function get_majors($id){
+	public function get_majors($id) {
 		$university = University::find($id);
-		return $university->majors;		
+		return $university->majors;
 	}
-	public function syn_resutl(){
-		return View::make('st-admin.pages.uni.syn_result');	
+	public function syn_resutl() {
+		return View::make('st-admin.pages.uni.syn_result');
 	}
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
-	public function get_list()
-	{
+	public function get_list() {
 		$universities = University::all();
 		echo ($universities);
 	}
-
 
 	/**
 	 * Show the form for creating a new resource.
 	 *
 	 * @return Response
 	 */
-	public function create()
-	{
-		
-	}
+	public function create() {
 
+	}
 
 	/**
 	 * HuanPC
@@ -56,58 +51,60 @@ class UniversityController extends \BaseController {
 	 * Store one by one
 	 * @return Response
 	 */
-	public function add()
-	{
+	public function add() {
 
 		$data = Input::get('data');
 		// $data = '{"depart":{"code":"adsf","name":"sdfasdfsd"},"user":{"username":"dfsdf","password":"dsafdsf","email":"43243324"}}';
-		$data = json_decode($data,true);
-		if(!isset($data))
+		$data = json_decode($data, true);
+		if (!isset($data)) {
 			echo "error";
-		try{
+		}
+
+		try {
 			$university = University::where('code', $data['university']['code'])->first();
-			if(isset($university)){				
+			if (isset($university)) {
 				echo "error";
-				exit();	
-			}			
-			$universityData = array_combine($this->column,$data['university']);			
-			$university = University::create($universityData);								
-			$user = new User($data['user']);					
+				exit();
+			}
+			$universityData = array_combine($this->column, $data['university']);
+			$university = University::create($universityData);
+			$user = new User($data['user']);
 			$university->user()->save($user);
-		}catch(QueryException $e){
+		} catch (QueryException $e) {
 			echo "error";
-		}	
-		if(isset($university))
+		}
+		if (isset($university)) {
 			echo "success";
-		else 
+		} else {
 			echo "error";
+		}
+
 	}
 	/**
 	 * HuanPC
 	 * Them nhieu ban ghi vao database tu file exel
 	 * @return [type] [description]
 	 */
-	public function add_many()
-	{					
+	public function add_many() {
 		$fileInputName = 'exel_file';
 		$data = Utils::importExelFile($fileInputName);
 		$count = 0;
-		if(isset($data)){
+		if (isset($data)) {
 			foreach ($data as $key => $value) {
 				// Kiem tra du lieu da ton tai trong csdl?
 				$check = University::where('code', $value[0])->first();
-				if(!isset($check)){
+				if (!isset($check)) {
 					// Neu chua ton tai thi moi insert
-					$data_insert = array_combine($this->column,$value);			
-					$result = University::create($data_insert);		
-					if(isset($result)){
-						$count +=1;						
+					$data_insert = array_combine($this->column, $value);
+					$result = University::create($data_insert);
+					if (isset($result)) {
+						$count += 1;
 					}
 				}
 
 			}
-		}		
-		echo json_encode(array('num_of_insert'=>$count));
+		}
+		echo json_encode(array('num_of_insert' => $count));
 	}
 	/**
 	 * Display the specified resource.
@@ -115,12 +112,10 @@ class UniversityController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
-	{
+	public function show($id) {
 		$university = University::find($id);
 		return View::make('university_show', $university);
 	}
-
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -128,12 +123,10 @@ class UniversityController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
-	{
-		$university = University::find($id);			
-		echo json_encode(array('university'=>$university,JSON_UNESCAPED_UNICODE));
+	public function edit($id) {
+		$university = University::find($id);
+		echo json_encode(array('university' => $university, JSON_UNESCAPED_UNICODE));
 	}
-
 
 	/**
 	 * HuanPC
@@ -142,30 +135,28 @@ class UniversityController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-public function update()
-	{
-		$data = Input::all();	
-		// $data = Input::get('departcode');	
+	public function update() {
+		$data = Input::all();
+		// $data = Input::get('departcode');
 		// echo $data;
-		
+
 		// $data = '{"dept":{"id":81,"code":"adsf_new","name":"sdfasdfsd"},"user":{"id":8,"username":"dfsdf_new","password":"dsafdsf","email":"43243324"}}';
 		// $data = json_decode($data,true);
 		$university = University::find(intval($data['id']));
 		// print_r($dept);
 		// exit();
-		$result = $university->update($data);						
-		if($result){			
+		$result = $university->update($data);
+		if ($result) {
 			// $user = new User($data['user']);
 			// $result = $dept->user()->update($data['user']);
 			// if($result){
 			// print_r($result);
-				echo 'success';			
-				exit();
-			// }				
+			echo 'success';
+			exit();
+			// }
 		}
-		echo 'failed';		
+		echo 'failed';
 	}
-
 
 	/**
 	 * HuanPC
@@ -174,14 +165,14 @@ public function update()
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
-	{
-		$result=University::find(intval($id))->delete();
-		if($result>0)
+	public function destroy($id) {
+		$result = University::find(intval($id))->delete();
+		if ($result > 0) {
 			echo "success";
-		else
+		} else {
 			echo "failed";
-	}
+		}
 
+	}
 
 }

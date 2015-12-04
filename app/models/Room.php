@@ -2,17 +2,15 @@
 
 class Room extends Eloquent {
 
-	protected $fillable = array('code', 'address' );
+	protected $fillable = array('code', 'address');
 
 	protected $table = 'rooms';
-
 
 	/**
 	 * [cluster description]
 	 * @return [model] [Cluster]
 	 */
-	public function cluster()
-	{
+	public function cluster() {
 		return $this->belongsTo('Cluster');
 	}
 
@@ -20,10 +18,9 @@ class Room extends Eloquent {
 	 * [students description]
 	 * @return [collecttion] [Students Model]
 	 */
-	public function students()
-	{
+	public function students() {
 		// return $this->belongsToMany('Student');
-		return $this->belongsToMany('Student', 'exam_scores', 'room_id', 'student_id')->withPivot('subject_id', 'score', 'state');
+		return $this->belongsToMany('Student', 'exam_scores', 'room_id', 'student_id')->distinct();
 	}
 
 }
