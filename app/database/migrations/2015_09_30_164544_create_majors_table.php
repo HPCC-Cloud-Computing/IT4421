@@ -21,7 +21,7 @@ class CreateMajorsTable extends Migration {
             $table->foreign('university_id')->references('id')->on('universities');
             $table->text('name');
             $table->integer('target');
-            $table->string('combidation',10);
+            $table->string('combination',10);
             $table->text('condition');
             $table->text('info');
             
