@@ -24,15 +24,20 @@ class ClusterController extends \BaseController {
 	public function index(){
 		return View::make('st-admin.pages.clus.clus');
 	}
-	public function get_students($id)
-	{
-		$dept = Cluster::with('students')->find($id);		
-		$students = $dept->students();		
-		return $students ;
-	}
-	public function manage_student_page(){		
-		$id = Session::get('clusters_id');
-		return View::make('st-admin.pages.clus.mn_stu_acc',array('students' => $this->get_students($id)));
+	public function manage_student_page(){
+
+		if(Auth::check()){
+			$cluster_id = Auth::user()->userable_id;
+			$students_data = array();
+			$rooms = Cluster::find($cluster_id)->rooms()->get();
+			foreach ($rooms as $room) {
+				// dd($room->students->parsekit_func_arginfo(function)ate(15));
+				$students_data = array_merge($students_data,$room->students->toArray());
+			}
+			$students = Paginator::make($students_data, count($students_data), 10);
+			// dd($students);
+			return View::make('st-admin.pages.clus.mn_stu_acc')->with("students",$students);
+		}	
 	}
 	public function syn_result(){
 		return View::make('st-admin.pages.clus.syn_result');

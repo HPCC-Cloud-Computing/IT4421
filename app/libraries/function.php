@@ -19,14 +19,14 @@ class InsertForm{
 //id truyen vao la id cua Modal. trong button Data-target = id.
 	public static function ClusForm($id){
 		InsertForm:: insertFormHeader($id);
-		InsertForm:: modalFormGroup("Usename","text","","username","Username");
-    	InsertForm:: modalFormGroup("Password","text","","password","Password");
+		InsertForm:: modalFormGroup("Tài khoản","text","","username","Tài khoản");
+    	InsertForm:: modalFormGroup("Mật khẩu","text","","password","Mật khẩu");
     	InsertForm:: modalFormGroup("Email","text","","email","Email");
     	// InsertForm:: modalFixedFormGroup("Userable id","number","","userable_type_id",1);
     	// InsertForm:: modalFixedFormGroup("Userable type","text","","userable_type","cluster");
 		//cluster table
-		InsertForm:: modalFormGroup("Code","text","","code","Code");
-		InsertForm:: modalFormGroup("Name","text","","name","Name");
+		InsertForm:: modalFormGroup("Mã cụm","text","","code","Mã");
+		InsertForm:: modalFormGroup("Tên cụm","text","","name","Tên");
 		InsertForm:: insertFormFooter();
 
 	}
@@ -34,83 +34,83 @@ class InsertForm{
 //id truyen vao la id cua Modal. trong button Data-target = id.
 	public static function DepartForm($id){
 		InsertForm:: insertFormHeader($id);
-		InsertForm:: modalFormGroup("Usename","text","","username","Username");
-    	InsertForm:: modalFormGroup("Password","text","","password","Password");
+		InsertForm:: modalFormGroup("Tài khoản","text","","username","Tài khoản");
+    	InsertForm:: modalFormGroup("Mật khẩu","text","","password","Mật khẩu");
     	InsertForm:: modalFormGroup("Email","text","","email","Email");
     	// InsertForm:: modalFixedFormGroup("Userable id","number","","userable_type_id",2);
     	// InsertForm:: modalFixedFormGroup("Userable type","text","","userable_type","deparment");
 		//cluster table
-		InsertForm:: modalFormGroup("Code","text","","code","Code");
-		InsertForm:: modalFormGroup("Name","text","","name","Name");
+		InsertForm:: modalFormGroup("Mã sở","text","","code","Mã");
+		InsertForm:: modalFormGroup("Tên sở","text","","name","Tên");
 		InsertForm:: insertFormFooter();
 	}
 
 //id truyen vao la id cua Modal. trong button Data-target = id.
 	public static function UniForm($id){
 		InsertForm:: insertFormHeader($id);
-		InsertForm:: modalFormGroup("Usename","text","","username","Username");
-		InsertForm:: modalFormGroup("Password","text","","password","Password");
+		InsertForm:: modalFormGroup("Tài khoản","text","","username","Tài khoản");
+		InsertForm:: modalFormGroup("Mật khẩu","text","","password","Mật khẩu");
 		InsertForm:: modalFormGroup("Email","text","","email","Email");
 		// InsertForm:: modalFixedFormGroup("Userable id","number","","userable_type_id",3);
 		// InsertForm:: modalFixedFormGroup("Userable type","text","","userable_type","university");
 		//university table
-		InsertForm::modalFormGroup("Code","text","","","");
-		InsertForm:: modalFormGroup("Name","text","","","");
-		InsertForm:: modalFormGroup("Information","text","","","");		
+		InsertForm::modalFormGroup("Mã Trường","text","","","");
+		InsertForm:: modalFormGroup("Tên Trường","text","","","");
+		InsertForm:: modalFormGroup("Thông tin tổng quan về trường","text","","","");		
 		InsertForm:: insertFormFooter();
 	}
 
 //id truyen vao la id cua Modal. trong button Data-target = id.
 	public static function Student($id){
 		InsertForm:: insertFormHeader($id);
-		InsertForm:: modalFormGroup("Usename","text","","username","Username");
-		InsertForm:: modalFormGroup("Password","text","","password","Password");
+		InsertForm:: modalFormGroup("Tên tài khoản","text","","username","Tài khoản");
+		InsertForm:: modalFormGroup("Mật khẩu","text","","password","Mật khẩu");
 		InsertForm:: modalFormGroup("Email","text","","email","Email");
-		InsertForm:: modalFixedFormGroup("Userable id","number","","userable_type_id",4);
-		InsertForm:: modalFixedFormGroup("Userable type","text","","userable_type","student");
+		InsertForm:: modalFixedFormGroup("Mã người dùng","number","","userable_type_id",4);
+		InsertForm:: modalFixedFormGroup("Loại người dùng","text","","userable_type","student");
 		//students table
-		InsertForm:: modalFormGroup("Profile Code ","text","","profile_code","profile_code");
-		InsertForm:: modalFormGroup("Registration_number","text","","registration_number","registration_number");
-		InsertForm:: modalFormGroup("Lastname","text","","lastname","lastname");
-		InsertForm:: modalFormGroup("Firstname","text","","firstname","firstname");
+		InsertForm:: modalFormGroup("Mã hồ sơ","text","","profile_code","Mã hồ sơ");
+		InsertForm:: modalFormGroup("Số báo danh","text","","registration_number","Số báo danh");
+		InsertForm:: modalFormGroup("Tên","text","","lastname","Tên");
+		InsertForm:: modalFormGroup("Họ","text","","firstname","Họ");
 		InsertForm:: modalFormGroup("Email","text","","email","Email");
-		InsertForm:: modalFormGroup("Indentity_code","text","","indentity_code","indentity_code");
-		InsertForm:: modalFormGroup("Birthday","date","","birthday","birthday");
-		InsertForm:: modalFormGroup("Sex","text","","sex","sex");
-		InsertForm:: modalFormGroup("Plus_score","text","","plus_score","plus_score");
-		InsertForm:: modalFormGroup("Department_id","text","","department_id","department_id");	
+		InsertForm:: modalFormGroup("Chứng minh thư nhân dân","text","","indentity_code","Chứng minh thư nhân dân");
+		InsertForm:: modalFormGroup("Ngày sinh","date","","birthday","Ngày sinh");
+		InsertForm:: modalFormGroup("Giới tính","text","","sex","Giới tính");
+		InsertForm:: modalFormGroup("Điểm cộng","text","","plus_score","Điểm cộng");
+		InsertForm:: modalFormGroup("Mã sở","text","","department_id","Mã sở");	
 		InsertForm:: insertFormFooter();
 	}
 
 	public static function Major($id){
 		InsertForm:: insertFormHeader($id);
 		//major table
-		InsertForm:: modalFormGroup("Code","text","","code","Code");
-		InsertForm:: modalFormGroup("University_id","int","","university_id","University_id");
-		InsertForm:: modalFormGroup("Name","text","","name","Name");
-		InsertForm:: modalFormGroup("Target","int","","target","Target");
-		InsertForm:: modalFormGroup("Combidation","text","","combidation","Combidation");
-		InsertForm:: modalFormGroup("Condition","text","","condition","Condition");
-		InsertForm:: modalFormGroup("Info","text","","info","Info");
+		InsertForm:: modalFormGroup("Mã ngành","text","","code","Mã");
+		InsertForm:: modalFormGroup("Mã trường","int","","university_id","Mã trường");
+		InsertForm:: modalFormGroup("Tên ngành","text","","name","Tên");
+		InsertForm:: modalFormGroup("Chỉ tiêu","int","","target","Chỉ tiêu");
+		InsertForm:: modalFormGroup("Khối","text","","combidation","A,B,C,D,A1...");
+		InsertForm:: modalFormGroup("Điều kiện","text","","condition",">=500");
+		InsertForm:: modalFormGroup("Thông tin ngành","text","","info","Đại học A là một trường...");
 		InsertForm:: insertFormFooter();
 	}	
 
 	public static function Score($id){
 		InsertForm:: insertFormHeader($id);
 		//score table
-		InsertForm:: modalFormGroup("Student ID","int","","student_id","student_id");
-		InsertForm:: modalFormGroup("Room_id","int","","room_id","room_id");
-		InsertForm:: modalFormGroup("Subject_id","int","","subject_id","subject_id");
-		InsertForm:: modalFormGroup("Score","","float","score","score");
-		InsertForm:: modalFormGroup("State","","float","state","state");
+		InsertForm:: modalFormGroup("Mã sinh viên","int","","student_id","student_id");
+		InsertForm:: modalFormGroup("Mã phòng","int","","room_id","room_id");
+		InsertForm:: modalFormGroup("Mã môn học","int","","subject_id","subject_id");
+		InsertForm:: modalFormGroup("Điểm","","float","score","score");
+		InsertForm:: modalFormGroup("Trạng thái","","float","state","state");
 		InsertForm:: insertFormFooter();
 	}
 
 	public static function Notice($id){
 		InsertForm:: insertFormHeader($id);
 		//Notice table
-		InsertForm:: modalFormGroup("Title","text","","title","title");
-		InsertForm:: modalFormGroup("Content","text","","content","Content");
+		InsertForm:: modalFormGroup("Tiêu đề","text","","title","title");
+		InsertForm:: modalFormGroup("Nội dung","text","","content","Content");
 
 		InsertForm:: insertFormFooter();
 	}
@@ -119,8 +119,8 @@ class InsertForm{
 		InsertForm:: insertFormHeader($id);
 
 		//Phrase table
-		InsertForm:: modalFormGroup("Code","text","","code","Code");
-		InsertForm:: modalFormGroup("Name","text","","name","Name");
+		InsertForm:: modalFormGroup("Mã","text","","code","Mã");
+		InsertForm:: modalFormGroup("Tên ngành","text","","name","Tên");
 
 		InsertForm:: insertFormFooter();
 	}
@@ -128,23 +128,23 @@ class InsertForm{
 	public static function Room($id){
 		InsertForm:: insertFormHeader($id);
 		//Notice table
-		InsertForm:: modalFormGroup("Code","text","","code","Code");
-		InsertForm:: modalFormGroup("Address","text","","address","Address");
-		InsertForm:: modalFormGroup("cluster_id","int","","cluster_id","Cluster_id");
+		InsertForm:: modalFormGroup("Mã phòng","text","","code","Mã");
+		InsertForm:: modalFormGroup("Địa chỉ","text","","address","Address");
+		InsertForm:: modalFormGroup("Mã cụm thi","int","","cluster_id","Cluster_id");
 		InsertForm:: insertFormFooter();
 	}
 	public static function Subject($id){
 		InsertForm:: insertFormHeader($id);
 		//subject
-		InsertForm:: modalFormGroup("Code","text","","code","Code");
-		InsertForm:: modalFormGroup("Name","text","","name","Name");
+		InsertForm:: modalFormGroup("Mã môn học","text","","code","Mã");
+		InsertForm:: modalFormGroup("Tên môn học","text","","name","Tên");
 		InsertForm:: insertFormFooter();
 	}
 
 	public static function FileExcel($id){
 		InsertForm:: insertFormHeader($id);
 		//subject
-		InsertForm:: modalFileFormGroup("Input Excel File","","excelfile");
+		InsertForm:: modalFileFormGroup("Xuất file excel","","excelfile");
 		InsertForm:: insertFileFormFooter();
 	}
 	public static function FileExport($id){
@@ -161,7 +161,7 @@ class InsertForm{
   			<div class="modal-dialog" role="document">
     		<div class="modal-content">
 	    	<div class="modal-header">
-		        <button id="'.$id.'closebtn" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <button id="'.$id.'closebtn" type="button" class="close" data-dismiss="modal" aria-label="Đóng"><span aria-hidden="true">&times;</span></button>
 		        <h4 class="modal-title" id="myModalLabel">Insert Form</h4>
 	    	</div>
 
@@ -171,8 +171,8 @@ class InsertForm{
 	private static function insertFormFooter(){
 		echo '</div>
 					<div class="modal-footer">
-				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				        <button type="submit" class="btn btn-success">Add</button>
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+				        <button type="submit" class="btn btn-success">Thêm</button>
 				     </div>
 			    </div>
 			  </div>
@@ -183,8 +183,8 @@ class InsertForm{
 	private static function insertFileFormFooter(){
 		echo '</div>
 					<div class="modal-footer">
-				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				        <button type="submit" class="btn btn-success">Upload File</button>
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+				        <button type="submit" class="btn btn-success">Tải file lên</button>
 				    </div>
 			    </div>
 			  </div>

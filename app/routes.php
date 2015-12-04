@@ -223,7 +223,7 @@ Route::group(array('before'=>array('auth','department')), function(){
 	//----------------------------------department management page---------------------------------
 	Route::get('/st-admin/depart','DepartmentController@index');
 	// Doan nay k can truyen id cua dept vi lay tu session
-	Route::get('/st-admin/depart/mn_stu_acc/{id}','DepartmentController@manage_student_page');
+	Route::get('/st-admin/depart/mn_stu_acc','DepartmentController@manage_student_page');
 	Route::get('/st-admin/depart/syn_result','DepartmentController@syn_result');
 	//------------------------------------------end-------------------------------------------------
 });

@@ -116,11 +116,15 @@ class DepartmentController extends \BaseController {
 		// return $students ;
 	}
 
-	public function manage_student_page($id){		
+	public function manage_student_page(){		
 		// $id = Session::get('dept_id');
-		$dept = Department::find($id);
-		dd($dept->students);
-		// return View::make('st-admin.pages.depart.mn_stu_acc',array('students' => $dept->students));
+		if(Auth::check()){
+			$id = Auth::user()->userable_id;
+			$dept = Department::find($id)->students->toArray();
+			$students = Paginator::make($dept, count($dept),10);
+			// dd($page);
+			return View::make('st-admin.pages.depart.mn_stu_acc')->with('students',$students);
+		}
 
 	}
 	public function syn_result(){

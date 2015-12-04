@@ -36,7 +36,7 @@ class EditForm{
 	}
 
 //id truyen vao la id cua Modal. trong button Data-target = id.
-	public static function Student($id){
+	public static function StuForm($id){
 		EditForm:: editFormHeader($id);
 		//students table
 		EditForm:: modalFormGroup("Profile Code ","text","","profile_code","profile_code");
