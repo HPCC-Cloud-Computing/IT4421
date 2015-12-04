@@ -29,7 +29,10 @@
 				</div>
 				<div class="div-row-control" style="width: 100%">
 					<select name="" style="width: 100%">
-						<option value="">Cụm số 1 - Trường ĐH Bách Khoa Hà Nội</option>
+						<option value="0" selected>-- Chon cum thi --</option>
+						@foreach($clusters as $cluster)
+						<option value='{{$cluster->id}}'>{{$cluster->name}}</option>
+						@endforeach
 					</select>
 				</div>
 			</div>

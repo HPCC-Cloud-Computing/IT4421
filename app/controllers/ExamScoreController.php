@@ -4,8 +4,19 @@
 class ExamScoreController extends \BaseController {
 	protected $column = array('student_id', 'room_id', 'subject_id', 'score', 'state' );
 	
+	public function search(){
+		$cluster_id = Input::get('cluster_id');
+		$students = array();
+		$rooms = Cluster::find($cluster_id)->rooms()->get();
+		foreach ($rooms as $room) {
+			$students = array_merge($students,$room->students->where('identity_code','184053675')->toArray());
+		}
+		echo json_encode($students);
+	}
+
 	public function show_page(){
-		return View::make('pages.result_info');
+		$clusters = Cluster::all();
+		return View::make('pages.result_info')->with('clusters',$clusters);
 	}
 	/**
 	 * Display a listing of the resource.
