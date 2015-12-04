@@ -47,19 +47,22 @@
       function drawChartColumn() {
           // Some raw data (not necessarily accurate)
           var data = google.visualization.arrayToDataTable([
-           ['Diem', 'Khoi A', 'Khoi B', 'Khoi C', 'Khoi D'],
-           <?php for ($i = 1; $i <=30; $i++) {
-                  echo '['.strval($i).','.$result[1][$i].','.$result[2][$i].','.$result[3][$i].','.$result[4][$i].'],';
+           ['Diem', 'Toan', 'Ly', 'Hoa', 'Sinh','Van','Anh','Su','Dia'],
+           <?php for ($i = 1; $i <=10; $i++) {
+              echo '['.strval($i).','.$result[1][$i].','.$result[2][$i].','.$result[3][$i].','.$result[4][$i].','.$result[5][$i].','.$result[6][$i].','.$result[7][$i].','.$result[8][$i].'],';
             }
            ?>
         ]);
         var options = {
           title : 'Thong ke pho diem',
-          vAxis: {title: 'So hoc sinh'},
+          vAxis: {title: 'So hoc sinh',viewWindowMode:'explicit',
+              viewWindow:{
+                min:0
+              },format: 'decimal'},
           hAxis: {title: 'Pho diem'},
           seriesType: 'bars',
-          width : 2000,
-          series: {4: {type: 'line'}}
+          width : 1000,
+          series: {8: {type: 'line'}}
         };
 
         var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));

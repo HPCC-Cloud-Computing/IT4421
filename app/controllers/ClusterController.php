@@ -42,24 +42,25 @@ class ClusterController extends \BaseController {
 		if(Auth::check()){
 			$id = Auth::user()->userable_id;
 			$rooms = Cluster::find($id)->rooms()->get();
-			$students = array();
+			$students = array();			
 			foreach ($rooms as $room) {
-				array_push($students,$room->students);
-			}
-			// dd($students);			
-			// die();
-			$major = array(1=>0,2=>0,3=>0,4=>0,5=>0,6=>0,7=>0,8=>0
-				,9=>0,10=>0,11=>0,12=>0,13=>0,14=>0
-				,15=>0,16=>0,17=>0,18=>0,19=>0,20=>0,21=>0,22=>0
-				,23=>0,24=>0,25=>0,26=>0	,27=>0,28=>0
-				,29=>0,30=>0);			
-			$result = array('1'=>$a=$major,'2'=>$a=$major,'3'=>$a=$major,'4'=>$a=$major);
+				array_push($students,$room->students);				
+			}						
+			$subject_frequent = array(1=>0,2=>0,3=>0,4=>0,5=>0,6=>0,7=>0,8=>0
+				,9=>0,10=>0);			
+			$result = array('1'=>new ArrayObject($subject_frequent),'2'=>new ArrayObject($subject_frequent),'3'=>new ArrayObject($subject_frequent),'4'=>$d=$subject_frequent,
+				'5'=>$e=$subject_frequent,'6'=>$f=$subject_frequent,'7'=>$g=$subject_frequent,'8'=>$h=$subject_frequent);
 
-			foreach ($students as $key => $value) {								
-				foreach ($value->examscores as $k => $v) {										
+			foreach ($students as $key => $value) {												
+				foreach ($value as $t => $d) {			
+					foreach ($d->examscores as $k => $v) {										
 						$result[$v->subject_id][intval($v->score)] =$result[$v->subject_id][intval($v->score)]+1;
+					}
+					
 				}
-			}				
+				// exit();	
+			}		
+
 			// tra ve danh sach thong ke diem theo tung nhom nganh			
 			return View::make('st-admin.pages.clus.syn_result')->with('result',$result);
 		}		

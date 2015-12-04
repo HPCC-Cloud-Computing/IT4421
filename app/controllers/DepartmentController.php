@@ -130,12 +130,10 @@ class DepartmentController extends \BaseController {
 		if(Auth::check()){
 			$id = Auth::user()->userable_id;
 			$students = Department::find($id)->students;			
-			$major = array(1=>0,2=>0,3=>0,4=>0,5=>0,6=>0,7=>0,8=>0
-				,9=>0,10=>0,11=>0,12=>0,13=>0,14=>0
-				,15=>0,16=>0,17=>0,18=>0,19=>0,20=>0,21=>0,22=>0
-				,23=>0,24=>0,25=>0,26=>0	,27=>0,28=>0
-				,29=>0,30=>0);			
-			$result = array('1'=>$a=$major,'2'=>$a=$major,'3'=>$a=$major,'4'=>$a=$major);
+			$subject_frequent = array(1=>0,2=>0,3=>0,4=>0,5=>0,6=>0,7=>0,8=>0
+				,9=>0,10=>0);			
+			$result = array('1'=>$a=$subject_frequent,'2'=>$a=$subject_frequent,'3'=>$a=$subject_frequent,'4'=>$a=$subject_frequent,
+				'5'=>$a=$subject_frequent,'6'=>$a=$subject_frequent,'7'=>$a=$subject_frequent,'8'=>$a=$subject_frequent);
 
 			foreach ($students as $key => $value) {								
 				foreach ($value->examscores as $k => $v) {										

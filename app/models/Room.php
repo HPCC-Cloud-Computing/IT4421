@@ -23,7 +23,7 @@ class Room extends Eloquent {
 	public function students()
 	{
 		// return $this->belongsToMany('Student');
-		return $this->belongsToMany('Student', 'exam_scores', 'room_id', 'student_id')->withPivot('subject_id', 'score', 'state');
+		return $this->belongsToMany('Student', 'exam_scores', 'room_id', 'student_id')->distinct();
 	}
 
 }
