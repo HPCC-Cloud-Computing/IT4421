@@ -17,11 +17,14 @@ class CreateCombinationsTable extends Migration {
 
             $table->increments('id');
             $table->string('name',50);
-            $table->integer('id_subject1');
-            $table->integer('id_subject2');
-            $table->integer('id_subject3');
+            $table->integer('id_subject1')->unsigned();
+            $table->index('id_subject1');
             $table->foreign('id_subject1')->references('id')->on('subjects');
+            $table->integer('id_subject2')->unsigned();
+            $table->index('id_subject2');
             $table->foreign('id_subject2')->references('id')->on('subjects');
+            $table->integer('id_subject3')->unsigned();
+            $table->index('id_subject3');
             $table->foreign('id_subject3')->references('id')->on('subjects');
         });
 	}

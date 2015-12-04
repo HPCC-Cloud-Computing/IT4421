@@ -56,8 +56,14 @@ return array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
 			'database'  => 'it4421',
+<<<<<<< HEAD
+			'username'  => 'huanpc',
+			'password'  => '12345678',
+=======
 			'username'  => 'root',
 			'password'  => 'ntk260994',
+
+>>>>>>> 9ad8a9de2bcfc6d788dc6cae3a48b26d4d3721f0
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

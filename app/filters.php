@@ -9,16 +9,13 @@
 | which may be used to do any work before or after a request into your
 | application. Here you may also register your custom route filters.
 |
-*/
+ */
 
-App::before(function($request)
-{
+App::before(function ($request) {
 	//
 });
 
-
-App::after(function($request, $response)
-{
+App::after(function ($request, $response) {
 	//
 });
 
@@ -31,19 +28,14 @@ App::after(function($request, $response)
 | session is logged into this application. The "basic" filter easily
 | integrates HTTP Basic authentication for quick, simple checking.
 |
-*/
+ */
 
-Route::filter('auth', function()
-{
-	if (Auth::guest())
-	{
-		if (Request::ajax())
-		{
+Route::filter('auth', function () {
+	if (Auth::guest()) {
+		if (Request::ajax()) {
 			return Response::make('Unauthorized', 401);
-		}
-		else
-		{
-			Session::flash('message', 'Ban can dang nhap de truy cap chuc nang nay!'); 
+		} else {
+			Session::flash('message', 'Ban can dang nhap de truy cap chuc nang nay!');
 			Session::flash('alert-class', 'alert-danger');
 			return Redirect::to('/');
 		}
@@ -52,113 +44,107 @@ Route::filter('auth', function()
 
 ////////// filter theo user_type //////////////////////
 
-Route::filter('minister',function(){
-	if (Auth::user()->userable_type != 'minister'){
+Route::filter('minister', function () {
+	if (Auth::user()->userable_type != 'minister') {
 		Session::flash('alert-class', 'alert-danger');
-		Session::flash('message','Authorized failed!!!');
-		return Redirect::to('/');
-	}	
-});
-
-Route::filter('cluster',function(){
-	if (Auth::user()->userable_type != 'cluster'){
-		Session::flash('alert-class', 'alert-danger');
-		Session::flash('message','Authorized failed!!!');
+		Session::flash('message', 'Authorized failed!!!');
 		return Redirect::to('/');
 	}
 });
 
-Route::filter('department',function(){
-	if (Auth::user()->userable_type != 'department'){
+Route::filter('cluster', function () {
+	if (Auth::user()->userable_type != 'cluster') {
 		Session::flash('alert-class', 'alert-danger');
-		Session::flash('message','Authorized failed!!!');
-		return Redirect::to('/');
-	}	
-});
-
-Route::filter('university',function(){
-	if (Auth::user()->userable_type != 'university'){
-		Session::flash('alert-class', 'alert-danger');
-		Session::flash('message','Authorized failed!!!');
+		Session::flash('message', 'Authorized failed!!!');
 		return Redirect::to('/');
 	}
 });
 
-Route::filter('student',function(){
-	if (Auth::user()->userable_type != 'student'){
+Route::filter('department', function () {
+	if (Auth::user()->userable_type != 'department') {
 		Session::flash('alert-class', 'alert-danger');
-		Session::flash('message','Authorized failed!!!');
+		Session::flash('message', 'Authorized failed!!!');
+		return Redirect::to('/');
+	}
+});
+
+Route::filter('university', function () {
+	if (Auth::user()->userable_type != 'university') {
+		Session::flash('alert-class', 'alert-danger');
+		Session::flash('message', 'Authorized failed!!!');
+		return Redirect::to('/');
+	}
+});
+
+Route::filter('student', function () {
+	if (Auth::user()->userable_type != 'student') {
+		Session::flash('alert-class', 'alert-danger');
+		Session::flash('message', 'Authorized failed!!!');
 		return Redirect::to('/');
 	}
 });
 
 ////////// filter theo timeline scheduler //////////////////////
 
-Route::filter('truoc_tuyen_sinh',function(){
+Route::filter('truoc_tuyen_sinh', function () {
 	$check = 1;
-	$scheduler = Phase::where('code','1')->first();
+	$scheduler = Phase::where('code', '1')->first();
 	$date = date("Y-m-d");
 	// dd($date);
-	if ($scheduler->state == 'off'){
+	if ($scheduler->state == 'off') {
 		$check = 0;
-	}
-	else if ($scheduler->state == 'auto'){
-		if (($date < $scheduler->starttime) || ($date > $scheduler->endtime)){
+	} else if ($scheduler->state == 'auto') {
+		if (($date < $scheduler->starttime) || ($date > $scheduler->endtime)) {
 			$check = 0;
 		}
 	}
 	if (!$check) {
 		Session::flash('alert-class', 'alert-danger');
-		Session::flash('message','Chuc nang bi vo hieu hoa trong khoang thoi gian nay!!!');
+		Session::flash('message', 'Chuc nang bi vo hieu hoa trong khoang thoi gian nay!!!');
 		return Redirect::back();
 	}
 });
 
-Route::filter('trong_tuyen_sinh',function(){
+Route::filter('trong_tuyen_sinh', function () {
 	$check = 1;
-	$scheduler = Phase::where('code','2')->first();
+	$scheduler = Phase::where('code', '2')->first();
 	$date = date("Y-m-d");
 	// dd(($date < $scheduler->starttime) || ($date > $scheduler->endtime));
-	if ($scheduler->state == 'off'){
+	if ($scheduler->state == 'off') {
 		$check = 0;
-	}
-	else if ($scheduler->state == 'auto'){
-		if (($date < $scheduler->starttime) || ($date > $scheduler->endtime)){
+	} else if ($scheduler->state == 'auto') {
+		if (($date < $scheduler->starttime) || ($date > $scheduler->endtime)) {
 			$check = 0;
 		}
 	}
 	// dd($check);
 	if (!$check) {
 		Session::flash('alert-class', 'alert-danger');
-		Session::flash('message','Chuc nang bi vo hieu hoa trong khoang thoi gian nay!!!');
+		Session::flash('message', 'Chuc nang bi vo hieu hoa trong khoang thoi gian nay!!!');
 		return Redirect::back();
 	}
 });
 
-Route::filter('sau_tuyen_sinh',function(){
+Route::filter('sau_tuyen_sinh', function () {
 	$check = 1;
-	$scheduler = Phase::where('code','3')->first();
+	$scheduler = Phase::where('code', '3')->first();
 	$date = date("Y-m-d");
 	// dd($date);
-	if ($scheduler->state == 'off'){
+	if ($scheduler->state == 'off') {
 		$check = 0;
-	}
-	else if ($scheduler->state == 'auto'){
-		if (($date < $scheduler->starttime) || ($date > $scheduler->endtime)){
+	} else if ($scheduler->state == 'auto') {
+		if (($date < $scheduler->starttime) || ($date > $scheduler->endtime)) {
 			$check = 0;
 		}
 	}
 	if (!$check) {
 		Session::flash('alert-class', 'alert-danger');
-		Session::flash('message','Chuc nang bi vo hieu hoa trong khoang thoi gian nay!!!');
+		Session::flash('message', 'Chuc nang bi vo hieu hoa trong khoang thoi gian nay!!!');
 		return Redirect::back();
 	}
 });
 
-
-
-Route::filter('auth.basic', function()
-{
+Route::filter('auth.basic', function () {
 	return Auth::basic();
 });
 
@@ -171,11 +157,13 @@ Route::filter('auth.basic', function()
 | it simply checks that the current user is not logged in. A redirect
 | response will be issued if they are, which you may freely change.
 |
-*/
+ */
 
-Route::filter('guest', function()
-{
-	if (Auth::check()) return Redirect::to('/');
+Route::filter('guest', function () {
+	if (Auth::check()) {
+		return Redirect::to('/');
+	}
+
 });
 
 /*
@@ -187,12 +175,10 @@ Route::filter('guest', function()
 | cross-site request forgery attacks. If this special token in a user
 | session does not match the one given in this request, we'll bail.
 |
-*/
+ */
 
-Route::filter('csrf', function()
-{
-	if (Session::token() != Input::get('_token'))
-	{
+Route::filter('csrf', function () {
+	if (Session::token() != Input::get('_token')) {
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
