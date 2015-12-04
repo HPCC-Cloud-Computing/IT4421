@@ -5,13 +5,58 @@ class ExamScoreController extends \BaseController {
 	protected $column = array('student_id', 'room_id', 'subject_id', 'score', 'state' );
 	
 	public function search(){
-		$cluster_id = Input::get('cluster_id');
-		$students = array();
+		$cluster_id = Input::get('cluster');
+		$inputdata = Input::get('input');
+		// print_r($cluster_id.' '.$inputdata);
 		$rooms = Cluster::find($cluster_id)->rooms()->get();
+		$result = array(
+			'result' => 'false'
+			);
 		foreach ($rooms as $room) {
-			$students = array_merge($students,$room->students->where('identity_code','184053675')->toArray());
+			$students = $room->students;
+			foreach ($students as $student){
+				if (($student->indentity_code == $inputdata) || ($student->registration_number == $inputdata)){
+					$result['student'] = array(
+						'id' => $student->id,
+						'name' => $student->firstname.' '.$student->lastname,
+						'sbd' => $student->indentity_code,
+						'toan' => '',
+						'van' => '',
+						'ly' => '',
+						'hoa' => '',
+						'sinh' => '',
+						'ta' => '',
+						);
+					$scores = $student->examscores;
+					$tong = 0;
+						foreach ($scores as $score) {
+							$tong = $tong + $score->score;
+							if ($score->subject_id == 1) {
+								$result['student']['toan'] = $score->score;
+							}
+							if ($score->subject_id == 2) {
+								$result['student']['van'] = $score->score;
+							}
+							if ($score->subject_id == 3) {
+								$result['student']['ly'] = $score->score;
+							}
+							if ($score->subject_id == 4) {
+								$result['student']['hoa'] = $score->score;
+							}
+							if ($score->subject_id == 5) {
+								$result['student']['sinh'] = $score->score;
+							}
+							if ($score->subject_id == 6) {
+								$result['student']['ta'] = $score->score;
+							}
+						}
+						$result['student']['tong'] = $tong;
+					$result['result'] = 'true';
+					// echo json_encode($student);
+				}
+			}	
 		}
-		echo json_encode($students);
+		echo json_encode($result);
 	}
 
 	public function show_page(){

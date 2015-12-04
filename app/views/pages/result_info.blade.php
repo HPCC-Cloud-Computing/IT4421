@@ -17,41 +17,44 @@
 	<div class="panel-body">
 		<div class="col-md-3 col-sm-3"></div>
 		<div class="col-md-6 col-sm-6" style="margin-top: 15px;">
-			<div class="div-row">
-				<div class="div-row-label" style="line-height: 1.5; width: 100%; text-align: left"> <b>Họ tên thí sinh hoặc số báo danh</b>
+			<!-- <form action="{{url('/result/search')}}" method="POST"> -->
+				<div class="div-row">
+					<div class="div-row-label" style="line-height: 1.5; width: 100%; text-align: left"> <b>Số báo danh hoac So CMNTND</b>
+					</div>
+					<div class="div-row-control" style="width: 100%">
+						<input name="input" type="text" placeholder="Nhap So bao danh hoac So CMNTND"/>
+						<!-- <input type="text" placeholder="6LfnJxETAAAAAP66nDUy9-A_PcwuTYbS5GM2Oj8z" /> -->
+					</div>
 				</div>
-				<div class="div-row-control" style="width: 100%">
-					<input type="text" placeholder="6LfnJxETAAAAAP66nDUy9-A_PcwuTYbS5GM2Oj8z" />
+				<div class="div-row">
+					<div class="div-row-label" style="width: 100%; text-align: left"> <b>Cụm thi</b>
+					</div>
+					<div class="div-row-control" style="width: 100%">
+						<select name="cluster" style="width: 100%">
+							<option value="0" selected>-- Chon cum thi --</option>
+							@foreach($clusters as $cluster)
+							<option value='{{$cluster->id}}'>{{$cluster->name}}</option>
+							@endforeach
+						</select>
+					</div>
 				</div>
-			</div>
-			<div class="div-row">
-				<div class="div-row-label" style="width: 100%; text-align: left"> <b>Cụm thi</b>
-				</div>
-				<div class="div-row-control" style="width: 100%">
-					<select name="" style="width: 100%">
-						<option value="0" selected>-- Chon cum thi --</option>
-						@foreach($clusters as $cluster)
-						<option value='{{$cluster->id}}'>{{$cluster->name}}</option>
-						@endforeach
-					</select>
-				</div>
-			</div>
-			<div class="div-row">
-				<div class="div-row-label" style="width: 25%"></div>
-				<div class="div-row-control" style="width: 75%">
-					<div class="g-recaptcha" data-sitekey="6LfnJxETAAAAAFM7r2_mCqMndRiIEsfJ2dhrZjKZ"></div>
-				</div>
-			</div>
-			<div class="div-row">
-				<input type="button" class="btn" value="Tra cứu" style="width: 81%;padding: 8px;text-transform: uppercase;font-size: 14px;font-weight: 400;" />
-			</div>
+<!-- 				<div class="div-row">
+					<div class="div-row-control">
+						<div class=  "g-recaptcha" data-sitekey="6LfnJxETAAAAAFM7r2_mCqMndRiIEsfJ2dhrZjKZ"></div>
+					</div>
+				</div> -->
+				<div class="div-row">
+					<button id = "btn-search" class="btn" style="width: 100%;padding: 8px;text-transform: uppercase;font-size: 14px;font-weight: 400; margin-top:30px" />
+					Tra cuu</button>
+				</div>	
+			<!-- </form> -->
 		</div>
 		<div class="col-md-3 col-sm-3"></div>
+
 		<div class="div-row" style="margin-top: 15px">
-			<table class="datatable">
+			<table class="datatable" id = "table_score" style="display:none">
 				<thead>
 					<tr>
-						<th rowspan="2">STT</th>
 						<th rowspan="2">Họ và tên</th>
 						<th rowspan="2">SBD</th>
 						<th colspan="6">Môn thi</th>
@@ -67,23 +70,38 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>1</td>
-						<td>Nguyễn Văn A</td>
-						<td>123456</td>
-						<td>10</td>
-						<td>10</td>
-						<td>10</td>
-						<td>10</td>
-						<td>10</td>
-						<td>10</td>
-						<td>60</td>
-					</tr>
 				</tbody>
 			</table>
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+	$('#btn-search').on('click',function(){
+		var cluster = $('select option:selected').val(),
+			input = $('input[name="input"]').val();
+		if(cluster == 0){
+			alert('Ban can chon Cum thi truoc khi tim kiem!');
+		}
+		else{
+			$.ajax({
+				type: "POST",
+				url: "{{url('/result/search')}}",
+				cache: false,
+				data: {cluster: cluster, input: input},
+				success: function(data){
+					if(JSON.parse(data).result == 'true'){
+					student = JSON.parse(data).student;
+						$("#table_score").show();
+						$("#table_score tbody").html('');
+						$("#table_score tbody").append("<tr><td>"+student.name+"</td><td>"+student.sbd+"</td><td>"+student.toan+"</td><td>"+student.van+"</td><td>"+student.ly+"</td><td>"+student.hoa+"</td><td>"+student.sinh+"</td><td>"+student.ta+"</td><td>"+student.tong+"</td></tr>");
+					}else{
+
+					}
+				}
+			});
+		}
+	  });
+</script>
 @stop
 
 @section('javascript')

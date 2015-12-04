@@ -29,7 +29,7 @@
 			<div class="div-row">
 				<p id="login-error-mess" style="display:none"></p>
 			</div>
-			<input id="btn-login" class="btn" style="width: 100%; text-transform: uppercase;" value="Đăng nhập" />
+			<input type="submit" id="btn-login" class="btn" style="width: 100%; text-transform: uppercase;" value="Đăng nhập" />
 		</form>
 	</div>
 </div>
