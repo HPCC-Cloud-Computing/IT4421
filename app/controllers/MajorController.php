@@ -146,19 +146,36 @@ class MajorController extends \BaseController {
 			echo "failed";
 	}
 
-	public function get_list(){
-		$university = University::all();
+	public function get_list($id){
+		$university = University::find($id);
 		// foreach ($university as $key => $value) {
-			var_dump($university[0]);
-			echo('<br>');
-			echo('<br>');
+			// var_dump($university[0]);
+			// echo('<br>');
+			// echo('<br>');
 			// var_dump($university[0]->majors());			
 			// var_dump($university);
 		// }
 		
-		// $majors = $university->majors();
+		$majors = $university->majors;
+		$stringHtml = '';
+		foreach ($majors as $major) {
+			$stringHtml .= '<tr>
+			<td>'.$major->code.'</td>
+			<td>'.$major->name.'</td>
+			<td></td>
+			<td>'.$major->target.'</td>
+			<td>'.$major->combidation.'</td>
+			</tr>';
+		}
+		echo ($stringHtml);
+		// dd($majors);
 		// return View::make('pages.majors',['university'=>$university,'majors'=>$majors]);
 	}
 	public function show($id){		
+	}
+	public function get_list_uni()
+	{
+		$universities = University::all();
+		return View::make('pages.majors', array('universities' => $universities));
 	}
 }
