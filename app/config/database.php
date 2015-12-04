@@ -56,8 +56,9 @@ return array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
 			'database'  => 'it4421',
-			'username'  => 'root',
-			'password'  => 'ntk260994',
+			'username'  => '',
+			'password'  => '',
+
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
