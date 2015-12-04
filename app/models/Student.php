@@ -2,7 +2,7 @@
 
 class Student extends Eloquent {
 
-	protected $fillable = array('registration_number','profile_code', 'lastname', 'firstname', 'indentity_code', 'birthday', 'sex', 'plusscore');
+	protected $fillable = array('registration_number','profile_code', 'lastname', 'firstname', 'indentity_code', 'birthday', 'sex', 'plusscore','department_id');
 
 	protected $table = 'students';
 

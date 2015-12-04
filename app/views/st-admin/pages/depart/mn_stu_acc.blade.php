@@ -48,7 +48,8 @@
 				<thead>
 					<td>ID</td>
 					<td>Số báo danh</td>
-					<td>Tên thí sinh</td>
+					<td>Họ</td>
+					<td>Tên</td>
 					<td>Action</td>
 					<td>Action</td>
 				</thead>
@@ -56,18 +57,19 @@
 
 					@foreach ($students as $student)
 					<tr>
-						<td>{{$student->id}}</td>
-						<td>{{$student->code}}</td>
-						<td>{{$student->name}}</td>
-						<td><button class="btn btn-success" data-toggle="modal" data-target="#editStuModal" onclick="editStuForm({{$student->id}})">Edit</button></td>
-						<td><button class="btn btn-danger" onclick="deleteStuForm({{$student->id}})">Delete</button></td>
+						<td>{{$student['id']}}</td>
+						<td>{{$student['indentity_code']}}
+						<td>{{$student['firstname']}}</td>
+						<td>{{$student['lastname']}}</td>
+						<td><button class="btn btn-success" data-toggle="modal" data-target="#editStuModal" onclick="editStuForm({{$student['id']}})">Edit</button></td>
+						<td><button class="btn btn-danger" onclick="deleteStuForm({{$student['id']}})">Delete</button></td>
 
 					</tr>
 					@endforeach
 				</tbody>
-
+					<?php echo $students->links(); ?>
 				</table>
-				<?php echo $students->links(); ?>
+				
 			</div>
 		</div>
 	</div>		{{	InsertForm::FileExport("exportExcelFile");	}}
