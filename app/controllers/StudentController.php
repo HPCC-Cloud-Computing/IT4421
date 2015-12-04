@@ -137,7 +137,6 @@ class StudentController extends \BaseController {
 
 		$student = Student::find($id);
 		echo json_encode($student);
-
 	}
 
 	//Thuc hien sua thong tin 1 hoc sinh
@@ -163,7 +162,7 @@ class StudentController extends \BaseController {
 		$student->birthday = $data['birthday'];
 		$student->sex = $data['sex'];
 		$student->plus_score = $data['plus_score'];
-		$student->department_id = $data['department_id']
+		$student->department_id = $data['department_id'];
 		$check = $student->push();
 		return $check;
 	}
