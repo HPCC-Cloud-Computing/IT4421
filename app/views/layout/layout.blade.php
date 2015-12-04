@@ -23,8 +23,12 @@
 			@include('includes.header')
 		
 		<!-- navigator bar -->
-		@if(Session::has('student'))
-			@include('includes.nav_user')
+		@if(Auth::check())
+			@if(Auth::user()->userable_type == 'student')
+				@include('includes.nav_user')
+			@else
+				@include('includes.nav_guest')
+			@endif
 		@else
 			@include('includes.nav_guest')
 		@endif
