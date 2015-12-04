@@ -134,14 +134,16 @@ class StudentController extends \BaseController {
 	//Hien pop-up sua thong tin 1 hoc sinh
 	public function edit_show($id)
 	{
-		$student = Student::find(Input::get('id'));
-		return View::make('edit_single_student',$student);
+
+		$student = Student::find($id);
+		echo json_encode($student);
+
 	}
 
 	//Thuc hien sua thong tin 1 hoc sinh
 	public function edit_one()
 	{
-		$data = Input::get('data');		
+		$data = Input::get('data');
 		$result = Student::find(intval($data['id']))->update($data);
 		if($result){
 			echo 'success';
@@ -153,14 +155,15 @@ class StudentController extends \BaseController {
 	public function update($data)
 	{
 		$student = Student::find($data['id']);
-		$student->registration_number= $data['reg_number'];
+		$student->registration_number= $data['registration_number'];
 		$student->profile_code = $data['profile_code'];
 		$student->lastname = $data['lastname'];
 		$student->firstname = $data['firstname'];
 		$student->indentity_code = $data['indentity_code'];
 		$student->birthday = $data['birthday'];
 		$student->sex = $data['sex'];
-		$student->plusscore = $data['plusscore'];
+		$student->plus_score = $data['plus_score'];
+		$student->department_id = $data['department_id']
 		$check = $student->push();
 		return $check;
 	}
