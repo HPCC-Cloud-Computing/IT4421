@@ -31,7 +31,6 @@ class ClusterController extends \BaseController {
 			$students_data = array();
 			$rooms = Cluster::find($cluster_id)->rooms()->get();
 			foreach ($rooms as $room) {
-				// dd($room->students->parsekit_func_arginfo(function)ate(15));
 				$students_data = array_merge($students_data,$room->students->toArray());
 			}
 			$students = Paginator::make($students_data, count($students_data), 10);
@@ -42,7 +41,13 @@ class ClusterController extends \BaseController {
 	public function syn_result(){
 		if(Auth::check()){
 			$id = Auth::user()->userable_id;
-			$students = Department::find($id)->students;			
+			$rooms = Cluster::find($id)->rooms()->get();
+			$students = array();
+			foreach ($rooms as $room) {
+				array_push($students,$room->students);
+			}
+			// dd($students);			
+			// die();
 			$major = array(1=>0,2=>0,3=>0,4=>0,5=>0,6=>0,7=>0,8=>0
 				,9=>0,10=>0,11=>0,12=>0,13=>0,14=>0
 				,15=>0,16=>0,17=>0,18=>0,19=>0,20=>0,21=>0,22=>0
