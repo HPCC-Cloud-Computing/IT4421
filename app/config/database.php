@@ -58,6 +58,7 @@ return array(
 			'database'  => 'it4421',
 			'username'  => '',
 			'password'  => '',
+
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
