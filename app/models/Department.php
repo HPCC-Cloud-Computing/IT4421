@@ -1,7 +1,7 @@
 <?php
 
 class Department extends Eloquent {
-	protected $fillable = array('code', 'name', );
+	protected $fillable = array('code', 'name');
 	public $timestamps = false;
 	protected $table = 'departments';
 
@@ -9,13 +9,11 @@ class Department extends Eloquent {
 	 * [user description]
 	 * @return [type] [description]
 	 */
-	public function user()
-	{
+	public function user() {
 		return $this->morphMany('User', 'userable');
 	}
 
-	public function students()
-	{
+	public function students() {
 		return $this->hasMany('Student');
 	}
 

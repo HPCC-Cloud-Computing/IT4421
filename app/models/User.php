@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Auth\UserTrait;
-use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
+use Illuminate\Auth\Reminders\RemindableTrait;
+use Illuminate\Auth\UserInterface;
+use Illuminate\Auth\UserTrait;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
@@ -23,11 +23,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	protected $hidden = array('password', 'remember_token', 'userable_id', 'userable_type');
 
 	public static $rules_login = array(
-	    'username'=>'required|alpha_num|between:3,32',
-	    'password'=>'required|alpha_num|between:6,64' 
-    );
-
-	
+		'username' => 'required|alpha_num|between:3,32',
+		'password' => 'required|alpha_num|between:6,64',
+	);
 
 	/**
 	 * The attributes excluded from the model's JSON form.
@@ -35,13 +33,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 * @var array
 	 */
 
-	public function isAdmin()
-	{
-		return ($this->getUserableType()=='admin');
+	public function isAdmin() {
+		return ($this->getUserableType() == 'admin');
 	}
-	
-	public function userable()
-	{
+
+	public function userable() {
 		return $this->morphTo();
 	}
 
@@ -50,8 +46,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 * @return mixed
 	 */
-	public function getAuthIdentifier()
-	{
+	public function getAuthIdentifier() {
 		return $this->getKey();
 	}
 
@@ -60,29 +55,26 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 * @return string
 	 */
-	public function getAuthPassword()
-	{
+	public function getAuthPassword() {
 		return $this->password;
 	}
 
 	/**
 	 * Get userable_id
 	 */
-	public function getUserableId()
-	{
+	public function getUserableId() {
 		return $this->userable_id;
 	}
 
 	/**
 	 * Get userable_type
 	 */
-	public function getUserableType()
-	{
+	public function getUserableType() {
 		return $this->userable_type;
 	}
-	public function getUser(){
+	public function getUser() {
 
-		$array = array('username'=>$this->username,'id'=>$this->id,'password'=>$this->password,'email'=>$this->email);
+		$array = array('username' => $this->username, 'id' => $this->id, 'password' => $this->password, 'email' => $this->email);
 		return $array;
 	}
 }

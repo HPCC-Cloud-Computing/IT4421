@@ -7,35 +7,28 @@ class NoticeController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function index()
-	{
+	public function index() {
 		$notices = Notice::orderBy('id', 'desc')->get();
-		return View::make('pages.notice',$notices);
+		return View::make('pages.notice', $notices);
 	}
-
-
 
 	/**
 	 * Show the form for creating a new resource.
 	 *
 	 * @return Response
 	 */
-	public function create()
-	{
-		
-	}
+	public function create() {
 
+	}
 
 	/**
 	 * Store a newly created resource in storage.
 	 *
 	 * @return Response
 	 */
-	public function add()
-	{
+	public function add() {
 		//
 	}
-
 
 	/**
 	 * Display the specified resource.
@@ -43,12 +36,10 @@ class NoticeController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
-	{
+	public function show($id) {
 		$notice = Notice::find($id);
-		return View::make('pages.notice')->with('notice',$notice);
+		return View::make('pages.notice')->with('notice', $notice);
 	}
-
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -56,11 +47,9 @@ class NoticeController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
-	{
+	public function edit($id) {
 		//
 	}
-
 
 	/**
 	 * Update the specified resource in storage.
@@ -68,11 +57,9 @@ class NoticeController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
-	{
+	public function update($id) {
 		//
 	}
-
 
 	/**
 	 * Remove the specified resource from storage.
@@ -80,10 +67,8 @@ class NoticeController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
-	{
+	public function destroy($id) {
 		//
 	}
-
 
 }
