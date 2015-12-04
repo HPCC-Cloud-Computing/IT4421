@@ -2,7 +2,7 @@
 
 class Student extends Eloquent {
 
-	protected $fillable = array('registration_number','profile_code', 'lastname', 'firstname', 'indentity_code', 'birthday', 'sex', 'plusscore');
+	protected $fillable = array('registration_number','profile_code', 'lastname', 'firstname', 'indentity_code', 'birthday', 'sex', 'plusscore','department_id');
 
 	protected $table = 'students';
 
@@ -38,7 +38,7 @@ class Student extends Eloquent {
 	public function examscores()
 	{	
 		//return $this->hasMany('Comment', 'foreign_key', 'local_key');
-		return $this->hasMany('ExamScore', 'student_id', 'id');
+		return $this->hasMany('ExamScore');
 	}
 
 	/**

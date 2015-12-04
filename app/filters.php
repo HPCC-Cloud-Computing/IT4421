@@ -53,31 +53,35 @@ Route::filter('auth', function()
 ////////// filter theo user_type //////////////////////
 
 Route::filter('minister',function(){
-	if (Auth::user()->userable_type != 'minister')
+	if (Auth::user()->userable_type != 'minister'){
 		Session::flash('alert-class', 'alert-danger');
 		Session::flash('message','Authorized failed!!!');
-	return Redirect::to('/');	
+		return Redirect::to('/');
+	}	
 });
 
 Route::filter('cluster',function(){
-	if (Auth::user()->userable_type != 'cluster')
+	if (Auth::user()->userable_type != 'cluster'){
 		Session::flash('alert-class', 'alert-danger');
 		Session::flash('message','Authorized failed!!!');
-	return Redirect::to('/');
+		return Redirect::to('/');
+	}
 });
 
 Route::filter('department',function(){
-	if (Auth::user()->userable_type != 'department')
+	if (Auth::user()->userable_type != 'department'){
 		Session::flash('alert-class', 'alert-danger');
 		Session::flash('message','Authorized failed!!!');
-	return Redirect::to('/');
+		return Redirect::to('/');
+	}	
 });
 
 Route::filter('university',function(){
-	if (Auth::user()->userable_type != 'university')
+	if (Auth::user()->userable_type != 'university'){
 		Session::flash('alert-class', 'alert-danger');
 		Session::flash('message','Authorized failed!!!');
-	return Redirect::to('/');
+		return Redirect::to('/');
+	}
 });
 
 Route::filter('student',function(){

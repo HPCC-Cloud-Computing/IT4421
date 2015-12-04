@@ -23,7 +23,7 @@
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
       google.load("visualization", "1", {packages:["corechart"]});
-      google.setOnLoadCallback(drawChart);
+      google.setOnLoadCallback(drawChartColumn);
       function drawChart() {
 
         var data = google.visualization.arrayToDataTable([
@@ -43,7 +43,31 @@
 
         chart.draw(data, options);
       }
+
+      function drawChartColumn() {
+          // Some raw data (not necessarily accurate)
+          var data = google.visualization.arrayToDataTable([
+           ['Diem', 'Khoi A', 'Khoi B', 'Khoi C', 'Khoi D'],
+           <?php for ($i = 1; $i <=30; $i++) {
+                  echo '['.strval($i).','.$result[1][$i].','.$result[2][$i].','.$result[3][$i].','.$result[4][$i].'],';
+            }
+           ?>
+        ]);
+        var options = {
+          title : 'Thong ke pho diem',
+          vAxis: {title: 'So hoc sinh'},
+          hAxis: {title: 'Pho diem'},
+          seriesType: 'bars',
+          width : 2000,
+          series: {4: {type: 'line'}}
+        };
+
+        var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
     </script>
 
-    <div id="piechart" ></div>
+    <!-- <div id="piechart" ></div> -->
+     <div id="chart_div" style="margin-left: 300px;width: 900px; height: 500px;overflow-x: scroll;
+    overflow-y: hidden;"></div>
 @stop

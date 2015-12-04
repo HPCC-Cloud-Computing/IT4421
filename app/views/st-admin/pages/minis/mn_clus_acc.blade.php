@@ -154,7 +154,7 @@
 		        success:function(data, textStatus, jqXHR) 
 		        {
 		            //data: return data from server
-		            location.reload();
+		            // location.reload();
 		        },
 		        error: function(jqXHR, textStatus, errorThrown) 
 		        {
