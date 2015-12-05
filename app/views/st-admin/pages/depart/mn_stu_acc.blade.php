@@ -125,6 +125,7 @@
 		{
 			console.log('ok');
 		    var postData = $(this).serializeArray();
+		    console.log(postData);
 		    var formURL = $(this).attr("action");
 		    $.ajax(
 		    {
@@ -133,8 +134,9 @@
 		        data : postData,
 		        success:function(data, textStatus, jqXHR) 
 		        {
+		        	console.log(data);
 		            //data: return data from server
-		            alert(data);
+		            // alert(data);
 		        },
 		        error: function(jqXHR, textStatus, errorThrown) 
 		        {

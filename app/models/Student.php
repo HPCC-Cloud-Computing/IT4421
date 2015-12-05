@@ -6,6 +6,7 @@ class Student extends Eloquent {
 
 	protected $table = 'students';
 
+	public $timestamps = false;
 	/**
 	 * return Model profile cua user. vi du: Student or University...
 	 */
