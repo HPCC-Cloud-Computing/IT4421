@@ -1,19 +1,18 @@
 <?php
 
 class University extends Eloquent {
-	protected $fillable = array('code', 'name', 'info' );
+	protected $fillable = array('code', 'name', 'info');
 	public $timestamps = false;
 	protected $table = 'universities';
 
-	public function getAll(){
-		return $this->all();	
+	public function getAll() {
+		return $this->all();
 	}
 	/**
 	 * [user description]
 	 * @return [type] [description]
 	 */
-	public function user()
-	{
+	public function user() {
 		return $this->morphMany('User', 'userable');
 	}
 
@@ -21,8 +20,7 @@ class University extends Eloquent {
 	 * [majors description]
 	 * @return [type] [description]
 	 */
-	public function majors()
-	{
+	public function majors() {
 		return $this->hasMany('Major', 'university_id', 'id');
 	}
 
@@ -30,10 +28,8 @@ class University extends Eloquent {
 	 * [wishs description]
 	 * @return [type] [description]
 	 */
-	public function wishs()
-	{
+	public function wishs() {
 		return $this->hasManyThrough('Wish', 'Major', 'university_id', 'major_id');
 	}
 
-	
 }

@@ -61,7 +61,7 @@ Class StudentsTableSeeder extends Seeder{
                 'birthday'                  => '1994-06-19',
                 'sex'                       => 'nam',
                 'plus_score'                => 0.5,
-                'department_id'             => rand(1,60)
+                'department_id'             => 62 #rand(1,60)
                 );
 
                 $students[] = $student;

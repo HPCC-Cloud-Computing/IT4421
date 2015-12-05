@@ -47,8 +47,21 @@ Class UsersTableSeeder extends Seeder{
                 'email' => 'binh@gmail.com',
                 'userable_id'   => 13,
                 'userable_type' => 'student'
+            ),
+            array(
+                'username'      => 'bkhn',
+                'password'      => Hash::make('123456'),
+                'email' => 'bkhn@mail.edu.com',
+                'userable_id'   => 1,
+                'userable_type' => 'university'
+            ),
+            array(
+                'username'      => 'ktqd',
+                'password'      => Hash::make('123456'),
+                'email' => 'ktqd@edu.com',
+                'userable_id'   => 2,
+                'userable_type' => 'university'
             )
-            
 		);
 		DB::table('users')->insert( $users );
 	}

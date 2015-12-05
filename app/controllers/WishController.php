@@ -8,45 +8,48 @@ class WishController extends \BaseController {
 	 * @return Response
 	 */
 
-	public function aspiration_reg(){
-		
+	public function aspiration_reg() {
+
 		return View::make('pages.stu.aspiration_reg');
-	} 
-
-
-	public function index($student_id)
-	{
-		$student = Student::find($student_id);
-		$wish_list = $student->wishs()->get();
-		return View::make('wishs_index',$wish_list);
 	}
 
-	public function add_wish()
-	{
+	public function index($student_id) {
+		$student = Student::find($student_id);
+		$wish_list = $student->wishs()->get();
+		return View::make('wishs_index', $wish_list);
+	}
+
+	public function add_wish() {
 		$data = Input::all();
 		$wish = new Wish;
 		$wish->student_id = $data['student_id'];
 		$wish->major_id = $data['major_id'];
 		$wish->sumscore = $data['sumscore'];
 		$check = $wish->save();
-		if($check) return 'true';
-		else return 'false';
+		if ($check) {
+			return 'true';
+		} else {
+			return 'false';
+		}
+
 	}
 
-	public function edit_wish()
-	{
+	public function edit_wish() {
 		$data = Input::all();
-		$wish = Wish::find($data['id']);;
+		$wish = Wish::find($data['id']);
 		$wish->student_id = $data['student_id'];
 		$wish->major_id = $data['major_id'];
 		$wish->sumscore = $data['sumscore'];
 		$check = $wish->save();
-		if($check) return 'true';
-		else return 'false';
+		if ($check) {
+			return 'true';
+		} else {
+			return 'false';
+		}
+
 	}
 
-	public function delete_wish()
-	{
+	public function delete_wish() {
 		$wish = Wish::find(Input::get('id'));
 		$wish->delete();
 	}
@@ -55,22 +58,18 @@ class WishController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function create()
-	{
+	public function create() {
 		//
 	}
-
 
 	/**
 	 * Store a newly created resource in storage.
 	 *
 	 * @return Response
 	 */
-	public function add()
-	{
+	public function add() {
 		//
 	}
-
 
 	/**
 	 * Display the specified resource.
@@ -78,11 +77,9 @@ class WishController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
-	{
+	public function show($id) {
 		//
 	}
-
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -90,11 +87,9 @@ class WishController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
-	{
+	public function edit($id) {
 		//
 	}
-
 
 	/**
 	 * Update the specified resource in storage.
@@ -102,11 +97,9 @@ class WishController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
-	{
+	public function update($id) {
 		//
 	}
-
 
 	/**
 	 * Remove the specified resource from storage.
@@ -114,10 +107,8 @@ class WishController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
-	{
+	public function destroy($id) {
 		//
 	}
-
 
 }

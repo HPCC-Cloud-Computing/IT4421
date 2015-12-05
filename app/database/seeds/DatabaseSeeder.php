@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder {
 		$this->call('UsersTableSeeder');
 		$this->call('ScoresTableSeeder');
 		$this->call('CombinationsTableSeeder');
+		$this->call('WishsTableSeeder');
 	}
 
 }

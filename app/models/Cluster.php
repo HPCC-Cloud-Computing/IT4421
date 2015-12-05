@@ -9,18 +9,15 @@ class Cluster extends Eloquent {
 	 * [user description]
 	 * @return [type] [description]
 	 */
-	public function user()
-	{
+	public function user() {
 		return $this->morphMany('User', 'userable');
 	}
 
-	public function rooms()
-	{
+	public function rooms() {
 		return $this->hasMany('Room');
 	}
 
-	public function examscores()
-	{
+	public function examscores() {
 		//class Country
 		//public function posts()
 		//return $this->hasManyThrough('Post', 'User', 'country_id', 'user_id');
