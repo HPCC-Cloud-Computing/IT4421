@@ -126,10 +126,14 @@ class StudentController extends \BaseController {
 	}
 
 	//Thuc hien sua thong tin 1 hoc sinh
-	public function edit_one() {
-		$data = Input::get('data');
-		$result = Student::find(intval($data['id']))->update($data);
-		if ($result) {
+	public function edit_one()
+	{
+		// $data = Input::get('data');
+		$data = Input::all();
+		$student = Student::find(intval($data['id']));
+		$result = $this->update($data);
+		if($result){
+
 			echo 'success';
 		} else {
 			echo 'failed';

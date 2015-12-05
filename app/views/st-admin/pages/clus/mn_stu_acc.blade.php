@@ -146,7 +146,35 @@
 		});
 		 
 			// $('#editStuForm').submit(); //Submit  the FORM
-			
+				
+		//Thêm một thí sinh mới --------------
+		$('#addStuModal').submit(function(e)
+		{
+			// console.log('ok');
+		    var data = $(this).serializeArray();
+
+		    var formURL = $(this).attr("action");
+		    $.ajax(
+		    {
+		        url : "{{Asset('/st-admin/minis/mn_clus_acc/add')}}",
+		        type: "POST",
+		        data : data,
+		        success:function(data, textStatus, jqXHR) 
+		        {
+		            //data: return data from server
+		            // location.reload();
+		        },
+		        error: function(jqXHR, textStatus, errorThrown) 
+		        {
+		            //if fails      
+		        }
+		    });
+		    e.preventDefault(); //STOP default action
+		    // e.unbind(); //unbind. to stop multiple form submit.
+		    $('#editClusModalclosebtn').click();
+		});
+
+
 
 	</script>
 
