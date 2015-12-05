@@ -62,6 +62,14 @@ Class UsersTableSeeder extends Seeder{
                 'userable_id'   => 2,
                 'userable_type' => 'university'
             )
+            ,
+            array(
+                'username'      => 'minister',
+                'password'      => Hash::make('123456'),
+                'email' => 'gov@edu.com',
+                'userable_id'   => 1,
+                'userable_type' => 'minister'
+            )
 		);
 		DB::table('users')->insert( $users );
 	}
