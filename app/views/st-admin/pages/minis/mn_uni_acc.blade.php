@@ -69,7 +69,7 @@
 	
 	{{	InsertForm::FileExport("exportExcelFile");	}}
 	{{	InsertForm::FileExcel("importExcelFile"); }}
-	{{	InsertForm::DepartForm("addUniModal");	}}		
+	{{	InsertForm::UniForm("addUniModal");	}}		
 {{	EditForm::UniForm("editUniModal");	}}
 				
 	<script type="text/javascript">
@@ -140,30 +140,45 @@
 			// $('#editUniForm').submit(); //Submit  the FORM
 			
 
-		$('#addClusModal').submit(function(e)
+		$('#addUniModal').submit(function(e)
 		{
 			// console.log('ok');
-		    var data = $(this).serializeArray();
+		    var data1 = $(this).serializeArray();
 
-		    var formURL = $(this).attr("action");
+		    // console.log(data1[0].value);
+		    var data = {
+		    	cluster:{
+		    		code:data1[3].value,
+		    		name:data1[4].value,
+		    		info:data1[5].value
+		    	},
+		    	user:{
+		    		username:data1[0].value,
+		    		password:data1[1].value,
+		    		email:data1[2].value
+		    	}
+		    };
+
 		    $.ajax(
 		    {
-		        url : "{{Asset('/st-admin/minis/mn_clus_acc/add')}}",
+		        url : "{{Asset('/st-admin/minis/mn_uni_acc/add_one')}}",
 		        type: "POST",
 		        data : data,
 		        success:function(data, textStatus, jqXHR) 
 		        {
 		            //data: return data from server
-		            location.reload();
+		            // location.reload();
+		            alert("insert success");
 		        },
 		        error: function(jqXHR, textStatus, errorThrown) 
 		        {
 		            //if fails      
+		            alert("insert fail");
 		        }
 		    });
 		    e.preventDefault(); //STOP default action
 		    // e.unbind(); //unbind. to stop multiple form submit.
-		    $('#editClusModalclosebtn').click();
+		    $('#editUniModalclosebtn').click();
 		});
 	</script>
 

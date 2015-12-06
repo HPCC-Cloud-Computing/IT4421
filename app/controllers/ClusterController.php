@@ -81,7 +81,9 @@ class ClusterController extends \BaseController {
 	 */
 	public function add() {
 
-		$data = Input::get('data');
+		$data = Input::all();
+	// dd($data);
+
 		// $data = '{"depart":{"code":"adsf","name":"sdfasdfsd"},"user":{"username":"dfsdf","password":"dsafdsf","email":"43243324"}}';
 		// $data = json_decode($data, true);
 		if (!isset($data)) {
@@ -95,9 +97,10 @@ class ClusterController extends \BaseController {
 				exit();
 			}
 			$clusterData = array_combine($this->column, $data['cluster']);
-			$cluster = Cluster::create($cluster);
+			$cluster = Cluster::create($clusterData);
 			// $user = $dept->user;
 			$user = new User($data['user']);
+			$user->password = Hash::make($data['user']['password']);
 			$cluster->user()->save($user);
 		} catch (QueryException $e) {
 			echo "error";

@@ -121,7 +121,7 @@
 		{
 			console.log('ok');
 		    var data = $(this).serializeArray();
-		    // console.log(data[0]);
+		    console.log(data[0]);
 		    var formURL = $(this).attr("action");
 		    $.ajax(
 		    {
@@ -151,7 +151,7 @@
 			// console.log('ok');
 		    var data1 = $(this).serializeArray();
 
-		    console.log(data1[0].value);
+		    // console.log(data1[0].value);
 		    var data = {
 		    	cluster:{
 		    		code:data1[3].value,
@@ -165,7 +165,7 @@
 		    };
 
 		    // var data = jQuery.parseJSON(data2);
-		    console.log(data['cluster']['code']);
+		    console.log(data);
 		    // alert(data)
 
 		    // var formURL = $(this).attr("action");
@@ -173,6 +173,7 @@
 		    {
 		        url : "{{Asset('/st-admin/minis/mn_clus_acc/add/add_one')}}",
 		        type: "POST",
+		        cache: false,
 		        data : data,
 		        success:function(result, textStatus, jqXHR) 
 		        {
@@ -183,10 +184,11 @@
 					// 	<td><button class='btn btn-success' data-toggle='modal' data-target='#editClusModal' onclick='editClusForm("+data[0].value+")'>Edit</button></td>
 					// 	<td><button class='btn btn-danger' onclick='deleteClusForm("+data[0].value+")'>Delete</button></td>
 					// ");
-		    	console.log(result);
+		    	// console.log(result);
 		            //data: return data from server
 		            // location.reload();
-		            alert("insert success");
+		            // alert("insert success");
+		            alert(result);
 		        },
 		        error: function(result, textStatus, errorThrown) 
 		        {
@@ -197,7 +199,7 @@
 		    });
 		    e.preventDefault(); //STOP default action
 		    // e.unbind(); //unbind. to stop multiple form submit.
-		    $('#editClusModalclosebtn').click();
+		    $('#addClusModalclosebtn').click();
 		});
 			
 

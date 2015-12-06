@@ -145,27 +145,40 @@
 		$('#addClusModal').submit(function(e)
 		{
 			// console.log('ok');
-		    var data = $(this).serializeArray();
+		    var data1 = $(this).serializeArray();
 
-		    var formURL = $(this).attr("action");
+		    // console.log(data1[0].value);
+		    var data = {
+		    	cluster:{
+		    		code:data1[3].value,
+		    		name:data1[4].value
+		    	},
+		    	user:{
+		    		username:data1[0].value,
+		    		password:data1[1].value,
+		    		email:data1[2].value
+		    	}
+		    };
 		    $.ajax(
 		    {
-		        url : "{{Asset('/st-admin/minis/mn_depart_acc/add')}}",
+		        url : "{{Asset('/st-admin/minis/mn_depart_acc/add_one')}}",
 		        type: "POST",
 		        data : data,
 		        success:function(data, textStatus, jqXHR) 
 		        {
 		            //data: return data from server
-		            location.reload();
+		            // location.reload();
+		            alert('insert success');
 		        },
 		        error: function(jqXHR, textStatus, errorThrown) 
 		        {
 		            //if fails      
+		            alert('insert fails');
 		        }
 		    });
 		    e.preventDefault(); //STOP default action
 		    // e.unbind(); //unbind. to stop multiple form submit.
-		    $('#editClusModalclosebtn').click();
+		    $('#addClusModalclosebtn').click();
 		});
 	</script>
 
