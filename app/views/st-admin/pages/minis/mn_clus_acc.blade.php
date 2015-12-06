@@ -149,9 +149,26 @@
 		$('#addClusModal').submit(function(e)
 		{
 			// console.log('ok');
-		    var data = $(this).serializeArray();
+		    var data1 = $(this).serializeArray();
 
-		    var formURL = $(this).attr("action");
+		    console.log(data1[0].value);
+		    var data = {
+		    	cluster:{
+		    		code:data1[3].value,
+		    		name:data1[4].value
+		    	},
+		    	user:{
+		    		username:data1[0].value,
+		    		password:data1[1].value,
+		    		email:data1[2].value
+		    	}
+		    };
+
+		    // var data = jQuery.parseJSON(data2);
+		    console.log(data['cluster']['code']);
+		    // alert(data)
+
+		    // var formURL = $(this).attr("action");
 		    $.ajax(
 		    {
 		        url : "{{Asset('/st-admin/minis/mn_clus_acc/add/add_one')}}",
@@ -166,7 +183,7 @@
 					// 	<td><button class='btn btn-success' data-toggle='modal' data-target='#editClusModal' onclick='editClusForm("+data[0].value+")'>Edit</button></td>
 					// 	<td><button class='btn btn-danger' onclick='deleteClusForm("+data[0].value+")'>Delete</button></td>
 					// ");
-		    	console.log(data);
+		    	console.log(result);
 		            //data: return data from server
 		            // location.reload();
 		            alert("insert success");
