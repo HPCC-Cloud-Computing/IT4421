@@ -82,14 +82,9 @@ class ClusterController extends \BaseController {
 	public function add() {
 
 		$data = Input::all();
-	// dd($data);
-
-		// $data = '{"depart":{"code":"adsf","name":"sdfasdfsd"},"user":{"username":"dfsdf","password":"dsafdsf","email":"43243324"}}';
-		// $data = json_decode($data, true);
 		if (!isset($data)) {
 			echo "error";
 		}
-
 		try {
 			$cluster = Cluster::where('code', $data['cluster']['code'])->first();
 			if (isset($cluster)) {
@@ -127,16 +122,19 @@ class ClusterController extends \BaseController {
 				$check = Cluster::where('code', $value[0])->first();
 				if (!isset($check)) {
 					// Neu chua ton tai thi moi insert
-					$data_insert = array_combine($this->column, $value);
-					$result = Cluster::create($data_insert);
-					if (isset($result)) {
+					$data_insert = array_combine($this->column, array($value[0],$value[1]));						
+					$clus = Cluster::create($data_insert);
+					$user = new User(array('username'=>$value[2],'password'=>$value[3],'email'=>$value[4]));
+					$user->password = Hash::make($value[3]);
+					$clus->user()->save($user);
+					if (isset($clus)) {
 						$count += 1;
 					}
 				}
 
 			}
 		}
-		echo json_encode(array("num_of_insert" => $count));
+		echo json_encode(array('num_of_insert' => $count));
 	}
 	/**
 	 * Display the specified resource.

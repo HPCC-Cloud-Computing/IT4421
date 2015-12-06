@@ -53,9 +53,9 @@ class UniversityController extends \BaseController {
 	 */
 	public function add() {
 
-		$data = Input::get('data');
+		$data = Input::all();
 		// $data = '{"depart":{"code":"adsf","name":"sdfasdfsd"},"user":{"username":"dfsdf","password":"dsafdsf","email":"43243324"}}';
-		$data = json_decode($data, true);
+		// $data = json_decode($data, true);
 		if (!isset($data)) {
 			echo "error";
 		}
@@ -69,6 +69,7 @@ class UniversityController extends \BaseController {
 			$universityData = array_combine($this->column, $data['university']);
 			$university = University::create($universityData);
 			$user = new User($data['user']);
+			$user->password = Hash::make($data['user']['password']);
 			$university->user()->save($user);
 		} catch (QueryException $e) {
 			echo "error";
@@ -95,9 +96,13 @@ class UniversityController extends \BaseController {
 				$check = University::where('code', $value[0])->first();
 				if (!isset($check)) {
 					// Neu chua ton tai thi moi insert
-					$data_insert = array_combine($this->column, $value);
-					$result = University::create($data_insert);
-					if (isset($result)) {
+					$data_insert = array_combine($this->column, array($value[0],$value[1],$value[2]));						
+					$uni = University::create($data_insert);
+
+					$user = new User(array('username'=>$value[3],'password'=>$value[4],'email'=>$value[5]));
+					$user->password = Hash::make($value[4]);
+					$uni->user()->save($user);
+					if (isset($uni)) {
 						$count += 1;
 					}
 				}

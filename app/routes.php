@@ -123,10 +123,10 @@ Route::group(array('before' => array('auth', 'minister')), function () {
 	Route::post('/st-admin/minis/mn_depart_acc/update', 'DepartmentController@update');
 	// search
 	Route::get('/st-admin/minis/mn_depart_acc/search/{code}/{name}', 'DepartmentController@search');
-	// Them
+	// Them nhieu $data = {{code,name,username,password,email},...}
 	Route::post('/st-admin/minis/mn_depart_acc/add_many', 'DepartmentController@add_many');
-	// $data = '{"depart":{"code":"adsf","name":"sdfasdfsd"},"user":{"username":"dfsdf","password":"dsafdsf","email":"43243324"}}';
-	Route::get('/st-admin/minis/mn_depart_acc/add_one', 'DepartmentController@add');
+	// $data = {depart:{code,name},user:{username,password,email}}
+	Route::post('/st-admin/minis/mn_depart_acc/add_one', 'DepartmentController@add');
 	// Xoa
 	Route::get('/st-admin/minis/mn_depart_acc/del/{id}', 'DepartmentController@destroy');
 	//------------------------------------------end-------------------------------------------------
@@ -140,8 +140,9 @@ Route::group(array('before' => array('auth', 'minister')), function () {
 	Route::post('/st-admin/minis/mn_clus_acc/update', 'ClusterController@update');
 	// search
 	Route::get('/st-admin/minis/mn_clus_acc/search/{code}/{name}', 'ClusterController@search');
-	// Them
+	// Them nhieu $data = {{code,name,username,password,email},...}
 	Route::post('/st-admin/minis/mn_clus_acc/add/add_many', 'ClusterController@add_many');
+	// $data = {cluster:{code,name},user:{username,password,email}}
 	Route::post('/st-admin/minis/mn_clus_acc/add/add_one', 'ClusterController@add');
 	// Xoa
 
@@ -157,8 +158,9 @@ Route::group(array('before' => array('auth', 'minister')), function () {
 	Route::post('/st-admin/minis/mn_uni_acc/update', 'UniversityController@update');
 	// search
 	Route::get('/st-admin/minis/mn_uni_acc/search/{code}/{name}', 'UniversityController@search');
-	// Them
+	// Them nhieu $data = {{code,name,info,username,password,email},...}
 	Route::post('/st-admin/minis/mn_uni_acc/add/add_many', 'UniversityController@add_many');
+	// $data = {university:{code,name,info},user:{username,password,email},...}
 	Route::post('/st-admin/minis/mn_uni_acc/add/add_one', 'UniversityController@add');
 	// Xoas
 	Route::get('/st-admin/minis/mn_uni_acc/del/{id}', 'UniversityController@destroy');

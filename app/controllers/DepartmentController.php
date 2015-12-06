@@ -39,9 +39,8 @@ class DepartmentController extends \BaseController {
 	 */
 	public function add() {
 
-		$data = Input::get('data');
+		$data = Input::all();
 		// $data = '{"depart":{"code":"adsf","name":"sdfasdfsd"},"user":{"username":"dfsdf","password":"dsafdsf","email":"43243324"}}';
-		$data = json_decode($data, true);
 		if (!isset($data)) {
 			echo "error";
 		}
@@ -56,6 +55,7 @@ class DepartmentController extends \BaseController {
 			$dept = Department::create($deptData);
 			// $user = $dept->user;
 			$user = new User($data['user']);
+			$user->password = Hash::make($data['user']['password']);
 			$dept->user()->save($user);
 		} catch (QueryException $e) {
 			echo "error";
@@ -82,9 +82,13 @@ class DepartmentController extends \BaseController {
 				$check = Department::where('code', $value[0])->first();
 				if (!isset($check)) {
 					// Neu chua ton tai thi moi insert
-					$data_insert = array_combine($this->column, $value);
-					$result = Department::create($data_insert);
-					if (isset($result)) {
+					$data_insert = array_combine($this->column, array($value[0],$value[1]));						
+					$dept = Department::create($data_insert);
+
+					$user = new User(array('username'=>$value[2],'password'=>$value[3],'email'=>$value[4]));
+					$user->password = Hash::make($value[3]);
+					$dept->user()->save($user);
+					if (isset($dept)) {
 						$count += 1;
 					}
 				}

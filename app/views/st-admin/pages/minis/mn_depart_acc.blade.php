@@ -142,14 +142,14 @@
 			// $('#editDepartForm').submit(); //Submit  the FORM
 			
 
-		$('#addClusModal').submit(function(e)
+		$('#addDeptModal').submit(function(e)
 		{
 			// console.log('ok');
 		    var data1 = $(this).serializeArray();
 
 		    // console.log(data1[0].value);
 		    var data = {
-		    	cluster:{
+		    	depart:{
 		    		code:data1[3].value,
 		    		name:data1[4].value
 		    	},
@@ -163,6 +163,7 @@
 		    {
 		        url : "{{Asset('/st-admin/minis/mn_depart_acc/add_one')}}",
 		        type: "POST",
+		        cache: false,
 		        data : data,
 		        success:function(data, textStatus, jqXHR) 
 		        {
@@ -178,7 +179,7 @@
 		    });
 		    e.preventDefault(); //STOP default action
 		    // e.unbind(); //unbind. to stop multiple form submit.
-		    $('#addClusModalclosebtn').click();
+		    $('#addDeptModalclosebtn').click();
 		});
 	</script>
 

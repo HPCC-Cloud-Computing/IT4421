@@ -147,7 +147,7 @@
 
 		    // console.log(data1[0].value);
 		    var data = {
-		    	cluster:{
+		    	university:{
 		    		code:data1[3].value,
 		    		name:data1[4].value,
 		    		info:data1[5].value
