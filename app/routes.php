@@ -74,6 +74,11 @@ Route::group(array('before' => array('auth', 'student')), function () {
 		return View::make('pages.stu.profile');
 	});
 
+	//Trang đổi mật khẩu
+	Route::get('/stu/change_pass', function () {
+		return View::make('pages.stu.change_pass');
+	});
+
 });
 
 //Filter usertype = minister

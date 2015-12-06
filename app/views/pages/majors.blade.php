@@ -16,7 +16,7 @@
 	<div class="panel-title">Ngành học - chỉ tiêu</div>
 	<div class="panel-body">
 		<div class="div-row">
-			<div class="div-row-label">Trường</div>
+			<div class="div-row-label" style="width: 5%">Trường</div>
 			<div class="div-row-control">
 				<select id="ddlUniversity" name="ddlUniversity" onchange="University_change(this);" style="width: 400px">
 					<option value="">-- Chọn trường --</option>

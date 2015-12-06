@@ -374,14 +374,21 @@ a.link-style{
   float: left;
     line-height: 24px;
     padding: 2px 0 0;
-    margin-right: 10px
+    margin-right: 10px;
+    width: 20%;
 }
 
 .div-row-control{
   float: left;
     line-height: normal;
-    padding: 2px 0 0;
-    margin-right: 20px
+    margin-right: 20px;
+    width: 70%;
+}
+
+.div_bound {
+    border: 1px solid #2fa1f9;
+    border-radius: 2px;
+    padding: 5px;
 }
 
 /*News style*/

@@ -44,8 +44,8 @@
 					</div>
 				</div> -->
 				<div class="div-row">
-					<button id = "btn-search" class="btn" style="width: 100%;padding: 8px;text-transform: uppercase;font-size: 14px;font-weight: 400; margin-top:30px" />
-					Tra cuu</button>
+					<button id = "btn-search" class="btn" style="width: 100%;padding: 8px;text-transform: uppercase;font-size: 14px;font-weight: 400; margin-top:30px">
+					TRA CỨU</button>
 				</div>	
 			<!-- </form> -->
 		</div>
