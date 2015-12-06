@@ -95,8 +95,10 @@ class EditForm{
 		//Phrase table
 		EditForm:: modalFixedFormGroup("Id","text","","id","Id");
 		EditForm:: modalFormGroup("Mã","text","","code","Mã");
-		EditForm:: modalFormGroup("Tên ngành","text","","name","Tên");
-
+		EditForm:: modalFormGroup("Tên giai đoạn","text","","name","Giai đoạn");
+		EditForm:: modalFormGroup("Trạng thái","text","","state","Trạng thái");
+		EditForm:: modalFormGroup("Bắt đầu","date","","starttime","Bắt đầu");
+		EditForm:: modalFormGroup("Kết thúc","date","","endtime","Kết thúc");
 		EditForm:: editFormFooter();
 	}
 

@@ -53,6 +53,9 @@
 					<td>Action</td>
 				</thead>
 				<tbody>
+					<div id="mn_clus_alert" class="alert">
+						
+					</div>
 					@foreach ($clusters as $cluster)
 					<tr>
 						<td>{{$cluster->id}}</td>
@@ -106,7 +109,8 @@
                      // number : $('#number').val()
                 },
                 success : function (result){
-                    
+					var url = window.location.href;
+		            location.reload(url);
                     console.log(result);	
                     alert("delete success");
                 }
@@ -117,17 +121,19 @@
 		{
 			console.log('ok');
 		    var data = $(this).serializeArray();
-
+		    // console.log(data[0]);
 		    var formURL = $(this).attr("action");
 		    $.ajax(
 		    {
 		        url : "{{Asset('/st-admin/minis/mn_clus_acc/update')}}",
 		        type: "POST",
 		        data : data,
-		        success:function(data, textStatus, jqXHR) 
+		        success:function(data1, textStatus, jqXHR) 
 		        {
-		            //data: return data from server
-		            location.reload();
+		        	//reload page
+		        	var url = window.location.href;
+		            location.reload(url);
+
 		        },
 		        error: function(jqXHR, textStatus, errorThrown) 
 		        {
@@ -135,7 +141,7 @@
 		        }
 		    });
 		    e.preventDefault(); //STOP default action
-		    // e.unbind(); //unbind. to stop multiple form submit.
+		    // // e.unbind(); //unbind. to stop multiple form submit.
 		    $('#editClusModalclosebtn').click();
 		});
 		 
@@ -148,17 +154,28 @@
 		    var formURL = $(this).attr("action");
 		    $.ajax(
 		    {
-		        url : "{{Asset('/st-admin/minis/mn_clus_acc/add')}}",
+		        url : "{{Asset('/st-admin/minis/mn_clus_acc/add/add_one')}}",
 		        type: "POST",
 		        data : data,
-		        success:function(data, textStatus, jqXHR) 
+		        success:function(result, textStatus, jqXHR) 
 		        {
+			  //        $('tbody').prepend("
+		   //          	<td>"+data[0].value+"</td>
+					// 	<td>"+data[3].value+"</td>
+					// 	<td>"+data[4].value+"</td>
+					// 	<td><button class='btn btn-success' data-toggle='modal' data-target='#editClusModal' onclick='editClusForm("+data[0].value+")'>Edit</button></td>
+					// 	<td><button class='btn btn-danger' onclick='deleteClusForm("+data[0].value+")'>Delete</button></td>
+					// ");
+		    	console.log(data);
 		            //data: return data from server
 		            // location.reload();
+		            alert("insert success");
 		        },
-		        error: function(jqXHR, textStatus, errorThrown) 
+		        error: function(result, textStatus, errorThrown) 
 		        {
-		            //if fails      
+		            //if fails     
+		            console.log(result); 
+		            alert("insert fails");
 		        }
 		    });
 		    e.preventDefault(); //STOP default action

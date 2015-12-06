@@ -104,7 +104,8 @@
                      // number : $('#number').val()
                 },
                 success : function (result){
-                    
+		        	var url = window.location.href;
+		            location.reload(url);
                     console.log(result);	
                     alert("delete success");
                 }
@@ -123,6 +124,8 @@
 		        data : data,
 		        success:function(data, textStatus, jqXHR) 
 		        {
+					var url = window.location.href;
+		            location.reload(url);
 		            //data: return data from server
 		            console.log(data);
 		        },

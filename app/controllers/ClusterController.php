@@ -83,7 +83,7 @@ class ClusterController extends \BaseController {
 
 		$data = Input::get('data');
 		// $data = '{"depart":{"code":"adsf","name":"sdfasdfsd"},"user":{"username":"dfsdf","password":"dsafdsf","email":"43243324"}}';
-		$data = json_decode($data, true);
+		// $data = json_decode($data, true);
 		if (!isset($data)) {
 			echo "error";
 		}

@@ -92,9 +92,19 @@
                 success : function (result){
                     
                     console.log(result);	
+                    var obj = jQuery.parseJSON(result);
+                    // console.log(obj.cluster.name);
+                    $modal = $('#editClusModal').find('input');
                     $modal = $('#editMajorModal').find('input');
 
-                    $($modal[0]).val("zyz"); // cần add thêm
+                    $($modal[0]).val(obj.id); // cần add thêm
+                    $($modal[1]).val(obj.code);
+                    $($modal[2]).val(obj.university_id);
+                    $($modal[3]).val(obj.name);
+                    $($modal[4]).val(obj.target);
+                    $($modal[5]).val(obj.combidation);
+                    $($modal[6]).val(obj.condition);
+                    $($modal[7]).val(obj.info);
                 }
             });
 		}
@@ -108,7 +118,8 @@
                      // number : $('#number').val()
                 },
                 success : function (result){
-                    
+		        	var url = window.location.href;
+		            location.reload(url);
                     console.log(result);	
                     alert("delete success");
                 }

@@ -103,7 +103,8 @@
                      // number : $('#number').val()
                 },
                 success : function (result){
-                    
+		        	var url = window.location.href;
+		            location.reload(url);
                     console.log(result);	
                     alert("delete success");
                 }
@@ -123,7 +124,8 @@
 		        success:function(data, textStatus, jqXHR) 
 		        {
 		            //data: return data from server
-		            location.reload();
+		        	var url = window.location.href;
+		            location.reload(url);
 		        },
 		        error: function(jqXHR, textStatus, errorThrown) 
 		        {

@@ -118,8 +118,11 @@ class InsertForm{
 		InsertForm:: insertFormHeader($id);
 
 		//Phrase table
-		InsertForm:: modalFormGroup("Mã","text","","code","Mã");
-		InsertForm:: modalFormGroup("Tên ngành","text","","name","Tên");
+		EditForm:: modalFormGroup("Mã","text","","code","Mã");
+		EditForm:: modalFormGroup("Tên giai đoạn","text","","name","Giai đoạn");
+		EditForm:: modalFormGroup("Trạng thái","text","","state","Trạng thái");
+		EditForm:: modalFormGroup("Bắt đầu","date","","starttime","Bắt đầu");
+		EditForm:: modalFormGroup("Kết thúc","date","","endtime","Kết thúc");
 
 		InsertForm:: insertFormFooter();
 	}

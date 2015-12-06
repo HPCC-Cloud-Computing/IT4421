@@ -38,126 +38,85 @@
 				<table class="table table-hover table-bordered table-striped table-responsive">
 					<thead>
 						<td>ID</td>
-						<td>Giai doan</td>
-						<td>Noi dung</td>
-						<td>Trang thai</td>
-						<td>Bat dau</td>
-						<td>Ket thuc</td>
-						<td>Thiet lap</td>
+						<td>Mã giai đoạn</td>
+						<td>Nội dung</td>
+						<td>Trạng thái</td>
+						<td>Bắt đầu</td>
+						<td>Kết thúc</td>
+						<td>Thiết lập</td>
 					</thead>
-
-					<tbody>
-						<td>1</td>
-						<td>Truoc tuyen sinh</td>
-						<td>Chuan bi tai khoan cho cac so, truong, cum</td>
-						<td>Tu dong</td>
-						<td>01/04/2015 0:00</td>
-						<td>15/04/2015 24:00</td>
-						<td><button type="button" class="btn btn-primary">Edit</button></td>
-					</tbody>
-					<tbody>
-						<td>1</td>
-						<td>Truoc tuyen sinh</td>
-						<td>Chuan bi tai khoan cho cac so, truong, cum</td>
-						<td>Tu dong</td>
-						<td>01/04/2015 0:00</td>
-						<td>15/04/2015 24:00</td>
-						<td><button type="button" class="btn btn-primary">Edit</button></td>
-					</tbody>
-					<tbody>
-						<td>1</td>
-						<td>Truoc tuyen sinh</td>
-						<td>Chuan bi tai khoan cho cac so, truong, cum</td>
-						<td>Tu dong</td>
-						<td>01/04/2015 0:00</td>
-						<td>15/04/2015 24:00</td>
-						<td><button type="button" class="btn btn-primary">Edit</button></td>
-					</tbody>
+				<tbody>
+					@foreach ($phrases as $phrase)
+					<tr>
+						<td>{{$phrase->id}}</td>
+						<td>{{$phrase->code}}</td>
+						<td>{{$phrase->name}}</td>
+						<td>{{$phrase->state}}</td>
+						<td>{{$phrase->starttime}}</td>
+						<td>{{$phrase->endtime}}</td>
+						<td><button class="btn btn-success" data-toggle="modal" data-target="#editPhraseModal" onclick="editPhraseForm({{$phrase->id}})">Edit</button></td>
+					</tr>
+					@endforeach
+				</tbody>		
 				</table>
+				{{	EditForm::Phrase("editPhraseModal");	}}
 			</div>
 		</div>
 	</div>
-	
+		<script type="text/javascript">
+		function editPhraseForm(id){
+			console.log(id);
+			$.ajax({
+                url : "{{Asset('/st-admin/minis/mn_schedule/get_scheduler_data')}}/"+id,
+                type : "GET",
+                data : {
+                     // number : $('#number').val()
+                },
+                success : function (result){
+                    
+                    var obj = jQuery.parseJSON(result);
+                    // console.log(obj.cluster.name);
+                    $modal = $('#editDepartModal').find('input');
+                    // console.log(obj);
+                    $($modal[0]).val(obj.id);
+                    $($modal[1]).val(obj.code); // cần add thêm
+                    $($modal[2]).val(obj.name);
+                    $($modal[2]).val(obj.state);
+                    $($modal[2]).val(obj.starttime);
+                    $($modal[2]).val(obj.endtime);
+                }
+            });
+		}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="addStudentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-	    <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title" id="myModalLabel">Insert Form</h4>
-	    </div>
-
-	     <div class="modal-body">
-	        <?php
-	        	//label type id name placeholder
-	        	// user table
-	        	modalFormGroup("Usename","text","","username","Username");
-	        	modalFormGroup("Password","text","","Password","Password");
-	        	modalFormGroup("Email","text","","email","Email");
-	        	modalFixedFormGroup("Userable id","number","","userable_id",2);
-	        	modalFixedFormGroup("Userable type","text","","userable_type","student");
-
-	        	//students table
-
-	        	modalFormGroup("Profile Code ","text","","profile_code","profile_code");
-	        	modalFormGroup("Registration_number","text","","registration_number","registration_number");
-	        	modalFormGroup("Lastname","text","","lastname","lastname");
-	        	modalFormGroup("Firstname","text","","firstname","firstname");
-	        	modalFormGroup("Email","text","","email","Email");
-	        	modalFormGroup("Indentity_code","text","","indentity_code","indentity_code");
-	        	modalFormGroup("Birthday","date","","birthday","birthday");
-	        	modalFormGroup("Sex","text","","sex","sex");
-	        	modalFormGroup("Plus_score","text","","plus_score","plus_score");
-	        	modalFormGroup("Department_id","text","","department_id","department_id");
-
-
-	  			
-	        ?>
-	      	<div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-success">Add</button>
-	     </div>
-    </div>
-  </div>
-</div>
-
-<?php 
-	function  modalFormGroup($label,$type,$id,$name,$placeholder){
-		echo "<div class='form-group'>
-				<label>".$label."</label>
-				<input type=".$type." class='form-control' id='".$id."' name='".$name."' placeholder='".$placeholder."'>
-			</div>";
-	};
-
-	function modalFixedFormGroup($label,$type,$id,$name,$value){
-		echo "<div class='form-group'>
-				<label>".$label."</label>
-				<input type='".$type."' class='form-control' id='".$id."' name='".$name."' value='".$value."' readonly>
-			</div>";	
-	}
-?>
-
-<!-- </div>	 -->
+		$('#editPhraseModal').submit(function(e)
+		{
+			console.log('ok');
+		    var data = $(this).serializeArray();
+		    // var formURL = $(this).attr("action");
+		    $.ajax(
+		    {
+		        url : "{{Asset('/st-admin/minis/mn_depart_acc/update')}}",
+		        type: "POST",
+		        data : data,
+		        success:function(data, textStatus, jqXHR) 
+		        {
+					var url = window.location.href;
+		            location.reload(url);
+		            //data: return data from server
+		            console.log(data);
+		        },
+		        error: function(jqXHR, textStatus, errorThrown) 
+		        {
+		            //if fails      
+		        }
+		    });
+		    e.preventDefault(); //STOP default action
+		    // e.unbind(); //unbind. to stop multiple form submit.
+		    $('#editDepartModalclosebtn').click();
+		});
+		 
+			// $('#editDepartForm').submit(); //Submit  the FORM
+			
+	</script>
+ 
 @stop

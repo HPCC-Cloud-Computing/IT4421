@@ -114,7 +114,8 @@
                      // number : $('#number').val()
                 },
                 success : function (result){
-                    
+		        	var url = window.location.href;
+		            location.reload(url);
                     console.log(result);	
                     alert("delete success");
                 }
@@ -134,6 +135,8 @@
 		        data : postData,
 		        success:function(data, textStatus, jqXHR) 
 		        {
+		        	var url = window.location.href;
+		            location.reload(url);
 		        	console.log(data);
 		            //data: return data from server
 		            // alert(data);
