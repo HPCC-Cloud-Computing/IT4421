@@ -74,38 +74,39 @@ class StudentController extends \BaseController {
 		return $data;
 	}
 
-	//Hien pop-up giao dien them hs
-	public function add_single_student_show() {
-		//
-	}
-
 	//Thuc hien them thong tin 1 hoc sinh
-	public function add() {
-		$data = Input::all();
-		if (!isset($data)) {
-			echo "error";
-		}
-		try {
-			$student = Student::where('code', $data['student']['code'])->first();
-			if (isset($student)) {
-				echo "error";
-				exit();
-			}
-			$studentData = array_combine($this->column, $data['student']);
-			$student = Student::create($studentData);
-			$user = new User($data['user']);
-			$user->password = Hash::make($data['user']['password']);
-			$student->user()->save($user);
-		} catch (QueryException $e) {
-			echo "error";
-		}
-		if (isset($student)) {
-			echo "success";
-		} else {
-			echo "error";
-		}
-	}
 
+ public function add_one() {
+	  $data = Input::all();
+	  if (!isset($data)) {
+		   echo "error";	
+	  }
+	  try {
+	   $student = Student::where('code', $data['student']['code'])->first();
+	   if (isset($student)) {
+		    echo "error";
+		    exit();
+	   }
+		   $studentData = array_combine($this->column, $data['student']);
+		   $student = Student::create($studentData);
+		   $user = new User($data['user']);
+		   $user->password = Hash::make($data['user']['password']);
+		   $student->user()->save($user);
+	  } catch (QueryException $e) {
+			Session::flash('alert-class', 'alert-danger');
+			Session::flash('message', 'Đã có lỗi xảy ra, vui lòng thử lại!!!');	  	
+		   echo "error";
+	  }
+	  if (isset($student)) {
+	  		Session::flash('alert-class', 'alert-success');
+			Session::flash('message', 'Thêm mới thành công!!!');
+		   echo "success";
+	  } else {
+			Session::flash('alert-class', 'alert-danger');
+			Session::flash('message', 'Đã có lỗi xảy ra, vui lòng thử lại!!!');	  	
+		   echo "error";
+	  }
+ }
 	//Hien thi pop-up giao dien them nhieu hoc sinh
 	public function add_many_student_show() {
 
@@ -153,9 +154,12 @@ class StudentController extends \BaseController {
 		$student = Student::find(intval($data['id']));
 		$result = $this->update($data);
 		if($result){
-
+			Session::flash('alert-class', 'alert-success');
+			Session::flash('message', 'Cập nhật thành công!!!');			
 			echo 'success';
 		} else {
+			Session::flash('alert-class', 'alert-danger');
+			Session::flash('message', 'Đã có lỗi xảy ra, vui lòng thử lại!!!');			
 			echo 'failed';
 		}
 	}
@@ -177,8 +181,15 @@ class StudentController extends \BaseController {
 
 	public function destroy($id) {
 		$student = Student::find($id);
-		$student->delete();
-
+		$result = $student->delete();
+		if($result){
+			Session::flash('alert-class', 'alert-success');
+			Session::flash('message', 'Xóa dư liệu thành công!!!');
+			echo "success";
+		}
+		Session::flash('alert-class', 'alert-danger');
+		Session::flash('message', 'Đã có lỗi xảy ra, vui lòng thử lại!!!');
+		echo "delete fail";
 	}
 
 	/**

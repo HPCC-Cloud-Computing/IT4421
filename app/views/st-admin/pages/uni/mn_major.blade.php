@@ -112,7 +112,7 @@
 		function deleteMajorForm(id){
 
 			$.ajax({
-                url : "{{Asset('/st-admin/uni/mn_major_acc/del')}}/"+id,
+                url : "{{Asset('/st-admin/uni/mn_major/del')}}/"+id,
                 type : "GET",
                 data : {
                      // number : $('#number').val()
@@ -133,7 +133,7 @@
 		    var formURL = $(this).attr("action");
 		    $.ajax(
 		    {
-		        url : "{{Asset('/st-admin/uni/mn_major_acc/update')}}",
+		        url : "{{Asset('/st-admin/uni/mn_major/update')}}",
 		        type: "POST",
 		        data : postData,
 		        success:function(data, textStatus, jqXHR) 
@@ -148,6 +148,35 @@
 		    e.preventDefault(); //STOP default action
 		    // e.unbind(); //unbind. to stop multiple form submit.
 		    $('#editMajorModalclosebtn').click();
+		});
+
+		$('#addMajorModal').submit(function(e)
+		{
+			// console.log('ok');
+		    var data = $(this).serializeArray();
+
+		    // console.log(data1[0].value);
+		    $.ajax(
+		    {
+		        url : "{{Asset('/st-admin/uni/mn_major/add')}}",
+		        type: "POST",
+		        cache: false,
+		        data : data,
+		        success:function(data, textStatus, jqXHR) 
+		        {
+		            //data: return data from server
+		            // location.reload();
+		            alert('insert success');
+		        },
+		        error: function(jqXHR, textStatus, errorThrown) 
+		        {
+		            //if fails      
+		            alert('insert fails');
+		        }
+		    });
+		    e.preventDefault(); //STOP default action
+		    // e.unbind(); //unbind. to stop multiple form submit.
+		    $('#addMajorModalclosebtn').click();
 		});
 		 
 			// $('#editMajorForm').submit(); //Submit  the FORM

@@ -82,7 +82,7 @@
 		function editStuForm(id){
 			console.log(id);
 			$.ajax({
-                url : "{{Asset('/st-admin/depart/mn_stu_acc/edit')}}/"+id,
+                url : "{{Asset('/st-admin/clus/mn_stu_acc/edit')}}/"+id,
                 type : "GET",
                 data : {
                      // number : $('#number').val()
@@ -126,7 +126,6 @@
 		{
 			console.log('ok');
 		    var postData = $(this).serializeArray();
-		    console.log(postData);
 		    var formURL = $(this).attr("action");
 		    $.ajax(
 		    {
@@ -137,9 +136,7 @@
 		        {
 		        	var url = window.location.href;
 		            location.reload(url);
-		        	console.log(data);
 		            //data: return data from server
-		            // alert(data);
 		        },
 		        error: function(jqXHR, textStatus, errorThrown) 
 		        {
@@ -152,7 +149,52 @@
 		});
 		 
 			// $('#editStuForm').submit(); //Submit  the FORM
-			
+				
+		//Thêm một thí sinh mới --------------
+		$('#addStuModal').submit(function(e)
+		{
+			// console.log('ok');
+		    var data1 = $(this).serializeArray();
+		    var data = {
+		    	student:{
+		    		profile_code:data1[2].value,
+		    		registration_number:data1[3].value,
+		    		registration_number:data1[4].value,
+		    		firstname:data1[5].value,
+		    		lastname:data1[6].value,
+		    		indentity_code:data1[7].value,
+		    		birthday:data1[8].value,
+		    		sex:data1[9].value,
+		    		plus_score:data1[10].value,
+		    		department_id:data1[11].value
+		    	},
+		    	user:{
+		    		username:data1[0].value,
+		    		password:data1[1].value
+		    	}
+		    };
+
+		    $.ajax(
+		    {
+		        url : "{{Asset('/st-admin/depart/mn_stu_acc/add')}}",
+		        type: "POST",
+		        data : data,
+		        success:function(data, textStatus, jqXHR) 
+		        {
+		            //data: return data from server
+		            // location.reload();
+		        },
+		        error: function(jqXHR, textStatus, errorThrown) 
+		        {
+		            //if fails      
+		        }
+		    });
+		    e.preventDefault(); //STOP default action
+		    // e.unbind(); //unbind. to stop multiple form submit.
+		    $('#editClusModalclosebtn').click();
+		});
+
+
 
 	</script>
 

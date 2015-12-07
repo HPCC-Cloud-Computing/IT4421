@@ -58,11 +58,17 @@ class DepartmentController extends \BaseController {
 			$user->password = Hash::make($data['user']['password']);
 			$dept->user()->save($user);
 		} catch (QueryException $e) {
+			Session::flash('alert-class', 'alert-danger');
+			Session::flash('message', 'Đã có lôi xảy ra, vui lòng thử lại!!!');
 			echo "error";
 		}
 		if (isset($dept)) {
+			Session::flash('alert-class', 'alert-success');
+			Session::flash('message', 'Thêm mới thành công!!!');
 			echo "success";
 		} else {
+			Session::flash('alert-class', 'alert-danger');
+			Session::flash('message', 'Đã có lôi xảy ra, vui lòng thử lại!!!');
 			echo "error";
 		}
 
@@ -181,10 +187,14 @@ class DepartmentController extends \BaseController {
 			// $result = $dept->user()->update($data['user']);
 			// if($result){
 			// print_r($result);
+			Session::flash('alert-class', 'alert-success');
+			Session::flash('message', 'Cập nhật thành công!!!');
 			echo 'success';
 			exit();
 			// }
 		}
+		Session::flash('alert-class', 'alert-danger');
+		Session::flash('message', 'Đã có lỗi xảy ra, vui lòng thử lại!!!');		
 		echo 'failed';
 	}
 
@@ -197,8 +207,12 @@ class DepartmentController extends \BaseController {
 	public function destroy($id) {
 		$result = Department::find(intval($id))->delete();
 		if ($result > 0) {
+			Session::flash('alert-class', 'alert-success');
+			Session::flash('message', 'Xóa dư liệu thành công!!!');
 			echo "success";
 		} else {
+			Session::flash('alert-class', 'alert-danger');
+			Session::flash('message', 'Đã có lỗi xảy ra, vui lòng thử lại!!!');			
 			echo "failed";
 		}
 

@@ -101,11 +101,14 @@ class ClusterController extends \BaseController {
 			echo "error";
 		}
 		if (isset($cluster)) {
+			Session::flash('alert-class', 'alert-success');
+			Session::flash('message', 'Thêm mới thành công!!!');
 			echo "success";
 		} else {
+			Session::flash('alert-class', 'alert-danger');
+			Session::flash('message', 'Đã có lôi xảy ra, vui lòng thử lại!!!');
 			echo "error";
 		}
-
 	}
 	/**
 	 * HuanPC
@@ -189,14 +192,17 @@ class ClusterController extends \BaseController {
 		// exit();
 		$result = $cluster->update($data);
 		if ($result) {
-			// $user = new User($data['user']);
-			// $result = $dept->user()->update($data['user']);
-			// if($result){
-			// print_r($result);
+
+			Session::flash('alert-class', 'alert-success');
+			Session::flash('message', 'Xóa dư liệu thành công!!!');
+
 			echo 'success';
 			exit();
 			// }
 		}
+		Session::flash('alert-class', 'alert-danger');
+		Session::flash('message', 'Đã có lỗi xảy ra, vui lòng thử lại!!!');
+
 		echo 'failed';
 	}
 
@@ -209,8 +215,12 @@ class ClusterController extends \BaseController {
 	public function destroy($id) {
 		$result = Cluster::find(intval($id))->delete();
 		if ($result > 0) {
+			Session::flash('alert-class', 'alert-success');
+			Session::flash('message', 'Xóa dư liệu thành công!!!');			
 			echo "success";
 		} else {
+			Session::flash('alert-class', 'alert-danger');
+			Session::flash('message', 'Đã có lỗi xảy ra, vui lòng thử lại!!!');			
 			echo "failed";
 		}
 

@@ -35,27 +35,31 @@ class MajorController extends \BaseController {
 	{
 		$data = Input::all();
 		if (!isset($data)) {
-			// Session::flash('alert-class', 'alert-danger');
-			// Session::flash('message', 'Error!!!');
+			Session::flash('alert-class', 'alert-danger');
+			Session::flash('message', 'Đã có lỗi xảy ra, vui lòng thử lại!!!');	
 			echo "error";
 		}
 		try {
 			$major = Major::where('code', $data['code'])->first();
-			if (isset($student)) {
+			if (isset($major)) {
+				Session::flash('alert-class', 'alert-danger');
+				Session::flash('message', 'Đã có lỗi xảy ra, vui lòng thử lại!!!');	
 				echo "error";
 				exit();
 			}
-			$major = Student::create($data);
+			$major = Major::create($data);
 		} catch (QueryException $e) {
+			Session::flash('alert-class', 'alert-danger');
+			Session::flash('message', 'Đã có lỗi xảy ra, vui lòng thử lại!!!');	
 			echo "error";
 		}
 		if (isset($major)) {
 			Session::flash('alert-class', 'alert-success');
-			Session::flash('message', 'Them Nganh hoc thanh cong!!!');
+			Session::flash('message', 'Thêm mới thành công!!!!!!');
 			echo "success";
 		} else {
-			// Session::flash('alert-class', 'alert-danger');
-			// Session::flash('message', 'Error!!!');	
+			Session::flash('alert-class', 'alert-danger');
+			Session::flash('message', 'Đã có lỗi xảy ra, vui lòng thử lại!!!');	
 			echo "error";
 		}
 	}
@@ -102,9 +106,13 @@ class MajorController extends \BaseController {
 		$major = Major::find(intval($data['id']));
 		$result = $major->update($data);
 		if ($result) {
+			Session::flash('alert-class', 'alert-success');
+			Session::flash('message', 'Cập nhật thành công!!!');			
 			echo 'success';
 			exit();
 		}
+		Session::flash('alert-class', 'alert-danger');
+		Session::flash('message', 'Đã có lỗi xảy ra, vui lòng thử lại!!!');		
 		echo 'failed';
 	}
 
@@ -158,8 +166,12 @@ class MajorController extends \BaseController {
 	public function destroy($id) {
 		$result = Major::find(intval($id))->delete();
 		if ($result > 0) {
+			Session::flash('alert-class', 'alert-success');
+			Session::flash('message', 'Xóa dư liệu thành công!!!');
 			echo "success";
 		} else {
+			Session::flash('alert-class', 'alert-danger');
+			Session::flash('message', 'Đã có lỗi xảy ra, vui lòng thử lại!!!');
 			echo "failed";
 		}
 
