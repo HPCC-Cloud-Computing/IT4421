@@ -132,7 +132,10 @@
 		        {
 		        	//reload page
 		        	var url = window.location.href;
-		            location.reload(url);
+		            // location.reload(url);
+					$('#mn_clus_alert').html('ok');
+					// console.log(data);
+					// $('#mn_clus_alert').html("<h2>Ban da edit thanh cong<h2>")
 
 		        },
 		        error: function(jqXHR, textStatus, errorThrown) 
@@ -177,18 +180,9 @@
 		        data : data,
 		        success:function(result, textStatus, jqXHR) 
 		        {
-			  //        $('tbody').prepend("
-		   //          	<td>"+data[0].value+"</td>
-					// 	<td>"+data[3].value+"</td>
-					// 	<td>"+data[4].value+"</td>
-					// 	<td><button class='btn btn-success' data-toggle='modal' data-target='#editClusModal' onclick='editClusForm("+data[0].value+")'>Edit</button></td>
-					// 	<td><button class='btn btn-danger' onclick='deleteClusForm("+data[0].value+")'>Delete</button></td>
-					// ");
-		    	// console.log(result);
-		            //data: return data from server
-		            // location.reload();
-		            // alert("insert success");
-		            alert(result);
+
+		            location.reload();
+
 		        },
 		        error: function(result, textStatus, errorThrown) 
 		        {

@@ -41,11 +41,19 @@ class ExamRoomController extends \BaseController {
 			$data_insert = array_combine($this->column, $data);
 			$result = Room::create($data_insert);
 		} catch (QueryException $e) {
+			Session::flash('alert-class', 'alert-danger');
+			Session::flash('message', 'Đã có lôi xảy ra, vui lòng thử lại!!!');
+
 			echo "error";
 		}
 		if (isset($result)) {
+			Session::flash('alert-class', 'alert-success');
+			Session::flash('message', 'Thêm mới thành công!!!');
 			echo "success";
 		} else {
+			Session::flash('alert-class', 'alert-danger');
+			Session::flash('message', 'Đã có lôi xảy ra, vui lòng thử lại!!!');
+
 			echo "error";
 		}
 

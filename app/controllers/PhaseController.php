@@ -85,8 +85,13 @@ class PhaseController extends \BaseController {
 	public function destroy($id) {
 		$result = Phase::where($column[0], '=', $id)->delete();
 		if ($result > 0) {
+			Session::flash('alert-class', 'alert-success');
+			Session::flash('message', 'Xóa dư liệu thành công!!!');
 			return true;
 		} else {
+			Session::flash('alert-class', 'alert-danger');
+			Session::flash('message', 'Đã có lỗi xảy ra, vui lòng thử lại!!!');
+
 			return false;
 		}
 

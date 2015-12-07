@@ -154,9 +154,26 @@
 		$('#addStuModal').submit(function(e)
 		{
 			// console.log('ok');
-		    var data = $(this).serializeArray();
+		    var data1 = $(this).serializeArray();
+		    var data = {
+		    	student:{
+		    		profile_code:data1[2].value,
+		    		registration_number:data1[3].value,
+		    		registration_number:data1[4].value,
+		    		firstname:data1[5].value,
+		    		lastname:data1[6].value,
+		    		indentity_code:data1[7].value,
+		    		birthday:data1[8].value,
+		    		sex:data1[9].value,
+		    		plus_score:data1[10].value,
+		    		department_id:data1[11].value
+		    	},
+		    	user:{
+		    		username:data1[0].value,
+		    		password:data1[1].value
+		    	}
+		    };
 
-		    var formURL = $(this).attr("action");
 		    $.ajax(
 		    {
 		        url : "{{Asset('/st-admin/minis/mn_clus_acc/add')}}",

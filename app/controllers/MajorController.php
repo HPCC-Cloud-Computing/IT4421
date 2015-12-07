@@ -73,9 +73,13 @@ class MajorController extends \BaseController {
 		$major = Major::find(intval($data['id']));
 		$result = $major->update($data);
 		if ($result) {
+			Session::flash('alert-class', 'alert-success');
+			Session::flash('message', 'Cập nhật thành công!!!');			
 			echo 'success';
 			exit();
 		}
+		Session::flash('alert-class', 'alert-danger');
+		Session::flash('message', 'Đã có lỗi xảy ra, vui lòng thử lại!!!');		
 		echo 'failed';
 	}
 
@@ -129,8 +133,12 @@ class MajorController extends \BaseController {
 	public function destroy($id) {
 		$result = Major::find(intval($id))->delete();
 		if ($result > 0) {
+			Session::flash('alert-class', 'alert-success');
+			Session::flash('message', 'Xóa dư liệu thành công!!!');
 			echo "success";
 		} else {
+			Session::flash('alert-class', 'alert-danger');
+			Session::flash('message', 'Đã có lỗi xảy ra, vui lòng thử lại!!!');
 			echo "failed";
 		}
 

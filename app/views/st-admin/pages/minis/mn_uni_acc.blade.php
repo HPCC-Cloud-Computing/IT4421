@@ -142,7 +142,7 @@
 
 		$('#addUniModal').submit(function(e)
 		{
-			// console.log('ok');
+			console.log('ok');
 		    var data1 = $(this).serializeArray();
 
 		    // console.log(data1[0].value);
@@ -167,8 +167,9 @@
 		        success:function(data, textStatus, jqXHR) 
 		        {
 		            //data: return data from server
-		            // location.reload();
-		            alert("insert success");
+		            location.reload();
+		            // alert("insert success");
+		            
 		        },
 		        error: function(jqXHR, textStatus, errorThrown) 
 		        {

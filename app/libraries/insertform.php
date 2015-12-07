@@ -65,9 +65,6 @@ class InsertForm{
 		InsertForm:: insertFormHeader($id);
 		InsertForm:: modalFormGroup("Tên tài khoản","text","","username","Tài khoản");
 		InsertForm:: modalFormGroup("Mật khẩu","text","","password","Mật khẩu");
-		InsertForm:: modalFormGroup("Email","text","","email","Email");
-		InsertForm:: modalFixedFormGroup("Mã người dùng","number","","userable_type_id",4);
-		InsertForm:: modalFixedFormGroup("Loại người dùng","text","","userable_type","student");
 		//students table
 		InsertForm:: modalFormGroup("Mã hồ sơ","text","","profile_code","Mã hồ sơ");
 		InsertForm:: modalFormGroup("Số báo danh","text","","registration_number","Số báo danh");
