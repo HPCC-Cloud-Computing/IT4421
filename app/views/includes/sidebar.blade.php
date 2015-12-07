@@ -35,11 +35,15 @@
 </div>
 
 <script type="text/javascript">
+	$("#btn-login").on('click',function(){
+		login_click();
+		return false;
+	});
 	function login_keypress(e){
 		if(e.keyCode == 13)
 			login_click();
 	}
-	function login_click(){
+	function login_click(e){
 		var username = $('input[name="username"]').val(),
 			password = $('input[name="password"]').val(),
 			check = 1;

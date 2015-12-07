@@ -14,16 +14,16 @@ class UserController extends \BaseController {
 
 		// run the validation rules on the inputs from the form
 		// dd(Input::all());
-		$validator = Validator::make(Input::all(), User::$rules_login);
+		// $validator = Validator::make(Input::all(), User::$rules_login);
 
 		// if the validator fails, redirect back to the form
-		if ($validator->fails()) {
-			Session::flash('error_login', 'Log In failed!!!');
-			return Redirect::back();
-			return Redirect::to('login')
-				->withErrors($validator) // send back all errors to the login form
-				->withInput(Input::except('password')); // send back the input (not the password) so that we can repopulate the form
-		} else {
+		// if ($validator->fails()) {
+		// 	Session::flash('error_login', 'Log In failed!!!');
+		// 	return Redirect::back();
+		// 	return Redirect::to('login')
+		// 		->withErrors($validator) // send back all errors to the login form
+		// 		->withInput(Input::except('password')); // send back the input (not the password) so that we can repopulate the form
+		// } else {
 
 			// create our user data for the authentication
 			$userdata = array(
@@ -37,24 +37,23 @@ class UserController extends \BaseController {
 				// redirect them to the  section or whatever
 				// return Redirect::to('secure');
 				// for now we'll just echo success (even though echoing in a controller is bad)
-				$url_previous = Session::get("login_previous");
-				Session::forget("login_previous");
-				return Redirect::to($url_previous);
-				// echo "true";
-				return Redirect::back();
-				return Redirect::to(URL::previous()); //test
+				// $url_previous = Session::get("login_previous");
+				// Session::forget("login_previous");
+				// return Redirect::to($url_previous);
+				echo "true";
+				// return Redirect::back();
+				// return Redirect::to(URL::previous()); //test
 
 			} else {
 
 				// validation not successful, send back to form
-				return Redirect::to('login');
-				$password = Hash::make(Input::get('password'));
-				echo json_encode($password);
-				// echo "false";
-				Session::flash('error_login', 'Log In failed!!!');
-				return Redirect::back();
+				// return Redirect::to('login');
+				// $password = Hash::make(Input::get('password'));
+				// echo json_encode($password);
+				echo "false";
+				// Session::flash('error_login', 'Log In failed!!!');
+				// return Redirect::back();
 			}
-		}
 	}
 
 	public function logout() {
