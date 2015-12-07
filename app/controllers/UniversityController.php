@@ -14,10 +14,11 @@ class UniversityController extends \BaseController {
 		return View::make('st-admin.pages.uni.uni');
 	}
 	public function manage_major_page() {
-		// $id = Auth::user()->userable_id;
-		$id = 2;
-		return View::make('st-admin.pages.uni.mn_major',
-			array('majors' => $this->get_majors($id)));
+		if(Auth::check()){
+			$id = Auth::user()->userable_id;
+				return View::make('st-admin.pages.uni.mn_major',
+								array('majors' => $this->get_majors($id)));
+		}
 	}
 	public function get_majors($id) {
 		$university = University::find($id);

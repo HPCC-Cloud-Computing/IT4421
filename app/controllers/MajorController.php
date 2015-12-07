@@ -31,6 +31,35 @@ class MajorController extends \BaseController {
 
 	}
 
+	public function add()
+	{
+		$data = Input::all();
+		if (!isset($data)) {
+			// Session::flash('alert-class', 'alert-danger');
+			// Session::flash('message', 'Error!!!');
+			echo "error";
+		}
+		try {
+			$major = Major::where('code', $data['code'])->first();
+			if (isset($student)) {
+				echo "error";
+				exit();
+			}
+			$major = Student::create($data);
+		} catch (QueryException $e) {
+			echo "error";
+		}
+		if (isset($major)) {
+			Session::flash('alert-class', 'alert-success');
+			Session::flash('message', 'Them Nganh hoc thanh cong!!!');
+			echo "success";
+		} else {
+			// Session::flash('alert-class', 'alert-danger');
+			// Session::flash('message', 'Error!!!');	
+			echo "error";
+		}
+	}
+
 	public function create($data) {
 		//data test
 		$data = array(

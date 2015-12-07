@@ -80,10 +80,30 @@ class StudentController extends \BaseController {
 	}
 
 	//Thuc hien them thong tin 1 hoc sinh
-	public function add_single_student() {
+	public function add() {
 		$data = Input::all();
-		$check = StudentController::create($data);
-		return json_encode($check);
+		if (!isset($data)) {
+			echo "error";
+		}
+		try {
+			$student = Student::where('code', $data['student']['code'])->first();
+			if (isset($student)) {
+				echo "error";
+				exit();
+			}
+			$studentData = array_combine($this->column, $data['student']);
+			$student = Student::create($studentData);
+			$user = new User($data['user']);
+			$user->password = Hash::make($data['user']['password']);
+			$student->user()->save($user);
+		} catch (QueryException $e) {
+			echo "error";
+		}
+		if (isset($student)) {
+			echo "success";
+		} else {
+			echo "error";
+		}
 	}
 
 	//Hien thi pop-up giao dien them nhieu hoc sinh
