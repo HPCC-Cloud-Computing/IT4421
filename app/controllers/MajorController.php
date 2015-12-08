@@ -8,9 +8,10 @@ class MajorController extends \BaseController {
 	 * @return Response
 	 */
 
-	public function search($code, $name) {
-		// dd($code.' '.$name);
-		$major = Major::where('code', 'like', '%' . $code . '%')->orWhere('name', 'like', '%' . $name . '%')->paginate(10);
+	public function search() {
+		$code=Input::get('majorcode');
+		$name=Input::get('majorname');
+		$major = Major::where('code', 'like', '%' . $code . '%')->where('name', 'like', '%' . $name . '%')->paginate(10);
 		return View::make('st-admin.pages.uni.mn_major',
 			array('majors' => $major));
 	}

@@ -32,7 +32,7 @@
 				<br>
 				<br>
 
-				{{	InsertForm::SearchForm("uniid","uniname");	}}			
+				{{	InsertForm::SearchForm("unicode","uniname",Asset('/st-admin/minis/mn_uni_acc/search'));	}}			
 
 				<br>
 				<button type = "submit" class="btn btn-success" data-toggle="modal" data-target="#addUniModal">Add new data</button> 

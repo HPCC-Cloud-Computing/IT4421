@@ -34,7 +34,7 @@
 				<br>
 				<br>
 
-				{{	InsertForm::SearchForm("majorid","majorname");	}}			
+				{{	InsertForm::SearchForm("majorcode","majorname",Asset('/st-admin/uni/mn_major/search'));	}}			
 
 
 				<br>
@@ -81,10 +81,18 @@
 				{{	InsertForm::Major("editMajorModal");	}}
 				
 	<script type="text/javascript">
+		$("#btn-sendfile").on('click',function(){
+			$.ajax({
+				url : "{{Asset('/st-admin/uni/mn_major/importfile')}}/",
+				type : ".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel",
+				data :
+			});
+		});
+
 		function editMajorForm(id){
 			console.log(id);
 			$.ajax({
-                url : "{{Asset('/st-admin/uni/mn_major_acc/edit')}}/"+id,
+                url : "{{Asset('/st-admin/uni/mn_major/edit')}}/"+id,
                 type : "GET",
                 data : {
                      // number : $('#number').val()

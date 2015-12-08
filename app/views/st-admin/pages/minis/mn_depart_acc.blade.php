@@ -32,7 +32,7 @@
 				<br>
 				<br>
 
-				{{	InsertForm::SearchForm("departid","departname");	}}			
+				{{	InsertForm::SearchForm("departcode","departname",Asset('/st-admin/minis/mn_depart_acc/search'));	}}			
 
 				<br>
 				<button type = "submit" class="btn btn-success" data-toggle="modal" data-target="#addDepartModal">Add new data</button> 

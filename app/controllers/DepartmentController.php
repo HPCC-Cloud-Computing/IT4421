@@ -9,9 +9,10 @@ class DepartmentController extends \BaseController {
 	 * @return Response
 	 */
 
-	public function search($code, $name) {
-		// dd($code.' '.$name);
-		$depts = Department::where('code', 'like', '%' . $code . '%')->orWhere('name', 'like', '%' . $name . '%')->paginate(10);
+	public function search() {
+		$code=Input::get('departcode');
+		$name=Input::get('departname');
+		$depts = Department::where('code', 'like', '%' . $code . '%')->where('name', 'like', '%' . $name . '%')->paginate(10);
 		return View::make('st-admin.pages.minis.mn_depart_acc')->with('depts', $depts);
 	}
 

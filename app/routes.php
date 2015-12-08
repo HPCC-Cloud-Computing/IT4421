@@ -122,7 +122,7 @@ Route::group(array('before' => array('auth', 'minister')), function () {
 	// $data = '{"dept":{"id":81,"code":"adsf_new","name":"sdfasdfsd"},"user":{"id":8,"username":"dfsdf_new","password":"dsafdsf","email":"43243324"}}';
 	Route::post('/st-admin/minis/mn_depart_acc/update', 'DepartmentController@update');
 	// search
-	Route::get('/st-admin/minis/mn_depart_acc/search/{code}/{name}', 'DepartmentController@search');
+	Route::get('/st-admin/minis/mn_depart_acc/search', 'DepartmentController@search');
 	// Them nhieu $data = {{code,name,username,password,email},...}
 	Route::post('/st-admin/minis/mn_depart_acc/add_many', 'DepartmentController@add_many');
 	// $data = {depart:{code,name},user:{username,password,email}}
@@ -139,7 +139,7 @@ Route::group(array('before' => array('auth', 'minister')), function () {
 	// Sua: Post thong tin sua len server
 	Route::post('/st-admin/minis/mn_clus_acc/update', 'ClusterController@update');
 	// search
-	Route::get('/st-admin/minis/mn_clus_acc/search/{code}/{name}', 'ClusterController@search');
+	Route::get('/st-admin/minis/mn_clus_acc/search', 'ClusterController@search');
 	// Them nhieu $data = {{code,name,username,password,email},...}
 	Route::post('/st-admin/minis/mn_clus_acc/add/add_many', 'ClusterController@add_many');
 	// $data = {cluster:{code,name},user:{username,password,email}}
@@ -157,7 +157,7 @@ Route::group(array('before' => array('auth', 'minister')), function () {
 	// Sua: Post thong tin sua len server
 	Route::post('/st-admin/minis/mn_uni_acc/update', 'UniversityController@update');
 	// search
-	Route::get('/st-admin/minis/mn_uni_acc/search/{code}/{name}', 'UniversityController@search');
+	Route::get('/st-admin/minis/mn_uni_acc/search', 'UniversityController@search');
 	// Them nhieu $data = {{code,name,info,username,password,email},...}
 	Route::post('/st-admin/minis/mn_uni_acc/add/add_many', 'UniversityController@add_many');
 	// $data = {university:{code,name,info},user:{username,password,email},...}
@@ -261,7 +261,7 @@ Route::group(array('before' => array('auth', 'university')), function () {
 	Route::get('/st-admin/uni/mn_major/update', 'UniversityController@update');
 	Route::get('/st-admin/uni/mn_major/del', 'UniversityController@destroy');
 	Route::get('/st-admin/uni/mn_major/edit', 'UniversityController@destroy');
-	Route::get('/st-admin/uni/mn_major/search/{code}/{name}', 'MajorController@search');
+	Route::get('/st-admin/uni/mn_major/search', 'MajorController@search');
 	Route::get('/st-admin/uni/syn_result', 'UniversityController@syn_result');
 	//------------------------------------------end-------------------------------------------------
 });

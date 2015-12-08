@@ -32,8 +32,7 @@
 				<br>
 				<br>
 
-				{{	InsertForm::SearchForm("clusid","clusname");	}}			
-
+				{{	InsertForm::SearchForm("cluscode","clusname",Asset('/st-admin/minis/mn_clus_acc/search'));	}}			
 
 				<br>
 				<button type = "submit" class="btn btn-success" data-toggle="modal" data-target="#addClusModal">Add new data</button> 
@@ -132,8 +131,8 @@
 		        {
 		        	//reload page
 		        	var url = window.location.href;
-		            // location.reload(url);
-					$('#mn_clus_alert').html('ok');
+		            location.reload(url);
+					// $('#mn_clus_alert').html('ok');
 					// console.log(data);
 					// $('#mn_clus_alert').html("<h2>Ban da edit thanh cong<h2>")
 
@@ -196,7 +195,34 @@
 		    $('#addClusModalclosebtn').click();
 		});
 			
+		$('#clussearch').submit(function(e){
+		    var data = $(this).serializeArray();
+		    console.log(data);
+		   //  var formURL = $(this).attr("action");
+		   //  $.ajax(
+		   //  {
+		   //      url : "{{Asset('/st-admin/minis/mn_clus_acc/update')}}",
+		   //      type: "POST",
+		   //      data : data,
+		   //      success:function(data1, textStatus, jqXHR) 
+		   //      {
+		   //      	//reload page
+		   //      	var url = window.location.href;
+		   //          // location.reload(url);
+					// $('#mn_clus_alert').html('ok');
+					// // console.log(data);
+					// // $('#mn_clus_alert').html("<h2>Ban da edit thanh cong<h2>")
 
+		   //      },
+		   //      error: function(jqXHR, textStatus, errorThrown) 
+		   //      {
+		   //          //if fails      
+		   //      }
+		   //  });
+		    e.preventDefault(); //STOP default action
+		   //  // // e.unbind(); //unbind. to stop multiple form submit.
+		   //  $('#editClusModalclosebtn').click();			
+		});
 	</script>
 
 

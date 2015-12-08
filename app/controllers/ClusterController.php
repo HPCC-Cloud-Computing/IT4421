@@ -9,9 +9,10 @@ class ClusterController extends \BaseController {
 	 * @return Response
 	 */
 
-	public function search($code, $name) {
-		// dd($code.' '.$name);
-		$clusters = Cluster::where('code', 'like', '%' . $code . '%')->orWhere('name', 'like', '%' . $name . '%')->paginate(10);
+	public function search() {
+		$code=Input::get('cluscode');
+		$name=Input::get('clusname');
+		$clusters = Cluster::where('code', 'like', '%' . $code . '%')->where('name', 'like', '%' . $name . '%')->paginate(10);
 		return View::make('st-admin.pages.minis.mn_clus_acc')->with('clusters', $clusters);
 	}
 
@@ -194,7 +195,7 @@ class ClusterController extends \BaseController {
 		if ($result) {
 
 			Session::flash('alert-class', 'alert-success');
-			Session::flash('message', 'Xóa dư liệu thành công!!!');
+			Session::flash('message', 'Cap nhat dư liệu thành công!!!');
 
 			echo 'success';
 			exit();
