@@ -257,10 +257,10 @@ Route::group(array('before' => array('auth', 'university')), function () {
 	//----------------------------------university management page---------------------------------
 	Route::get('/st-admin/uni', 'UniversityController@index');
 	Route::get('/st-admin/uni/mn_major', 'UniversityController@manage_major_page');
-	Route::get('/st-admin/uni/mn_major/add', 'UniversityController@add_major');
-	Route::get('/st-admin/uni/mn_major/update', 'UniversityController@update');
+	Route::post('/st-admin/uni/mn_major/add', 'UniversityController@add');
+	Route::post('/st-admin/uni/mn_major/update', 'UniversityController@update');
+	Route::post('/st-admin/uni/mn_major/edit', 'UniversityController@edit');
 	Route::get('/st-admin/uni/mn_major/del', 'UniversityController@destroy');
-	Route::get('/st-admin/uni/mn_major/edit', 'UniversityController@destroy');
 	Route::get('/st-admin/uni/mn_major/search', 'MajorController@search');
 	Route::get('/st-admin/uni/syn_result', 'UniversityController@syn_result');
 	//------------------------------------------end-------------------------------------------------

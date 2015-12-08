@@ -2,7 +2,8 @@
 	<!-- sidebar -->
 	<div class="sidebar">
 		<div class="user-menu">
-			<span class="user-avatar"> {{	HTML::image('/components/img/user-avatar.png','logo_title',array( 'width' => '100%', 'height' => '100%' ))	}}</span>
+			<span class="user-avatar"> 
+			{{	HTML::image('/components/img/user-avatar.png','logo_title',array( 'width' => '100%', 'height' => '100%' ))	}}</span>
 			<ul>
 				<li><a href="{{ Asset('/logout')}}">Đăng xuất</a></li>
 			</ul>

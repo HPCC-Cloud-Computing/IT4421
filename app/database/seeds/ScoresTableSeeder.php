@@ -45,7 +45,7 @@ Class ScoresTableSeeder extends Seeder{
                 'student_id'      => 4,
                 'room_id'      => 1,
                 'subject_id' => 6,
-                'score' => 30,
+                'score' => 10,
                 'state' => 0
             ),
             array(
@@ -87,7 +87,7 @@ Class ScoresTableSeeder extends Seeder{
                 'student_id'      => 5,
                 'room_id'      => 1,
                 'subject_id' => 6,
-                'score' => 30,
+                'score' => 10,
                 'state' => 0
             ),
             array(
@@ -129,7 +129,7 @@ Class ScoresTableSeeder extends Seeder{
                 'student_id'      => 6,
                 'room_id'      => 1,
                 'subject_id' => 6,
-                'score' => 30,
+                'score' => 10,
                 'state' => 0
             )
 		);

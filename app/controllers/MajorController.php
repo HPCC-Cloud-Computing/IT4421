@@ -65,39 +65,7 @@ class MajorController extends \BaseController {
 		}
 	}
 
-	public function create($data) {
-		//data test
-		$data = array(
-			'code' => 'major_test_2',
-			'university_id' => $university_id,
-			'name' => 'cntt',
-			'target' => '400',
-			'condition' => 'tot nghiep thpt loai gioi',
-			'info' => 'info_test_2',
-		);
-		//dieu kien data
-		$rule = array(
-			'code' => 'required|unique:majors',
-			'university_id' => 'required',
-		);
-		//thong bao khi khong thoa man dieu kien
-		$message = array(
-			'required' => 'chua dien thong tin',
-			'unique' => 'bi trung ma nganh',
-		);
-		$validator = Validator::make($data, $rule, $message);
-		print_r($data);
-		if ($validator->passes()) {
-			$major = Major::create($data);
-			return 'true';
-		} else {
-			print_r($messages = $validator->messages());
-			return 'false';
-		}
-	}
-
 	public function edit($id) {
-
 		$major = Major::find($id);
 		echo json_encode(array('major' => $major, JSON_UNESCAPED_UNICODE));
 	}
@@ -117,52 +85,6 @@ class MajorController extends \BaseController {
 		echo 'failed';
 	}
 
-	//Hien thi giao dien them nganh hoc
-	public function add_major_show() {
-		# code...
-	}
-
-	//Thuc hien them nganh hoc
-	public function add_major() {
-		//data nhan tu View
-		$data = Input::all();
-		$check = MajorController::create($data);
-	}
-
-	//Hien thi giao dien them nganh hoc
-	// public function edit_major_show()
-	// {
-	// 	$major = Major::find(Input::get('id'));
-	// 	return $major;
-	// 	# code...
-	// }
-
-	// //Thuc hien sua nganh hoc
-	// public function edit_major()
-	// {
-	// 	// $data = Input::all();
-
-	// 	$rule = array(
-	// 	        'code' => 'required|unique:majors,code,'.$data['id'],
-	// 	        'university_id' => 'required',
-	// 		);
-	// 	//thong bao khi khong thoa man dieu kien
-	// 	$message = array(
-	// 			'required' => 'chua dien thong tin',
-	// 			'unique' => 'bi trung ma nganh'
-	// 		);
-	// 	$validator = Validator::make($data,$rule,$message);
-	// 	print_r($data);
-	// 	if ($validator->passes())
-	// 	{
-	// 	    MajorController::update($data);
-	// 	    return 'true';
-	// 	}
-	// 	else {
-	// 		print_r($messages = $validator->messages());
-	// 		return 'false';
-	// 	}
-	// }
 
 	public function destroy($id) {
 		$result = Major::find(intval($id))->delete();

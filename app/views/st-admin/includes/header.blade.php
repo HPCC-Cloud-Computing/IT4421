@@ -29,7 +29,6 @@
 
        <!--home icon -->
       <a href="#"><span class="glyphicon glyphicon-home navbar-toggle collapsed" aria-hidden="true"></span></a>
-      
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
