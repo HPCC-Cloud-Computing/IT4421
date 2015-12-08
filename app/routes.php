@@ -78,6 +78,7 @@ Route::group(array('before' => array('auth', 'student')), function () {
 	Route::get('/stu/change_pass', function () {
 		return View::make('pages.stu.change_pass');
 	});
+	Route::post('/stu/save_pass', 'UserController@savePass');
 
 });
 
