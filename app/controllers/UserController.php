@@ -12,11 +12,10 @@ class UserController extends \BaseController {
 
 	public function savePass(){
 		$id = Auth::user()->id;
-		if(Hash::check(Input::get('oldpass'), Auth::user()->password)){
-			$userData = array(
-				'password' => Hash::make(Input::get('newpass'))
-			);
-			$this->update($id, $userData);
+		$user = User::find($id);
+		if(Hash::check(Input::get('oldpass'), $user->password)){
+			$user->password = Hash::make(Input::get('newpass'));
+			$user->save();
 			echo "SUCCESS";
 		}
 		else

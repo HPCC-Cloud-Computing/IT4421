@@ -100,8 +100,8 @@
 						</div>
 					</div>
 				</li>
-			</ul>
 			@endforeach
+			</ul>
 			<nav class="pagination">
 				<ul class="cd-pagination">
 					<li class="btn-prev">

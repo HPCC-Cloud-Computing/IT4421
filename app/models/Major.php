@@ -1,4 +1,4 @@
-c<?php
+<?php
 
 class Major extends Eloquent {
 	protected $fillable = array('code', 'university_id', 'name', 'target', 'combination', 'condition', 'info');

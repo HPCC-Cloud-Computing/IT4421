@@ -35,116 +35,42 @@
 				<h3 style="margin-bottom: 0; line-height: 0">Các nguyện vọng đăng ký</h3>
 				<br /> <i>(Xếp theo thứ tự ưu tiên từ trên xuống dưới)</i>
 			</div>
-			<div class="row-aspiration">
+			@for ($i=1; $i<=4; $i++)
+			<div class="row-aspiration" data="nv{{$i}}">
 				<div class="div-row">
-					<div class="div-row-label">1. Nhóm ngành/Ngành</div>
-					<div class="div-row-control">
-						<select name="" style="width: 260px">
-							<option value="">Công nghệ thông tin</option>
-						</select>
-					</div>
+					<div class="div-row">Nguyen vong {{$i}}</div>
 					<div class="div-row-label">Trường</div>
 					<div class="div-row-control" style="margin-right: 0">
-						<select name="" style="width: 300px">
-							<option value="">ĐH Bách Khoa Hà Nội</option>
+						<select name="university" style="width: 300px" onchange="university_change(this);">
+								<option value="null" selected>---Chon truong---</option>
+							@foreach (University::all() as $uni)
+								<option value="{{$uni->id}}">{{$uni->name}}</option>
+							@endforeach
+						</select>
+					</div>
+					<div class="div-row-label">Nhóm ngành/Ngành</div>
+					<div class="div-row-control">
+						<select name="major" style="width: 260px">
+							<option value="null" selected>---Chon nganh---</option>
 						</select>
 					</div>
 				</div>
 				<div class="div-row">
 					<div class="div-row-label" style="margin-left: 13px">Tổ hợp môn thi dùng để xét tuyển</div>
 					<div class="div-row-control">
-						<select name="" style="width: 189px">
-							<option value="">Khối A (Toán, Lý, Hóa)</option>
-							<option value="">Khối A1 (Toán, Lý, Tiếng Anh)</option>
-							<option value="">Khối B (Toán, Hóa, Sinh)</option>
+						<select name="combi" style="width: 189px">
+							<option value="null" selected>---Chon khoi thi---</option>
+							@foreach (DB::table('combinations')->get() as $combi)
+								<option value="{{$combi->name}}">Khối {{$combi->name}}</option>
+							@endforeach
 						</select>
 					</div>
 				</div>
-			</div>
-
-			<div class="row-aspiration">
-				<div class="div-row">
-					<div class="div-row-label">2. Nhóm ngành/Ngành</div>
-					<div class="div-row-control">
-						<select name="" style="width: 260px">
-							<option value="">Công nghệ thông tin</option>
-						</select>
-					</div>
-					<div class="div-row-label">Trường</div>
-					<div class="div-row-control" style="margin-right: 0">
-						<select name="" style="width: 300px">
-							<option value="">ĐH Bách Khoa Hà Nội</option>
-						</select>
-					</div>
-				</div>
-				<div class="div-row">
-					<div class="div-row-label" style="margin-left: 13px">Tổ hợp môn thi dùng để xét tuyển</div>
-					<div class="div-row-control">
-						<select name="" style="width: 189px">
-							<option value="">Khối A (Toán, Lý, Hóa)</option>
-							<option value="">Khối A1 (Toán, Lý, Tiếng Anh)</option>
-							<option value="">Khối B (Toán, Hóa, Sinh)</option>
-						</select>
-					</div>
-				</div>
-			</div>
-
-			<div class="row-aspiration">
-				<div class="div-row">
-					<div class="div-row-label">3. Nhóm ngành/Ngành</div>
-					<div class="div-row-control">
-						<select name="" style="width: 260px">
-							<option value="">Công nghệ thông tin</option>
-						</select>
-					</div>
-					<div class="div-row-label">Trường</div>
-					<div class="div-row-control" style="margin-right: 0">
-						<select name="" style="width: 300px">
-							<option value="">ĐH Bách Khoa Hà Nội</option>
-						</select>
-					</div>
-				</div>
-				<div class="div-row">
-					<div class="div-row-label" style="margin-left: 13px">Tổ hợp môn thi dùng để xét tuyển</div>
-					<div class="div-row-control">
-						<select name="" style="width: 189px">
-							<option value="">Khối A (Toán, Lý, Hóa)</option>
-							<option value="">Khối A1 (Toán, Lý, Tiếng Anh)</option>
-							<option value="">Khối B (Toán, Hóa, Sinh)</option>
-						</select>
-					</div>
-				</div>
-			</div>
-
-			<div class="row-aspiration">
-				<div class="div-row">
-					<div class="div-row-label">4. Nhóm ngành/Ngành</div>
-					<div class="div-row-control">
-						<select name="" style="width: 260px">
-							<option value="">Công nghệ thông tin</option>
-						</select>
-					</div>
-					<div class="div-row-label">Trường</div>
-					<div class="div-row-control" style="margin-right: 0">
-						<select name="" style="width: 300px">
-							<option value="">ĐH Bách Khoa Hà Nội</option>
-						</select>
-					</div>
-				</div>
-				<div class="div-row">
-					<div class="div-row-label" style="margin-left: 13px">Tổ hợp môn thi dùng để xét tuyển</div>
-					<div class="div-row-control">
-						<select name="" style="width: 189px">
-							<option value="">Khối A (Toán, Lý, Hóa)</option>
-							<option value="">Khối A1 (Toán, Lý, Tiếng Anh)</option>
-							<option value="">Khối B (Toán, Hóa, Sinh)</option>
-						</select>
-					</div>
-				</div>
-			</div>
+			</div>					
+			@endfor
 
 			<div class="div-row" style="text-align: center; margin-top: 15px">
-				<input type='button' class="btn" value="Gửi đăng ký" />
+				<input id="btn-send" type='button' class="btn" value="Gửi đăng ký" onclick="send_data();"/>
 			</div>
 
 		</div>
@@ -161,5 +87,69 @@
     h = parseInt(h) - 10;
     $('#content').css('height', h);
   });
+
+  	function university_change(ddl){
+		var id = $(ddl).val();
+		$.ajax({
+                url : "{{Asset('/majors')}}/"+id,
+                type : "GET",
+                success : function (result){
+                	majors = JSON.parse(result).majors;
+                	major_select = $(ddl).parent().parent().parent().find("select[name='major']");
+                	major_select.html("<option value='null' selected>---Chon nganh---</option>");
+                    for (var i = 0; i < majors.length; i++) {
+                    	major_select.append("<option value='"+majors[i].id+"'>"+majors[i].name+"</option>")
+                    };                  
+                }
+            });
+	}
+
+	function send_data(){
+
+	    var data = {
+	    	'nv':[{
+	    		'student_id':"{{Auth::user()->userable_id}}",
+	    		'major_id':$(".row-aspiration[data='nv1']").find("select[name='major']").val(),
+	    		'number_order':"1",
+	    		'combi':$(".row-aspiration[data='nv1']").find("select[name='combi']").val(),
+	    	},
+	    	{
+	    		'student_id':"{{Auth::user()->userable_id}}",
+	    		'major_id':$(".row-aspiration[data='nv2']").find("select[name='major']").val(),
+	    		'number_order':"2",
+	    		'combi':$(".row-aspiration[data='nv2']").find("select[name='combi']").val(),
+
+	    	},
+	    	{
+	    		'student_id':"{{Auth::user()->userable_id}}",
+	    		'major_id':$(".row-aspiration[data='nv3']").find("select[name='major']").val(),
+	    		'number_order':"3",
+	    		'combi':$(".row-aspiration[data='nv3']").find("select[name='combi']").val(),
+	    	},
+	    	{
+	    		'student_id':"{{Auth::user()->userable_id}}",
+	    		'major_id':$(".row-aspiration[data='nv4']").find("select[name='major']").val(),
+	    		'number_order':"4",
+	    		'combi':$(".row-aspiration[data='nv4']").find("select[name='combi']").val(),
+	    	}]
+
+	    };
+	    $.ajax(
+	    {
+	        url : "{{Asset('/stu/aspiration_reg/add')}}",
+	        type: "POST",
+	        data : data,
+	        success:function(data, textStatus, jqXHR) 
+	        {
+				var url = window.location.href;
+		        location.reload(url);
+	        },
+	        error: function(jqXHR, textStatus, errorThrown) 
+	        {
+	            //if fails      
+	            alert('insert fails');
+	        }
+	    });
+	}
 </script>
 @stop

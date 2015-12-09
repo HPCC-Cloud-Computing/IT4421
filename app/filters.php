@@ -88,7 +88,7 @@ Route::filter('student', function () {
 
 Route::filter('truoc_tuyen_sinh', function () {
 	$check = 1;
-	$scheduler = Phase::where('code', '1')->first();
+	$scheduler = Phase::where('code', 'PHASE1')->first();
 	$date = date("Y-m-d");
 	// dd($date);
 	if ($scheduler->state == 'off') {
@@ -107,7 +107,7 @@ Route::filter('truoc_tuyen_sinh', function () {
 
 Route::filter('trong_tuyen_sinh', function () {
 	$check = 1;
-	$scheduler = Phase::where('code', '2')->first();
+	$scheduler = Phase::where('code', 'PHASE2')->first();
 	$date = date("Y-m-d");
 	// dd(($date < $scheduler->starttime) || ($date > $scheduler->endtime));
 	if ($scheduler->state == 'off') {
@@ -127,7 +127,26 @@ Route::filter('trong_tuyen_sinh', function () {
 
 Route::filter('sau_tuyen_sinh', function () {
 	$check = 1;
-	$scheduler = Phase::where('code', '3')->first();
+	$scheduler = Phase::where('code', 'PHASE3')->first();
+	$date = date("Y-m-d");
+	// dd($date);
+	if ($scheduler->state == 'off') {
+		$check = 0;
+	} else if ($scheduler->state == 'auto') {
+		if (($date < $scheduler->starttime) || ($date > $scheduler->endtime)) {
+			$check = 0;
+		}
+	}
+	if (!$check) {
+		Session::flash('alert-class', 'alert-danger');
+		Session::flash('message', 'Chuc nang bi vo hieu hoa trong khoang thoi gian nay!!!');
+		return Redirect::back();
+	}
+});
+
+Route::filter('sau_nop_ho_so', function () {
+	$check = 1;
+	$scheduler = Phase::where('code', 'PHASE4')->first();
 	$date = date("Y-m-d");
 	// dd($date);
 	if ($scheduler->state == 'off') {

@@ -21,7 +21,7 @@ class University extends Eloquent {
 	 * @return [type] [description]
 	 */
 	public function majors() {
-		return $this->hasMany('Major', 'university_id', 'id');
+		return $this->hasMany('Major');
 	}
 
 	/**

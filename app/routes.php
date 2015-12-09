@@ -62,6 +62,7 @@ Route::group(array('before' => array('auth', 'student')), function () {
 	Route::group(array('before' => 'trong_tuyen_sinh'), function () {
 		//Trang đăng ký xét tuyển
 		Route::get('/stu/aspiration_reg', 'WishController@aspiration_reg');
+		Route::post('/stu/aspiration_reg/add', 'WishController@add_wish');
 	});
 
 	//Filter sau tuyen sinh
