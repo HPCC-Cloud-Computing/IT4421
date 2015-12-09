@@ -1,7 +1,7 @@
 c<?php
 
 class Major extends Eloquent {
-	protected $fillable = array('code', 'university_id', 'name', 'target', 'condition', 'info');
+	protected $fillable = array('code', 'university_id', 'name', 'target', 'combination', 'condition', 'info');
 
 	protected $table = 'majors';
 

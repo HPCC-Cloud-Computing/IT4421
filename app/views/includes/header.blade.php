@@ -20,9 +20,9 @@
 					<!-- Xin chào bạn <b>{{Student::find(Auth::user()->userable_id)->firstname.' '.Student::find(Auth::user()->userable_id)->lastname}}</b> -->
 					Xin chào bạn <b>{{Auth::user()->userable->firstname.' '.Auth::user()->userable->lastname}}</b>
 				</li>
-				{{-- <li class="divider">
+				<li class="divider">
 					<a href="{{Asset('/stu/change_pass')}}">Đổi mật khẩu</a>
-				</li> --}}
+				</li>
 				<li>
 					<a href="{{Asset('/logout')}}">Thoát</a>
 				</li>

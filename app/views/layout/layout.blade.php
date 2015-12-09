@@ -43,7 +43,7 @@
 	</div>
 	
 	{{-- Content --}}
-	<div class="container content">
+	<div class="container content" style="min-height: 300px">
 		<div id='main' class='row'>
 			<!--main content-->
 			<div id='content' class='content-left col-xs-12 col-sm-9 col-md-9'>

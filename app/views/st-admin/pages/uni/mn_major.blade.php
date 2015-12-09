@@ -1,4 +1,3 @@
-<!--deparment So giao duc-->
 @extends('st-admin.layout.layout')
 
 @section('title')
@@ -14,13 +13,9 @@
 		element[1].classList.add("active");
 		// console.log(element[0]);
 	</script>
-
 @stop
 
 @section('content')
-<!-- <div id="main"> -->
-	 <div id="main"> -->
-
 	<div class="content">
 		<div class="row">
 			<div class="col-lg-12">
@@ -34,7 +29,7 @@
 				<br>
 				<br>
 
-				{{	InsertForm::SearchForm("majorid","majorname");	}}			
+				{{	InsertForm::SearchForm("majorcode","majorname",Asset('/st-admin/uni/mn_major/search'));	}}			
 
 
 				<br>
@@ -68,19 +63,25 @@
 
 					</tr>
 					@endforeach
-
 				</tbody>
-
 				</table>
-
 			</div>
 		</div>
-	</div>		{{	InsertForm::FileExport("exportExcelFile");	}}
-				{{	InsertForm::FileExcel("importExcelFile"); }}
-				{{	InsertForm::Major("addMajorModal");	}}			
-				{{	InsertForm::Major("editMajorModal");	}}
+	</div>		
+	{{	InsertForm::FileExport("exportExcelFile");	}}
+	{{	InsertForm::FileExcel("importExcelFile"); }}
+	{{	InsertForm::Major("addMajorModal");	}}			
+	{{	InsertForm::Major("editMajorModal");	}}
 				
 	<script type="text/javascript">
+		$("#btn-sendfile").on('click',function(){
+			$.ajax({
+				url : "{{Asset('/st-admin/uni/mn_major/importfile')}}/",
+				type : ".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel",
+				data :
+			});
+		});
+
 		function editMajorForm(id){
 			console.log(id);
 			$.ajax({
@@ -183,6 +184,4 @@
 			
 
 	</script>				
-
-
 @stop

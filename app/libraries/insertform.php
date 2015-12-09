@@ -1,17 +1,17 @@
 <?php 
 class InsertForm{
 
-	public static function SearchForm($search_code,$search_name){
+	public static function SearchForm($search_code,$search_name,$action){
 		echo'
-				<form id="search_form" class="form-inline">
+				<form id="search_form" class="form-inline" action="'.$action.'" method="GET">
 					  <div class="form-group">
-					    <input type="text" class="form-control" id="'.$search_code.'" placeholder="Input code to search">
+					    <input type="text" class="form-control" name="'.$search_code.'" placeholder="Input code to search">
 					  </div>
 					  <div class="form-group">
-					    <input type="text" class="form-control" id="'.$search_name.'" placeholder="Input name to search">
+					    <input type="text" class="form-control" name="'.$search_name.'" placeholder="Input name to search">
 					  </div>
-					  <button type="submit" class="btn btn-info">Search</button>
-					  <button type="submit" class="btn btn-default">Reset</button>
+					  <button id="btn-search" type="submit" class="btn btn-info">Search</button>
+					  <button id="btn-reset" type="submit" class="btn btn-default">Reset</button>
 				</form>
 			';
 	}
@@ -143,7 +143,7 @@ class InsertForm{
 	public static function FileExcel($id){
 		InsertForm:: insertFormHeader($id);
 		//subject
-		InsertForm:: modalFileFormGroup("Xuất file excel","","excelfile");
+		InsertForm:: modalFileFormGroup("Nhap file excel","import_file	","excelfile");
 		InsertForm:: insertFileFormFooter();
 	}
 	public static function FileExport($id){
@@ -183,7 +183,7 @@ class InsertForm{
 		echo '</div>
 					<div class="modal-footer">
 				        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-				        <button type="submit" class="btn btn-success">Tải file lên</button>
+				        <button id="btn-sendfile" type="submit" class="btn btn-success">Tải file lên</button>
 				    </div>
 			    </div>
 			  </div>
@@ -205,7 +205,7 @@ class InsertForm{
 	private static function modalFileFormGroup($label,$id,$name){
 		echo "<div class='form-group'>
 				<label>".$label."</label>
-				<input type='file' class='form-control' id='".$id."' name='".$name."''>
+				<input type='file' accept='.csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel' runat='server' class='form-control' id='".$id."' name='".$name."'>
 			</div>";
 	}
 	private static function  modalFormGroup($label,$type,$id,$name,$placeholder){

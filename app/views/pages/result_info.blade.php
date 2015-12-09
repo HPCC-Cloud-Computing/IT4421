@@ -5,7 +5,7 @@
 
 @section('breadcrumbs')
 <nav class="breadcrumbs">
-	<a href="/IT4421/public">Trang chủ</a>
+	<a href="{{Asset('')}}">Trang chủ</a>
 	<span class="divider">›</span>
 	Tra cứu điểm thi
 </nav>

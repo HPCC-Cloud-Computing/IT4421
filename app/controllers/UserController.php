@@ -10,6 +10,19 @@ class UserController extends \BaseController {
 		return Redirect::back();
 	}
 
+	public function savePass(){
+		$id = Auth::user()->id;
+		if(Hash::check(Input::get('oldpass'), Auth::user()->password)){
+			$userData = array(
+				'password' => Hash::make(Input::get('newpass'))
+			);
+			$this->update($id, $userData);
+			echo "SUCCESS";
+		}
+		else
+			echo "FAIL";
+	}
+
 	public function login() {
 
 		// run the validation rules on the inputs from the form

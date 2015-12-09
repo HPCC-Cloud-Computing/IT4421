@@ -4,9 +4,10 @@
 class UniversityController extends \BaseController {
 	protected $column = array('code', 'name', 'info');
 
-	public function search($code, $name) {
-		// dd($code.' '.$name);
-		$universitys = University::where('code', 'like', '%' . $code . '%')->orWhere('name', 'like', '%' . $name . '%')->paginate(10);
+	public function search() {
+		$code=Input::get('unicode');
+		$name=Input::get('uniname');
+		$universitys = University::where('code', 'like', '%' . $code . '%')->where('name', 'like', '%' . $name . '%')->paginate(10);
 		return View::make('st-admin.pages.minis.mn_uni_acc')->with('universitys', $universitys);
 	}
 
