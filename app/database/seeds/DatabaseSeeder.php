@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder {
 		$this->call('ScoresTableSeeder');
 		$this->call('CombinationsTableSeeder');
 		$this->call('WishsTableSeeder');
+		$this->call('PhasesTableSeeder');
 	}
 
 }
