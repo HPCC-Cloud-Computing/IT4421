@@ -1,11 +1,11 @@
 <?php 
 class InsertForm{
 
-	public static function SearchForm($search_id,$search_name){
+	public static function SearchForm($search_code,$search_name){
 		echo'
-				<form class="form-inline">
+				<form id="search_form" class="form-inline">
 					  <div class="form-group">
-					    <input type="text" class="form-control" id="'.$search_id.'" placeholder="Input id to search">
+					    <input type="text" class="form-control" id="'.$search_code.'" placeholder="Input code to search">
 					  </div>
 					  <div class="form-group">
 					    <input type="text" class="form-control" id="'.$search_name.'" placeholder="Input name to search">

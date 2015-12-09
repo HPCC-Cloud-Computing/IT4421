@@ -84,7 +84,7 @@
 		function editMajorForm(id){
 			console.log(id);
 			$.ajax({
-                url : "{{Asset('/st-admin/uni/mn_major_acc/edit')}}/"+id,
+                url : "{{Asset('/st-admin/uni/mn_major/edit')}}/"+id,
                 type : "GET",
                 data : {
                      // number : $('#number').val()
