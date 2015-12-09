@@ -10,6 +10,7 @@ Class MajorsTableSeeder extends Seeder{
 			array(
                 'code'               => 'KT01',
                 'university_id'      => 1,
+                'name'               => 'Kỹ thuật 1',
                 'target'             => 1000,
                 'combination'        => 'A',
                 'condition'          => 'điểm trung bình 3 năm cấp 3 lớn hơn 7',
@@ -18,6 +19,7 @@ Class MajorsTableSeeder extends Seeder{
             array(
                 'code'               => 'KT02',
                 'university_id'      => 1,
+                'name'               => 'Kỹ thuật 2',
                 'target'             => 1000,
                 'combination'        => 'A',
                 'condition'          => 'điểm trung bình 3 năm cấp 3 lớn hơn 7',
@@ -26,6 +28,7 @@ Class MajorsTableSeeder extends Seeder{
             array(
                 'code'               => 'NEU01',
                 'university_id'      => 2,
+                'name'               => 'Kinh tế 1',
                 'target'             => 450,
                 'combination'        => 'A|A1',
                 'condition'          => '',
@@ -34,6 +37,7 @@ Class MajorsTableSeeder extends Seeder{
             array(
                 'code'               => 'NEU02',
                 'university_id'      => 2,
+                'name'               => 'Kinh tế 2',
                 'target'             => 300,
                 'combination'        => 'A',
                 'condition'          => '',

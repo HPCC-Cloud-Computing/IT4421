@@ -96,13 +96,13 @@
 						</div>
 						<div class="news-detail">
 							<i class="fa fa-clock-o"></i>
-							{{$phase->starttime}} - {{$phase->endtime}}
+							{{date("d/m/Y", strtotime($phase->starttime))}} - {{date("d/m/Y", strtotime($phase->endtime))}}
 						</div>
 					</div>
 				</li>
 			@endforeach
 			</ul>
-			<nav class="pagination">
+			{{-- <nav class="pagination">
 				<ul class="cd-pagination">
 					<li class="btn-prev">
 						<a href="#0">
@@ -124,7 +124,7 @@
 						</a>
 					</li>
 				</ul>
-			</nav>
+			</nav> --}}
 			<!-- cd-pagination-wrapper -->
 		</div>
 	</div>

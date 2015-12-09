@@ -33,11 +33,11 @@
 		<table id="majors_table" class="datatable">
 			<thead>
 				<tr>
-					<th>Nhóm ngành</th>
-					<th>Các ngành đào tạo</th>
-					<th>Mã ngành</th>
-					<th>Chỉ tiêu dự kiến</th>
-					<th>Tổ hợp môn thi xét tuyển</th>
+					<th style="width: 10%">Mã ngành</th>
+					<th style="width: 30%">Tên ngành</th>
+					<th style="width: 15%">Chỉ tiêu dự kiến</th>
+					<th style="width: 10%">Khối thi</th>
+					<th style="width: 35%">Điều kiện</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -61,11 +61,15 @@
                 type : "GET",
                 success : function (result){
                     // console.log(result);
-                    var data = result.substr(1, result.length);
-                    if(data === "")
-                    	$("#majors_table > tbody").html("<tr><td colspan='5'>Không có bản ghi nào.</td></tr>");
-                   	else
-                    	$("#majors_table > tbody").html(data);
+                    majors = JSON.parse(result).majors;
+                    if(majors.length > 0){
+                    	$("#majors_table > tbody").html("");
+                    	for (var i = 0; i < majors.length; i++) {
+                    		$("#majors_table > tbody").append("<tr><td>"+ majors[i].code +"</td><td>"+ majors[i].name +"</td><td>"+ majors[i].target +"</td><td>"+ majors[i].combination +"</td><td>"+ majors[i].condition +"</td></tr>");
+                    	}
+                	}
+                	else
+                		$("#majors_table > tbody").html("<tr><td colspan='5'>Không có bản ghi nào.</td></tr>");
                 }
             });
 	}

@@ -21,6 +21,7 @@ class CreateWishsTable extends Migration {
             $table->foreign('student_id')->references('id')->on('students');
             $table->integer('major_id')->unsigned();
             $table->foreign('major_id')->references('id')->on('majors');
+            $table->string('combination_name');
             $table->integer('number_order')->unsigned();
             $table->float('sumscore');
         });
