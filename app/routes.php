@@ -117,6 +117,8 @@ Route::group(array('before' => array('auth', 'minister')), function () {
 	// --------------------------------- Department -------------------------------------------
 	// Show danh sach truong + infor
 	Route::get('/st-admin/minis/mn_depart_acc/list', 'DepartmentController@get_list');
+	// Export dept to csv file
+	Route::get('/st-admin/minis/mn_depart_acc/export', 'DepartmentController@export_data');
 	// Sua
 	//$data = '{"code","name"}'
 	Route::get('/st-admin/minis/mn_depart_acc/edit/{id}', 'DepartmentController@edit');
@@ -136,6 +138,8 @@ Route::group(array('before' => array('auth', 'minister')), function () {
 	// ---------------------------------Cluster --------------------------------------------------
 	// Show danh sach truong + infor
 	Route::get('/st-admin/minis/mn_clus_acc/list', 'ClusterController@get_list');
+	// Export Cluster
+	Route::get('/st-admin/minis/mn_clus_acc/export', 'ClusterController@export_data');
 	// Sua: Lay form sua thong tin
 	Route::get('/st-admin/minis/mn_clus_acc/edit/{id}', 'ClusterController@edit');
 	// Sua: Post thong tin sua len server
@@ -154,6 +158,8 @@ Route::group(array('before' => array('auth', 'minister')), function () {
 	// ---------------------------------University ---------------------------------
 	// Show danh sach truong + infor
 	Route::get('/st-admin/minis/mn_uni_acc/list', 'UniversityController@get_list');
+	// Export University
+	Route::get('/st-admin/minis/mn_uni_acc/export', 'UniversityController@export_data');
 	// Sua: Lay form sua thong tin
 	Route::get('/st-admin/minis/mn_uni_acc/edit/{id}', 'UniversityController@edit');
 	// Sua: Post thong tin sua len server
@@ -191,6 +197,9 @@ Route::group(array('before' => array('auth', 'cluster')), function () {
 	// ---------------------------------cluster management page------------------------------------
 	Route::get('/st-admin/clus', 'ClusterController@index');
 	Route::get('/st-admin/clus/mn_stu_acc', 'ClusterController@manage_student_page');
+	Route::get('/st-admin/clus/mn_stu_acc/export_students', 'ClusterController@export_students');
+	// Tam thoi cai nay chua chay duoc
+	Route::get('/st-admin/clus/mn_stu_acc/export_scores', 'ClusterController@export_scores');
 	Route::get('/st-admin/clus/syn_result', 'ClusterController@syn_result');
 	//post // not done!!
 	// Route::get('/st-admin/clus/mn_stu_acc/add', 'StudentController@add_one');
@@ -231,6 +240,8 @@ Route::group(array('before' => array('auth', 'department')), function () {
 	Route::get('/st-admin/depart', 'DepartmentController@index');
 	// Doan nay k can truyen id cua dept vi lay tu session
 	Route::get('/st-admin/depart/mn_stu_acc', 'DepartmentController@manage_student_page');
+	// Export students
+	Route::get('/st-admin/depart/mn_stu_acc/export_students', 'DepartmentController@export_students');
 	Route::get('/st-admin/depart/syn_result', 'DepartmentController@syn_result');
 	// data = {'registration_number', 'profile_code', 'lastname', 'firstname', 'indentity_code', 'birthday', 'sex', 'plusscore',department_id,username,password,email}
 	Route::post('/st-admin/depart/mn_stu_acc/add', 'StudentController@add_one');
@@ -263,6 +274,8 @@ Route::group(array('before' => array('auth', 'university')), function () {
 	//----------------------------------university management page---------------------------------
 	Route::get('/st-admin/uni', 'UniversityController@index');
 	Route::get('/st-admin/uni/mn_major', 'UniversityController@manage_major_page');
+	// Export majors
+	Route::get('/st-admin/uni/mn_major/export_majors', 'UniversityController@export_majors');
 	Route::post('/st-admin/uni/mn_major/add', 'UniversityController@add');
 	Route::post('/st-admin/uni/mn_major/update', 'UniversityController@update');
 	Route::post('/st-admin/uni/mn_major/edit', 'UniversityController@edit');

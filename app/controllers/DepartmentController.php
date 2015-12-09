@@ -20,6 +20,53 @@ class DepartmentController extends \BaseController {
 		$depts = Department::all();
 		echo ($depts);
 	}
+	public function export_data(){
+		$depts = Department::all();
+		$output_text = 'id,code,name'.PHP_EOL;
+		foreach ($depts as $key => $value) {			
+			$output_text .= $value->id.','.$value->code.','.$value->name.PHP_EOL;
+		}
+		// echo ($output_text);
+		$output_text = mb_convert_encoding($output_text, 'UTF-16LE', 'UTF-8');
+		$file_output = Utils::exportCSVFile('Departments.csv',$output_text);
+		if (file_exists($file_output)) {
+		    header('Content-Description: File Transfer');
+		    header('Content-Type: application/octet-stream');
+		    header('Content-Disposition: attachment; filename="'.basename($file_output).'"');
+		    header('Expires: 0');
+		    header('Cache-Control: must-revalidate');
+		    header('Pragma: public');
+		    header('Content-Length: ' . filesize($file_output));
+		    readfile($file_output);
+		    exit;
+		}
+	}
+	public function export_students(){
+		if (Auth::check()) {
+			$dept_id = Auth::user()->userable_id;
+			$dept = Department::find($dept_id);
+			$students = $dept->students;		
+			$output_text = 'id,registration_number,profile_code,lastname,firstname,indentity_code,birthday,sex,plusscore'.PHP_EOL;
+			foreach ($student as $key => $value) {			
+				$output_text .= $value->id.','.$value->registration_number.','.$value->profile_code.','.
+				$value->lastname.','.$value->firstname.','.$value->indentity_code.','.$value->birthday.','.$value->sex.','.$value->plusscore.PHP_EOL;
+			}
+			// echo ($output_text);
+			$output_text = mb_convert_encoding($output_text, 'UTF-16LE', 'UTF-8');
+			$file_output = Utils::exportCSVFile('Student_Dept.csv',$output_text);
+			if (file_exists($file_output)) {
+			    header('Content-Description: File Transfer');
+			    header('Content-Type: application/octet-stream');
+			    header('Content-Disposition: attachment; filename="'.basename($file_output).'"');
+			    header('Expires: 0');
+			    header('Cache-Control: must-revalidate');
+			    header('Pragma: public');
+			    header('Content-Length: ' . filesize($file_output));
+			    readfile($file_output);
+			    exit;
+			}
+		}
+	}
 	public function index() {
 		return View::make('st-admin.pages.depart.depart');
 	}

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Session;
 
 // Khai bao duong dan luu file upload public/files
 define("DIR_FILE_UPLOAD", "files");
+define("DIR_FILE_EXPORT", "export");
 // Ham tien ich
 class Utils {
 	/**
@@ -88,5 +89,11 @@ class Utils {
 		}
 
 		return "";
+	}
+	public static function exportCSVFile($fileName,$text){
+		$file = fopen(DIR_FILE_EXPORT.'/'.$fileName,"w");
+		fwrite($file,$text);
+		fclose($file);
+		return DIR_FILE_EXPORT.'/'.$fileName;
 	}
 }

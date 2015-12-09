@@ -24,7 +24,6 @@ class ClusterController extends \BaseController {
 		return View::make('st-admin.pages.clus.clus');
 	}
 	public function manage_student_page() {
-
 		if (Auth::check()) {
 			$cluster_id = Auth::user()->userable_id;
 			$students_data = array();
@@ -52,8 +51,9 @@ class ClusterController extends \BaseController {
 
 			foreach ($students as $key => $value) {												
 				foreach ($value as $t => $d) {			
-					foreach ($d->examscores as $k => $v) {										
+					foreach ($d->examscores as $k => $v) {																
 						$result[$v->subject_id][intval($v->score)] =$result[$v->subject_id][intval($v->score)]+1;
+
 					}
 					
 				}
@@ -228,5 +228,96 @@ class ClusterController extends \BaseController {
 		}
 
 	}
+	public function export_data(){
+		$clusters = Cluster::all();
+		$output_text = 'id,code,name'.PHP_EOL;
+		foreach ($clusters as $key => $value) {			
+			$output_text .= $value->id.','.$value->code.','.$value->name.PHP_EOL;
+		}
+		// echo ($output_text);
+		$output_text = mb_convert_encoding($output_text, 'UTF-16LE', 'UTF-8');
+		$file_output = Utils::exportCSVFile('Clusters.csv',$output_text);
+		if (file_exists($file_output)) {
+		    header('Content-Description: File Transfer');
+		    header('Content-Type: application/octet-stream');
+		    header('Content-Disposition: attachment; filename="'.basename($file_output).'"');
+		    header('Expires: 0');
+		    header('Cache-Control: must-revalidate');
+		    header('Pragma: public');
+		    header('Content-Length: ' . filesize($file_output));
+		    readfile($file_output);
+		    exit;
+		}
+	}
+	public function export_scores(){
+		if (Auth::check()) {
+			$id = Auth::user()->userable_id;
+			$rooms = Cluster::find($id)->rooms()->get();
+			$students = array();			
+			foreach ($rooms as $room) {
+				array_push($students,$room->students);				
+			}						
+			$subject_frequent = array(1=>0,2=>0,3=>0,4=>0,5=>0,6=>0,7=>0,8=>0
+				,9=>0,10=>0);			
+			$result = array('1'=>new ArrayObject($subject_frequent),'2'=>new ArrayObject($subject_frequent),'3'=>new ArrayObject($subject_frequent),'4'=>$d=$subject_frequent,
+				'5'=>$e=$subject_frequent,'6'=>$f=$subject_frequent,'7'=>$g=$subject_frequent,'8'=>$h=$subject_frequent);
 
+			foreach ($students as $key => $value) {												
+				foreach ($value as $t => $d) {			
+					foreach ($d->examscores as $k => $v) {										
+						$result[$v->subject_id][intval($v->score)] =$result[$v->subject_id][intval($v->score)]+1;
+					}
+					
+				}
+			}				
+			$clusters = Cluster::all();
+			$output_text = 'id,code,name'.PHP_EOL;
+			foreach ($clusters as $key => $value) {			
+				$output_text .= $value->id.','.$value->code.','.$value->name.PHP_EOL;
+			}
+			// echo ($output_text);
+			$output_text = mb_convert_encoding($output_text, 'UTF-16LE', 'UTF-8');
+			$file_output = Utils::exportCSVFile('Clusters.csv',$output_text);
+			if (file_exists($file_output)) {
+			    header('Content-Description: File Transfer');
+			    header('Content-Type: application/octet-stream');
+			    header('Content-Disposition: attachment; filename="'.basename($file_output).'"');
+			    header('Expires: 0');
+			    header('Cache-Control: must-revalidate');
+			    header('Pragma: public');
+			    header('Content-Length: ' . filesize($file_output));
+			    readfile($file_output);
+			    exit;
+			}
+		}		
+	}
+	public function export_students(){
+		if (Auth::check()) {
+			$cluster_id = Auth::user()->userable_id;
+			$students_data = array();
+			$rooms = Cluster::find($cluster_id)->rooms()->get();
+			foreach ($rooms as $room) {
+				$students_data = array_merge($students_data, $room->students->toArray());
+			}
+			$output_text = 'id,registration_number,profile_code,lastname,firstname,indentity_code,birthday,sex,plusscore'.PHP_EOL;
+			foreach ($students_data as $key => $value) {			
+				$output_text .= $value->id.','.$value->registration_number.','.$value->profile_code.','.
+				$value->lastname.','.$value->firstname.','.$value->indentity_code.','.$value->birthday.','.$value->sex.','.$value->plusscore.PHP_EOL;
+			}
+			// echo ($output_text);
+			$output_text = mb_convert_encoding($output_text, 'UTF-16LE', 'UTF-8');
+			$file_output = Utils::exportCSVFile('Student_Clus.csv',$output_text);
+			if (file_exists($file_output)) {
+			    header('Content-Description: File Transfer');
+			    header('Content-Type: application/octet-stream');
+			    header('Content-Disposition: attachment; filename="'.basename($file_output).'"');
+			    header('Expires: 0');
+			    header('Cache-Control: must-revalidate');
+			    header('Pragma: public');
+			    header('Content-Length: ' . filesize($file_output));
+			    readfile($file_output);
+			    exit;
+			}
+		}
+	}
 }

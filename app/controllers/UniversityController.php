@@ -25,6 +25,31 @@ class UniversityController extends \BaseController {
 		$university = University::find($id);
 		return $university->majors;
 	}
+	public function export_majors(){
+		if (Auth::check()) {
+			$uni_id = Auth::user()->userable_id;
+			$university = University::find($uni_id);
+			$majors = $university->majors;							
+			$output_text = 'id,code,university_id,name,target,combination,condition,info'.PHP_EOL;
+			foreach ($majors as $key => $value) {			
+				$output_text .= $value->id.','.$value->code.','.$value->university_id.','.$value->name.','.$value->target
+				.','.$value->combination.','.$value->condition.','.$value->info.PHP_EOL;
+			}
+			$output_text = mb_convert_encoding($output_text, 'UTF-16LE', 'UTF-8');
+			$file_output = Utils::exportCSVFile('Majors_university.csv',$output_text);
+			if (file_exists($file_output)) {
+			    header('Content-Description: File Transfer');
+			    header('Content-Type: application/octet-stream');
+			    header('Content-Disposition: attachment; filename="'.basename($file_output).'"');
+			    header('Expires: 0');
+			    header('Cache-Control: must-revalidate');
+			    header('Pragma: public');
+			    header('Content-Length: ' . filesize($file_output));
+			    readfile($file_output);
+			    exit;
+			}
+		}
+	}
 	public function syn_resutl() {
 		return View::make('st-admin.pages.uni.syn_result');
 	}
@@ -187,5 +212,24 @@ class UniversityController extends \BaseController {
 		}
 
 	}
-
+	public function export_data(){
+		$university = University::all();
+		$output_text = 'id,code,name,info'.PHP_EOL;
+		foreach ($university as $key => $value) {			
+			$output_text .= $value->id.','.$value->code.','.$value->name.','.$value->info.PHP_EOL;
+		}
+		$output_text = mb_convert_encoding($output_text, 'UTF-16LE', 'UTF-8');
+		$file_output = Utils::exportCSVFile('Universities.csv',$output_text);
+		if (file_exists($file_output)) {
+		    header('Content-Description: File Transfer');
+		    header('Content-Type: application/octet-stream');
+		    header('Content-Disposition: attachment; filename="'.basename($file_output).'"');
+		    header('Expires: 0');
+		    header('Cache-Control: must-revalidate');
+		    header('Pragma: public');
+		    header('Content-Length: ' . filesize($file_output));
+		    readfile($file_output);
+		    exit;
+		}
+	}
 }
