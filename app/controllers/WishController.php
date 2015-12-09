@@ -49,6 +49,7 @@ class WishController extends \BaseController {
 					$wish = new Wish;
 					$wish->student_id = $nv['student_id'];
 					$wish->major_id = $nv['major_id'];
+					$wish->combination_name = $nv['combi'];
 					$wish->number_order = $nv['number_order'];
 					$wish->sumscore = $sumscore;
 					$check = $wish->save();
