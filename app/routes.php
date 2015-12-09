@@ -193,10 +193,12 @@ Route::group(array('before' => array('auth', 'cluster')), function () {
 	Route::get('/st-admin/clus/mn_stu_acc', 'ClusterController@manage_student_page');
 	Route::get('/st-admin/clus/syn_result', 'ClusterController@syn_result');
 	//post // not done!!
-	Route::get('/st-admin/clus/mn_stu_acc/add', 'StudentController@add_one');
+	// Route::get('/st-admin/clus/mn_stu_acc/add', 'StudentController@add_one');
 	Route::get('/st-admin/clus/mn_stu_acc/edit/{id}', 'StudentController@edit_show');
+	// data = {'registration_number', 'profile_code', 'lastname', 'firstname', 'indentity_code', 'birthday', 'sex', 'plusscore',department_id}	
 	Route::post('/st-admin/clus/mn_stu_acc/update', 'StudentController@edit_one');
 	Route::get('/st-admin/clus/mn_stu_acc/delete/{id}', 'StudentController@destroy');
+
 	//Quan ly phong thi --- not done
 	// K can doan nay vi tich hop vao doan edit cluster
 	Route::get('/st-admin/clus/mn_exam_room', 'ExamRoomController@index');
@@ -230,8 +232,10 @@ Route::group(array('before' => array('auth', 'department')), function () {
 	// Doan nay k can truyen id cua dept vi lay tu session
 	Route::get('/st-admin/depart/mn_stu_acc', 'DepartmentController@manage_student_page');
 	Route::get('/st-admin/depart/syn_result', 'DepartmentController@syn_result');
-
-	Route::get('/st-admin/depart/mn_stu_acc/add', 'StudentController@add_one');
+	// data = {'registration_number', 'profile_code', 'lastname', 'firstname', 'indentity_code', 'birthday', 'sex', 'plusscore',department_id,username,password,email}
+	Route::post('/st-admin/depart/mn_stu_acc/add', 'StudentController@add_one');
+	// data = {'registration_number', 'profile_code', 'lastname', 'firstname', 'indentity_code', 'birthday', 'sex', 'plusscore',department_id,username,password,email}
+	Route::post('/st-admin/depart/mn_stu_acc/add_many', 'StudentController@add_many');
 	Route::get('/st-admin/depart/mn_stu_acc/edit/{id}', 'StudentController@edit_show');
 	Route::post('/st-admin/depart/mn_stu_acc/update', 'StudentController@edit_one');
 	Route::get('/st-admin/depart/mn_stu_acc/delete/{id}', 'StudentController@destroy');

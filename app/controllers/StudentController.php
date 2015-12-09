@@ -111,6 +111,34 @@ class StudentController extends \BaseController {
 	public function add_many_student_show() {
 
 	}
+	public function add_many() {		
+		$fileInputName = 'excel_file';
+		$data = Utils::importExelFile($fileInputName);
+		$count = 0;
+		if (isset($data)) {			
+			foreach ($data as $key => $value) {
+				// dd($value);
+				// Kiem tra du lieu da ton tai trong csdl?
+				$check = Student::where('registration_number', $value[0])->first();
+				if (!isset($check)) {
+					// Neu chua ton tai thi moi insert
+					$data_insert = array_combine($this->column, array($value[0],$value[1],$value[2],$value[3],$value[4],$value[5],$value[6],$value[7],$value[8]));						
+					$student = Student::create($data_insert);
+
+					$user = new User(array('username'=>$value[9],'password'=>$value[10],'email'=>$value[11]));
+					$user->password = Hash::make($value[10]);
+					$student->user()->save($user);
+					if (isset($student)) {
+						$count += 1;
+					}
+				}
+
+			}
+		}
+		Session::flash('alert-class', 'alert-success');
+		Session::flash('message', 'Thêm mới thành công '.$count.' bản ghi!!');
+		echo json_encode('success');
+	}
 
 	//Thuc hien them thong tin nhieu hoc sinh
 	public function update_many() {
@@ -164,19 +192,26 @@ class StudentController extends \BaseController {
 		}
 	}
 
-	public function update($data) {
-		$student = Student::find($data['id']);
-		$student->registration_number = $data['registration_number'];
-		$student->profile_code = $data['profile_code'];
-		$student->lastname = $data['lastname'];
-		$student->firstname = $data['firstname'];
-		$student->indentity_code = $data['indentity_code'];
-		$student->birthday = $data['birthday'];
-		$student->sex = $data['sex'];
-		$student->plus_score = $data['plus_score'];
-		$student->department_id = $data['department_id'];
-		$check = $student->push();
-		return $check;
+	public function update() {
+		$data = Input::all();
+		$student = Student::find(intval($data['id']));
+		// print_r($dept);
+		// exit();
+		$result = $student->update($data);
+		if ($result) {
+			// $user = new User($data['user']);
+			// $result = $dept->user()->update($data['user']);
+			// if($result){
+			// print_r($result);
+			Session::flash('alert-class', 'alert-success');
+			Session::flash('message', 'Cập nhật thành công!!!');
+			echo 'success';
+			exit();
+			// }
+		}
+		Session::flash('alert-class', 'alert-danger');
+		Session::flash('message', 'Đã có lỗi xảy ra, vui lòng thử lại!!!');		
+		echo 'failed';
 	}
 
 	public function destroy($id) {

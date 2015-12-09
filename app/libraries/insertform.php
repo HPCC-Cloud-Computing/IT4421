@@ -140,10 +140,10 @@ class InsertForm{
 		InsertForm:: insertFormFooter();
 	}
 
-	public static function FileExcel($id){
-		InsertForm:: insertFormHeader($id);
+	public static function FileExcel($id,$action){
+		InsertForm:: insertFileFormHeader($id,$action);
 		//subject
-		InsertForm:: modalFileFormGroup("Nhap file excel","import_file	","excelfile");
+		InsertForm:: modalFileFormGroup("Nhap file excel","import_file	","excel_file");
 		InsertForm:: insertFileFormFooter();
 	}
 	public static function FileExport($id){
@@ -156,7 +156,7 @@ class InsertForm{
 
 	private static function insertFormHeader($id){
 		echo '<form class="modal fade" id="'.$id.'" tabindex="-1" role="dialog" 
-			aria-labelledby="myModalLabel">
+			aria-labelledby="myModalLabel" method="POST">
   			<div class="modal-dialog" role="document">
     		<div class="modal-content">
 	    	<div class="modal-header">
@@ -166,7 +166,18 @@ class InsertForm{
 
 	     	<div class="modal-body">';
 	}
+	private static function insertFileFormHeader($id,$action){
+		echo '<form class="modal fade" id="'.$id.'" tabindex="-1" role="dialog" 
+			aria-labelledby="myModalLabel" action="'.$action.'" method="POST" enctype="multipart/form-data">
+  			<div class="modal-dialog" role="document">
+    		<div class="modal-content">
+	    	<div class="modal-header">
+		        <button id="'.$id.'closebtn" type="button" class="close" data-dismiss="modal" aria-label="Đóng"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Insert Form</h4>
+	    	</div>
 
+	     	<div class="modal-body">';
+	}
 	private static function insertFormFooter(){
 		echo '</div>
 					<div class="modal-footer">

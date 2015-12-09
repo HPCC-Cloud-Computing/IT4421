@@ -69,7 +69,7 @@
 			</div>
 		</div>
 	</div>		{{	InsertForm::FileExport("exportExcelFile");	}}
-				{{	InsertForm::FileExcel("importExcelFile"); }}
+				{{	InsertForm::FileExcel("importExcelFile",Asset('/st-admin/minis/mn_depart_acc/add/add_many')); }}
 				{{	InsertForm::DepartForm("addDepartModal");	}}		
 				{{	EditForm::DepartForm("editDepartModal");	}}
 
@@ -142,7 +142,7 @@
 			// $('#editDepartForm').submit(); //Submit  the FORM
 			
 
-		$('#addDeptModal').submit(function(e)
+		$('#addDepartModal').submit(function(e)
 		{
 			// console.log('ok');
 		    var data1 = $(this).serializeArray();
@@ -161,7 +161,7 @@
 		    };
 		    $.ajax(
 		    {
-		        url : "{{Asset('/st-admin/minis/mn_depart_acc/add_one')}}",
+		        url : "{{Asset('/st-admin/minis/mn_depart_acc/add/add_one')}}",
 		        type: "POST",
 		        cache: false,
 		        data : data,
@@ -169,17 +169,22 @@
 		        {
 		            //data: return data from server
 		            // location.reload();
-		            alert('insert success');
+					var url = window.location.href;		            
+		            location.reload(url);
+                    console.log(result);	
+		            // alert('insert success');
 		        },
 		        error: function(jqXHR, textStatus, errorThrown) 
 		        {
 		            //if fails      
-		            alert('insert fails');
+					var url = window.location.href;		            
+    				location.reload(url);		            
+		            // alert('insert fails');
 		        }
 		    });
 		    e.preventDefault(); //STOP default action
 		    // e.unbind(); //unbind. to stop multiple form submit.
-		    $('#addDeptModalclosebtn').click();
+		    $('#addDepartModalclosebtn').click();
 		});
 	</script>
 

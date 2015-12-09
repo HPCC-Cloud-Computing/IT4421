@@ -32,7 +32,8 @@
 				<br>
 				<br>
 
-				{{	InsertForm::SearchForm("cluscode","clusname",Asset('/st-admin/minis/mn_clus_acc/search'));	}}			
+				{{	InsertForm::SearchForm("clussearch","clusid","clusname");	}}			
+
 
 				<br>
 				<button type = "submit" class="btn btn-success" data-toggle="modal" data-target="#addClusModal">Add new data</button> 
@@ -72,7 +73,7 @@
 			</div>
 		</div>
 	</div>		{{	InsertForm::FileExport("exportExcelFile");	}}
-				{{	InsertForm::FileExcel("importExcelFile"); }}
+				{{	InsertForm::FileExcel("importExcelFile",Asset('/st-admin/minis/mn_clus_acc/add/add_many')); }}
 				{{	InsertForm::ClusForm("addClusModal");	}}			
 				{{	EditForm::ClusForm("editClusModal");	}}
 				
@@ -132,7 +133,7 @@
 		        	//reload page
 		        	var url = window.location.href;
 		            location.reload(url);
-					// $('#mn_clus_alert').html('ok');
+					$('#mn_clus_alert').html('ok');
 					// console.log(data);
 					// $('#mn_clus_alert').html("<h2>Ban da edit thanh cong<h2>")
 
@@ -140,6 +141,8 @@
 		        error: function(jqXHR, textStatus, errorThrown) 
 		        {
 		            //if fails      
+		            var url = window.location.href;		            
+    				location.reload(url);
 		        }
 		    });
 		    e.preventDefault(); //STOP default action
@@ -180,14 +183,17 @@
 		        success:function(result, textStatus, jqXHR) 
 		        {
 
-		            location.reload();
+    				location.reload(url);
+                    console.log(result);	
 
 		        },
 		        error: function(result, textStatus, errorThrown) 
 		        {
 		            //if fails     
+		            var url = window.location.href;		            
+    				location.reload(url);
 		            console.log(result); 
-		            alert("insert fails");
+		            // alert("insert fails");
 		        }
 		    });
 		    e.preventDefault(); //STOP default action

@@ -1,6 +1,6 @@
 <?php
-// require_once (dirname(__FILE__).'/Excel/reader.php');
-// require_once (dirname(__FILE__).'/Utils.php');
+require_once (dirname(__FILE__).'/Excel/reader.php');
+require_once (dirname(__FILE__).'/Utils.php');
 class DepartmentController extends \BaseController {
 	protected $column = array('code', 'name');
 	/**
@@ -80,11 +80,12 @@ class DepartmentController extends \BaseController {
 	 * @return [type] [description]
 	 */
 	public function add_many() {
-		$fileInputName = 'exel_file';
+		$fileInputName = 'excel_file';
 		$data = Utils::importExelFile($fileInputName);
 		$count = 0;
-		if (isset($data)) {
+		if (isset($data)) {			
 			foreach ($data as $key => $value) {
+				// dd($value);
 				// Kiem tra du lieu da ton tai trong csdl?
 				$check = Department::where('code', $value[0])->first();
 				if (!isset($check)) {
@@ -102,7 +103,9 @@ class DepartmentController extends \BaseController {
 
 			}
 		}
-		echo json_encode(array('num_of_insert' => $count));
+		Session::flash('alert-class', 'alert-success');
+		Session::flash('message', 'Thêm mới thành công '.$count.' bản ghi!!');
+		echo json_encode('success');
 	}
 
 	/**

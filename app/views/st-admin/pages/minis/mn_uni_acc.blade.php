@@ -68,9 +68,9 @@
 	</div>		
 	
 	{{	InsertForm::FileExport("exportExcelFile");	}}
-	{{	InsertForm::FileExcel("importExcelFile"); }}
+	{{	InsertForm::FileExcel("importExcelFile",Asset('/st-admin/minis/mn_uni_acc/add/add_many')); }}
 	{{	InsertForm::UniForm("addUniModal");	}}		
-{{	EditForm::UniForm("editUniModal");	}}
+	{{	EditForm::UniForm("editUniModal");	}}
 				
 	<script type="text/javascript">
 		function editUniForm(id){
@@ -161,21 +161,25 @@
 
 		    $.ajax(
 		    {
-		        url : "{{Asset('/st-admin/minis/mn_uni_acc/add_one')}}",
+		        url : "{{Asset('st-admin/minis/mn_uni_acc/add/add_one')}}",
 		        type: "POST",
 		        data : data,
 		        success:function(data, textStatus, jqXHR) 
 		        {
 		            //data: return data from server
-		            location.reload();
+					var url = window.location.href;		            
+    				location.reload(url);
+                    console.log(result);	
 		            // alert("insert success");
 		            
 		        },
 		        error: function(jqXHR, textStatus, errorThrown) 
 		        {
 		            //if fails      
-		            alert("insert fail");
-		        }
+		            // alert("insert fail");
+					var url = window.location.href;		            
+    				location.reload(url);
+		            		        }
 		    });
 		    e.preventDefault(); //STOP default action
 		    // e.unbind(); //unbind. to stop multiple form submit.
