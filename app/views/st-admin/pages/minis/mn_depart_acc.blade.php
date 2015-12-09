@@ -69,7 +69,7 @@
 			</div>
 		</div>
 	</div>		{{	InsertForm::FileExport("exportExcelFile");	}}
-				{{	InsertForm::FileExcel("importExcelFile",Asset('/st-admin/minis/mn_depart_acc/add_many')); }}
+				{{	InsertForm::FileExcel("importExcelFile",Asset('/st-admin/minis/mn_depart_acc/add/add_many')); }}
 				{{	InsertForm::DepartForm("addDepartModal");	}}		
 				{{	EditForm::DepartForm("editDepartModal");	}}
 
@@ -161,7 +161,7 @@
 		    };
 		    $.ajax(
 		    {
-		        url : "{{Asset('/st-admin/minis/mn_depart_acc/add_one')}}",
+		        url : "{{Asset('/st-admin/minis/mn_depart_acc/add/add_one')}}",
 		        type: "POST",
 		        cache: false,
 		        data : data,

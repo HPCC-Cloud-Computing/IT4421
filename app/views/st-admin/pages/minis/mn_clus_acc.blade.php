@@ -73,7 +73,7 @@
 			</div>
 		</div>
 	</div>		{{	InsertForm::FileExport("exportExcelFile");	}}
-				{{	InsertForm::FileExcel("importExcelFile",Asset('/st-admin/minis/mn_clus_acc/add_many')); }}
+				{{	InsertForm::FileExcel("importExcelFile",Asset('/st-admin/minis/mn_clus_acc/add/add_many')); }}
 				{{	InsertForm::ClusForm("addClusModal");	}}			
 				{{	EditForm::ClusForm("editClusModal");	}}
 				
@@ -132,7 +132,7 @@
 		        {
 		        	//reload page
 		        	var url = window.location.href;
-		            // location.reload(url);
+		            location.reload(url);
 					$('#mn_clus_alert').html('ok');
 					// console.log(data);
 					// $('#mn_clus_alert').html("<h2>Ban da edit thanh cong<h2>")
