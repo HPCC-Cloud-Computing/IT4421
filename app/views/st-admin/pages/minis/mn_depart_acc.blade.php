@@ -142,7 +142,7 @@
 			// $('#editDepartForm').submit(); //Submit  the FORM
 			
 
-		$('#addDeptModal').submit(function(e)
+		$('#addDepartModal').submit(function(e)
 		{
 			// console.log('ok');
 		    var data1 = $(this).serializeArray();
@@ -169,17 +169,22 @@
 		        {
 		            //data: return data from server
 		            // location.reload();
-		            alert('insert success');
+					var url = window.location.href;		            
+		            location.reload(url);
+                    console.log(result);	
+		            // alert('insert success');
 		        },
 		        error: function(jqXHR, textStatus, errorThrown) 
 		        {
 		            //if fails      
-		            alert('insert fails');
+					var url = window.location.href;		            
+    				location.reload(url);		            
+		            // alert('insert fails');
 		        }
 		    });
 		    e.preventDefault(); //STOP default action
 		    // e.unbind(); //unbind. to stop multiple form submit.
-		    $('#addDeptModalclosebtn').click();
+		    $('#addDepartModalclosebtn').click();
 		});
 	</script>
 

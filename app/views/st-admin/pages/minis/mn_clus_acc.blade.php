@@ -141,6 +141,8 @@
 		        error: function(jqXHR, textStatus, errorThrown) 
 		        {
 		            //if fails      
+		            var url = window.location.href;		            
+    				location.reload(url);
 		        }
 		    });
 		    e.preventDefault(); //STOP default action
@@ -181,14 +183,17 @@
 		        success:function(result, textStatus, jqXHR) 
 		        {
 
-		            location.reload();
+    				location.reload(url);
+                    console.log(result);	
 
 		        },
 		        error: function(result, textStatus, errorThrown) 
 		        {
 		            //if fails     
+		            var url = window.location.href;		            
+    				location.reload(url);
 		            console.log(result); 
-		            alert("insert fails");
+		            // alert("insert fails");
 		        }
 		    });
 		    e.preventDefault(); //STOP default action

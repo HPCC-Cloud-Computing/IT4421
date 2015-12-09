@@ -156,7 +156,7 @@ class InsertForm{
 
 	private static function insertFormHeader($id){
 		echo '<form class="modal fade" id="'.$id.'" tabindex="-1" role="dialog" 
-			aria-labelledby="myModalLabel">
+			aria-labelledby="myModalLabel" method="POST">
   			<div class="modal-dialog" role="document">
     		<div class="modal-content">
 	    	<div class="modal-header">
