@@ -73,7 +73,7 @@
 			</div>
 		</div>
 	</div>		{{	InsertForm::FileExport("exportExcelFile");	}}
-				{{	InsertForm::FileExcel("importExcelFile"); }}
+				{{	InsertForm::FileExcel("importExcelFile",Asset('/st-admin/minis/mn_clus_acc/add_many')); }}
 				{{	InsertForm::ClusForm("addClusModal");	}}			
 				{{	EditForm::ClusForm("editClusModal");	}}
 				

@@ -69,7 +69,7 @@
 			</div>
 		</div>
 	</div>		{{	InsertForm::FileExport("exportExcelFile");	}}
-				{{	InsertForm::FileExcel("importExcelFile"); }}
+				{{	InsertForm::FileExcel("importExcelFile",Asset('/st-admin/minis/mn_depart_acc/add_many')); }}
 				{{	InsertForm::DepartForm("addDepartModal");	}}		
 				{{	EditForm::DepartForm("editDepartModal");	}}
 

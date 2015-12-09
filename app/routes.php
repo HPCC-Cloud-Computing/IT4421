@@ -196,6 +196,7 @@ Route::group(array('before' => array('auth', 'cluster')), function () {
 	Route::get('/st-admin/clus/mn_stu_acc/edit/{id}', 'StudentController@edit_show');
 	Route::post('/st-admin/clus/mn_stu_acc/update', 'StudentController@edit_one');
 	Route::get('/st-admin/clus/mn_stu_acc/delete/{id}', 'StudentController@destroy');
+
 	//Quan ly phong thi --- not done
 	// K can doan nay vi tich hop vao doan edit cluster
 	Route::get('/st-admin/clus/mn_exam_room', 'ExamRoomController@index');

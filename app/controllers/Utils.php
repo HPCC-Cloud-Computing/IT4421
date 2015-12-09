@@ -16,12 +16,14 @@ class Utils {
 		$message = "";
 		$target_dir = DIR_FILE_UPLOAD;
 		$file = Input::file($nameOfFileInput);
+		// $file = Input::all();
 		//$fileId = Image::count()+1;
 		//$imageExt = substr($_FILES[$nameOfFileInput]["name"],-4);
 		//$target_file = $target_dir . basename($fileId.$imageExt);
 		//$target_file = $target_dir.basename($file["name"]);
-		$target_file = public_path() . "/files";
-		$uploadOk = 1;
+
+		$target_file = public_path()."/files";
+		$uploadOk = 1;				
 		$fileType = $file->getClientOriginalExtension();
 		// Check if image file is a actual image or fake image
 		if (isset($_POST["submit"])) {

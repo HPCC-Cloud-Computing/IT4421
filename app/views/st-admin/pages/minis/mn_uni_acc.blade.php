@@ -68,9 +68,9 @@
 	</div>		
 	
 	{{	InsertForm::FileExport("exportExcelFile");	}}
-	{{	InsertForm::FileExcel("importExcelFile"); }}
+	{{	InsertForm::FileExcel("importExcelFile",Asset('/st-admin/minis/mn_uni_acc/add_many')); }}
 	{{	InsertForm::UniForm("addUniModal");	}}		
-{{	EditForm::UniForm("editUniModal");	}}
+	{{	EditForm::UniForm("editUniModal");	}}
 				
 	<script type="text/javascript">
 		function editUniForm(id){

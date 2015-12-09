@@ -1,6 +1,6 @@
 <?php
 // require_once (dirname(__FILE__).'/Excel/reader.php');
-// require_once (dirname(__FILE__).'/Utils.php');
+require_once (dirname(__FILE__).'/Utils.php');
 class UniversityController extends \BaseController {
 	protected $column = array('code', 'name', 'info');
 
@@ -89,7 +89,7 @@ class UniversityController extends \BaseController {
 	 * @return [type] [description]
 	 */
 	public function add_many() {
-		$fileInputName = 'exel_file';
+		$fileInputName = 'excel_file';
 		$data = Utils::importExelFile($fileInputName);
 		$count = 0;
 		if (isset($data)) {
@@ -110,8 +110,10 @@ class UniversityController extends \BaseController {
 				}
 
 			}
-		}
-		echo json_encode(array('num_of_insert' => $count));
+		}		
+		Session::flash('alert-class', 'alert-success');
+		Session::flash('message', 'Thêm mới thành công '.$count.' bản ghi!!');
+		echo json_encode('success');
 	}
 	/**
 	 * Display the specified resource.
