@@ -77,8 +77,12 @@ class UniversityController extends \BaseController {
 			echo "error";
 		}
 		if (isset($university)) {
+			Session::flash('alert-class', 'alert-success');
+			Session::flash('message', 'Thêm mới thành công!!!');
 			echo "success";
 		} else {
+			Session::flash('alert-class', 'alert-danger');
+			Session::flash('message', 'Đã có lôi xảy ra, vui lòng thử lại!!!');
 			echo "error";
 		}
 
