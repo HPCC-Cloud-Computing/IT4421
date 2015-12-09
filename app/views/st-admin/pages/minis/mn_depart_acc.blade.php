@@ -68,7 +68,8 @@
 				<?php echo $depts->links(); ?>
 			</div>
 		</div>
-	</div>		{{	InsertForm::FileExport("exportExcelFile");	}}
+	</div>
+				{{	InsertForm::FileExport("exportExcelFile",Asset('/st-admin/minis/mn_depart_acc/export'));	}}
 				{{	InsertForm::FileExcel("importExcelFile",Asset('/st-admin/minis/mn_depart_acc/add/add_many')); }}
 				{{	InsertForm::DepartForm("addDepartModal");	}}		
 				{{	EditForm::DepartForm("editDepartModal");	}}

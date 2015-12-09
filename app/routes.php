@@ -207,6 +207,7 @@ Route::group(array('before' => array('auth', 'cluster')), function () {
 	// data = {'registration_number', 'profile_code', 'lastname', 'firstname', 'indentity_code', 'birthday', 'sex', 'plusscore',department_id}	
 	Route::post('/st-admin/clus/mn_stu_acc/update', 'StudentController@edit_one');
 	Route::get('/st-admin/clus/mn_stu_acc/delete/{id}', 'StudentController@destroy');
+	Route::get('/st-admin/clus/mn_stu_acc/search', 'StudentController@mn_clus_search');
 
 	//Quan ly phong thi --- not done
 	// K can doan nay vi tich hop vao doan edit cluster
@@ -249,6 +250,7 @@ Route::group(array('before' => array('auth', 'department')), function () {
 	Route::post('/st-admin/depart/mn_stu_acc/add_many', 'StudentController@add_many');
 	Route::get('/st-admin/depart/mn_stu_acc/edit/{id}', 'StudentController@edit_show');
 	Route::post('/st-admin/depart/mn_stu_acc/update', 'StudentController@edit_one');
+	Route::get('/st-admin/depart/mn_stu_acc/search', 'StudentController@mn_depart_search');
 	Route::get('/st-admin/depart/mn_stu_acc/delete/{id}', 'StudentController@destroy');
 	//------------------------------------------end-------------------------------------------------
 });
@@ -276,10 +278,10 @@ Route::group(array('before' => array('auth', 'university')), function () {
 	Route::get('/st-admin/uni/mn_major', 'UniversityController@manage_major_page');
 	// Export majors
 	Route::get('/st-admin/uni/mn_major/export_majors', 'UniversityController@export_majors');
-	Route::post('/st-admin/uni/mn_major/add', 'UniversityController@add');
-	Route::post('/st-admin/uni/mn_major/update', 'UniversityController@update');
-	Route::post('/st-admin/uni/mn_major/edit', 'UniversityController@edit');
-	Route::get('/st-admin/uni/mn_major/del', 'UniversityController@destroy');
+	Route::post('/st-admin/uni/mn_major/add', 'MajorController@add');
+	Route::post('/st-admin/uni/mn_major/update', 'MajorController@update');
+	Route::get('/st-admin/uni/mn_major/edit/{id}', 'MajorController@edit');
+	Route::get('/st-admin/uni/mn_major/del', 'MajorController@destroy');
 	Route::get('/st-admin/uni/mn_major/search', 'MajorController@search');
 	Route::get('/st-admin/uni/syn_result', 'UniversityController@syn_result');
 	//------------------------------------------end-------------------------------------------------

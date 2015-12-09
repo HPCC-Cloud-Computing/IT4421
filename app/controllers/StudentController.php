@@ -25,7 +25,18 @@ class StudentController extends \BaseController {
 		//$songs = Song::where('songname','LIKE','%'.$query.'%')->get();
 
 	}
-
+	public function mn_depart_search(){
+		$code=Input::get('stunumber');
+		$name=Input::get('stuid');
+		$students = Student::where('registration_number', 'like', '%' . $code . '%')->where('indentity_code', 'like', '%' . $name . '%')->paginate(10);
+		return View::make('st-admin.pages.depart.mn_stu_acc')->with('students', $students);
+	}
+		public function mn_clus_search(){
+		$code=Input::get('stunumber');
+		$name=Input::get('stuid');
+		$students = Student::where('registration_number', 'like', '%' . $code . '%')->where('indentity_code', 'like', '%' . $name . '%')->paginate(10);
+		return View::make('st-admin.pages.clus.mn_stu_acc')->with('students', $students);
+	}
 	public function create($data) {
 		// data test
 		$data = array(

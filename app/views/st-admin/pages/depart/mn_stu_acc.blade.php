@@ -32,7 +32,7 @@
 				<br>
 				<br>
 
-				{{	InsertForm::SearchForm("stuid","stuname");	}}			
+				{{	InsertForm::SearchStudentForm("stunumber","stuid",Asset('/st-admin/depart/mn_stu_acc/search'));	}}			
 
 
 				<br>
@@ -72,7 +72,8 @@
 				
 			</div>
 		</div>
-	</div>		{{	InsertForm::FileExport("exportExcelFile");	}}
+	</div>
+				{{	InsertForm::FileExport("exportExcelFile",Asset('/st-admin/depart/mn_stu_acc/export'));	}}
 				{{	InsertForm::FileExcel("importExcelFile",Asset('/st-admin/minis/mn_stu_acc/add_many')); }}
 				{{	InsertForm::Student("addStuModal");	}}			
 
@@ -107,19 +108,25 @@
 
 		function deleteStuForm(id){
 
-			$.ajax({
+			if(confirm("Bạn có muốn xóa không ?") == true){
+				$.ajax({
                 url : "{{Asset('/st-admin/depart/mn_stu_acc/del')}}/"+id,
                 type : "GET",
                 data : {
                      // number : $('#number').val()
                 },
                 success : function (result){
-		        	var url = window.location.href;
+					var url = window.location.href;
 		            location.reload(url);
                     console.log(result);	
-                    alert("delete success");
+                    // alert("delete success");
                 }
-            });
+                error : function(result){
+                	location.reload(url);
+                    console.log(result);	
+                }
+            });				
+			}
 		}
 
 		$('#editStuModal').submit(function(e)
@@ -140,7 +147,9 @@
 		        },
 		        error: function(jqXHR, textStatus, errorThrown) 
 		        {
-		            //if fails      
+		            //if fails   
+		            var url = window.location.href;
+		            location.reload(url);   
 		        }
 		    });
 		    e.preventDefault(); //STOP default action
@@ -183,10 +192,14 @@
 		        {
 		            //data: return data from server
 		            // location.reload();
+		        	var url = window.location.href;
+		            location.reload(url);		            
 		        },
 		        error: function(jqXHR, textStatus, errorThrown) 
 		        {
-		            //if fails      
+		            //if fails    
+		        	var url = window.location.href;
+		            location.reload(url);		              
 		        }
 		    });
 		    e.preventDefault(); //STOP default action

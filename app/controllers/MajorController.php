@@ -35,6 +35,7 @@ class MajorController extends \BaseController {
 	public function add()
 	{
 		$data = Input::all();
+		// dd($data);
 		if (!isset($data)) {
 			Session::flash('alert-class', 'alert-danger');
 			Session::flash('message', 'Đã có lỗi xảy ra, vui lòng thử lại!!!');	

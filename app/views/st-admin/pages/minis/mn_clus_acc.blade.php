@@ -32,7 +32,7 @@
 				<br>
 				<br>
 
-				{{	InsertForm::SearchForm("clussearch","clusid","clusname");	}}			
+				{{	InsertForm::SearchForm("cluscode","clusname",Asset('/st-admin/minis/mn_clus_acc/search'));	}}	
 
 
 				<br>
@@ -72,10 +72,11 @@
 				<?php echo $clusters->links(); ?>
 			</div>
 		</div>
-	</div>		{{	InsertForm::FileExport("exportExcelFile");	}}
-				{{	InsertForm::FileExcel("importExcelFile",Asset('/st-admin/minis/mn_clus_acc/add/add_many')); }}
-				{{	InsertForm::ClusForm("addClusModal");	}}			
-				{{	EditForm::ClusForm("editClusModal");	}}
+	</div>
+	{{	InsertForm::FileExport("exportExcelFile",Asset('/st-admin/minis/mn_clus_acc/export'));	}}
+	{{	InsertForm::FileExcel("importExcelFile",Asset('/st-admin/minis/mn_clus_acc/add/add_many')); }}
+	{{	InsertForm::ClusForm("addClusModal");	}}			
+	{{	EditForm::ClusForm("editClusModal");	}}
 				
 	<script type="text/javascript">
 		function editClusForm(id){

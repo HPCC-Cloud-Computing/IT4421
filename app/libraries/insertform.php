@@ -15,6 +15,20 @@ class InsertForm{
 				</form>
 			';
 	}
+	public static function SearchStudentForm($search_code,$search_name,$action){
+		echo'
+				<form id="search_form" class="form-inline" action="'.$action.'" method="GET">
+					  <div class="form-group">
+					    <input type="text" class="form-control" name="'.$search_code.'" placeholder="Số báo danh">
+					  </div>
+					  <div class="form-group">
+					    <input type="text" class="form-control" name="'.$search_name.'" placeholder="CMTND">
+					  </div>
+					  <button id="btn-search" type="submit" class="btn btn-info">Search</button>
+					  <button id="btn-reset" type="submit" class="btn btn-default">Reset</button>
+				</form>
+			';
+	}	
 // Modal Form Group: label type id name placeholder
 //id truyen vao la id cua Modal. trong button Data-target = id.
 	public static function ClusForm($id){
@@ -141,13 +155,13 @@ class InsertForm{
 	}
 
 	public static function FileExcel($id,$action){
-		InsertForm:: insertFileFormHeader($id,$action);
+		InsertForm:: insertFileFormHeader($id,$action,"POST");
 		//subject
 		InsertForm:: modalFileFormGroup("Nhap file excel","import_file	","excel_file");
 		InsertForm:: insertFileFormFooter();
 	}
-	public static function FileExport($id){
-		InsertForm:: insertFormHeader($id);
+	public static function FileExport($id,$action){
+		InsertForm:: insertFileFormHeader($id,$action,"GET");
 		//subject
 		echo "<h4>Bạn có muốn xuât dữ liệu ra file không<h4>";
 
@@ -166,9 +180,9 @@ class InsertForm{
 
 	     	<div class="modal-body">';
 	}
-	private static function insertFileFormHeader($id,$action){
+	private static function insertFileFormHeader($id,$action,$method){
 		echo '<form class="modal fade" id="'.$id.'" tabindex="-1" role="dialog" 
-			aria-labelledby="myModalLabel" action="'.$action.'" method="POST" enctype="multipart/form-data">
+			aria-labelledby="myModalLabel" action="'.$action.'" method="'.$method.'" enctype="multipart/form-data">
   			<div class="modal-dialog" role="document">
     		<div class="modal-content">
 	    	<div class="modal-header">
@@ -178,6 +192,7 @@ class InsertForm{
 
 	     	<div class="modal-body">';
 	}
+
 	private static function insertFormFooter(){
 		echo '</div>
 					<div class="modal-footer">

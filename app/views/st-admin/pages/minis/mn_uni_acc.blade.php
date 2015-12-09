@@ -67,7 +67,7 @@
 		</div>
 	</div>		
 	
-	{{	InsertForm::FileExport("exportExcelFile");	}}
+	{{	InsertForm::FileExport("exportExcelFile",Asset('/st-admin/minis/mn_uni_acc/export'));	}}
 	{{	InsertForm::FileExcel("importExcelFile",Asset('/st-admin/minis/mn_uni_acc/add/add_many')); }}
 	{{	InsertForm::UniForm("addUniModal");	}}		
 	{{	EditForm::UniForm("editUniModal");	}}

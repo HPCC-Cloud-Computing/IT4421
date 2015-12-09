@@ -35,7 +35,7 @@
 				<br>
 				<button type = "submit" class="btn btn-success" data-toggle="modal" data-target="#addMajorModal">Add new data</button> 
 				<button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exportExcelFile">Export As Excel</button>
-				<button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#importExcelFile">Import Data</button>
+<!-- 				<button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#importExcelFile">Import Data</button> -->
 				<br>
 
 				
@@ -68,19 +68,12 @@
 			</div>
 		</div>
 	</div>		
-	{{	InsertForm::FileExport("exportExcelFile");	}}
-	{{	InsertForm::FileExcel("importExcelFile"); }}
+	{{	InsertForm::FileExport("exportExcelFile",Asset('/st-admin/uni/mn_major/export_majors'));	}}
+
 	{{	InsertForm::Major("addMajorModal");	}}			
-	{{	InsertForm::Major("editMajorModal");	}}
+	{{	EditForm::Major("editMajorModal");	}}
 				
 	<script type="text/javascript">
-		$("#btn-sendfile").on('click',function(){
-			$.ajax({
-				url : "{{Asset('/st-admin/uni/mn_major/importfile')}}/",
-				type : ".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel",
-				data :
-			});
-		});
 
 		function editMajorForm(id){
 			console.log(id);
@@ -95,17 +88,17 @@
                     console.log(result);	
                     var obj = jQuery.parseJSON(result);
                     // console.log(obj.cluster.name);
-                    $modal = $('#editClusModal').find('input');
                     $modal = $('#editMajorModal').find('input');
-
-                    $($modal[0]).val(obj.id); // cần add thêm
-                    $($modal[1]).val(obj.code);
-                    $($modal[2]).val(obj.university_id);
-                    $($modal[3]).val(obj.name);
-                    $($modal[4]).val(obj.target);
-                    $($modal[5]).val(obj.combidation);
-                    $($modal[6]).val(obj.condition);
-                    $($modal[7]).val(obj.info);
+                    // console.log(obj.major.code);
+                    // $($modal[0]).val("ãy");
+                    $($modal[0]).val(obj.major.id); // cần add thêm
+                    $($modal[1]).val(obj.major.code);
+                    $($modal[2]).val(obj.major.university_id);
+                    $($modal[3]).val(obj.major.name);
+                    $($modal[4]).val(obj.major.target);
+                    $($modal[5]).val(obj.major.combidation);
+                    $($modal[6]).val(obj.major.condition);
+                    $($modal[7]).val(obj.major.info);
                 }
             });
 		}
@@ -140,10 +133,18 @@
 		        success:function(data, textStatus, jqXHR) 
 		        {
 		            //data: return data from server
+		            alert('success');
+		            console.log(data);
+		            var url = window.location.href;
+		            location.reload(url);
 		        },
 		        error: function(jqXHR, textStatus, errorThrown) 
 		        {
-		            //if fails      
+		            //if fails     
+		            alert('fail');
+		            console.log(jqXHR);
+		        	var url = window.location.href;
+		            location.reload(url);		             
 		        }
 		    });
 		    e.preventDefault(); //STOP default action
@@ -168,11 +169,18 @@
 		            //data: return data from server
 		            // location.reload();
 		            alert('insert success');
+		            console.log(data);
+		            var url = window.location.href;
+		            location.reload(url);
 		        },
 		        error: function(jqXHR, textStatus, errorThrown) 
 		        {
 		            //if fails      
+		            // alert('insert fails');
 		            alert('insert fails');
+		            console.log(jqXHR);
+		        	var url = window.location.href;
+		            location.reload(url);		            
 		        }
 		    });
 		    e.preventDefault(); //STOP default action

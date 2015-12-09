@@ -18,7 +18,7 @@ class MinisterController extends \BaseController {
 	}
 	public function phase_manage_page() {
 		$phases = Phase::paginate(10);
-		return View::make('st-admin.pages.minis.mn_schedule')->with('phases', $phases);
+		return View::make('st-admin.pages.minis.mn_schedule')->with('phrases', $phases);
 	}
 	public function score_floor_setup_page() {
 		return View::make('st-admin.pages.minis.score_floor_setup');

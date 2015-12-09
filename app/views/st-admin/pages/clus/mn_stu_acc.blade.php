@@ -32,13 +32,13 @@
 				<br>
 				<br>
 
-				{{	InsertForm::SearchForm("stuid","stuname");	}}			
+				{{	InsertForm::SearchStudentForm("stunumber","stuid",Asset('/st-admin/clus/mn_stu_acc/search'));	}}			
 
 
 				<br>
-				<button type = "submit" class="btn btn-success" data-toggle="modal" data-target="#addStuModal">Add new data</button> 
+				<!-- <button type = "submit" class="btn btn-success" data-toggle="modal" data-target="#addStuModal">Add new data</button>  -->
 				<button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exportExcelFile">Export As Excel</button>
-				<button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#importExcelFile">Import Data</button>
+				<!-- <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#importExcelFile">Import Data</button> -->
 				<br>
 
 				
@@ -72,8 +72,8 @@
 				
 			</div>
 		</div>
-	</div>		{{	InsertForm::FileExport("exportExcelFile");	}}
-				{{	InsertForm::FileExcel("importExcelFile"); }}
+	</div>
+				{{	InsertForm::FileExport("exportExcelFile",Asset('/st-admin/clus/mn_stu_acc/export'));	}}
 				{{	InsertForm::Student("addStuModal");	}}			
 
 				{{	EditForm::StuForm("editStuModal");	}}
