@@ -24,7 +24,7 @@ Route::get('/', 'HomeController@index');
 Route::get('/notice', 'NoticeController@index');
 
 //Trang chi tiết thông báo
-Route::get('/notice/{id}', 'NoticeController@show');
+Route::get('/notice{id}', 'NoticeController@show');
 
 //Trang quy chế tuyển sinh --- chua lam
 Route::get('/regulation', function () {
