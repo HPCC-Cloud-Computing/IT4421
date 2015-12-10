@@ -7,7 +7,7 @@
 <nav class="breadcrumbs">
   <a href="/IT4421/public">Trang chủ</a>
   <span class="divider">›</span>
-  {{notice['title']}}
+  {{$notice->title}}
 </nav>
 @stop
 
@@ -19,7 +19,7 @@
   <div class="panel-body">
 
     <div class="title-page">
-      {{notice['title']}}
+      {{$notice->title}}
     </div>
     <div class="div-row">
       <ul class="notice-info">
@@ -27,14 +27,14 @@
         <i class="fa fa-user"></i> Admin
       </li>
       <li>
-        <i class="fa fa-calendar"></i> {{notice['created_at']->format('d/m/Y')}}
+        <i class="fa fa-calendar"></i> {{$notice->created_at->format('d/m/Y')}}
       </li>
       <li>
-        <i class="fa fa-clock-o"></i> {{notice['created_at']->format('H:M')}}
+        <i class="fa fa-clock-o"></i> {{$notice->created_at->format('H:M')}}
       </li>
     </ul>
     </div>
-    <p>{{notice['content']}}</p>
+    <p>{{$notice->content}}</p>
   </div>
 </div>
 

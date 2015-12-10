@@ -17,7 +17,7 @@ class CreateNoticesTable extends Migration {
 			$table->increments('id');
 			$table->text('title');
 			$table->text('content');
-			$table->nullabletimestamps();
+			$table->timestamps();
 		});
 	}
 
