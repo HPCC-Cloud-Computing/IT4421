@@ -11,7 +11,15 @@ class MajorController extends \BaseController {
 	public function search() {
 		$code=Input::get('majorcode');
 		$name=Input::get('majorname');
+		if(!isset($code)){
+			$code = '';
+		}		
+		if(!isset($name)){
+			$name = '';
+		}		
 		$major = Major::where('code', 'like', '%' . $code . '%')->where('name', 'like', '%' . $name . '%')->paginate(10);
+		// $major = Major::where('code', $code)->where('name',$name)->paginate(10);
+		// dd($major->toArray());		
 		return View::make('st-admin.pages.uni.mn_major',
 			array('majors' => $major));
 	}
@@ -34,8 +42,12 @@ class MajorController extends \BaseController {
 
 	public function add()
 	{
-		$data = Input::all();
-		// dd($data);
+		$data = Input::all();		
+		if (Auth::check()) {
+			$uni_id = Auth::user()->userable_id;
+			// $university = University::find($uni_id);
+			$data['university_id'] = intval($uni_id);
+			$data['target'] = intval($data['target']);		
 		if (!isset($data)) {
 			Session::flash('alert-class', 'alert-danger');
 			Session::flash('message', 'Đã có lỗi xảy ra, vui lòng thử lại!!!');	
@@ -64,6 +76,7 @@ class MajorController extends \BaseController {
 			Session::flash('message', 'Đã có lỗi xảy ra, vui lòng thử lại!!!');	
 			echo "error";
 		}
+	}
 	}
 
 	public function edit($id) {

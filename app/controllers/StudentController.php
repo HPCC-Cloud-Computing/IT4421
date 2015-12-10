@@ -31,12 +31,13 @@ class StudentController extends \BaseController {
 		$students = Student::where('registration_number', 'like', '%' . $code . '%')->where('indentity_code', 'like', '%' . $name . '%')->paginate(10);
 		return View::make('st-admin.pages.depart.mn_stu_acc')->with('students', $students);
 	}
-		public function mn_clus_search(){
-		$code=Input::get('stunumber');
-		$name=Input::get('stuid');
-		$students = Student::where('registration_number', 'like', '%' . $code . '%')->where('indentity_code', 'like', '%' . $name . '%')->paginate(10);
-		return View::make('st-admin.pages.clus.mn_stu_acc')->with('students', $students);
-	}
+	// public function mn_clus_search(){
+	// 	dd(Input::all());
+	// 	$code=Input::get('stunumber');
+	// 	$name=Input::get('stuid');
+	// 	$students = Student::where('registration_number', 'like', '%' . $code . '%')->where('indentity_code', 'like', '%' . $name . '%')->paginate(10);
+	// 	return View::make('st-admin.pages.clus.mn_stu_acc')->with('students', $students);
+	// }
 	public function create($data) {
 		// data test
 		$data = array(
@@ -322,8 +323,8 @@ class StudentController extends \BaseController {
 		$student = Student::all();
 		$output_text = 'id,registration_number,profile_code,lastname,firstname,indentity_code,birthday,sex,plusscore'.PHP_EOL;
 		foreach ($student as $key => $value) {			
-			$output_text .= $value->id.','.$value->registration_number.','.$value->profile_code.
-			.$value->lastname.$value->firstname.$value->indentity_code.$value->birthday.$value->sex.$value->plusscore.PHP_EOL;
+			$output_text .= $value->id.','.$value->registration_number.','.$value->profile_code.','
+			.$value->lastname.','.$value->firstname.','.$value->indentity_code.','.$value->birthday.','.$value->sex.','.$value->plusscore.PHP_EOL;
 		}
 		// echo ($output_text);
 		$output_text = mb_convert_encoding($output_text, 'UTF-16LE', 'UTF-8');

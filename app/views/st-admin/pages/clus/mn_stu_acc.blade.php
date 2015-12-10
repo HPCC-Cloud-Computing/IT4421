@@ -32,7 +32,7 @@
 				<br>
 				<br>
 
-				{{	InsertForm::SearchStudentForm("stunumber","stuid",Asset('/st-admin/clus/mn_stu_acc/search'));	}}			
+				{{	InsertForm::SearchStudentForm("name","indentity_code",Asset('/st-admin/clus/mn_stu_acc/search'));	}}			
 
 
 				<br>
@@ -67,7 +67,9 @@
 					</tr>
 					@endforeach
 				</tbody>
-					<?php echo $students->links(); ?>
+					<?php 
+
+					//echo $students->links(); ?>
 				</table>
 				
 			</div>

@@ -22,7 +22,7 @@ class UniversityController extends \BaseController {
 		}
 	}
 	public function get_majors($id) {
-		$university = University::find($id);
+		$university = University::find($id);		
 		return $university->majors;
 	}
 	public function export_majors(){
@@ -81,8 +81,6 @@ class UniversityController extends \BaseController {
 	public function add() {
 
 		$data = Input::all();
-		// $data = '{"depart":{"code":"adsf","name":"sdfasdfsd"},"user":{"username":"dfsdf","password":"dsafdsf","email":"43243324"}}';
-		// $data = json_decode($data, true);
 		if (!isset($data)) {
 			echo "error";
 		}

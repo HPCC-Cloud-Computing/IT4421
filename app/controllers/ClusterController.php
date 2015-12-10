@@ -36,6 +36,35 @@ class ClusterController extends \BaseController {
 			return View::make('st-admin.pages.clus.mn_stu_acc')->with("students", $students);
 		}
 	}
+	public function mn_clus_search(){
+		if (Auth::check()) {			
+			$name=Input::get('name');
+			$indentity_code=Input::get('indentity_code');
+			if(!isset($indentity_code))
+				$indentity_code = '';
+			if(!isset($name))
+				$name = '';
+			// dd(Input::all());
+			$cluster_id = Auth::user()->userable_id;
+			$students_data = array();
+			$result = array();
+			$rooms = Cluster::find($cluster_id)->rooms()->get();
+			foreach ($rooms as $room) {
+				$students_data = array_merge($students_data, $room->students->toArray());				
+			}
+			// dd($students_data);
+			foreach ($students_data as $key => $value) {
+				// dd($value);
+				if($value['indentity_code']==$indentity_code ||$value['lastname']==$name ){
+					array_push($result, $value);
+				}				
+			}
+			// dd($result);
+			return View::make('st-admin.pages.clus.mn_stu_acc')->with('students', $result);
+		}		
+		
+		// $students = Student::where('registration_number', 'like', '%' . $code . '%')->where('indentity_code', 'like', '%' . $name . '%')->paginate(10);
+	}
 	public function syn_result() {
 		if (Auth::check()) {
 			$id = Auth::user()->userable_id;

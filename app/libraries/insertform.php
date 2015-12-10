@@ -19,7 +19,7 @@ class InsertForm{
 		echo'
 				<form id="search_form" class="form-inline" action="'.$action.'" method="GET">
 					  <div class="form-group">
-					    <input type="text" class="form-control" name="'.$search_code.'" placeholder="Số báo danh">
+					    <input type="text" class="form-control" name="'.$search_code.'" placeholder="Name">
 					  </div>
 					  <div class="form-group">
 					    <input type="text" class="form-control" name="'.$search_name.'" placeholder="CMTND">
