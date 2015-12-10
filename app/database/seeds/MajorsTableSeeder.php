@@ -42,8 +42,44 @@ Class MajorsTableSeeder extends Seeder{
                 'combination'        => 'A',
                 'condition'          => '',
                 'info'               => ''
+            ),
+            array(
+                'code'               => 'D520503',
+                'university_id'      => 3,
+                'name'               => 'Kỹ thuật trắc địa - bản đồ',
+                'target'             => 100,
+                'combination'        => 'A',
+                'condition'          => '',
+                'info'               => ''
+            ),
+            array(
+                'code'               => 'D480201',
+                'university_id'      => 3,
+                'name'               => 'Công nghệ thông tin',
+                'target'             => 200,
+                'combination'        => 'A',
+                'condition'          => '',
+                'info'               => ''
+            ),
+            array(
+                'code'               => 'D440224',
+                'university_id'      => 3,
+                'name'               => 'Thủy văn',
+                'target'             => 100,
+                'combination'        => 'A',
+                'condition'          => '',
+                'info'               => ''
             )
-          
+            ,
+            array(
+                'code'               => 'D340101',
+                'university_id'      => 3,
+                'name'               => 'Quản trị kinh doanh',
+                'target'             => 150,
+                'combination'        => 'A',
+                'condition'          => '',
+                'info'               => ''
+            )
 		);
 		DB::table('majors')->insert( $majors );
 	}

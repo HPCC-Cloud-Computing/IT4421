@@ -57,7 +57,7 @@ Class StudentsTableSeeder extends Seeder{
                 'registration_number'       => $id,
                 'lastname'                  => $lastname_array[$i],
                 'firstname'                 => $firstname_array[$j],
-                'indentity_code'            => '184053674',
+                'indentity_code'            => (string)(184000000 + (int)($id)),
                 'birthday'                  => '1994-06-19',
                 'sex'                       => 'nam',
                 'plus_score'                => 0.5,

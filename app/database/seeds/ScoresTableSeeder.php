@@ -17,21 +17,21 @@ Class ScoresTableSeeder extends Seeder{
                 'student_id'      => 4,
                 'room_id'      => 1,
                 'subject_id' => 2,
-                'score' => 10,
+                'score' => 4,
                 'state' => 0
             ),
             array(
                 'student_id'      => 4,
                 'room_id'      => 1,
                 'subject_id' => 3,
-                'score' => 10,
+                'score' => 5,
                 'state' => 0
             ),
             array(
                 'student_id'      => 4,
                 'room_id'      => 1,
                 'subject_id' => 4,
-                'score' => 10,
+                'score' => 8,
                 'state' => 0
             ),
             array(
@@ -52,7 +52,7 @@ Class ScoresTableSeeder extends Seeder{
                 'student_id'      => 5,
                 'room_id'      => 1,
                 'subject_id' => 1,
-                'score' => 10,
+                'score' => 2,
                 'state' => 0
             ),
             array(
@@ -73,7 +73,7 @@ Class ScoresTableSeeder extends Seeder{
                 'student_id'      => 5,
                 'room_id'      => 1,
                 'subject_id' => 4,
-                'score' => 10,
+                'score' => 7,
                 'state' => 0
             ),
             array(
