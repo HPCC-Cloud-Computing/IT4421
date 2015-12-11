@@ -17,19 +17,19 @@ class HomeController extends BaseController {
 
 	public function index() {
 		if (isset(Auth::user()->userable_type)) {
-			if (Auth::user()->userable_type == 'minister') {
+			if (strtolower(Auth::user()->userable_type) == 'minister') {
 				return Redirect::to('/st-admin/minis');
 			}
 
-			if (Auth::user()->userable_type == 'department') {
+			if (strtolower(Auth::user()->userable_type) == 'department') {
 				return Redirect::to('/st-admin/depart');
 			}
 
-			if (Auth::user()->userable_type == 'cluster') {
+			if (strtolower(Auth::user()->userable_type) == 'cluster') {
 				return Redirect::to('/st-admin/clus');
 			}
 
-			if (Auth::user()->userable_type == 'university') {
+			if (strtolower(Auth::user()->userable_type) == 'university') {
 				return Redirect::to('/st-admin/uni');
 			}
 
