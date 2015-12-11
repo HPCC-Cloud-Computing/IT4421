@@ -349,4 +349,9 @@ class ClusterController extends \BaseController {
 			}
 		}
 	}
+
+	public function exam_score(){
+		return View::make('st-admin.pages.clus.mn_score');
+	}
+
 }
