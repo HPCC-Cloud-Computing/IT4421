@@ -33,7 +33,7 @@
 				<br> -->
 		<div class="row">
 		<br><br>
-				{{	InsertForm::SearchStudentForm("registration_number","indentity_code",Asset('/st-admin/clus/score/search'));	}}			
+				{{	InsertForm::SearchScoreForm("registration_number",Asset('/st-admin/clus/score/search'));	}}			
 				{{	InsertForm::FileExcel("importExcelFile",Asset('/st-admin/clus/mn_stu_acc/score/import')); }}
 				<br>
 				<button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#importExcelFile">Import Data</button>
@@ -44,13 +44,13 @@
 						<td>Môn</td>
 						<td>Điểm</td>
 					</thead>
-				@if(isset($score))
+				@if(isset($examscores))
 					<tbody>
-						@foreach ($students as $student)
+						@foreach ($examscores['scores'] as $examscore)
 						<tr>
-							<td>{{$student['indentity_code']}}
-							<td>{{$student['firstname']}}</td>
-							<td>{{$student['lastname']}}</td>
+							<td>{{$examscores['registration_number']}}
+							<td>{{$examscore[0]}}</td>
+							<td>{{$examscore['score']}}</td>
 						</tr>
 						@endforeach
 					</tbody>

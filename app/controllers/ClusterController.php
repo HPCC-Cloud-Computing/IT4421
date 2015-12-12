@@ -15,6 +15,32 @@ class ClusterController extends \BaseController {
 		$clusters = Cluster::where('code', 'like', '%' . $code . '%')->where('name', 'like', '%' . $name . '%')->paginate(10);
 		return View::make('st-admin.pages.minis.mn_clus_acc')->with('clusters', $clusters);
 	}
+	public function search_score() {
+		// dd(Input::all());
+		// $name=Input::get('lastname');
+		$code=Input::get('registration_number');
+		// $clusters = ExamScore::where('lastname', 'like', '%' . $name . '%')->orWhere('indentity_code', 'like', '%' . $code . '%')->paginate(10);
+		$students = Student::where('registration_number',$code)->distinct()->get();	
+		// dd($student);	
+		// $examscores = array('registration_number'=>$code);
+		$scores = array();
+		foreach ($students as $key => $value) {
+			$score = $value->examscores->toArray();		
+			foreach ($score as $k => $v) {
+					$subject = Subject::find($v['subject_id'])->toArray();
+					// array_merge($v, new array('subject'=>$subject['name']);
+					// dd($subject['name']);
+					array_push($v, $subject['name']);
+					// dd($v);				
+					// $v['subject_id'] = $subject['name'];
+					// dd($subject->toArray());
+			array_push($scores,$v);			
+				}				
+		}
+		$examscores = array('registration_number'=>$code,'scores'=>$scores);
+		// dd($examscores);
+		return View::make('st-admin.pages.clus.mn_score')->with('examscores', $examscores);
+	}
 
 	public function get_list() {
 		$clusters = Cluster::all();
@@ -354,4 +380,5 @@ class ClusterController extends \BaseController {
 		return View::make('st-admin.pages.clus.mn_score');
 	}
 
+	
 }

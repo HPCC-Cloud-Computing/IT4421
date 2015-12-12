@@ -208,8 +208,8 @@ Route::group(array('before' => array('auth', 'cluster')), function () {
 	Route::post('/st-admin/clus/mn_stu_acc/update', 'StudentController@edit_one');
 	Route::get('/st-admin/clus/mn_stu_acc/delete/{id}', 'StudentController@destroy');
 	Route::get('/st-admin/clus/mn_stu_acc/search', 'ClusterController@mn_clus_search');
-	Route::post('/st-admin/clus/mn_stu_acc/search','ClusterController@import_score');
 
+	Route::post('/st-admin/clus/score/import','ExamScoreController@update_many');
 	Route::get('/st-admin/clus/score','ClusterController@exam_score');
 	Route::get('st-admin/clus/score/search','ClusterController@search_score');
 

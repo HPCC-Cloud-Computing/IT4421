@@ -28,7 +28,19 @@ class InsertForm{
 					  <button id="btn-reset" type="submit" class="btn btn-default">Reset</button>
 				</form>
 			';
-	}	
+	}
+		public static function SearchScoreForm($registration_number,$action){
+		echo'
+				<form id="search_form" class="form-inline" action="'.$action.'" method="GET">
+					<h3>Nhập số báo danh để tìm kiếm sinh viên</h3>
+					  <div class="form-group">
+					    <input type="text" class="form-control" name="'.$registration_number.'" placeholder="Số báo danh">
+					  </div>
+					  <button id="btn-search" type="submit" class="btn btn-info">Search</button>
+					  <button id="btn-reset" type="submit" class="btn btn-default">Reset</button>
+				</form>
+			';
+	}		
 // Modal Form Group: label type id name placeholder
 //id truyen vao la id cua Modal. trong button Data-target = id.
 	public static function ClusForm($id){
