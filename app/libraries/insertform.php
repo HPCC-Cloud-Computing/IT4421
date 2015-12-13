@@ -46,7 +46,7 @@ class InsertForm{
 	public static function ClusForm($id){
 		InsertForm:: insertFormHeader($id);
 		InsertForm:: modalFormGroup("Tài khoản","text","","username","Tài khoản");
-    	InsertForm:: modalFormGroup("Mật khẩu","text","","password","Mật khẩu");
+    	InsertForm:: modalFormGroup("Mật khẩu","password","","password","Mật khẩu");
     	InsertForm:: modalFormGroup("Email","text","","email","Email");
     	// InsertForm:: modalFixedFormGroup("Userable id","number","","userable_type_id",1);
     	// InsertForm:: modalFixedFormGroup("Userable type","text","","userable_type","cluster");
@@ -61,7 +61,7 @@ class InsertForm{
 	public static function DepartForm($id){
 		InsertForm:: insertFormHeader($id);
 		InsertForm:: modalFormGroup("Tài khoản","text","","username","Tài khoản");
-    	InsertForm:: modalFormGroup("Mật khẩu","text","","password","Mật khẩu");
+    	InsertForm:: modalFormGroup("Mật khẩu","password","","password","Mật khẩu");
     	InsertForm:: modalFormGroup("Email","text","","email","Email");
     	// InsertForm:: modalFixedFormGroup("Userable id","number","","userable_type_id",2);
     	// InsertForm:: modalFixedFormGroup("Userable type","text","","userable_type","deparment");
@@ -75,7 +75,7 @@ class InsertForm{
 	public static function UniForm($id){
 		InsertForm:: insertFormHeader($id);
 		InsertForm:: modalFormGroup("Tài khoản","text","","username","Tài khoản");
-		InsertForm:: modalFormGroup("Mật khẩu","text","","password","Mật khẩu");
+		InsertForm:: modalFormGroup("Mật khẩu","password","","password","Mật khẩu");
 		InsertForm:: modalFormGroup("Email","text","","email","Email");
 		// InsertForm:: modalFixedFormGroup("Userable id","number","","userable_type_id",3);
 		// InsertForm:: modalFixedFormGroup("Userable type","text","","userable_type","university");
@@ -90,7 +90,7 @@ class InsertForm{
 	public static function Student($id){
 		InsertForm:: insertFormHeader($id);
 		InsertForm:: modalFormGroup("Tên tài khoản","text","","username","Tài khoản");
-		InsertForm:: modalFormGroup("Mật khẩu","text","","password","Mật khẩu");
+		InsertForm:: modalFormGroup("Mật khẩu","password","","password","Mật khẩu");
 		//students table
 		InsertForm:: modalFormGroup("Mã hồ sơ","text","","profile_code","Mã hồ sơ");
 		InsertForm:: modalFormGroup("Số báo danh","text","","registration_number","Số báo danh");

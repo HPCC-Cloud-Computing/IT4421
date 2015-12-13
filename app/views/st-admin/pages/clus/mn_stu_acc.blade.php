@@ -58,7 +58,7 @@
 					@foreach ($students as $student)
 					<tr>
 						<td>{{$student['id']}}</td>
-						<td>{{$student['indentity_code']}}
+						<td>{{$student['registration_number']}}
 						<td>{{$student['firstname']}}</td>
 						<td>{{$student['lastname']}}</td>
 						<td><button class="btn btn-success" data-toggle="modal" data-target="#editStuModal" onclick="editStuForm({{$student['id']}})">Edit</button></td>
@@ -82,7 +82,6 @@
 				
 	<script type="text/javascript">
 		function editStuForm(id){
-			console.log(id);
 			$.ajax({
                 url : "{{Asset('/st-admin/clus/mn_stu_acc/edit')}}/"+id,
                 type : "GET",
@@ -110,7 +109,7 @@
 		function deleteStuForm(id){
 
 			$.ajax({
-                url : "{{Asset('/st-admin/clus/mn_stu_acc/del')}}/"+id,
+                url : "{{Asset('/st-admin/clus/mn_stu_acc/delete')}}/"+id,
                 type : "GET",
                 data : {
                      // number : $('#number').val()
@@ -118,15 +117,12 @@
                 success : function (result){
 		        	var url = window.location.href;
 		            location.reload(url);
-                    console.log(result);	
-                    alert("delete success");
                 }
             });
 		}
 
 		$('#editStuModal').submit(function(e)
 		{
-			console.log('ok');
 		    var postData = $(this).serializeArray();
 		    var formURL = $(this).attr("action");
 		    $.ajax(
@@ -136,6 +132,7 @@
 		        data : postData,
 		        success:function(data, textStatus, jqXHR) 
 		        {
+		        	// console.log(data);
 		        	var url = window.location.href;
 		            location.reload(url);
 		            //data: return data from server
@@ -153,48 +150,47 @@
 			// $('#editStuForm').submit(); //Submit  the FORM
 				
 		//Thêm một thí sinh mới --------------
-		$('#addStuModal').submit(function(e)
-		{
-			// console.log('ok');
-		    var data1 = $(this).serializeArray();
-		    var data = {
-		    	student:{
-		    		profile_code:data1[2].value,
-		    		registration_number:data1[3].value,
-		    		registration_number:data1[4].value,
-		    		firstname:data1[5].value,
-		    		lastname:data1[6].value,
-		    		indentity_code:data1[7].value,
-		    		birthday:data1[8].value,
-		    		sex:data1[9].value,
-		    		plus_score:data1[10].value,
-		    		department_id:data1[11].value
-		    	},
-		    	user:{
-		    		username:data1[0].value,
-		    		password:data1[1].value
-		    	}
-		    };
+		// $('#addStuModal').submit(function(e)
+		// {
+		// 	// console.log('ok');
+		//     var data1 = $(this).serializeArray();
+		//     var data = {
+		//     	student:{
+		//     		profile_code:data1[2].value,
+		//     		registration_number:data1[3].value,
+		//     		firstname:data1[4].value,
+		//     		lastname:data1[5].value,
+		//     		indentity_code:data1[6].value,
+		//     		birthday:data1[7].value,
+		//     		sex:data1[8].value,
+		//     		plus_score:data1[9].value,
+		//     		department_id:data1[10].value
+		//     	},
+		//     	user:{
+		//     		username:data1[0].value,
+		//     		password:data1[1].value
+		//     	}
+		//     };
 
-		    $.ajax(
-		    {
-		        url : "{{Asset('/st-admin/minis/mn_clus_acc/add')}}",
-		        type: "POST",
-		        data : data,
-		        success:function(data, textStatus, jqXHR) 
-		        {
-		            //data: return data from server
-		            // location.reload();
-		        },
-		        error: function(jqXHR, textStatus, errorThrown) 
-		        {
-		            //if fails      
-		        }
-		    });
-		    e.preventDefault(); //STOP default action
-		    // e.unbind(); //unbind. to stop multiple form submit.
-		    $('#editClusModalclosebtn').click();
-		});
+		//     $.ajax(
+		//     {
+		//         url : "{{Asset('/st-admin/minis/mn_clus_acc/add')}}",
+		//         type: "POST",
+		//         data : data,
+		//         success:function(data, textStatus, jqXHR) 
+		//         {
+		//             //data: return data from server
+		//             // location.reload();
+		//         },
+		//         error: function(jqXHR, textStatus, errorThrown) 
+		//         {
+		//             //if fails      
+		//         }
+		//     });
+		//     e.preventDefault(); //STOP default action
+		//     // e.unbind(); //unbind. to stop multiple form submit.
+		//     $('#editClusModalclosebtn').click();
+		// });
 
 
 

@@ -112,8 +112,8 @@ Route::group(array('before' => array('auth', 'minister')), function () {
 	Route::get('/st-admin/minis/syn_result', 'MinisterController@syn_result_page');
 
 	// ---------------------------------Schedule---------------------------------------------------
-	Route::get('/st-admin/minis/mn_schedule/get_scheduler_data', 'PhaseController@setting_show');
-	Route::get('/st-admin/minis/mn_schedule/update_scheduler_data', 'PhaseController@setting');
+	Route::get('/st-admin/minis/mn_schedule/edit/{id}', 'PhaseController@edit_show');
+	Route::post('/st-admin/minis/mn_schedule/update', 'PhaseController@update');
 	// --------------------------------- Department -------------------------------------------
 	// Show danh sach truong + infor
 	Route::get('/st-admin/minis/mn_depart_acc/list', 'DepartmentController@get_list');
@@ -205,7 +205,7 @@ Route::group(array('before' => array('auth', 'cluster')), function () {
 	// Route::get('/st-admin/clus/mn_stu_acc/add', 'StudentController@add_one');
 	Route::get('/st-admin/clus/mn_stu_acc/edit/{id}', 'StudentController@edit_show');
 	// data = {'registration_number', 'profile_code', 'lastname', 'firstname', 'indentity_code', 'birthday', 'sex', 'plusscore',department_id}	
-	Route::post('/st-admin/clus/mn_stu_acc/update', 'StudentController@edit_one');
+	Route::post('/st-admin/clus/mn_stu_acc/update', 'StudentController@update');
 	Route::get('/st-admin/clus/mn_stu_acc/delete/{id}', 'StudentController@destroy');
 	Route::get('/st-admin/clus/mn_stu_acc/search', 'ClusterController@mn_clus_search');
 
@@ -253,7 +253,7 @@ Route::group(array('before' => array('auth', 'department')), function () {
 	// data = {'registration_number', 'profile_code', 'lastname', 'firstname', 'indentity_code', 'birthday', 'sex', 'plusscore',department_id,username,password,email}
 	Route::post('/st-admin/depart/mn_stu_acc/add_many', 'StudentController@add_many');
 	Route::get('/st-admin/depart/mn_stu_acc/edit/{id}', 'StudentController@edit_show');
-	Route::post('/st-admin/depart/mn_stu_acc/update', 'StudentController@edit_one');
+	Route::post('/st-admin/depart/mn_stu_acc/update', 'StudentController@update');
 	Route::get('/st-admin/depart/mn_stu_acc/search', 'StudentController@mn_depart_search');
 	Route::get('/st-admin/depart/mn_stu_acc/delete/{id}', 'StudentController@destroy');
 	//------------------------------------------end-------------------------------------------------

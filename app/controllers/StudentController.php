@@ -2,7 +2,7 @@
 // require_once (dirname(__FILE__).'/Excel/reader.php');
 // require_once (dirname(__FILE__).'/Utils.php');
 class StudentController extends \BaseController {
-	protected $column = array('registration_number', 'profile_code', 'lastname', 'firstname', 'indentity_code', 'birthday', 'sex', 'plusscore');
+	protected $column = array('profile_code','registration_number', 'lastname', 'firstname', 'indentity_code', 'birthday', 'sex', 'plusscore','department_id');
 
 	public function search() {
 		$registration_number = Input::get('registration_number');
@@ -93,31 +93,31 @@ class StudentController extends \BaseController {
 	  if (!isset($data)) {
 		   echo "error";	
 	  }
-	  try {
-	   $student = Student::where('code', $data['student']['code'])->first();
-	   if (isset($student)) {
+	   $exist_student = Student::where('profile_code', $data['student']['profile_code'])->first();
+	   // dd($exist_student);
+	   if ($exist_student!=null) {
 		    echo "error";
-		    exit();
+		    // dd($exist_student);
+		    Session::flash('alert-class', 'alert-danger');
+			Session::flash('message', 'Đã có lỗi xảy ra, vui lòng thử lại!!!');
+			// dd(Session::has('message'));
+			// exit();
+	   }else{
+			$studentData = array_combine($this->column, $data['student']);
+		   	$student = Student::create($studentData);
+		   	$user = new User($data['user']);
+		   	$user->password = Hash::make($data['user']['password']);
+		   	$check = $student->user()->save($user);
+			if ($check) {
+		  		Session::flash('alert-class', 'alert-success');
+				Session::flash('message', 'Thêm mới thành công!!!');
+			   echo "success";
+			} else {
+				Session::flash('alert-class', 'alert-danger');
+				Session::flash('message', 'Đã có lỗi xảy ra, vui lòng thử lại!!!');	  	
+			   echo "error";
+			}
 	   }
-		   $studentData = array_combine($this->column, $data['student']);
-		   $student = Student::create($studentData);
-		   $user = new User($data['user']);
-		   $user->password = Hash::make($data['user']['password']);
-		   $student->user()->save($user);
-	  } catch (QueryException $e) {
-			Session::flash('alert-class', 'alert-danger');
-			Session::flash('message', 'Đã có lỗi xảy ra, vui lòng thử lại!!!');	  	
-		   echo "error";
-	  }
-	  if (isset($student)) {
-	  		Session::flash('alert-class', 'alert-success');
-			Session::flash('message', 'Thêm mới thành công!!!');
-		   echo "success";
-	  } else {
-			Session::flash('alert-class', 'alert-danger');
-			Session::flash('message', 'Đã có lỗi xảy ra, vui lòng thử lại!!!');	  	
-		   echo "error";
-	  }
  }
 	//Hien thi pop-up giao dien them nhieu hoc sinh
 	public function add_many_student_show() {
@@ -186,23 +186,6 @@ class StudentController extends \BaseController {
 		echo json_encode($student);
 	}
 
-	//Thuc hien sua thong tin 1 hoc sinh
-	public function edit_one()
-	{
-		// $data = Input::get('data');
-		$data = Input::all();
-		$student = Student::find(intval($data['id']));
-		$result = $this->update($data);
-		if($result){
-			Session::flash('alert-class', 'alert-success');
-			Session::flash('message', 'Cập nhật thành công!!!');			
-			echo 'success';
-		} else {
-			Session::flash('alert-class', 'alert-danger');
-			Session::flash('message', 'Đã có lỗi xảy ra, vui lòng thử lại!!!');			
-			echo 'failed';
-		}
-	}
 
 	public function update() {
 		$data = Input::all();
@@ -218,25 +201,27 @@ class StudentController extends \BaseController {
 			Session::flash('alert-class', 'alert-success');
 			Session::flash('message', 'Cập nhật thành công!!!');
 			echo 'success';
-			exit();
 			// }
+		}else{
+			Session::flash('alert-class', 'alert-danger');
+			Session::flash('message', 'Đã có lỗi xảy ra, vui lòng thử lại!!!');		
+			echo 'failed';
 		}
-		Session::flash('alert-class', 'alert-danger');
-		Session::flash('message', 'Đã có lỗi xảy ra, vui lòng thử lại!!!');		
-		echo 'failed';
 	}
 
 	public function destroy($id) {
 		$student = Student::find($id);
+		// dd($id);
 		$result = $student->delete();
 		if($result){
 			Session::flash('alert-class', 'alert-success');
 			Session::flash('message', 'Xóa dư liệu thành công!!!');
 			echo "success";
+		}else{
+			Session::flash('alert-class', 'alert-danger');
+			Session::flash('message', 'Đã có lỗi xảy ra, vui lòng thử lại!!!');
+			echo "delete fail";
 		}
-		Session::flash('alert-class', 'alert-danger');
-		Session::flash('message', 'Đã có lỗi xảy ra, vui lòng thử lại!!!');
-		echo "delete fail";
 	}
 
 	/**

@@ -7,123 +7,28 @@ class PhaseController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function index() {
-		//
+
+	public function edit_show($id)
+	{
+		$phase = Phase::find($id);
+		echo json_encode(array('phase' => $phase, JSON_UNESCAPED_UNICODE));
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create($data) {
-		//
-	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function add($data) {
-		if (!isset($data)) {
-			return false;
-		}
-
-		try {
-			$phaseData = array_combine($column, $data);
-			$phase = Phase::create($clusterData);
-		} catch (QueryException $e) {
-			return false;
-		}
-		if (isset($phase)) {
-			return true;
-		} else {
-			return false;
-		}
-
-	}
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id) {
-		//
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id) {
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id, $data) {
-		if (isset($data)) {
-			Phase::find($id)->update($data);
-		}
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id) {
-		$result = Phase::where($column[0], '=', $id)->delete();
-		if ($result > 0) {
+	public function update()
+	{
+		$data = Input::all();
+		// dd($data);
+		$phase = Phase::find(intval($data['id']));
+		// dd($phase);
+		$result = $phase->update($data);
+		if ($result) {
 			Session::flash('alert-class', 'alert-success');
-			Session::flash('message', 'Xóa dư liệu thành công!!!');
-			return true;
-		} else {
+			Session::flash('message', 'Cập nhật thành công!!!');			
+			echo 'success';
+		}else{
 			Session::flash('alert-class', 'alert-danger');
-			Session::flash('message', 'Đã có lỗi xảy ra, vui lòng thử lại!!!');
-
-			return false;
+			Session::flash('message', 'Đã có lỗi xảy ra, vui lòng thử lại!!!');		
+			echo 'failed';
 		}
-
-	}
-	/**
-	 * Thiet lap cac moc thoi gian
-	 */
-	public function createTimeline() {
-		return false;
-	}
-	/**
-	 * Thay doi cac moc thoi gian
-	 */
-	public function updateTimeline() {
-		return false;
-	}
-	/**
-	 * Thiet lap trang thai
-	 */
-	public function createStates() {
-		return false;
-	}
-	/**
-	 * Thay doi trang thai
-	 */
-	public function updateStates() {
-		return false;
-	}
-	/**
-	 * Thiet lap diem san
-	 */
-	public function createFloorScore() {
-		return false;
 	}
 }

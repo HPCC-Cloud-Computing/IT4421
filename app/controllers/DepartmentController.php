@@ -178,7 +178,14 @@ class DepartmentController extends \BaseController {
 		if (Auth::check()) {
 			$id = Auth::user()->userable_id;
 			$dept = Department::find($id)->students->toArray();
-			$students = Paginator::make($dept, count($dept), 10);
+
+		    $perPage = 10;   
+		    $page = Input::get('page', 1);
+		    if ($page > count($dept) or $page < 1) { $page = 1; }
+		    $offset = ($page * $perPage) - $perPage;
+		    $datas = array_slice($dept,$offset,$perPage);
+			$students = Paginator::make($datas, count($dept), $perPage);
+			// dd($students);
 			return View::make('st-admin.pages.depart.mn_stu_acc')->with('students', $students);
 		}
 

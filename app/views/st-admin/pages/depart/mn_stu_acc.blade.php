@@ -47,7 +47,7 @@
 					
 				<thead>
 					<td>ID</td>
-					<td>Số báo danh</td>
+					<td>CMTND</td>
 					<td>Họ</td>
 					<td>Tên</td>
 					<td>Action</td>
@@ -83,14 +83,14 @@
 		function editStuForm(id){
 			console.log(id);
 			$.ajax({
-                url : "{{Asset('/st-admin/clus/mn_stu_acc/edit')}}/"+id,
+                url : "{{Asset('/st-admin/depart/mn_stu_acc/edit')}}/"+id,
                 type : "GET",
                 data : {
                      // number : $('#number').val()
                 },
                 success : function (result){
-                	console.log(result);
                     var obj = jQuery.parseJSON(result);
+                    console.log(obj);
                     $modal = $('#editStuModal').find('input');
 					$($modal[0]).val(obj.id);
 					$($modal[1]).val(obj.profile_code);
@@ -110,7 +110,7 @@
 
 			if(confirm("Bạn có muốn xóa không ?") == true){
 				$.ajax({
-                url : "{{Asset('/st-admin/depart/mn_stu_acc/del')}}/"+id,
+                url : "{{Asset('/st-admin/depart/mn_stu_acc/delete')}}/"+id,
                 type : "GET",
                 data : {
                      // number : $('#number').val()
@@ -118,12 +118,12 @@
                 success : function (result){
 					var url = window.location.href;
 		            location.reload(url);
-                    console.log(result);	
+                    // console.log(result);	
                     // alert("delete success");
-                }
+                },
                 error : function(result){
                 	location.reload(url);
-                    console.log(result);	
+                    // console.log(result);	
                 }
             });				
 			}
@@ -141,6 +141,7 @@
 		        data : postData,
 		        success:function(data, textStatus, jqXHR) 
 		        {
+		        	// console.log(data);
 		        	var url = window.location.href;
 		            location.reload(url);
 		            //data: return data from server
@@ -162,27 +163,27 @@
 		//Thêm một thí sinh mới --------------
 		$('#addStuModal').submit(function(e)
 		{
-			// console.log('ok');
+			console.log('ok');
 		    var data1 = $(this).serializeArray();
+		    console.log(data1);
 		    var data = {
 		    	student:{
 		    		profile_code:data1[2].value,
 		    		registration_number:data1[3].value,
-		    		registration_number:data1[4].value,
-		    		firstname:data1[5].value,
-		    		lastname:data1[6].value,
-		    		indentity_code:data1[7].value,
-		    		birthday:data1[8].value,
-		    		sex:data1[9].value,
-		    		plus_score:data1[10].value,
-		    		department_id:data1[11].value
+		    		firstname:data1[4].value,
+		    		lastname:data1[5].value,
+		    		indentity_code:data1[6].value,
+		    		birthday:data1[7].value,
+		    		sex:data1[8].value,
+		    		plus_score:data1[9].value,
+		    		department_id:data1[10].value
 		    	},
 		    	user:{
 		    		username:data1[0].value,
 		    		password:data1[1].value
 		    	}
 		    };
-
+		    // alert(data);
 		    $.ajax(
 		    {
 		        url : "{{Asset('/st-admin/depart/mn_stu_acc/add')}}",
@@ -190,13 +191,13 @@
 		        data : data,
 		        success:function(data, textStatus, jqXHR) 
 		        {
-		            //data: return data from server
-		            // location.reload();
+					// console.log(data);
 		        	var url = window.location.href;
 		            location.reload(url);		            
 		        },
 		        error: function(jqXHR, textStatus, errorThrown) 
 		        {
+		        	// console.log(data);
 		            //if fails    
 		        	var url = window.location.href;
 		            location.reload(url);		              

@@ -67,7 +67,7 @@
 		function editPhraseForm(id){
 			console.log(id);
 			$.ajax({
-                url : "{{Asset('/st-admin/minis/mn_schedule/get_scheduler_data')}}/"+id,
+                url : "{{Asset('/st-admin/minis/mn_schedule/edit')}}/"+id,
                 type : "GET",
                 data : {
                      // number : $('#number').val()
@@ -75,35 +75,36 @@
                 success : function (result){
                     
                     var obj = jQuery.parseJSON(result);
-                    // console.log(obj.cluster.name);
-                    $modal = $('#editDepartModal').find('input');
+                    console.log(obj.phase);
+                    $modal = $('#editPhraseModal').find('input');
                     // console.log(obj);
-                    $($modal[0]).val(obj.id);
-                    $($modal[1]).val(obj.code); // cần add thêm
-                    $($modal[2]).val(obj.name);
-                    $($modal[2]).val(obj.state);
-                    $($modal[2]).val(obj.starttime);
-                    $($modal[2]).val(obj.endtime);
+                    $($modal[0]).val(obj.phase.id);
+                    $($modal[1]).val(obj.phase.code); // cần add thêm
+                    $($modal[2]).val(obj.phase.name);
+                    $($modal[3]).val(obj.phase.state);
+                    $($modal[4]).val(obj.phase.starttime);
+                    $($modal[5]).val(obj.phase.endtime);
                 }
             });
 		}
 
 		$('#editPhraseModal').submit(function(e)
 		{
-			console.log('ok');
+			// console.log('ok');
 		    var data = $(this).serializeArray();
 		    // var formURL = $(this).attr("action");
 		    $.ajax(
 		    {
-		        url : "{{Asset('/st-admin/minis/mn_depart_acc/update')}}",
+		        url : "{{Asset('/st-admin/minis/mn_schedule/update')}}",
 		        type: "POST",
 		        data : data,
 		        success:function(data, textStatus, jqXHR) 
 		        {
+		        	// console.log(data);
 					var url = window.location.href;
 		            location.reload(url);
 		            //data: return data from server
-		            console.log(data);
+		            // console.log(data);
 		        },
 		        error: function(jqXHR, textStatus, errorThrown) 
 		        {
@@ -112,7 +113,7 @@
 		    });
 		    e.preventDefault(); //STOP default action
 		    // e.unbind(); //unbind. to stop multiple form submit.
-		    $('#editDepartModalclosebtn').click();
+		    $('#editPhraseModalclosebtn').click();
 		});
 		 
 			// $('#editDepartForm').submit(); //Submit  the FORM
