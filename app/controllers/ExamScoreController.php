@@ -121,7 +121,8 @@ class ExamScoreController extends \BaseController {
 		}
 		Session::flash('alert-class', 'alert-success');
 		Session::flash('message', 'Thêm mới thành công '.$count_update.' bản ghi!!');
-		echo json_encode('success');		
+		// echo json_encode('success');	
+		return Redirect::to('/st-admin/clus/mn_stu_acc');	
 	}
 	/**
 	 * Show the form for creating a new resource.
