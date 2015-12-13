@@ -80,7 +80,7 @@
 		var cluster = $('select option:selected').val(),
 			input = $('input[name="input"]').val();
 		if(cluster == 0){
-			alert('Ban can chon Cum thi truoc khi tim kiem!');
+			alert('Bạn cần chọn cụm thi trước khi tìm kiếm!');
 		}
 		else{
 			$.ajax({
@@ -93,7 +93,7 @@
 					student = JSON.parse(data).student;
 						$("#table_score").show();
 						$("#table_score tbody").html('');
-						$("#table_score tbody").append("<tr><td>"+student.name+"</td><td>"+student.sbd+"</td><td>"+student.toan+"</td><td>"+student.van+"</td><td>"+student.ly+"</td><td>"+student.hoa+"</td><td>"+student.sinh+"</td><td>"+student.ta+"</td><td>"+student.tong+"</td></tr>");
+						$("#table_score tbody").append("<tr><td>"+student.name+"</td><td style='text-align: center'>"+student.sbd+"</td><td style='text-align: center'>"+student.toan+"</td><td style='text-align: center'>"+student.van+"</td><td style='text-align: center'>"+student.ly+"</td><td style='text-align: center'>"+student.hoa+"</td><td style='text-align: center'>"+student.sinh+"</td><td style='text-align: center'>"+student.ta+"</td><td style='text-align: center'>"+student.tong+"</td></tr>");
 					}else{
 
 					}

@@ -35,7 +35,7 @@
 				<h3 style="margin-bottom: 0; line-height: 0">Các nguyện vọng đăng ký</h3>
 				<br /> <i>(Xếp theo thứ tự ưu tiên từ trên xuống dưới)</i>
 			</div>
-			@if(Session::has('isReg') == 'true')
+			@if(Session::has('isReg') == 'true' && isset($wished))
 				@foreach($wished as $wish)
 			<div class="row-aspiration">
 				<div class="div-row">
@@ -133,7 +133,19 @@
 	}
 
 	function send_data(){
-
+		var msg = "Xác nhận đăng ký xét tuyển:\n";
+		for(var i = 1; i <= 4; i++){
+			if($(".row-aspiration[data='nv"+ i +"']").find("select[name='university']").val() != 'null'
+				&& $(".row-aspiration[data='nv"+ i +"']").find("select[name='major']").val() != 'null'
+				&& $(".row-aspiration[data='nv"+ i +"']").find("select[name='combi']").val() != 'null'){
+				var uni = $(".row-aspiration[data='nv"+ i +"']").find("select[name='university']").find(":selected").html();
+				var major = $(".row-aspiration[data='nv"+ i +"']").find("select[name='major']").find(":selected").html();
+				var combi = $(".row-aspiration[data='nv"+ i +"']").find("select[name='combi']").find(":selected").html();
+				msg += "Nguyện vọng " + i + ": " + uni + ", " + major + ", " + combi + "\n"; 
+			}
+		}
+		msg += "\nBạn có chắc chắn gửi đăng ký?"
+		if(!confirm(msg)) return;
 	    var data = {
 	    	'nv':[{
 	    		'student_id':"{{Auth::user()->userable_id}}",
@@ -162,6 +174,7 @@
 	    	}]
 
 	    };
+
 	    $.ajax(
 	    {
 	        url : "{{Asset('/stu/aspiration_reg/add')}}",

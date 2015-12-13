@@ -39,10 +39,10 @@ class WishController extends \BaseController {
 				if($score1) $score1 = $score1->score;
 				else $score1 = -999;
 				$score2 = ExamScore::where('student_id',$nv['student_id'])->where('subject_id',$combi->id_subject2)->first();
-				if($score2) $score2 = $score1->score;
+				if($score2) $score2 = $score2->score;
 				else $score2 = -999;
 				$score3 = ExamScore::where('student_id',$nv['student_id'])->where('subject_id',$combi->id_subject3)->first();
-				if($score3) $score3 = $score1->score;
+				if($score3) $score3 = $score3->score;
 				else $score3 = -999;
 				$sumscore = $score1 + $score2 + $score3;
 				if($sumscore >= 0){

@@ -30,7 +30,7 @@
         <i class="fa fa-calendar"></i> {{$notice->created_at->format('d/m/Y')}}
       </li>
       <li>
-        <i class="fa fa-clock-o"></i> {{$notice->created_at->format('H:M')}}
+        <i class="fa fa-clock-o"></i> {{$notice->created_at->format('H:i')}}
       </li>
     </ul>
     </div>
