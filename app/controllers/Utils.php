@@ -22,7 +22,7 @@ class Utils {
 		//$imageExt = substr($_FILES[$nameOfFileInput]["name"],-4);
 		//$target_file = $target_dir . basename($fileId.$imageExt);
 		//$target_file = $target_dir.basename($file["name"]);
-
+		// dd($file);
 		$target_file = public_path()."/files";
 		$uploadOk = 1;				
 		$fileType = $file->getClientOriginalExtension();
@@ -36,6 +36,7 @@ class Utils {
 				$uploadOk = 0;
 			}
 		}
+
 		// Check file size
 		if ($file->getSize() > 500000) {
 			$message = "Sorry, your file is too large.";
@@ -43,10 +44,11 @@ class Utils {
 			echo "loi";
 			die();
 		}
+		
 		// Allow certain file formats
-		if ($fileType != "xls") {
+		if ($fileType !== "xls" && $fileType !== "csv") {
 			$uploadOk = 0;
-			$message = $message . "Not Exel file type!";
+			$message = $message . "Not Exel (CSV) file type!";
 		}
 		// Check if $uploadOk is set to 0 by an error
 		if ($uploadOk == 0) {
@@ -73,7 +75,7 @@ class Utils {
 	 */
 	public static function importExelFile($nameOfFileInput) {
 		$resultData = array();
-		$filePath = self::uploadFile($nameOfFileInput);
+		$filePath = self::uploadFile($nameOfFileInput);		
 		$data = new Spreadsheet_Excel_Reader();
 		$data->setOutputEncoding('utf-8');
 		$data->read($filePath);
@@ -83,7 +85,7 @@ class Utils {
 				array_push($row, $data->sheets[0]['cells'][$i][$j]);
 			}
 			array_push($resultData, $row);
-		}
+		}		
 		if (count($resultData) > 0) {
 			return $resultData;
 		}

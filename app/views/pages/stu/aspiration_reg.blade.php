@@ -37,27 +37,19 @@
 			</div>
 			@if(Session::get('isReg') == 'true')
 				@foreach($wishes as $wish)
-					<div class="row-aspiration">
-						<div class="div-row">
-							<div class="div-row">
-								<h5> <strong>Nguyện vọng {{$wish->number_order}}</strong>
-								</h5>
-							</div>
-							<div class="div-row-label label-bold" style="width: 5%">Trường</div>
-							<div class="div-row-label" style="min-width: 30%; margin-right: 0">
-								{{University::find(Major::find($wish->major_id)->university_id)->name}}
-							</div>
-							<div class="div-row-label label-bold" style="width: 15%">Nhóm ngành/Ngành</div>
-							<div class="div-row-label" style="width: 34%">
-								{{Major::find($wish->major_id)->name}}
-							</div>
-						</div>
-						<div class="div-row">
-							<div class="div-row-label label-bold" style="width: 20%">Khối thi dùng để xét tuyển</div>
-							<div class="div-row-label">
-								{{$wish->combination_name}}
-							</div>
-						</div>
+			<div class="row-aspiration">
+				<div class="div-row">
+					<div class="div-row">
+						<h5> <strong>Nguyện vọng {{$wish->number_order}}</strong>
+						</h5>
+					</div>
+					<div class="div-row-label label-bold" style="width: 5%">Trường</div>
+					<div class="div-row-label" style="min-width: 30%; margin-right: 0">
+						{{University::find(Major::find($wish->major_id)->university_id)->name}}
+					</div>
+					<div class="div-row-label label-bold" style="width: 15%">Nhóm ngành/Ngành</div>
+					<div class="div-row-label" style="width: 34%">
+						{{Major::find($wish->major_id)->name}}
 					</div>
 				@endforeach
 			@else
@@ -133,7 +125,19 @@
 	}
 
 	function send_data(){
-
+		var msg = "Xác nhận đăng ký xét tuyển:\n";
+		for(var i = 1; i <= 4; i++){
+			if($(".row-aspiration[data='nv"+ i +"']").find("select[name='university']").val() != 'null'
+				&& $(".row-aspiration[data='nv"+ i +"']").find("select[name='major']").val() != 'null'
+				&& $(".row-aspiration[data='nv"+ i +"']").find("select[name='combi']").val() != 'null'){
+				var uni = $(".row-aspiration[data='nv"+ i +"']").find("select[name='university']").find(":selected").html();
+				var major = $(".row-aspiration[data='nv"+ i +"']").find("select[name='major']").find(":selected").html();
+				var combi = $(".row-aspiration[data='nv"+ i +"']").find("select[name='combi']").find(":selected").html();
+				msg += "Nguyện vọng " + i + ": " + uni + ", " + major + ", " + combi + "\n"; 
+			}
+		}
+		msg += "\nBạn có chắc chắn gửi đăng ký?"
+		if(!confirm(msg)) return;
 	    var data = {
 	    	'nv':[{
 	    		'student_id':"{{Auth::user()->userable_id}}",
@@ -162,6 +166,7 @@
 	    	}]
 
 	    };
+
 	    $.ajax(
 	    {
 	        url : "{{Asset('/stu/aspiration_reg/add')}}",

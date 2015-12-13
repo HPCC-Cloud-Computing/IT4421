@@ -21,10 +21,10 @@
             </div>
             <div class="news-detail">
               <p>
-                {{substr($notice->title, 0, 100)}}
+                {{substr($notice->content, 0, 150).' . . .'}}
               </p>
                 <i class="fa fa-calendar"></i>
-                {{$notice->created_at}}
+                {{$notice->created_at->format('d/m/Y H:i')}}
             </div>
           </div>
         </li>
