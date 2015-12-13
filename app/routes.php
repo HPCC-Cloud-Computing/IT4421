@@ -209,7 +209,7 @@ Route::group(array('before' => array('auth', 'cluster')), function () {
 	Route::get('/st-admin/clus/mn_stu_acc/delete/{id}', 'StudentController@destroy');
 	Route::get('/st-admin/clus/mn_stu_acc/search', 'ClusterController@mn_clus_search');
 
-	Route::post('/st-admin/clus/score/import','ExamScoreController@update_many');
+	Route::post('/st-admin/clus/mn_stu_acc/score/import','ExamScoreController@update_many');
 	Route::get('/st-admin/clus/score','ClusterController@exam_score');
 	Route::get('st-admin/clus/score/search','ClusterController@search_score');
 
