@@ -35,71 +35,71 @@
 				<h3 style="margin-bottom: 0; line-height: 0">Các nguyện vọng đăng ký</h3>
 				<br /> <i>(Xếp theo thứ tự ưu tiên từ trên xuống dưới)</i>
 			</div>
-			@if(Session::has('isReg') == 'true')
-				@foreach($wished as $wish)
-			<div class="row-aspiration">
-				<div class="div-row">
-					<div class="div-row">
-						<h5> <strong>Nguyện vọng {{$wish->number_order}}</strong>
-						</h5>
+			@if(Session::get('isReg') == 'true')
+				@foreach($wishes as $wish)
+					<div class="row-aspiration">
+						<div class="div-row">
+							<div class="div-row">
+								<h5> <strong>Nguyện vọng {{$wish->number_order}}</strong>
+								</h5>
+							</div>
+							<div class="div-row-label label-bold" style="width: 5%">Trường</div>
+							<div class="div-row-label" style="min-width: 30%; margin-right: 0">
+								{{University::find(Major::find($wish->major_id)->university_id)->name}}
+							</div>
+							<div class="div-row-label label-bold" style="width: 15%">Nhóm ngành/Ngành</div>
+							<div class="div-row-label" style="width: 34%">
+								{{Major::find($wish->major_id)->name}}
+							</div>
+						</div>
+						<div class="div-row">
+							<div class="div-row-label label-bold" style="width: 20%">Khối thi dùng để xét tuyển</div>
+							<div class="div-row-label">
+								{{$wish->combination_name}}
+							</div>
+						</div>
 					</div>
-					<div class="div-row-label label-bold" style="width: 5%">Trường</div>
-					<div class="div-row-label" style="min-width: 30%; margin-right: 0">
-						{{University::find(Major::find($wish->major_id)->university_id)->name}}
-					</div>
-					<div class="div-row-label label-bold" style="width: 15%">Nhóm ngành/Ngành</div>
-					<div class="div-row-label" style="width: 34%">
-						{{Major::find($wish->major_id)->name}}
-					</div>
-				</div>
-				<div class="div-row">
-					<div class="div-row-label label-bold" style="width: 20%">Khối thi dùng để xét tuyển</div>
-					<div class="div-row-label">
-						{{$wish->combination_name}}
-					</div>
-				</div>
-			</div>
-			@endforeach
+				@endforeach
 			@else
-			@for ($i=1; $i<=4; $i++)
-			<div class="row-aspiration" data="nv{{$i}}">
-				<div class="div-row">
+				@for ($i=1; $i<=4; $i++)
+				<div class="row-aspiration" data="nv{{$i}}">
 					<div class="div-row">
-						<h5> <strong>Nguyện vọng {{$i}}</strong>
-						</h5>
+						<div class="div-row">
+							<h5> <strong>Nguyện vọng {{$i}}</strong>
+							</h5>
+						</div>
+						<div class="div-row-label label-bold" style="width: 5%">Trường</div>
+						<div class="div-row-control" style="width: 40%; margin-right: 0">
+							<select name="university" style="width: 270px" onchange="university_change(this);">
+								<option value="null" selected>-- Chọn trường --</option>
+								@foreach (University::all() as $uni)
+								<option value="{{$uni->id}}">{{$uni->name}}</option>
+								@endforeach
+							</select>
+						</div>
+						<div class="div-row-label label-bold" style="width: 15%">Nhóm ngành/Ngành</div>
+						<div class="div-row-control" style="width: 34%">
+							<select name="major" style="width: 260px">
+								<option value="null" selected>-- Chọn nhóm ngành/ngành --</option>
+							</select>
+						</div>
 					</div>
-					<div class="div-row-label label-bold" style="width: 5%">Trường</div>
-					<div class="div-row-control" style="width: 40%; margin-right: 0">
-						<select name="university" style="width: 270px" onchange="university_change(this);">
-							<option value="null" selected>-- Chọn trường --</option>
-							@foreach (University::all() as $uni)
-							<option value="{{$uni->id}}">{{$uni->name}}</option>
-							@endforeach
-						</select>
-					</div>
-					<div class="div-row-label label-bold" style="width: 15%">Nhóm ngành/Ngành</div>
-					<div class="div-row-control" style="width: 34%">
-						<select name="major" style="width: 260px">
-							<option value="null" selected>-- Chọn nhóm ngành/ngành --</option>
-						</select>
+					<div class="div-row">
+						<div class="div-row-label label-bold" style="width: 20%">Khối thi dùng để xét tuyển</div>
+						<div class="div-row-control">
+							<select name="combi" style="width: 189px">
+								<option value="null" selected>-- Chọn khối thi --</option>
+								@foreach (DB::table('combinations')->get() as $combi)
+								<option value="{{$combi->name}}">Khối {{$combi->name}}</option>
+								@endforeach
+							</select>
+						</div>
 					</div>
 				</div>
-				<div class="div-row">
-					<div class="div-row-label label-bold" style="width: 20%">Khối thi dùng để xét tuyển</div>
-					<div class="div-row-control">
-						<select name="combi" style="width: 189px">
-							<option value="null" selected>-- Chọn khối thi --</option>
-							@foreach (DB::table('combinations')->get() as $combi)
-							<option value="{{$combi->name}}">Khối {{$combi->name}}</option>
-							@endforeach
-						</select>
-					</div>
+				@endfor
+				<div class="div-row" style="text-align: center; margin-top: 15px">
+					<input id="btn-send" type='button' class="btn" value="Gửi đăng ký" onclick="send_data();"/>
 				</div>
-			</div>
-			@endfor
-			<div class="div-row" style="text-align: center; margin-top: 15px">
-				<input id="btn-send" type='button' class="btn" value="Gửi đăng ký" onclick="send_data();"/>
-			</div>
 			@endif
 		</div>
 	</div>
@@ -169,6 +169,7 @@
 	        data : data,
 	        success:function(data, textStatus, jqXHR) 
 	        {
+	        	// console.log(data);
 				var url = window.location.href;
 		        location.reload(url);
 	        },
