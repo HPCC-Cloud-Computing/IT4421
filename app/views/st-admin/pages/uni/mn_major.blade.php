@@ -112,10 +112,10 @@
                      // number : $('#number').val()
                 },
                 success : function (result){
-		        	var url = window.location.href;
-		            location.reload(url);
+		        	// var url = window.location.href;
+		            // location.reload(url);
                     console.log(result);	
-                    alert("delete success");
+                    // alert("delete success");
                 }
             });
 		}

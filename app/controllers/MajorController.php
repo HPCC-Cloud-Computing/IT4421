@@ -101,7 +101,9 @@ class MajorController extends \BaseController {
 
 
 	public function destroy($id) {
-		$result = Major::find(intval($id))->delete();
+		// dd($id);
+		$major = Major::find($id);
+		$result = $major->delete();
 		if ($result > 0) {
 			Session::flash('alert-class', 'alert-success');
 			Session::flash('message', 'Xóa dư liệu thành công!!!');

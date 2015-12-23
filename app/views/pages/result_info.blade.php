@@ -95,7 +95,7 @@
 						$("#table_score tbody").html('');
 						$("#table_score tbody").append("<tr><td>"+student.name+"</td><td style='text-align: center'>"+student.sbd+"</td><td style='text-align: center'>"+student.toan+"</td><td style='text-align: center'>"+student.van+"</td><td style='text-align: center'>"+student.ly+"</td><td style='text-align: center'>"+student.hoa+"</td><td style='text-align: center'>"+student.sinh+"</td><td style='text-align: center'>"+student.ta+"</td><td style='text-align: center'>"+student.tong+"</td></tr>");
 					}else{
-
+						alert('Thong tin thi sinh chua dung! Moi nhap lai!');
 					}
 				}
 			});
