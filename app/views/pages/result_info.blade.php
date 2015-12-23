@@ -19,10 +19,10 @@
 		<div class="col-md-6 col-sm-6" style="margin-top: 15px;">
 			<!-- <form action="{{url('/result/search')}}" method="POST"> -->
 				<div class="div-row">
-					<div class="div-row-label" style="line-height: 1.5; width: 100%; text-align: left"> <b>Số báo danh hoac So CMNTND</b>
+					<div class="div-row-label" style="line-height: 1.5; width: 100%; text-align: left"> <b>Số báo danh hoặc số CMTND</b>
 					</div>
 					<div class="div-row-control" style="width: 100%">
-						<input name="input" type="text" placeholder="Nhap So bao danh hoac So CMNTND"/>
+						<input name="input" type="text" placeholder="Nhập số báo danh và số CMTND"/>
 						<!-- <input type="text" placeholder="6LfnJxETAAAAAP66nDUy9-A_PcwuTYbS5GM2Oj8z" /> -->
 					</div>
 				</div>
@@ -31,7 +31,7 @@
 					</div>
 					<div class="div-row-control" style="width: 100%">
 						<select name="cluster" style="width: 100%">
-							<option value="0" selected>-- Chon cum thi --</option>
+							<option value="0" selected>-- Chọn cụm thi --</option>
 							@foreach($clusters as $cluster)
 							<option value='{{$cluster->id}}'>{{$cluster->name}}</option>
 							@endforeach
