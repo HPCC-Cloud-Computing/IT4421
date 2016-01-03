@@ -5,3 +5,5 @@ COPY ../../x /var/www/html
 Chạy docker-compose build
 # 3 
 Chạy docker-compose up
+# 4 (chỉ cần chạy đầu tiên)
+Vào mysql_server, đăng nhập với username = root, password = root, import data vào database it4421

@@ -30,7 +30,7 @@ mysql:
     volumes:
         - ./mysql_data/:/var/lib/mysql/
     environment:
-        - MYSQL_ROOT_PASSWORD=what-the-fuck
+        - MYSQL_ROOT_PASSWORD=root
         - MYSQL_USER=it4421
         - MYSQL_PASSWORD=12345678
         - MYSQL_DATABASE=it4421
