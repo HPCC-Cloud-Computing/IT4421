@@ -96,6 +96,8 @@
 		</div>
 	</div>
 </div>
+	</div>
+	</div>
 @stop
 
 @section('javascript')

@@ -58,7 +58,7 @@
 					@foreach ($students as $student)
 					<tr>
 						<td>{{$student['id']}}</td>
-						<td>{{$student['registration_number']}}
+						<td>{{$student['registration_number']}}</td>
 						<td>{{$student['firstname']}}</td>
 						<td>{{$student['lastname']}}</td>
 						<td><button class="btn btn-success" data-toggle="modal" data-target="#editStuModal" onclick="editStuForm({{$student['id']}})">Edit</button></td>

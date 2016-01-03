@@ -111,8 +111,8 @@
     $('#tracuudiemthi').attr('class', 'nav-item active');
     //Set height cho content
     var h = $('#main').css('height');
-    h = parseInt(h) + 66;
-    $('#content').css('height', h);
+    h = parseInt(h) - 10;
+    $('#content').css('min-height', h);
   });
 </script>
 @stop

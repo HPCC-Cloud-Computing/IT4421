@@ -48,13 +48,13 @@
 		@endif
 		<br />
 
-		<div class="form-group input-group" style="margin-top: 25px; float: right">
+		{{-- <div class="form-group input-group" style="margin-top: 25px; float: right">
 			<input type="text" style="width: 200px; height: 28px" placeholder="Nhập từ khóa...">
 			<span class="input-group-btn">
 				<button class="btn btn-search" type="button"> <i class="fa fa-search"></i>
 				</button>
 			</span>
-		</div>
+		</div> --}}
 	</div>
 </div>
 <!--end of banner

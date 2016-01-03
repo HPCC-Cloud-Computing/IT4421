@@ -54,6 +54,13 @@
 
 @section('javascript')
 <script type="text/javascript" charset="utf-8">
+$(document).ready(function(){
+    //Set height cho content
+    var h = $('#main').css('height');
+    h = parseInt(h) - 10;
+    $('#content').css('height', h);
+  });
+
 	function University_change(ddl){
 		var id = $(ddl).val();
 		$.ajax({
@@ -65,7 +72,7 @@
                     if(majors.length > 0){
                     	$("#majors_table > tbody").html("");
                     	for (var i = 0; i < majors.length; i++) {
-                    		$("#majors_table > tbody").append("<tr><td>"+ majors[i].code +"</td><td>"+ majors[i].name +"</td><td>"+ majors[i].target +"</td><td>"+ majors[i].combination +"</td><td>"+ majors[i].condition +"</td></tr>");
+                    		$("#majors_table > tbody").append("<tr><td style='text-align: center'>"+ majors[i].code +"</td><td>"+ majors[i].name +"</td><td style='text-align: center'>"+ majors[i].target +"</td><td style='text-align: center'>"+ majors[i].combination +"</td><td>"+ majors[i].condition +"</td></tr>");
                     	}
                 	}
                 	else
