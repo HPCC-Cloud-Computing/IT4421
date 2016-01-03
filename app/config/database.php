@@ -54,10 +54,10 @@ return array(
 
 		'mysql' => array(
 			'driver' => 'mysql',
-			'host' => 'localhost',
+			'host' => 'mysql',
 			'database' => 'it4421',
-			'username' => 'root',
-			'password' => 'nhatbkk57',
+			'username' => 'it4421',
+			'password' => '12345678',
 			'charset' => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix' => '',
