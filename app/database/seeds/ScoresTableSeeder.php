@@ -1,139 +1,26 @@
 <?php
-
-Class ScoresTableSeeder extends Seeder{
-
-	public function run(){
-		DB::table('exam_scores')->delete();
-
-		$rooms = array(
-			array(
-                'student_id'      => 4,
-                'room_id'      => 1,
-                'subject_id' => 1,
-                'score' => 10,
-                'state' => 0
-            ),
-            array(
-                'student_id'      => 4,
-                'room_id'      => 1,
-                'subject_id' => 2,
-                'score' => 4,
-                'state' => 0
-            ),
-            array(
-                'student_id'      => 4,
-                'room_id'      => 1,
-                'subject_id' => 3,
-                'score' => 5,
-                'state' => 0
-            ),
-            array(
-                'student_id'      => 4,
-                'room_id'      => 1,
-                'subject_id' => 4,
-                'score' => 8,
-                'state' => 0
-            ),
-            array(
-                'student_id'      => 4,
-                'room_id'      => 1,
-                'subject_id' => 5,
-                'score' => 10,
-                'state' => 0
-            ),
-            array(
-                'student_id'      => 4,
-                'room_id'      => 1,
-                'subject_id' => 6,
-                'score' => 10,
-                'state' => 0
-            ),
-            array(
-                'student_id'      => 5,
-                'room_id'      => 1,
-                'subject_id' => 1,
-                'score' => 2,
-                'state' => 0
-            ),
-            array(
-                'student_id'      => 5,
-                'room_id'      => 1,
-                'subject_id' => 2,
-                'score' => 10,
-                'state' => 0
-            ),
-            array(
-                'student_id'      => 5,
-                'room_id'      => 1,
-                'subject_id' => 3,
-                'score' => 10,
-                'state' => 0
-            ),
-            array(
-                'student_id'      => 5,
-                'room_id'      => 1,
-                'subject_id' => 4,
-                'score' => 7,
-                'state' => 0
-            ),
-            array(
-                'student_id'      => 5,
-                'room_id'      => 1,
-                'subject_id' => 5,
-                'score' => 10,
-                'state' => 0
-            ),
-            array(
-                'student_id'      => 5,
-                'room_id'      => 1,
-                'subject_id' => 6,
-                'score' => 10,
-                'state' => 0
-            ),
-            array(
-                'student_id'      => 6,
-                'room_id'      => 1,
-                'subject_id' => 1,
-                'score' => 10,
-                'state' => 0
-            ),
-            array(
-                'student_id'      => 6,
-                'room_id'      => 1,
-                'subject_id' => 2,
-                'score' => 10,
-                'state' => 0
-            ),
-            array(
-                'student_id'      => 6,
-                'room_id'      => 1,
-                'subject_id' => 3,
-                'score' => 10,
-                'state' => 0
-            ),
-            array(
-                'student_id'      => 6,
-                'room_id'      => 1,
-                'subject_id' => 4,
-                'score' => 10,
-                'state' => 0
-            ),
-            array(
-                'student_id'      => 6,
-                'room_id'      => 1,
-                'subject_id' => 5,
-                'score' => 10,
-                'state' => 0
-            ),
-            array(
-                'student_id'      => 6,
-                'room_id'      => 1,
-                'subject_id' => 6,
-                'score' => 10,
-                'state' => 0
-            )
-		);
-		DB::table('exam_scores')->insert( $rooms );
-	}
+Class ScoresTableSeeder extends Seeder
+{
+    
+    public function run() {
+        DB::table('exam_scores')->delete();
+        
+        $exam_scores = array();
+        for ($i = 1; $i <= 4; $i++) {
+            for ($j = 1; $j <= 30; $j++) {
+                for ($k = 1; $k <= 6; $k++) {
+                    $exam_score = array(
+                        'student_id' => ($i - 1) * 30 + $j, 
+                        'room_id' => $i, 
+                        'subject_id' => $k, 
+                        'score' => rand(1, 10),
+                        'state' => 1
+                    );
+                    $exam_scores[] = $exam_score;
+                }
+            }
+        }
+        DB::table('exam_scores')->insert($exam_scores);
+    }
 }
 ?>

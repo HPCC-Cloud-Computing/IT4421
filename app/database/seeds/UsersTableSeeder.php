@@ -42,6 +42,62 @@ Class UsersTableSeeder extends Seeder{
                 'userable_type' => 'student'
             ),
             array(
+                'username'      => 'kiennq',
+                'password'      => Hash::make('123456'),
+                'email' => 'kiennq@gmail.com',
+                'userable_id'   => 3,
+                'userable_type' => 'student'
+            ),
+            array(
+                'username'      => 'kiennt',
+                'password'      => Hash::make('123456'),
+                'email' => 'kiennt@gmail.com',
+                'userable_id'   => 4,
+                'userable_type' => 'student'
+            ),
+            array(
+                'username'      => 'thangnq',
+                'password'      => Hash::make('123456'),
+                'email' => 'thangnq@gmail.com',
+                'userable_id'   => 23,
+                'userable_type' => 'student'
+            ),
+            array(
+                'username'      => 'luannh',
+                'password'      => Hash::make('123456'),
+                'email' => 'luannh@gmail.com',
+                'userable_id'   => 36,
+                'userable_type' => 'student'
+            ),
+            array(
+                'username'      => 'thangmh',
+                'password'      => Hash::make('123456'),
+                'email' => 'thangmh@gmail.com',
+                'userable_id'   => 31,
+                'userable_type' => 'student'
+            ),
+            array(
+                'username'      => 'huannt',
+                'password'      => Hash::make('123456'),
+                'email' => 'huannt@gmail.com',
+                'userable_id'   => 44,
+                'userable_type' => 'student'
+            ),
+            array(
+                'username'      => 'anhcs',
+                'password'      => Hash::make('123456'),
+                'email' => 'anhcs@gmail.com',
+                'userable_id'   => 60,
+                'userable_type' => 'student'
+            ),
+            array(
+                'username'      => 'taimh',
+                'password'      => Hash::make('123456'),
+                'email' => 'taimh@gmail.com',
+                'userable_id'   => 71,
+                'userable_type' => 'student'
+            ),
+            array(
                 'username'      => 'binhnq',
                 'password'      => Hash::make('123456'),
                 'email' => 'binh@gmail.com',
